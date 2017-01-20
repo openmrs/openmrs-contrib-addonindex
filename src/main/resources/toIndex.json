@@ -1,0 +1,12 @@
+[
+  {
+    "uid": "reporting-module",
+    "type": "OMOD",
+    "name": "Reporting Module",
+    "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
+    "mavenRepoDetails": {
+      "groupId": "org.openmrs.module",
+      "artifactId": "reporting-omod"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+# default application settings (can be overridden according to Spring Boot docs)
+scheduler:
+  fetch_add_on_list: # fetches our master list of add-ons that we should index (from github)
+    initial_delay: 10000 # wait 10 seconds to start
+    period: 14400000     # execute every 4 hours
+  fetch_details_to_index: # for each add-on we want to index, fetch its details
+    initial_delay: 60000 # wait 60 seconds to start
+    period: 14400000     # execute every 4 hours
