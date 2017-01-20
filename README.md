@@ -31,10 +31,12 @@ You must have NodeJS and NPM installed already.
 
 From `src/main/ui` do
 
-    > npm init
+    > npm install
     > npm run build
 
 ### Server
+
+You must have Java 8.
 
 IntelliJ IDEA has nice support for Spring Boot: you can create a Run Configuration for the Application class. 
 
