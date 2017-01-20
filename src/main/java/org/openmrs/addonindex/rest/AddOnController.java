@@ -6,6 +6,8 @@ import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.service.Index;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +25,9 @@ public class AddOnController {
 	}
 	
 	@RequestMapping("/api/v1/addon/{uid}")
-	public AddOnInfoAndVersions getOne(@PathVariable String uid) {
-		return index.getByUid(uid);
+	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) {
+		AddOnInfoAndVersions addOn = index.getByUid(uid);
+		return new ResponseEntity<AddOnInfoAndVersions>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
 	
 }

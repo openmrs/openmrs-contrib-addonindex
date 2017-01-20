@@ -8,5 +8,15 @@
       "groupId": "org.openmrs.module",
       "artifactId": "reporting-omod"
     }
+  },
+  {
+    "uid": "appui-module",
+    "type": "OMOD",
+    "name": "App UI Module",
+    "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
+    "mavenRepoDetails": {
+      "groupId": "org.openmrs.module",
+      "artifactId": "appui-omod"
+    }
   }
 ]

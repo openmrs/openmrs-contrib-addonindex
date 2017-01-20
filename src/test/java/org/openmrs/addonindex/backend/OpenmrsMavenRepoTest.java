@@ -33,17 +33,17 @@ public class OpenmrsMavenRepoTest {
 		
 		assertThat(addOnInfoAndVersions.getVersions().size(), is(10));
 		
-		assertThat(addOnInfoAndVersions.getVersions().first().getVersion().toString(), is("1.0"));
-		assertThat(addOnInfoAndVersions.getVersions().first().getDownloadUri(),
-				is("http://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
-						+ "-omod/1.0/appui-omod-1.0.jar"));
-		assertThat(addOnInfoAndVersions.getVersions().first().getRenameTo(), is("appui-1.0.omod"));
-		
-		assertThat(addOnInfoAndVersions.getVersions().last().getVersion().toString(), is("1.7"));
+		assertThat(addOnInfoAndVersions.getVersions().last().getVersion().toString(), is("1.0"));
 		assertThat(addOnInfoAndVersions.getVersions().last().getDownloadUri(),
 				is("http://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
+						+ "-omod/1.0/appui-omod-1.0.jar"));
+		assertThat(addOnInfoAndVersions.getVersions().last().getRenameTo(), is("appui-1.0.omod"));
+		
+		assertThat(addOnInfoAndVersions.getVersions().first().getVersion().toString(), is("1.7"));
+		assertThat(addOnInfoAndVersions.getVersions().first().getDownloadUri(),
+				is("http://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
 						+ "-omod/1.7/appui-omod-1.7.jar"));
-		assertThat(addOnInfoAndVersions.getVersions().last().getRenameTo(), is("appui-1.7.omod"));
+		assertThat(addOnInfoAndVersions.getVersions().first().getRenameTo(), is("appui-1.7.omod"));
 	}
 	
 }

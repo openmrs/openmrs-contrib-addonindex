@@ -1,5 +1,7 @@
 package org.openmrs.addonindex.util;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 // Based on http://stackoverflow.com/a/11024200
 // TODO need to handle non-number version components (perhaps just by ignoring them)
 public class Version implements Comparable<Version> {
@@ -10,6 +12,7 @@ public class Version implements Comparable<Version> {
 		this.version = version;
 	}
 	
+	@JsonValue
 	@Override
 	public String toString() {
 		return version;

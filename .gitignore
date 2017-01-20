@@ -2,3 +2,5 @@
 *.iml
 target
 config
+src/main/ui/node_modules
+src/main/resources/static/app/bundle.js

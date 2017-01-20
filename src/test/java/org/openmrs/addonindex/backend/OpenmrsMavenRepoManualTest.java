@@ -36,7 +36,7 @@ public class OpenmrsMavenRepoManualTest {
 		System.out.println(versionsFor.getName());
 		System.out.println(versionsFor.getVersions().first().getDownloadUri());
 		assertThat(versionsFor.getName(), is("App UI Module"));
-		assertThat(versionsFor.getVersions().first().getVersion().toString(), is("1.0"));
+		assertThat(versionsFor.getVersions().last().getVersion().toString(), is("1.0"));
 	}
 	
 }
