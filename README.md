@@ -40,7 +40,7 @@ You must have Java 8.
 
 IntelliJ IDEA has nice support for Spring Boot: you can create a Run Configuration for the Application class. 
 
-To run at the command line:
+To run at the command line (from the root of this project, where pom.xml is):
 
     > mvn clean verify
     > java -jar target/addonindex-1.0-SNAPSHOT.jar
