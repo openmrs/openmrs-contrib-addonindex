@@ -19,8 +19,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.jsx']
     },
-    externals: {
+    externals: { // JS libraries that we link from a CDN in index.html
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        'react-router': 'ReactRouter'
     }
 }

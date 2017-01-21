@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.openmrs.addonindex.util.Version;
+
 /**
  * Details about an OpenMRS add-on and its available versions
  */
@@ -15,18 +17,29 @@ public class AddOnInfoAndVersions {
 	
 	private String name;
 	
+	private String description;
+	
 	private SortedSet<AddOnVersion> versions = new TreeSet<>(Comparator.reverseOrder());
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
 		ret.setUid(toIndex.getUid());
 		ret.setName(toIndex.getName());
+		ret.setDescription(toIndex.getDescription());
 		ret.setType(toIndex.getType());
 		return ret;
 	}
 	
 	public void addVersion(AddOnVersion version) {
 		versions.add(version);
+	}
+	
+	public int getVersionCount() {
+		return versions == null ? 0 : versions.size();
+	}
+	
+	public Version getLatestVersion() {
+		return versions == null || versions.size() == 0 ? null : versions.first().getVersion();
 	}
 	
 	public String getUid() {
@@ -51,6 +64,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public SortedSet<AddOnVersion> getVersions() {

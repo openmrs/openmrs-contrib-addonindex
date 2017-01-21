@@ -3,6 +3,7 @@
     "uid": "reporting-module",
     "type": "OMOD",
     "name": "Reporting Module",
+    "description": "The Reporting Module provides a user interface for defining and managing core objects like reports, data sets, cohort queries, indicators, dimensions, and report designs. The module also provides an extensible API for developing custom reports and new features",
     "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
     "mavenRepoDetails": {
       "groupId": "org.openmrs.module",
@@ -13,10 +14,22 @@
     "uid": "appui-module",
     "type": "OMOD",
     "name": "App UI Module",
+    "description": "Support for using the App Framework's context in the UI Framework",
     "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
     "mavenRepoDetails": {
       "groupId": "org.openmrs.module",
       "artifactId": "appui-omod"
+    }
+  },
+  {
+    "uid": "xforms-module",
+    "type": "OMOD",
+    "name": "XForms Module",
+    "description": "A browser based forms module which adds XForms support and related services to XForms clients, like user and patient download.",
+    "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
+    "mavenRepoDetails": {
+      "groupId": "org.openmrs.module",
+      "artifactId": "xforms-omod"
     }
   }
 ]

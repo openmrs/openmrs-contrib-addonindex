@@ -3,6 +3,7 @@ package org.openmrs.addonindex.rest;
 import java.util.Collection;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
+import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.service.Index;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,9 @@ public class AddOnController {
 	private Index index;
 	
 	@RequestMapping("/api/v1/addon")
-	public Collection<AddOnInfoAndVersions> getAll(@RequestParam(value = "type", required = false) AddOnType type) {
-		return index.getAllByType(type);
+	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
+	                                           @RequestParam(value = "q", required = false) String query) {
+		return index.search(type, query);
 	}
 	
 	@RequestMapping("/api/v1/addon/{uid}")

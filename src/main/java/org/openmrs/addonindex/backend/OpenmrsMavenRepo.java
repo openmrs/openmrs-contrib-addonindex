@@ -24,6 +24,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+/**
+ * OpenMRS has historically released many of its modules in its maven repository (basically, all the modules in the
+ * Reference Application, or in PIH's EMR, or that are built by ci.openmrs.org are released this way).
+ *
+ * Usually the artifacts are deployed to maven with type=jar and named like "{moduleId}-omod-{version}.jar" so they need
+ * to be renamed before being deployed to OpenMRS.
+ *
+ * This Backend is a bit of a hack, but it allows us to rapidly start using this application, even before we've shifed
+ * many of our releases to Bintray or Github Releases.
+ */
 @Component
 public class OpenmrsMavenRepo implements BackendHandler {
 	

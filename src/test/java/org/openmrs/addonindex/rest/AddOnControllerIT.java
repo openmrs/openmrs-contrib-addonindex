@@ -9,7 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
+import org.openmrs.addonindex.domain.AddOnInfoSummary;
+import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.Index;
+import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
@@ -38,21 +41,32 @@ public class AddOnControllerIT {
 	
 	@Before
 	public void setUp() throws Exception {
+		AddOnVersion version = new AddOnVersion();
+		version.setVersion(new Version("1.0"));
+		version.setDownloadUri("http://www.google.com");
+		
 		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
 		info.setUid("reporting-module");
 		info.setName("Reporting Module");
+		info.setDescription("For reporting");
+		info.addVersion(version);
 		
-		when(index.getAllByType(null)).thenReturn(singletonList(info));
+		when(index.search(null, "report")).thenReturn(singletonList(new AddOnInfoSummary(info)));
 		when(index.getByUid("reporting-module")).thenReturn(info);
 	}
 	
 	@Test
-	public void testGetAll() throws Exception {
-		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon",
+	public void testSearch() throws Exception {
+		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?q=report",
 				String.class);
 		
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-		JSONAssert.assertEquals("[{uid:\"reporting-module\",name:\"Reporting Module\"}]", entity.getBody(), false);
+		JSONAssert.assertEquals("[{uid:\"reporting-module\","
+						+ "name:\"Reporting Module\","
+						+ "description:\"For reporting\","
+						+ "versionCount:1,"
+						+ "latestVersion:\"1.0\"}]",
+				entity.getBody(), false);
 	}
 	
 	@Test
@@ -69,6 +83,11 @@ public class AddOnControllerIT {
 				"http://localhost:" + port + "/api/v1/addon/reporting-module",
 				String.class);
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-		JSONAssert.assertEquals("{uid:\"reporting-module\",name:\"Reporting Module\"}", entity.getBody(), false);
+		JSONAssert.assertEquals("{uid:\"reporting-module\","
+				+ "name:\"Reporting Module\","
+				+ "description:\"For reporting\","
+				+ "versionCount:1,"
+				+ "latestVersion:\"1.0\","
+				+ "versions:[{version:\"1.0\",downloadUri:\"http://www.google.com\"}]}", entity.getBody(), false);
 	}
 }

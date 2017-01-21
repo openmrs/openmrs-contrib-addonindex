@@ -1,11 +1,9 @@
 import React from "react";
 import {render} from "react-dom";
-import AllAddOns from "./component/AllAddOns";
+import {Router, hashHistory} from "react-router";
+import routes from "./routes";
 
 render(
-        <div>
-            <h1>OpenMRS Add-On Index</h1>
-            <AllAddOns></AllAddOns>
-        </div>,
+        <Router history={hashHistory} routes={routes}/>,
         document.getElementById('root')
 )

@@ -5,7 +5,7 @@ import org.openmrs.addonindex.backend.MavenRepoDetails;
 
 /**
  * An OpenMRS add-on that should be indexed.
- * Authors add these to our registry, and the application takes care of indexing them
+ * Authors add these to our registry, and the application takes care of indexing them.
  */
 public class AddOnToIndex {
 	
@@ -14,6 +14,8 @@ public class AddOnToIndex {
 	private AddOnType type;
 	
 	private String name;
+	
+	private String description;
 	
 	private Class<? extends BackendHandler> backend;
 	
@@ -41,6 +43,14 @@ public class AddOnToIndex {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	public Class<? extends BackendHandler> getBackend() {

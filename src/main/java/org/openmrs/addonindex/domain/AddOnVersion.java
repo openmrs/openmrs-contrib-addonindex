@@ -2,6 +2,9 @@ package org.openmrs.addonindex.domain;
 
 import org.openmrs.addonindex.util.Version;
 
+/**
+ * One version, for use inside {@link AddOnInfoAndVersions}
+ */
 public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	private Version version;

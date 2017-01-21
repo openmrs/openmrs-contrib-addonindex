@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
+/**
+ * Fetches the list of Add-Ons that we need to index
+ */
 @Component
 public class FetchAddOnList {
 	

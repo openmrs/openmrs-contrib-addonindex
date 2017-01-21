@@ -30,11 +30,13 @@ public class AddOnInfoAndVersionsTest {
 		
 		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
 		info.setName("OpenMRS");
+		info.setDescription("Write code, save lives");
 		info.addVersion(version);
 		
 		String json = mapper.writeValueAsString(info);
 		AddOnInfoAndVersions parsed = mapper.readValue(json, AddOnInfoAndVersions.class);
 		assertThat(parsed.getName(), is("OpenMRS"));
+		assertThat(parsed.getDescription(), is("Write code, save lives"));
 		assertThat(parsed.getVersions().size(), is(1));
 		assertThat(parsed.getVersions().first().getVersion().toString(), is("1.0"));
 	}

@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+/**
+ * For each of the Add-Ons we're supposed to index, uses its backend handler to fetch details and available versions
+ */
 @Component
 public class FetchDetailsToIndex {
 	

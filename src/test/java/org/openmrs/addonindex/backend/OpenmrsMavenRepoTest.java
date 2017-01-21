@@ -22,6 +22,7 @@ public class OpenmrsMavenRepoTest {
 		AddOnToIndex toIndex = new AddOnToIndex();
 		toIndex.setUid("appui-module");
 		toIndex.setName("App UI Module");
+		toIndex.setDescription("For apps");
 		toIndex.setType(AddOnType.OMOD);
 		
 		OpenmrsMavenRepo backend = new OpenmrsMavenRepo();
@@ -29,6 +30,7 @@ public class OpenmrsMavenRepoTest {
 		
 		assertThat(addOnInfoAndVersions.getUid(), is(toIndex.getUid()));
 		assertThat(addOnInfoAndVersions.getName(), is(toIndex.getName()));
+		assertThat(addOnInfoAndVersions.getDescription(), is(toIndex.getDescription()));
 		assertThat(addOnInfoAndVersions.getType(), is(toIndex.getType()));
 		
 		assertThat(addOnInfoAndVersions.getVersions().size(), is(10));
