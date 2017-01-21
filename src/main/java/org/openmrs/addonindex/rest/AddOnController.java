@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +21,13 @@ public class AddOnController {
 	@Autowired
 	private Index index;
 	
-	@RequestMapping("/api/v1/addon")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
 	                                           @RequestParam(value = "q", required = false) String query) {
 		return index.search(type, query);
 	}
 	
-	@RequestMapping("/api/v1/addon/{uid}")
+	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")
 	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) {
 		AddOnInfoAndVersions addOn = index.getByUid(uid);
 		return new ResponseEntity<AddOnInfoAndVersions>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);

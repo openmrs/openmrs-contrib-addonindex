@@ -27,9 +27,13 @@ export default class Show extends Component {
         }
         else if (this.state && this.state.addon) {
             const addon = this.state.addon;
+            const icon = addon.type === 'OWA' ? 'fa fa-globe' : 'fa fa-puzzle-piece';
             return (
                     <div>
-                        <h1>{addon.name}</h1>
+                        <h1>
+                            <i className={icon} aria-hidden="true"></i>
+                            {addon.name}
+                        </h1>
                         <h3>{addon.description}</h3>
                         Versions:
                         <ul>

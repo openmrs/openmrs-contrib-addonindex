@@ -7,6 +7,9 @@ export default class AddOnList extends Component {
         if (!this.props.addons) {
             return <div>Loading...</div>
         }
+        else if (this.props.addons.length === 0) {
+            return <div>No results</div>
+        }
         else {
             return (
                     <ul>
