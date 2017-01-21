@@ -1,18 +1,16 @@
 package org.openmrs.addonindex.scheduled;
 
-import java.io.InputStream;
-import java.util.List;
-
-import org.openmrs.addonindex.domain.AddOnToIndex;
+import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 
 /**
  * Fetches the list of Add-Ons that we need to index
@@ -22,13 +20,17 @@ public class FetchAddOnList {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
+	@Value("${add_on_list.url}")
+	private String url;
+	
+	@Autowired
+	private RestTemplateBuilder restTemplateBuilder;
+	
+	@Autowired
+	private ObjectMapper mapper;
+	
 	@Autowired
 	private IndexingService indexingService;
-	
-	private ObjectMapper objectMapper = new ObjectMapper();
-	
-	private CollectionType listOfItemsType = objectMapper.getTypeFactory().constructCollectionType(List.class,
-			AddOnToIndex.class);
 	
 	@Scheduled(
 			initialDelayString = "${scheduler.fetch_add_on_list.initial_delay}",
@@ -36,13 +38,22 @@ public class FetchAddOnList {
 	public void fetchAddOnList() throws Exception {
 		logger.info("Fetching list of add-ons to index");
 		
-		InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("toIndex.json");
-		List<AddOnToIndex> allToIndex = objectMapper.readValue(resourceStream, listOfItemsType);
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("We have " + allToIndex.size() + " add-ons to index");
+		String json = restTemplateBuilder.build().getForObject(url, String.class);
+		AllAddOnsToIndex toIndex;
+		try {
+			toIndex = mapper.readValue(json, AllAddOnsToIndex.class);
 		}
-		indexingService.setAllToIndex(allToIndex);
+		catch (Exception ex) {
+			throw new RuntimeException("File downloaded from " + url + " could not be parsed", ex);
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("We have " + toIndex.getToIndex().size() + " add-ons to index");
+		}
+		if (toIndex.size() > 0) {
+			indexingService.setAllToIndex(toIndex);
+		} else {
+			logger.warn("File downloaded from " + url + " does not list any add-ons to index. Keeping our current list");
+		}
 	}
 	
 }

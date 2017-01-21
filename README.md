@@ -1,21 +1,22 @@
-## OpenMRS Add-On Index
+# OpenMRS Add-On Index
 
 This application serves as an _index_ of add-ons for the OpenMRS Platform.
 
-Add-ons include both OpenMRS Modules (OMOD files) and Open Web Apps (OWAs).
+We support:
+
+* OpenMRS Modules (OMOD files)
+* Open Web Apps (OWA files).
  
-This replaces [Modulus](http://github.com/openmrs/openmrs-contrib-modulus) which we used to host and publish modules. The 
+This replaces [Modulus](http://github.com/openmrs/openmrs-contrib-modulus) where we hosted and published modules. The 
 aim of this project is different -- we want people to host their OpenMRS add-ons elsewhere (bintray, github releases, etc)
- and we will merely index them for easy searching.
+and we will merely index them for easy searching, in one unified index.
     
 For convenience we'll also support indexing modules that have already been published to [OpenMRS's maven 
 repository](http://mavenrepo.openmrs.org/).
 
 ## Publishing your Module or OWA
 
-Currently this application contains a hardcoded list of modules. This will soon be replaced, and we'll load these from a 
-git repository. Once that happens we'll update this documentation with how you should request that we index your OMOD or 
-OWA.
+See [PUBLISHING-AN-ADD-ON](PUBLISHING-AN-ADD-ON.md).
 
 ## Testing / Development
 

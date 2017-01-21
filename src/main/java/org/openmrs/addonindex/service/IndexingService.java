@@ -1,8 +1,5 @@
 package org.openmrs.addonindex.service;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +7,7 @@ import java.util.Map;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
+import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class IndexingService {
 	@Autowired
 	private Index repository;
 	
-	private List<AddOnToIndex> allToIndex = new ArrayList<>();
+	private AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
 	
 	private Map<Class<? extends BackendHandler>, BackendHandler> handlers;
 	
@@ -31,12 +29,12 @@ public class IndexingService {
 		}
 	}
 	
-	public void setAllToIndex(List<AddOnToIndex> allToIndex) {
-		this.allToIndex = allToIndex;
+	public AllAddOnsToIndex getAllToIndex() {
+		return allToIndex;
 	}
 	
-	public List<AddOnToIndex> getAllToIndex() throws IOException {
-		return Collections.unmodifiableList(allToIndex);
+	public void setAllToIndex(AllAddOnsToIndex allToIndex) {
+		this.allToIndex = allToIndex;
 	}
 	
 	public BackendHandler getHandlerFor(AddOnToIndex toIndex) {

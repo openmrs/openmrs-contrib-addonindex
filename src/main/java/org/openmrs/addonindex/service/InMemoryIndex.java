@@ -11,6 +11,11 @@ import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Quick in-memory implementation of indexing data.
+ * Eventually we should replace this with something that supports full-text search, like ElasticSearch. (Though in
+ * practice, merely enhancing this class to search on more fields may be sufficient, given the size of the dataset.)
+ */
 @Repository
 public class InMemoryIndex implements Index {
 	
