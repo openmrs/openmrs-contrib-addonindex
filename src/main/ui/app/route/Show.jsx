@@ -41,8 +41,9 @@ export default class Show extends Component {
                                 return (
                                         <li>
                                             Version {v.version}
-                                            <a href={v.downloadUri}>Download</a>
-                                            { v.renameTo ? `Rename this file to ${v.renameTo}` : "" }
+                                            <a href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
+                                                Download
+                                            </a>
                                         </li>
                                 )
                             })}

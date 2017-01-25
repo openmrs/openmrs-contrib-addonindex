@@ -1,6 +1,7 @@
 package org.openmrs.addonindex.domain;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -80,5 +81,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setVersions(SortedSet<AddOnVersion> versions) {
 		this.versions = versions;
+	}
+	
+	public Optional<AddOnVersion> getVersion(Version version) {
+		if (versions == null) {
+			return null;
+		}
+		return versions.stream().filter(v -> {
+			return v.getVersion().equals(version);
+		}).findFirst();
 	}
 }
