@@ -46,8 +46,8 @@ public class FetchAddOnList {
 		catch (Exception ex) {
 			throw new RuntimeException("File downloaded from " + url + " could not be parsed", ex);
 		}
-		if (logger.isDebugEnabled()) {
-			logger.debug("We have " + toIndex.getToIndex().size() + " add-ons to index");
+		if (logger.isInfoEnabled()) {
+			logger.info("We have " + toIndex.getToIndex().size() + " add-ons to index");
 		}
 		if (toIndex.size() > 0) {
 			indexingService.setAllToIndex(toIndex);

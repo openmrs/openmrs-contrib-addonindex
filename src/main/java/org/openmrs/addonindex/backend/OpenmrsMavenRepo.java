@@ -68,6 +68,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 		String url = BASE_URL + "service/local/repositories/modules/index_content/"
 				+ "?groupIdHint=" + addOnToIndex.getMavenRepoDetails().getGroupId()
 				+ "&artifactIdHint=" + addOnToIndex.getMavenRepoDetails().getArtifactId();
+		logger.info("Getting info from " + url);
 		String xml = restTemplateBuilder.build().getForObject(url, String.class);
 		return handleIndexBrowserTreeViewResponse(addOnToIndex, xml);
 	}
@@ -157,6 +158,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 	}
 	
 	String fetchConfigXml(AddOnToIndex addOnToIndex, AddOnVersion addOnVersion) throws IOException {
+		logger.info("fetching config.xml from " + addOnVersion.getDownloadUri());
 		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.getDownloadUri(), Resource.class);
 		try (
 				InputStream inputStream = resource.getInputStream();
