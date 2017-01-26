@@ -37,6 +37,7 @@ public class OpenmrsMavenRepoManualTest {
 		System.out.println(versionsFor.getVersions().first().getDownloadUri());
 		assertThat(versionsFor.getName(), is("App UI Module"));
 		assertThat(versionsFor.getVersions().last().getVersion().toString(), is("1.0"));
+		assertThat(versionsFor.getVersions().last().getRequireOpenmrsVersion(), is("1.9.1"));
 	}
 	
 }

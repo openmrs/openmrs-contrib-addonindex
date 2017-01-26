@@ -21,6 +21,16 @@ export default class Show extends Component {
                 })
     }
 
+    formatRequiredModules(version) {
+        let requirements = [];
+        if (version.requireModules) {
+            for (let key in version.requireModules) {
+                requirements.push(key.replace("org.openmrs.module.", ""));
+            }
+        }
+        return requirements.join(", ");
+    }
+
     render() {
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
@@ -40,7 +50,15 @@ export default class Show extends Component {
                             {addon.versions.map(v => {
                                 return (
                                         <li>
-                                            Version {v.version}
+                                            <span>
+                                                Version {v.version}
+                                            </span>
+                                            <span>
+                                                {v.requireOpenmrsVersion}
+                                            </span>
+                                            <span>
+                                                {this.formatRequiredModules(v)}
+                                            </span>
                                             <a href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
                                                 Download
                                             </a>

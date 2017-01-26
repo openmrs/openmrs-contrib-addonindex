@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+	
+	<!-- Module Properties -->
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>OpenMRS</author>
+	<description>
+		${project.parent.description}
+	</description>
+	<updateURL>https://modules.openmrs.org/modules/download/${project.parent.artifactId}/update.rdf</updateURL>
+	<require_version>1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*</require_version>
+	<!-- / Module Properties -->
+	
+	
+	<!-- Required Modules -->
+	<require_modules>
+	</require_modules>
+	<!-- / Required Modules -->
+	
+	<!-- Conditional Resources -->
+	<conditionalResources>
+		<conditionalResource>
+			<path>/lib/emrapi-api-1.12-${project.parent.version}.jar</path>
+			<openmrsVersion>1.12.0 - 2.*</openmrsVersion>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/emrapi-api-1.11-${project.parent.version}.jar</path>
+			<openmrsVersion>1.11.*</openmrsVersion>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/emrapi-api-1.10-${project.parent.version}.jar</path>
+			<openmrsVersion>1.10.*</openmrsVersion>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/emrapi-api-1.9-${project.parent.version}.jar</path>
+			<openmrsVersion>1.9.*</openmrsVersion>
+		</conditionalResource>
+	
+	</conditionalResources>
+	<!-- / Conditional Resources -->
+	
+	<!-- Module Activator -->
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.EmrApiActivator</activator>
+	
+	
+	<!-- Maps hibernate files, if present -->
+	<mappingFiles>
+		Condition.hbm.xml
+	</mappingFiles>
+	
+	<!-- Internationalization -->
+	<!-- All message codes should start with ${project.parent.artifactId}. -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>de</lang>
+		<file>messages_de.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+	
+	<globalProperty>
+		<property>emr.encounterMatcher</property>
+		<defaultValue></defaultValue>
+		<description>
+			Class name of a custom encounter matcher (e.g. org.openmrs.module.example.customEncounterMatcher)
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>emrapi.suppressedDiagnosisConcepts</property>
+		<defaultValue></defaultValue>
+		<description>
+			UUIDs or mappings of suppressed diagnosis concepts
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>emrapi.nonDiagnosisConceptSets</property>
+		<defaultValue></defaultValue>
+		<description>
+			UUIDs or mapping of non diagnosis concept sets
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>emrapi.lastViewedPatientSizeLimit</property>
+		<defaultValue>50</defaultValue>
+		<description>
+			Specifies the system wide number of patients to store as last viewed for a single user,
+			defaults to 50 if not specified
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>conditionList.endReasonConceptSetUuid</property>
+		<defaultValue></defaultValue>
+		<description>
+			UUID of end reason concept set
+		</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>conditionList.nonCodedUuid</property>
+		<defaultValue></defaultValue>
+		<description>
+			UUID of non coded concept
+		</description>
+	</globalProperty>
+
+</module>
