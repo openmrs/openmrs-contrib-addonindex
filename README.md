@@ -23,7 +23,7 @@ See [PUBLISHING-AN-ADD-ON](PUBLISHING-AN-ADD-ON.md).
 The server is a Spring Boot application, written with Java 8, built using maven. The web UI is a ReactJS SPA, built 
 with npm (using webpack).
 
-We use [Snap CI](https://app.snap-ci.com/djazayeri/openmrs-contrib-addonindex) to continuously build this application.  
+We use [Snap CI](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex) to continuously build this application.  
 
 To build locally, you need to build the web UI first, and then run the server. (Though if you skip building the web UI 
 you'll still be able to see the server's REST API)
@@ -74,6 +74,14 @@ this file with contents:
     logging.level:
       org.openmrs.addonindex: DEBUG
 
+## Docker Packaging
+
+In order to deploy this to OpenMRS infrastructure, we package this application as a docker container and publish it to  
+dockerhub as `openmrs/addonindex`. You would do this manually as
+
+    mvn package docker:build
+    
+but CI builds it automatically, so you don't need to do this. 
 
 ## Contributing
 
