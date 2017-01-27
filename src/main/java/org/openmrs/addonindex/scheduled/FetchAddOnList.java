@@ -1,5 +1,7 @@
 package org.openmrs.addonindex.scheduled;
 
+import java.nio.charset.Charset;
+
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StreamUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,6 +25,9 @@ public class FetchAddOnList {
 	
 	@Value("${add_on_list.url}")
 	private String url;
+	
+	@Value("${add_on_list.strategy}")
+	private Strategy strategy = Strategy.FETCH;
 	
 	@Autowired
 	private RestTemplateBuilder restTemplateBuilder;
@@ -38,7 +44,15 @@ public class FetchAddOnList {
 	public void fetchAddOnList() throws Exception {
 		logger.info("Fetching list of add-ons to index");
 		
-		String json = restTemplateBuilder.build().getForObject(url, String.class);
+		String json;
+		if (strategy == Strategy.LOCAL) {
+			logger.debug("LOCAL strategy");
+			json = StreamUtils.copyToString(getClass().getClassLoader().getResourceAsStream("add-ons-to-index.json"),
+					Charset.defaultCharset());
+		} else {
+			logger.debug("FETCH strategy: " + url);
+			json = restTemplateBuilder.build().getForObject(url, String.class);
+		}
 		AllAddOnsToIndex toIndex;
 		try {
 			toIndex = mapper.readValue(json, AllAddOnsToIndex.class);
@@ -56,4 +70,7 @@ public class FetchAddOnList {
 		}
 	}
 	
+	public enum Strategy {
+		FETCH, LOCAL
+	}
 }

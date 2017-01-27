@@ -1,7 +1,7 @@
 {
   "toIndex": [
     {
-      "uid": "appui-module",
+      "uid": "org.openmrs.module.appui",
       "type": "OMOD",
       "name": "App UI module",
       "description": "Support for using the App Framework's context in the UI Framework",
@@ -12,7 +12,7 @@
       }
     },
     {
-      "uid": "reporting-module",
+      "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting module",
       "description": "The Reporting Module provides a user interface for defining and managing core objects like reports, data sets, cohort queries, indicators, dimensions, and report designs. The module also provides an extensible API for developing custom reports and new features",
@@ -23,7 +23,7 @@
       }
     },
     {
-      "uid": "xforms-module",
+      "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms module",
       "description": "A browser based forms module which adds XForms support and related services to XForms clients, like user and patient download.",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "uid": "htmlformentry-module",
+      "uid": "org.openmrs.module.htmlformentry",
       "type": "OMOD",
       "name": "HTML Form Entry module",
       "description": "FormEntry in-webapp, using HTML forms",

@@ -1,7 +1,8 @@
 # default application settings (can be overridden according to Spring Boot docs)
 
-add_on_list: # where to fetch our master list of add-ons from
+add_on_list: # where/how to fetch our master list of add-ons from
   url: https://raw.githubusercontent.com/openmrs/openmrs-contrib-addonindex/master/src/main/resources/add-ons-to-index.json
+  strategy: FETCH  # FETCH is production behavior; LOCAL uses the local resource, e.g. for testing
 
 scheduler:
   fetch_add_on_list:     # fetches our master list of add-ons that we should index (from github)
