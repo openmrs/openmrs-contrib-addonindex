@@ -4,13 +4,14 @@ add_on_list: # where to fetch our master list of add-ons from
   url: https://raw.githubusercontent.com/openmrs/openmrs-contrib-addonindex/master/src/main/resources/add-ons-to-index.json
 
 scheduler:
-  fetch_add_on_list: # fetches our master list of add-ons that we should index (from github)
-    initial_delay: 5000 # wait 5 seconds to start
+  fetch_add_on_list:     # fetches our master list of add-ons that we should index (from github)
+    initial_delay: 5000  # wait 5 seconds to start
     period: 14400000     # execute every 4 hours
 
-  fetch_details_to_index: # for each add-on we want to index, fetch its details
-    initial_delay: 15000 # wait 15 seconds to start
-    period: 14400000     # execute every 4 hours
+  fetch_details_to_index:     # for each add-on we want to index, fetch its details
+    initial_delay: 15000      # wait 15 seconds to start
+    period: 14400000          # execute every 4 hours
+    fetch_extra_details: true # get each addon version and inspect it for Required OpenMRS, etc
 
 spring.elasticsearch.jest:
   uris: http://localhost:9200

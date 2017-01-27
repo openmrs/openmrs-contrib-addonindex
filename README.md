@@ -77,7 +77,7 @@ Thus the workflow of doing front-end development is:
 1. In IntelliJ, `Build Project`
 1. Refresh your browser window
 
-#### Server settings
+#### Custom settings
 
 To override the default settings, create a file `config/application.yml` whose contents should be like our
 [application.yml](src/main/resources/application.yml) in this source code. For development you might want to create 
@@ -85,7 +85,15 @@ this file with contents:
 
     logging.level:
       org.openmrs.addonindex: DEBUG
+      
 
+This application is bandwidth-heavy on its first run (e.g. it downloads all OMOD versions to inspect their configuration).
+ If you want to save bandwidth, set this in your custom config:
+ 
+    scheduler:
+      fetch_details_to_index:
+        fetch_extra_details: false
+ 
 ## Docker Packaging
 
 In order to deploy this to OpenMRS infrastructure, we package this application as a docker container and publish it to  

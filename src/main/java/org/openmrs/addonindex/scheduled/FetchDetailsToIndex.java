@@ -26,6 +26,7 @@ import org.openmrs.addonindex.service.IndexingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -53,6 +54,9 @@ public class FetchDetailsToIndex {
 	
 	private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 	
+	@Value("${scheduler.fetch_details_to_index.fetch_extra_details}")
+	private boolean fetchExtraDetails = true;
+	
 	@Scheduled(
 			initialDelayString = "${scheduler.fetch_details_to_index.initial_delay}",
 			fixedDelayString = "${scheduler.fetch_details_to_index.period}")
@@ -72,13 +76,25 @@ public class FetchDetailsToIndex {
 		}
 	}
 	
-	private void getDetailsAndIndex(AddOnToIndex toIndex) throws Exception {
+	void setFetchExtraDetails(boolean fetchExtraDetails) {
+		this.fetchExtraDetails = fetchExtraDetails;
+	}
+	
+	void getDetailsAndIndex(AddOnToIndex toIndex) throws Exception {
 		BackendHandler handler = indexingService.getHandlerFor(toIndex);
 		AddOnInfoAndVersions infoAndVersions = handler.getInfoAndVersionsFor(toIndex);
 		if (logger.isDebugEnabled()) {
 			logger.debug(toIndex.getUid() + " has " + infoAndVersions.getVersions().size() + " versions");
 		}
 		
+		if (fetchExtraDetails) {
+			fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
+		}
+		
+		indexingService.index(infoAndVersions);
+	}
+	
+	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
 		
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
@@ -109,8 +125,6 @@ public class FetchDetailsToIndex {
 				// don't fail here, keep going
 			}
 		}
-		
-		indexingService.index(infoAndVersions);
 	}
 	
 	String fetchConfigXml(AddOnToIndex addOnToIndex, AddOnVersion addOnVersion) throws IOException {

@@ -13,9 +13,12 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnVersion;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StreamUtils;
 
+@RunWith(SpringRunner.class)
 public class FetchDetailsToIndexTest {
 	
 	@Test
