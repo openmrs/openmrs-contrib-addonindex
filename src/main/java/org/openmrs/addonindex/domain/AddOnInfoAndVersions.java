@@ -1,17 +1,25 @@
 package org.openmrs.addonindex.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import org.openmrs.addonindex.util.Version;
+
+import io.searchbox.annotations.JestId;
 
 /**
  * Details about an OpenMRS add-on and its available versions
  */
 public class AddOnInfoAndVersions {
 	
+	public final static String ES_INDEX = "add_on_info_and_versions";
+	
+	public final static String ES_TYPE = "add_on_info_and_versions";
+	
+	@JestId
 	private String uid;
 	
 	private AddOnType type;
@@ -20,7 +28,7 @@ public class AddOnInfoAndVersions {
 	
 	private String description;
 	
-	private SortedSet<AddOnVersion> versions = new TreeSet<>(Comparator.reverseOrder());
+	private List<AddOnVersion> versions = new ArrayList<>();
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
@@ -33,6 +41,7 @@ public class AddOnInfoAndVersions {
 	
 	public void addVersion(AddOnVersion version) {
 		versions.add(version);
+		Collections.sort(versions, Comparator.reverseOrder());
 	}
 	
 	public int getVersionCount() {
@@ -40,7 +49,7 @@ public class AddOnInfoAndVersions {
 	}
 	
 	public Version getLatestVersion() {
-		return versions == null || versions.size() == 0 ? null : versions.first().getVersion();
+		return versions == null || versions.size() == 0 ? null : versions.get(0).getVersion();
 	}
 	
 	public String getUid() {
@@ -75,11 +84,11 @@ public class AddOnInfoAndVersions {
 		this.description = description;
 	}
 	
-	public SortedSet<AddOnVersion> getVersions() {
+	public List<AddOnVersion> getVersions() {
 		return versions;
 	}
 	
-	public void setVersions(SortedSet<AddOnVersion> versions) {
+	public void setVersions(List<AddOnVersion> versions) {
 		this.versions = versions;
 	}
 	

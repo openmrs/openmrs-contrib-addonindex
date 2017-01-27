@@ -34,10 +34,10 @@ public class OpenmrsMavenRepoManualTest {
 		
 		AddOnInfoAndVersions versionsFor = backend.getInfoAndVersionsFor(toIndex);
 		System.out.println(versionsFor.getName());
-		System.out.println(versionsFor.getVersions().first().getDownloadUri());
+		System.out.println(versionsFor.getVersions().get(0).getDownloadUri());
 		assertThat(versionsFor.getName(), is("App UI Module"));
-		assertThat(versionsFor.getVersions().last().getVersion().toString(), is("1.0"));
-		assertThat(versionsFor.getVersions().last().getRequireOpenmrsVersion(), is("1.9.1"));
+		assertThat(versionsFor.getVersions().get(0).getVersion().toString(), is("1.0"));
+		assertThat(versionsFor.getVersions().get(0).getRequireOpenmrsVersion(), is("1.9.1"));
 	}
 	
 }

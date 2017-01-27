@@ -1,0 +1,50 @@
+{
+  "add_on_info_and_versions": {
+    "properties": {
+      "type": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text"
+      },
+      "description": {
+        "type": "text"
+      },
+      "versions": {
+        "type": "nested",
+        "properties": {
+          "version": {
+            "type": "keyword"
+          },
+          "downloadUri": {
+            "type": "keyword",
+            "index": false
+          },
+          "renameTo": {
+            "type": "keyword",
+            "index": false
+          },
+          "requireOpenmrsVersion": {
+            "type": "text",
+            "index": false
+          },
+          "requireModules": {
+            "type": "nested",
+            "properties": {
+              "module": {
+                "type": "text"
+              },
+              "version": {
+                "type": "text",
+                "index": false
+              }
+            }
+          },
+          "supportedLanguages": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}

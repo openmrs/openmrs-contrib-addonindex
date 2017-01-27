@@ -1,6 +1,5 @@
 package org.openmrs.addonindex.rest;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +35,7 @@ public class RenamingFileProxyController {
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}/{version}/download")
 	public void downloadWithCorrectName(@PathVariable("uid") String addonUid,
 	                                    @PathVariable("version") String version,
-	                                    HttpServletResponse response) throws IOException {
+	                                    HttpServletResponse response) throws Exception {
 		
 		AddOnInfoAndVersions addOn = index.getByUid(addonUid);
 		if (addOn == null) {

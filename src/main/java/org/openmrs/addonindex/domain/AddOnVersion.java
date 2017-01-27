@@ -1,9 +1,7 @@
 package org.openmrs.addonindex.domain;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.openmrs.addonindex.util.Version;
 
@@ -20,7 +18,7 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	private String requireOpenmrsVersion;
 	
-	private Map<String, String> requireModules;
+	private List<ModuleRequirement> requireModules;
 	
 	private List<String> supportedLanguages;
 	
@@ -60,11 +58,11 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 		this.requireOpenmrsVersion = requireOpenmrsVersion;
 	}
 	
-	public Map<String, String> getRequireModules() {
+	public List<ModuleRequirement> getRequireModules() {
 		return requireModules;
 	}
 	
-	public void setRequireModules(Map<String, String> requireModules) {
+	public void setRequireModules(List<ModuleRequirement> requireModules) {
 		this.requireModules = requireModules;
 	}
 	
@@ -86,9 +84,9 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	public void addRequiredModule(String requiredModule, String version) {
 		if (requireModules == null) {
-			requireModules = new LinkedHashMap<>();
+			requireModules = new ArrayList<>();
 		}
-		requireModules.put(requiredModule, version == null ? "?" : version);
+		requireModules.add(new ModuleRequirement(requiredModule, version == null ? "?" : version));
 	}
 	
 	public void addLanguage(String localeCode) {

@@ -23,6 +23,8 @@ See [PUBLISHING-AN-ADD-ON](PUBLISHING-AN-ADD-ON.md).
 The server is a Spring Boot application, written with Java 8, built using maven. The web UI is a ReactJS SPA, built 
 with npm (using webpack).
 
+It uses ElasticSearch to store its index.
+
 We use [Snap CI](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex) to continuously build this application.  
 
 To build locally, you need to build the web UI first, and then run the server. (Though if you skip building the web UI 
@@ -36,6 +38,16 @@ From `src/main/ui` do
 
     > npm install
     > npm run build
+
+### ElasticSearch
+
+You need to be running ElasticSearch to run this application. To run this using Docker, do:
+
+	> mkdir esdata
+    > docker run -v "$PWD/esdata":/usr/share/elasticsearch/data -d -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms1g -Xmx1g" elasticsearch:5.1
+
+If you aren't running ElasticSearch on `http://localhost:9200` then you'll need to set `spring.elasticsearch.jest.uris` in
+ your custom application config. (See below for how to set this configuration.) 
 
 ### Building and running the server
 

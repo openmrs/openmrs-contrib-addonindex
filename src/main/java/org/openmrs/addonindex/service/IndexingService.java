@@ -41,7 +41,11 @@ public class IndexingService {
 		return handlers.get(toIndex.getBackend());
 	}
 	
-	public void index(AddOnInfoAndVersions infoAndVersions) {
+	public void index(AddOnInfoAndVersions infoAndVersions) throws Exception {
 		repository.index(infoAndVersions);
+	}
+	
+	public AddOnInfoAndVersions getByUid(String uid) throws Exception {
+		return repository.getByUid(uid);
 	}
 }

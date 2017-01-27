@@ -38,7 +38,7 @@ public class AddOnInfoAndVersionsTest {
 		assertThat(parsed.getName(), is("OpenMRS"));
 		assertThat(parsed.getDescription(), is("Write code, save lives"));
 		assertThat(parsed.getVersions().size(), is(1));
-		assertThat(parsed.getVersions().first().getVersion().toString(), is("1.0"));
+		assertThat(parsed.getVersions().get(0).getVersion().toString(), is("1.0"));
 	}
 	
 }

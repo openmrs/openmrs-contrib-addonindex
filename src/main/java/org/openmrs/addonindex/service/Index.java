@@ -11,11 +11,11 @@ import org.openmrs.addonindex.domain.AddOnType;
  */
 public interface Index {
 	
-	void index(AddOnInfoAndVersions infoAndVersions);
+	void index(AddOnInfoAndVersions infoAndVersions) throws Exception;
 	
-	Collection<AddOnInfoSummary> search(AddOnType type, String query);
+	Collection<AddOnInfoSummary> search(AddOnType type, String query) throws Exception;
 	
-	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type);
+	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;
 	
-	AddOnInfoAndVersions getByUid(String uid);
+	AddOnInfoAndVersions getByUid(String uid) throws Exception;
 }

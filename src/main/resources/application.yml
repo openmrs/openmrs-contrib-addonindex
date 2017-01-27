@@ -5,9 +5,12 @@ add_on_list: # where to fetch our master list of add-ons from
 
 scheduler:
   fetch_add_on_list: # fetches our master list of add-ons that we should index (from github)
-    initial_delay: 10000 # wait 10 seconds to start
+    initial_delay: 5000 # wait 5 seconds to start
     period: 14400000     # execute every 4 hours
 
   fetch_details_to_index: # for each add-on we want to index, fetch its details
-    initial_delay: 60000 # wait 60 seconds to start
+    initial_delay: 15000 # wait 15 seconds to start
     period: 14400000     # execute every 4 hours
+
+spring.elasticsearch.jest:
+  uris: http://localhost:9200

@@ -23,12 +23,12 @@ public class AddOnController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
-	                                           @RequestParam(value = "q", required = false) String query) {
+	                                           @RequestParam(value = "q", required = false) String query) throws Exception {
 		return index.search(type, query);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")
-	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) {
+	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) throws Exception {
 		AddOnInfoAndVersions addOn = index.getByUid(uid);
 		return new ResponseEntity<AddOnInfoAndVersions>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}

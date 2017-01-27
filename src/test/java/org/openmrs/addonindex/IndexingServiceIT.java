@@ -9,14 +9,19 @@ import org.junit.runner.RunWith;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnToIndex;
+import org.openmrs.addonindex.service.ElasticSearchIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class IndexingServiceIT {
+	
+	@MockBean
+	ElasticSearchIndex elasticSearchIndex;
 	
 	@Autowired
 	private IndexingService indexingService;
