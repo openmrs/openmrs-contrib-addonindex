@@ -1,7 +1,6 @@
 package org.openmrs.addonindex.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +42,7 @@ public class AddOnInfoAndVersions {
 	
 	public void addVersion(AddOnVersion version) {
 		versions.add(version);
-		Collections.sort(versions, Comparator.reverseOrder());
+		versions.sort(Comparator.reverseOrder());
 	}
 	
 	public int getVersionCount() {
@@ -106,8 +105,6 @@ public class AddOnInfoAndVersions {
 		if (versions == null) {
 			return null;
 		}
-		return versions.stream().filter(v -> {
-			return v.getVersion().equals(version);
-		}).findFirst();
+		return versions.stream().filter(v -> v.getVersion().equals(version)).findFirst();
 	}
 }

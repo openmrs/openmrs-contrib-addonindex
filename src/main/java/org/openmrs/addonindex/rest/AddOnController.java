@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AddOnController {
 	
-	@Autowired
 	private Index index;
+	
+	@Autowired
+	public AddOnController(Index index) {
+		this.index = index;
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
@@ -30,7 +34,7 @@ public class AddOnController {
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")
 	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) throws Exception {
 		AddOnInfoAndVersions addOn = index.getByUid(uid);
-		return new ResponseEntity<AddOnInfoAndVersions>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
 	
 }

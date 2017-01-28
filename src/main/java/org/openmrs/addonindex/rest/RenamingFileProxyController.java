@@ -26,11 +26,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RenamingFileProxyController {
 	
-	@Autowired
 	private RestTemplateBuilder restTemplateBuilder;
 	
-	@Autowired
 	private Index index;
+	
+	@Autowired
+	public RenamingFileProxyController(RestTemplateBuilder restTemplateBuilder, Index index) {
+		this.restTemplateBuilder = restTemplateBuilder;
+		this.index = index;
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}/{version}/download")
 	public void downloadWithCorrectName(@PathVariable("uid") String addonUid,

@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 @Component
 public class Bintray implements BackendHandler {
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private RestTemplateBuilder restTemplateBuilder;
 	

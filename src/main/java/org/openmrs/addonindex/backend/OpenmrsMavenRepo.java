@@ -34,14 +34,18 @@ import org.xml.sax.InputSource;
 @Component
 public class OpenmrsMavenRepo implements BackendHandler {
 	
-	private String BASE_URL = "http://mavenrepo.openmrs.org/nexus/";
+	private final String BASE_URL = "http://mavenrepo.openmrs.org/nexus/";
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@Autowired
 	private RestTemplateBuilder restTemplateBuilder;
 	
-	private Pattern renamePattern = Pattern.compile("(.+)-omod-([0-9.]+).jar");
+	private final Pattern renamePattern = Pattern.compile("(.+)-omod-([0-9.]+).jar");
+	
+	@Autowired
+	public OpenmrsMavenRepo(RestTemplateBuilder restTemplateBuilder) {
+		this.restTemplateBuilder = restTemplateBuilder;
+	}
 	
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {

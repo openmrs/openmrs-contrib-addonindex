@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class FetchAddOnList {
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Value("${add_on_list.url}")
 	private String url;
@@ -29,14 +29,20 @@ public class FetchAddOnList {
 	@Value("${add_on_list.strategy}")
 	private Strategy strategy = Strategy.FETCH;
 	
-	@Autowired
 	private RestTemplateBuilder restTemplateBuilder;
 	
-	@Autowired
 	private ObjectMapper mapper;
 	
-	@Autowired
 	private IndexingService indexingService;
+	
+	@Autowired
+	public FetchAddOnList(RestTemplateBuilder restTemplateBuilder,
+	                      ObjectMapper mapper,
+	                      IndexingService indexingService) {
+		this.restTemplateBuilder = restTemplateBuilder;
+		this.mapper = mapper;
+		this.indexingService = indexingService;
+	}
 	
 	@Scheduled(
 			initialDelayString = "${scheduler.fetch_add_on_list.initial_delay}",

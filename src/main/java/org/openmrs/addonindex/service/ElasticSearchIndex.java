@@ -33,10 +33,14 @@ import io.searchbox.indices.mapping.PutMapping;
 @Repository
 public class ElasticSearchIndex implements Index {
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	private JestClient client;
 	
 	@Autowired
-	private JestClient client;
+	public ElasticSearchIndex(JestClient client) {
+		this.client = client;
+	}
 	
 	@PostConstruct
 	public void setUp() throws IOException {
@@ -90,9 +94,7 @@ public class ElasticSearchIndex implements Index {
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		return result.getHits(AddOnInfoAndVersions.class).stream()
-				.map(sr -> {
-					return new AddOnInfoSummary(sr.source);
-				})
+				.map(sr -> new AddOnInfoSummary(sr.source))
 				.collect(Collectors.toList());
 	}
 	
@@ -103,9 +105,7 @@ public class ElasticSearchIndex implements Index {
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		return result.getHits(AddOnInfoAndVersions.class).stream()
-				.map(sr -> {
-					return sr.source;
-				})
+				.map(sr -> sr.source)
 				.collect(Collectors.toList());
 	}
 	

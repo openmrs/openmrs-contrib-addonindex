@@ -24,7 +24,7 @@ public class OpenmrsMavenRepoTest {
 		toIndex.setDescription("For apps");
 		toIndex.setType(AddOnType.OMOD);
 		
-		OpenmrsMavenRepo backend = new OpenmrsMavenRepo();
+		OpenmrsMavenRepo backend = new OpenmrsMavenRepo(null);
 		AddOnInfoAndVersions addOnInfoAndVersions = backend.handleIndexBrowserTreeViewResponse(toIndex, xml);
 		
 		assertThat(addOnInfoAndVersions.getUid(), is(toIndex.getUid()));

@@ -29,10 +29,9 @@ public class InMemoryIndex implements Index {
 	public Collection<AddOnInfoSummary> search(AddOnType type, String query) {
 		final String lowerCaseQuery = query == null ? null : query.toLowerCase();
 		return index.values().stream()
-				.filter(i -> {
-					return (type == null || type.equals(i.getType())) &&
-							(lowerCaseQuery == null || i.getName().toLowerCase().contains(lowerCaseQuery));
-				})
+				.filter(i -> (type == null || type.equals(i.getType())) &&
+						(lowerCaseQuery == null || i.getName().toLowerCase().contains(lowerCaseQuery))
+				)
 				.map(AddOnInfoSummary::new)
 				.collect(Collectors.toList());
 	}

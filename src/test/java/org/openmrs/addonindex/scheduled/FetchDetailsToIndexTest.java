@@ -10,16 +10,13 @@ import static org.junit.Assert.assertThat;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnVersion;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 public class FetchDetailsToIndexTest {
 	
 	@Test
 	public void testParsingConfigXmlForLanguages() throws Exception {
-		FetchDetailsToIndex task = new FetchDetailsToIndex();
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
@@ -29,7 +26,7 @@ public class FetchDetailsToIndexTest {
 	
 	@Test
 	public void testParsingConfigXmlForRequiredOpenmrsVersion() throws Exception {
-		FetchDetailsToIndex task = new FetchDetailsToIndex();
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
@@ -38,7 +35,7 @@ public class FetchDetailsToIndexTest {
 	
 	@Test
 	public void testParsingConfigXmlForRequiredModuleVersion() throws Exception {
-		FetchDetailsToIndex task = new FetchDetailsToIndex();
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));

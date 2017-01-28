@@ -44,13 +44,18 @@ import org.xml.sax.InputSource;
 @Component
 public class FetchDetailsToIndex {
 	
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@Autowired
 	private IndexingService indexingService;
 	
-	@Autowired
 	private RestTemplateBuilder restTemplateBuilder;
+	
+	@Autowired
+	public FetchDetailsToIndex(IndexingService indexingService,
+	                           RestTemplateBuilder restTemplateBuilder) {
+		this.indexingService = indexingService;
+		this.restTemplateBuilder = restTemplateBuilder;
+	}
 	
 	private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 	
@@ -137,8 +142,7 @@ public class FetchDetailsToIndex {
 			ZipEntry entry;
 			while ((entry = zis.getNextEntry()) != null) {
 				if (entry.getName().equals("config.xml")) {
-					String configXml = StreamUtils.copyToString(zis, Charset.defaultCharset());
-					return configXml;
+					return StreamUtils.copyToString(zis, Charset.defaultCharset());
 				}
 			}
 		}

@@ -14,12 +14,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class IndexingService {
 	
-	@Autowired
 	private Index repository;
 	
 	private AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
 	
 	private Map<Class<? extends BackendHandler>, BackendHandler> handlers;
+	
+	@Autowired
+	public IndexingService(Index repository) {
+		this.repository = repository;
+	}
 	
 	@Autowired
 	public void setHandlers(List<BackendHandler> allHandlers) {
