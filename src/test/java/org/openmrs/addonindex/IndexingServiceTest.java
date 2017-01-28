@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,10 @@ public class IndexingServiceTest {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getName(), notNullValue());
 			assertThat(addOn.getName().length(), lessThan(100));
-			assertThat(addOn.getDescription(), notNullValue());
-			assertThat(addOn.getDescription().length(), lessThan(1000));
+			if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
+				assertThat(addOn.getDescription(), notNullValue());
+				assertThat(addOn.getDescription().length(), lessThan(1000));
+			}
 		}
 	}
 }
