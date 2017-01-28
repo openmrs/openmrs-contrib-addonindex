@@ -3,23 +3,20 @@ package org.openmrs.addonindex.backend;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-import java.nio.charset.Charset;
 import java.util.List;
 
 import org.junit.Test;
+import org.openmrs.addonindex.TestUtil;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.domain.AddOnVersion;
-import org.springframework.util.StreamUtils;
 
 public class OpenmrsMavenRepoTest {
 	
 	@Test
 	public void testHandlingNexusXml() throws Exception {
-		String xml = StreamUtils.copyToString(
-				getClass().getClassLoader().getResourceAsStream("indexBrowserTreeViewResponse.xml"),
-				Charset.defaultCharset());
+		String xml = TestUtil.getFileAsString("indexBrowserTreeViewResponse.xml");
 		
 		AddOnToIndex toIndex = new AddOnToIndex();
 		toIndex.setUid("appui-module");

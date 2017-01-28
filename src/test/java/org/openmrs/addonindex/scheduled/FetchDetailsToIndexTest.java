@@ -7,16 +7,12 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.Charset;
+import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.StreamUtils;
 
 @RunWith(SpringRunner.class)
 public class FetchDetailsToIndexTest {
@@ -25,7 +21,7 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForLanguages() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex();
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(loadXml("config.withNoRequirements.xml"), version);
+		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
 		assertThat(version.getRequireModules(), nullValue());
 		assertThat(version.getSupportedLanguages(), contains("en", "fr", "de"));
@@ -35,7 +31,7 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForRequiredOpenmrsVersion() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex();
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(loadXml("config.withRequiredVersion.xml"), version);
+		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules(), nullValue());
 	}
@@ -44,7 +40,7 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForRequiredModuleVersion() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex();
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(loadXml("config.withRequiredModules.xml"), version);
+		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules().size(), is(2));
 		assertThat(version.getRequireModules(), hasItem(allOf(
@@ -55,11 +51,6 @@ public class FetchDetailsToIndexTest {
 				hasProperty("module", is("org.openmrs.event")),
 				hasProperty("version", is("?"))
 		)));
-	}
-	
-	private String loadXml(String filename) throws IOException {
-		InputStream stream = getClass().getClassLoader().getResourceAsStream(filename);
-		return StreamUtils.copyToString(stream, Charset.defaultCharset());
 	}
 	
 }
