@@ -1,6 +1,7 @@
 package org.openmrs.addonindex.domain;
 
 import org.openmrs.addonindex.backend.BackendHandler;
+import org.openmrs.addonindex.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.backend.MavenRepoDetails;
 
 /**
@@ -20,6 +21,8 @@ public class AddOnToIndex {
 	private Class<? extends BackendHandler> backend;
 	
 	private MavenRepoDetails mavenRepoDetails;
+	
+	private BintrayPackageDetails bintrayPackageDetails;
 	
 	public String getUid() {
 		return uid;
@@ -67,5 +70,13 @@ public class AddOnToIndex {
 	
 	public void setMavenRepoDetails(MavenRepoDetails mavenRepoDetails) {
 		this.mavenRepoDetails = mavenRepoDetails;
+	}
+	
+	public BintrayPackageDetails getBintrayPackageDetails() {
+		return bintrayPackageDetails;
+	}
+	
+	public void setBintrayPackageDetails(BintrayPackageDetails bintrayPackageDetails) {
+		this.bintrayPackageDetails = bintrayPackageDetails;
 	}
 }

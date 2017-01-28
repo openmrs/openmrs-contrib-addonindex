@@ -1,0 +1,16 @@
+{
+  "name": "1.0.0",
+  "desc": null,
+  "package": "openmrs-owa-conceptdictionary",
+  "repo": "owa",
+  "owner": "openmrs",
+  "labels": [],
+  "attribute_names": [],
+  "created": "2016-09-12T18:51:13.840Z",
+  "updated": "2016-09-12T18:51:27.076Z",
+  "released": "2016-05-24T00:00:00.000Z",
+  "ordinal": 6,
+  "github_release_notes_file": null,
+  "github_use_tag_release_notes": false,
+  "vcs_tag": null
+}

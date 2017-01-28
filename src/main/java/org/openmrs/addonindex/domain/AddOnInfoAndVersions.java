@@ -28,6 +28,8 @@ public class AddOnInfoAndVersions {
 	
 	private String description;
 	
+	private String hostedUrl;
+	
 	private List<AddOnVersion> versions = new ArrayList<>();
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
@@ -82,6 +84,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getHostedUrl() {
+		return hostedUrl;
+	}
+	
+	public void setHostedUrl(String hostedUrl) {
+		this.hostedUrl = hostedUrl;
 	}
 	
 	public List<AddOnVersion> getVersions() {

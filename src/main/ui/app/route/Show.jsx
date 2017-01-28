@@ -38,6 +38,15 @@ export default class Show extends Component {
         else if (this.state && this.state.addon) {
             const addon = this.state.addon;
             const icon = addon.type === 'OWA' ? 'fa fa-globe' : 'fa fa-puzzle-piece';
+            let hosted = "";
+            if (addon.hostedUrl) {
+                if (addon.hostedUrl.includes("bintray.com")) {
+                    hosted = <p>Hosted on <a href={addon.hostedUrl}>Bintray</a></p>
+                }
+                else {
+                    hosted = <p>Hosted at <a href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
+                }
+            }
             return (
                     <div>
                         <h1>
@@ -45,6 +54,7 @@ export default class Show extends Component {
                             {addon.name}
                         </h1>
                         <h3>{addon.description}</h3>
+                        {hosted}
                         Versions:
                         <ul>
                             {addon.versions.map(v => {

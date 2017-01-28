@@ -8,12 +8,13 @@ the details of your add-on to the `toIndex` list.
 
 ## Fields to specify
 
-Regardless of where your module is published, you must provide the following fields:
+Regardless of where your add-on is published, you must provide the following fields:
   
-* `uid`: only letters and spaces; must be unique within this file
+* `uid`: only letters and spaces; must be unique within this file, and should be a fully-qualified name
 * `type`: OMOD or OWA
 * `name`: The name of your add-on (e.g. "Reporting Module")
 * `description`: More words about your module, e.g. what it does and why someone should choose it
+  * you don't need to specify this if you're using Bintray, because we will read it from there
 
 ### OpenMRS Maven Repository
 
@@ -24,7 +25,19 @@ If your module is published to the OpenMRS Maven Repository, then you also need 
 	    "groupId": "org.openmrs.module",
 	    "artifactId": "reporting-omod"
 	}
+	
+### Bintray
  
-### Bintray, Github Releases, etc
+If your add-on is published to Bintray, you need to specify:
 
-In the future we intend to support indexing add-ons that you have published via Bintray or Github Releases.
+	"backend": "org.openmrs.addonindex.backend.Bintray",
+	"bintrayPackageDetails": {
+		"owner": "openmrs",
+		"repo": "owa",
+		"package": "openmrs-owa-conceptdictionary"
+	}
+ 
+### Github Releases, etc
+
+In the future we intend to support indexing add-ons that you have published via Github Releases. We welcome other 
+suggestions. (Or better, pull requests adding support for other repositories!)

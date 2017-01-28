@@ -1,0 +1,33 @@
+{
+  "name": "openmrs-owa-conceptdictionary",
+  "repo": "owa",
+  "owner": "openmrs",
+  "desc": "Provides web interface for managing concept dictionary in OpenMRS distributions. Requires Open Web App and Webservices.rest modules.",
+  "labels": [],
+  "attribute_names": [
+    "maturity"
+  ],
+  "licenses": [
+    "MPL-2.0"
+  ],
+  "custom_licenses": [],
+  "followers_count": 0,
+  "created": "2016-04-05T11:25:31.439Z",
+  "website_url": "",
+  "issue_tracker_url": "https://github.com/rkorytkowski/openmrs-owa-conceptdictionary/issues",
+  "github_repo": "",
+  "github_release_notes_file": "",
+  "public_download_numbers": true,
+  "public_stats": true,
+  "linked_to_repos": [],
+  "versions": [
+    "1.0.0"
+  ],
+  "latest_version": "1.0.0",
+  "updated": "2016-09-12T18:51:27.903Z",
+  "rating_count": 1,
+  "rating": 5,
+  "system_ids": [],
+  "vcs_url": "https://github.com/rkorytkowski/openmrs-owa-conceptdictionary",
+  "maturity": "Development"
+}

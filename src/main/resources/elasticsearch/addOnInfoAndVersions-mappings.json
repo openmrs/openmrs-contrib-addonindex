@@ -10,6 +10,10 @@
       "description": {
         "type": "text"
       },
+      "hostedUrl": {
+        "type": "keyword",
+        "index": false
+      },
       "versions": {
         "type": "nested",
         "properties": {

@@ -1,6 +1,17 @@
 {
   "toIndex": [
     {
+      "uid": "org.openmrs.owa.conceptdictionary",
+      "type": "OWA",
+      "name": "Concept Dictionary OWA",
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "owa",
+        "package": "openmrs-owa-conceptdictionary"
+      }
+    },
+    {
       "uid": "org.openmrs.module.appui",
       "type": "OMOD",
       "name": "App UI module",
