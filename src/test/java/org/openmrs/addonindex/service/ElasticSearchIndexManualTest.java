@@ -6,6 +6,8 @@ import static org.junit.Assert.assertThat;
 
 import java.util.Collection;
 
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import io.searchbox.client.JestClient;
+import io.searchbox.core.Search;
+import io.searchbox.core.SearchResult;
+
 /**
  * This test will write to your live elasticsearch database
  */
@@ -28,6 +34,9 @@ public class ElasticSearchIndexManualTest {
 	
 	@Autowired
 	private ElasticSearchIndex elasticSearchIndex;
+	
+	@Autowired
+	private JestClient client;
 	
 	@Test
 	public void testIndex() throws Exception {
@@ -54,5 +63,18 @@ public class ElasticSearchIndexManualTest {
 		
 		Collection<AddOnInfoSummary> results = elasticSearchIndex.search(AddOnType.OMOD, "testing");
 		assertThat(allByType.size(), greaterThanOrEqualTo(1));
+	}
+	
+	@Test
+	public void testSearch() throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.query(QueryBuilders.matchPhrasePrefixQuery("_all", "dictionary conc").slop(2).fuzziness("AUTO"))
+				.toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		System.out.println("Hits: " + result.getTotal());
+		for (String s : result.getSourceAsStringList()) {
+			System.out.println(s);
+		}
 	}
 }

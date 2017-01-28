@@ -81,7 +81,9 @@ public class ElasticSearchIndex implements Index {
 			queryBuilder.filter(QueryBuilders.matchQuery("type", type));
 		}
 		if (query != null) {
-			queryBuilder.must(QueryBuilders.matchQuery("_all", query));
+			queryBuilder.should(QueryBuilders.matchPhrasePrefixQuery("_all", query).slop(2).fuzziness("AUTO"));
+			queryBuilder.should(QueryBuilders.prefixQuery("_all", query));
+			queryBuilder.minimumNumberShouldMatch(1);
 		}
 		SearchResult result = client.execute(new Search.Builder(
 				new SearchSourceBuilder().query(queryBuilder).toString())
