@@ -8,6 +8,7 @@ import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
+import org.openmrs.addonindex.domain.IndexingStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class IndexingService {
 	private Index repository;
 	
 	private AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
+	
+	private IndexingStatus indexingStatus = new IndexingStatus();
 	
 	private Map<Class<? extends BackendHandler>, BackendHandler> handlers;
 	
@@ -51,5 +54,9 @@ public class IndexingService {
 	
 	public AddOnInfoAndVersions getByUid(String uid) throws Exception {
 		return repository.getByUid(uid);
+	}
+	
+	public IndexingStatus getIndexingStatus() {
+		return indexingStatus;
 	}
 }

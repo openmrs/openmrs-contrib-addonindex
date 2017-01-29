@@ -9,6 +9,7 @@ export default class App extends Component {
                     <h1>OpenMRS Add-On Index</h1>
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
+                    <Link to="/indexingStatus">Indexing Status</Link>
                     {this.props.children}
                 </div>
         )

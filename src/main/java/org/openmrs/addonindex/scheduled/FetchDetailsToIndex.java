@@ -18,10 +18,12 @@ import javax.xml.xpath.XPathFactory;
 
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
+import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
+import org.openmrs.addonindex.domain.IndexingStatus;
 import org.openmrs.addonindex.service.IndexingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,17 +88,25 @@ public class FetchDetailsToIndex {
 	}
 	
 	void getDetailsAndIndex(AddOnToIndex toIndex) throws Exception {
-		BackendHandler handler = indexingService.getHandlerFor(toIndex);
-		AddOnInfoAndVersions infoAndVersions = handler.getInfoAndVersionsFor(toIndex);
-		if (logger.isDebugEnabled()) {
-			logger.debug(toIndex.getUid() + " has " + infoAndVersions.getVersions().size() + " versions");
+		indexingService.getIndexingStatus().setStatus(toIndex, IndexingStatus.Status.indexingNow());
+		try {
+			BackendHandler handler = indexingService.getHandlerFor(toIndex);
+			AddOnInfoAndVersions infoAndVersions = handler.getInfoAndVersionsFor(toIndex);
+			if (logger.isDebugEnabled()) {
+				logger.debug(toIndex.getUid() + " has " + infoAndVersions.getVersions().size() + " versions");
+			}
+			
+			if (fetchExtraDetails) {
+				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
+			}
+			
+			indexingService.index(infoAndVersions);
+			indexingService.getIndexingStatus().setStatus(toIndex,
+					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
 		}
-		
-		if (fetchExtraDetails) {
-			fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
+		catch (Exception ex) {
+			indexingService.getIndexingStatus().setStatus(toIndex, IndexingStatus.Status.error(ex));
 		}
-		
-		indexingService.index(infoAndVersions);
 	}
 	
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
