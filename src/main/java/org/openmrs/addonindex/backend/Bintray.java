@@ -40,6 +40,9 @@ public class Bintray implements BackendHandler {
 	
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {
+		if (StringUtils.isEmpty(bintrayUsername) || StringUtils.isEmpty(bintrayApiKey)) {
+			logger.error("You need to specify the bintray.username and bintray.api_key configuration settings");
+		}
 		String url = packageUrlFor(addOnToIndex);
 		ResponseEntity<String> entity = restTemplateBuilder.basicAuthorization(bintrayUsername, bintrayApiKey).build()
 				.getForEntity(url, String.class);
