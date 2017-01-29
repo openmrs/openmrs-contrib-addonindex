@@ -41,10 +41,10 @@ export default class Show extends Component {
             let hosted = "";
             if (addon.hostedUrl) {
                 if (addon.hostedUrl.includes("bintray.com")) {
-                    hosted = <p>Hosted on <a href={addon.hostedUrl}>Bintray</a></p>
+                    hosted = <p>Hosted on <a target="_blank" href={addon.hostedUrl}>Bintray</a></p>
                 }
                 else {
-                    hosted = <p>Hosted at <a href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
+                    hosted = <p>Hosted at <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
                 }
             }
             return (
