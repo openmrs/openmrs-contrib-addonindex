@@ -4,6 +4,16 @@
       "uid": "org.openmrs.owa.conceptdictionary",
       "type": "OWA",
       "name": "Concept Dictionary OWA",
+      "maintainers": [
+        {
+          "name": "Rafal Korytkowski",
+          "url": "https://github.com/rkorytkowski"
+        },
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -15,6 +25,12 @@
       "uid": "org.openmrs.module.appui",
       "type": "OMOD",
       "name": "App UI module",
+      "maintainers": [
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
       "description": "Support for using the App Framework's context in the UI Framework",
       "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
       "mavenRepoDetails": {
@@ -26,6 +42,16 @@
       "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting module",
+      "maintainers": [
+        {
+          "name": "Mike Seaton",
+          "url": "https://github.com/mseaton"
+        },
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
       "description": "The Reporting Module provides a user interface for defining and managing core objects like reports, data sets, cohort queries, indicators, dimensions, and report designs. The module also provides an extensible API for developing custom reports and new features",
       "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
       "mavenRepoDetails": {
@@ -37,6 +63,16 @@
       "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms module",
+      "maintainers": [
+        {
+          "name": "Daniel Kayiwa",
+          "url": "https://github.com/dkayiwa"
+        },
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
       "description": "A browser based forms module which adds XForms support and related services to XForms clients, like user and patient download.",
       "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
       "mavenRepoDetails": {
@@ -49,6 +85,16 @@
       "type": "OMOD",
       "name": "HTML Form Entry module",
       "description": "FormEntry in-webapp, using HTML forms",
+      "maintainers": [
+        {
+          "name": "Mark Goodrich",
+          "url": "https://github.com/mogoodrich"
+        },
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
       "mavenRepoDetails": {
         "groupId": "org.openmrs.module",

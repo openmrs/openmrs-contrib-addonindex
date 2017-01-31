@@ -1,5 +1,6 @@
 package org.openmrs.addonindex;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
+import org.openmrs.addonindex.domain.Maintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -73,4 +75,17 @@ public class IndexingServiceTest {
 			}
 		}
 	}
+	
+	@Test
+	public void testMaintainersPresentAndNamesNotTooLong() throws Exception {
+		for (AddOnToIndex addOn : toIndex.getToIndex()) {
+			assertThat(addOn.getMaintainers(), notNullValue());
+			assertThat(addOn.getMaintainers().size(), greaterThan(0));
+			for (Maintainer maintainer : addOn.getMaintainers()) {
+				assertThat(maintainer.getName(), notNullValue());
+				assertThat(maintainer.getName().length(), lessThan(100));
+			}
+		}
+	}
+	
 }

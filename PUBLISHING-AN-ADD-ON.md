@@ -15,6 +15,9 @@ Regardless of where your add-on is published, you must provide the following fie
 * `name`: The name of your add-on (e.g. "Reporting Module")
 * `description`: More words about your module, e.g. what it does and why someone should choose it
   * you don't need to specify this if you're using Bintray, because we will read it from there
+* `maintainers`: One or more people or entities who maintain this add-on, with optional links
+
+You will see examples of the format in the file itself.
 
 ### OpenMRS Maven Repository
 

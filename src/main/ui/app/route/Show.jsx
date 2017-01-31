@@ -55,6 +55,18 @@ export default class Show extends Component {
                         </h1>
                         <h3>{addon.description}</h3>
                         {hosted}
+                        <p>
+                            Maintained by:
+                            {addon.maintainers.map(m => {
+                                if (m.url) {
+                                    return (
+                                            <a target="_blank" href={m.url}>{m.name}</a>
+                                    )
+                                } else {
+                                    return <span>{m.name}</span>
+                                }
+                            })}
+                        </p>
                         Versions:
                         <ul>
                             {addon.versions.map(v => {

@@ -1,5 +1,7 @@
 package org.openmrs.addonindex.domain;
 
+import java.util.List;
+
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.backend.MavenRepoDetails;
@@ -17,6 +19,8 @@ public class AddOnToIndex {
 	private String name;
 	
 	private String description;
+	
+	private List<Maintainer> maintainers;
 	
 	private Class<? extends BackendHandler> backend;
 	
@@ -54,6 +58,14 @@ public class AddOnToIndex {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<Maintainer> getMaintainers() {
+		return maintainers;
+	}
+	
+	public void setMaintainers(List<Maintainer> maintainers) {
+		this.maintainers = maintainers;
 	}
 	
 	public Class<? extends BackendHandler> getBackend() {
