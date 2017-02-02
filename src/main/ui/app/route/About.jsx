@@ -1,4 +1,5 @@
 import {Component} from "react";
+import {Link} from "react-router";
 
 export default class About extends Component {
 
@@ -6,7 +7,16 @@ export default class About extends Component {
         return (
                 <div>
                     <h3>About</h3>
-                    <a href="https://github.com/djazayeri/openmrs-contrib-addonindex/blob/master/README.md">See here</a>
+
+                    <p>
+                        <Link to="/indexingStatus">Indexing Status</Link>
+                    </p>
+
+                    <p>
+                        <a target="_blank"
+                           href="https://github.com/djazayeri/openmrs-contrib-addonindex/blob/master/README.md">Read more on
+                                                                                                                GitHub</a>
+                    </p>
                 </div>
         )
     }

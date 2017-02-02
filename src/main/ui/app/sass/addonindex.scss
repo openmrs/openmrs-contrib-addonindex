@@ -1,0 +1,74 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700);
+
+.logo1 {
+  float: left;
+
+  margin-top: 2%;
+  height: 39px;
+  width: 284px;
+}
+
+.logotext {
+  margin-top: 30px;
+}
+
+.ma {
+  margin-left: 20px;
+  font-size: 35px;
+}
+
+.f {
+  margin: 10px 0px 10px 30px;
+}
+
+.buttonfix {
+  top: 30px;
+  float: right;
+
+}
+
+.pushdown {
+  margin-top: 40px;
+}
+
+.textdec {
+  align: center;
+  padding-top: 30px;
+}
+
+body {
+  color: #363463;
+  font-family: "Open Sans";
+}
+
+a,
+a:link {
+  color: #275c8a;
+}
+
+header h1 sup {
+  -webkit-font-smoothing: antialiased;
+}
+
+.p {
+  margin-left: 2%;
+  margin-top: 3%;
+
+}
+
+tr {
+  line-height: 25px;
+  min-height: 25px;
+  height: 25px;
+}
+
+.descmod {
+  padding-top: 2%;
+}
+
+footer {
+  font-size: 0.8em;
+  color: #555555;
+  text-align: center;
+  margin-top: 3em;
+}
