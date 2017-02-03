@@ -75,7 +75,7 @@ Thus the workflow of doing front-end development is:
   
 1. (First, run the application in IntelliJ)
 1. Make changes to the javascript code
-1. `(in src/main/ui) npm run build` (set up an IDE Run Configuration for this)
+1. `(in src/main/ui) npm run build:dev` (set up an IDE Run Configuration for this)
 1. In IntelliJ, `Build Project`
 1. Refresh your browser window
 
