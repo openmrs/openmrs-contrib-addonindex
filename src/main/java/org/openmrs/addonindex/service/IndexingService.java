@@ -81,6 +81,10 @@ public class IndexingService {
 		MaterializedAddOnList materialized = new MaterializedAddOnList(list);
 		for (AddOnReference reference : list.getAddOns()) {
 			AddOnInfoAndVersions info = repository.getByUid(reference.getUid());
+			if (info == null) {
+				logger.warn("Could not find addon " + reference.getUid() + " in index");
+				continue;
+			}
 			AddOnInfoSummary summary = new AddOnInfoSummary(info);
 			
 			MaterializedReference materializedReference = new MaterializedReference(reference);
