@@ -101,5 +101,36 @@
         "artifactId": "htmlformentry-omod"
       }
     }
+  ],
+  "lists": [
+    {
+      "uid": "highlighted_modules",
+      "name": "Highlighted Modules",
+      "description": "Take a look at these modules",
+      "addOns": [
+        {
+          "uid": "org.openmrs.module.xforms"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentry"
+        }
+      ]
+    },
+    {
+      "uid": "refapp_2_5",
+      "name": "RefApp 2.5",
+      "description": "Included in Reference Application 2.5",
+      "addOns": [
+        {
+          "uid": "org.openmrs.module.appui",
+          "version": "1.7"
+        },
+        {
+          "uid": "org.openmrs.module.reporting",
+          "version": "0.10.6"
+        }
+        // etc
+      ]
+    }
   ]
 }

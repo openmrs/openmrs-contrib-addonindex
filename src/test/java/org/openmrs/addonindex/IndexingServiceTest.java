@@ -1,12 +1,14 @@
 package org.openmrs.addonindex;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.io.InputStream;
 import java.util.HashSet;
@@ -16,6 +18,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
+import org.openmrs.addonindex.domain.AddOnList;
+import org.openmrs.addonindex.domain.AddOnReference;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.domain.Maintainer;
@@ -88,4 +92,21 @@ public class IndexingServiceTest {
 		}
 	}
 	
+	@Test
+	public void testListsHaveNames() throws Exception {
+		for (AddOnList list : toIndex.getLists()) {
+			assertThat(list.getName(), notNullValue());
+			assertThat(list.getAddOns(), hasSize(greaterThan(0)));
+		}
+	}
+	
+	@Test
+	public void testListsReferToAddOnsThatWeAreIndexing() throws Exception {
+		for (AddOnList list : toIndex.getLists()) {
+			for (AddOnReference reference : list.getAddOns()) {
+				assertTrue(reference.getUid() + " does not refer to an indexed add-on",
+						toIndex.getAddOnByUid(reference.getUid()).isPresent());
+			}
+		}
+	}
 }

@@ -38,6 +38,7 @@ export default class Show extends Component {
         else if (this.state && this.state.addon) {
             const addon = this.state.addon;
             const icon = addon.type === 'OWA' ? 'fa fa-globe' : 'fa fa-puzzle-piece';
+            const highlightVersion = this.props.location.query.highlightVersion;
             let hosted = "";
             if (addon.hostedUrl) {
                 if (addon.hostedUrl.includes("bintray.com")) {
@@ -70,8 +71,9 @@ export default class Show extends Component {
                         Versions:
                         <ul>
                             {addon.versions.map(v => {
+                                let className = v.version === highlightVersion ? "highlight" : "";
                                 return (
-                                        <li>
+                                        <li className={className}>
                                             <span>
                                                 Version {v.version}
                                             </span>

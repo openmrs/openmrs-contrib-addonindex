@@ -14,6 +14,7 @@ export default class App extends Component {
                         </h1>
                         <Link className="btn btn-lg btn-primary col-md-1 col-sm-12 col-xs-12 buttonfix" to="/">Home</Link>
                         <Link className="btn btn-lg col-md-1 col-sm-12 col-xs-12 buttonfix" to="/about">About</Link>
+                        <Link className="btn btn-lg col-md-1 col-sm-12 col-xs-12 buttonfix" to="/lists">Lists</Link>
                     </header>
                     {this.props.children}
                 </div>
