@@ -57,24 +57,32 @@ export default class AddOnSearch extends Component {
 
     render() {
         return (
-                <div>
-                    Type:
-                    <select onChange={event => this.setType(event.target.value)}>
-                        <option value="">All Types</option>
-                        <option value="OMOD">Module (OMOD)</option>
-                        <option value="OWA">Open Web App (OWA)</option>
-                    </select>
-
-                    <br/>
+                <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
+                    <div className="col-lg-12">
+    <div className="input-group">
+    
+      <div className="input-group-btn">
+        <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type <span className="caret"></span></button>
+        <select className="dropdown-menu" onChange={event => this.setType(event.target.value)}>
+          <option value="">All Types</option>
+          <option value="OMOD">Module (OMOD)</option>
+          <option value="OWA">Open Web App (OWA)</option>
+        </select>
+      </div>
+  
+  
                     <DebounceInput
                             placeholder="Search..."
-                            className="search"
+                            className="form-control col-md-10 col-sm-10 col-xs-10"
                             minLength={1}
                             debounceTimeout={500}
                             onChange={event => this.setQuery(event.target.value)}/>
-                    <i className="fa fa-search fa-2x"></i>
-
-                    <br/>
+        
+                   
+        
+                
+                  </div>
+                  </div>
 
                     { (this.state.query || this.state.type) ?
                       <AddOnList addons={this.state.searchResults}/>
@@ -82,6 +90,7 @@ export default class AddOnSearch extends Component {
                       <AddOnList addons={this.state.allAddOns}/>
                     }
                 </div>
+                
         )
     }
 }
