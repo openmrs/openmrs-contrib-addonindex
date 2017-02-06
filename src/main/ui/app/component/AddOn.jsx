@@ -8,19 +8,20 @@ export default class AddOn extends Component {
         const icon = addon.type === 'OWA' ? 'fa fa-2x fa-globe' : 'fa fa-2x fa-puzzle-piece';
         const link = this.props.version ? `/show/${addon.uid}?highlightVersion=${this.props.version}` : `/show/${addon.uid}`;
         return (
-                <li>
-                    <Link to={link}>
-                        <i className={icon} aria-hidden="true"></i>
+               <tr>
+                    <td className="col-md-3">
+                    <Link to={`/show/${addon.uid}`}>
+                        
                         <b>{addon.name}</b>
-                        -
-                        { this.props.version ?
-                          `version ${this.props.version}`
-                                :
-                          `${addon.versionCount} version(s), latest: ${addon.latestVersion}`
-                        }
-
                     </Link>
-                </li>
+                    </td>
+                    <Link to={`/show/${addon.uid}`}>
+                    <td className="col-md-7 descmod">latest: {addon.description}</td>
+                    </Link>
+                    <td>{addon.type}</td>
+                    
+                </tr>
+                
         )
     }
 
