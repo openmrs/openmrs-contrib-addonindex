@@ -7,7 +7,7 @@ export default class AddOnList extends Component {
         if (!this.props.addons) {
             return (
              <section>
-      <p class="lead">Loading</p>
+      <p class="lead textdec">Loading</p>
       </section>
       )
         }

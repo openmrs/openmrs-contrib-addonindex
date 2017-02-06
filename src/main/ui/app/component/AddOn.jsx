@@ -16,7 +16,7 @@ export default class AddOn extends Component {
                     </Link>
                     </td>
                     <Link to={`/show/${addon.uid}`}>
-                    <td className="col-md-7 descmod">latest: {addon.latestVersion}</td>
+                    <td className="col-md-7 descmod">latest: {addon.description}</td>
                     </Link>
                     <td>{addon.type}</td>
                     
