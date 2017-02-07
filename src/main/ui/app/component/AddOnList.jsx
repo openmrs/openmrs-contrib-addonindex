@@ -12,11 +12,11 @@ export default class AddOnList extends Component {
         }
         else {
             return (
-                    <ul>
+                    <div>
                         {this.props.addons.map(addon =>
                                                        <AddOn key={addon.uid} addon={addon}/>
                         )}
-                    </ul>
+                    </div>
             )
         }
     }
