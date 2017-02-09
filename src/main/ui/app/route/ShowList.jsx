@@ -23,7 +23,28 @@ export default class Show extends Component {
                 })
     }
 
+    half(array, whichHalf) {
+        const split = Math.ceil(array.length / 2);
+        return whichHalf == 0 ?
+               array.slice(0, split) :
+               array.slice(split);
+    }
+
+    display(addon) {
+        if (addon.version) {
+            return (
+                    <AddOn key={addon.uid} addon={addon.details} version={addon.version}/>
+            )
+        } else {
+            return (
+                    <AddOn key={addon.uid} addon={addon.details}/>
+            )
+        }
+    }
+
     render() {
+        const COLUMNS_IF_SIZE = 5;
+
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
         }
@@ -33,19 +54,18 @@ export default class Show extends Component {
                     <div>
                         <h1>{list.name}</h1>
                         <h3>{list.description}</h3>
-                        <ul>
-                            {list.addOns.map(addon => {
-                                if (addon.version) {
-                                    return (
-                                            <AddOn key={addon.uid} addon={addon.details} version={addon.version}/>
-                                    )
-                                } else {
-                                    return (
-                                            <AddOn key={addon.uid} addon={addon.details}/>
-                                    )
-                                }
-                            })}
-                        </ul>
+                        { list.addOns.length > COLUMNS_IF_SIZE ?
+                          <div className="row">
+                              <div className="col-md-6">
+                                  { this.half(list.addOns, 0).map(addon => this.display(addon)) }
+                              </div>
+                              <div className="col-md-6">
+                                  { this.half(list.addOns, 1).map(addon => this.display(addon)) }
+                              </div>
+                          </div>
+                                :
+                          list.addOns.map(addon => this.display(addon))
+                        }
                     </div>
             )
         }
