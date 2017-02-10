@@ -5,6 +5,7 @@ import java.util.List;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.backend.MavenRepoDetails;
+import org.openmrs.addonindex.backend.ModulusModuleDetails;
 
 /**
  * An OpenMRS add-on that should be indexed.
@@ -27,6 +28,8 @@ public class AddOnToIndex {
 	private MavenRepoDetails mavenRepoDetails;
 	
 	private BintrayPackageDetails bintrayPackageDetails;
+	
+	private ModulusModuleDetails modulusDetails;
 	
 	public String getUid() {
 		return uid;
@@ -90,5 +93,13 @@ public class AddOnToIndex {
 	
 	public void setBintrayPackageDetails(BintrayPackageDetails bintrayPackageDetails) {
 		this.bintrayPackageDetails = bintrayPackageDetails;
+	}
+	
+	public ModulusModuleDetails getModulusDetails() {
+		return modulusDetails;
+	}
+	
+	public void setModulusDetails(ModulusModuleDetails modulusDetails) {
+		this.modulusDetails = modulusDetails;
 	}
 }

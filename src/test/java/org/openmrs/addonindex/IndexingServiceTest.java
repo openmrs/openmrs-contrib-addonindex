@@ -9,6 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.InputStream;
 import java.util.HashSet;
@@ -17,6 +18,8 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openmrs.addonindex.backend.Bintray;
+import org.openmrs.addonindex.backend.Modulus;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.AddOnReference;
@@ -88,6 +91,27 @@ public class IndexingServiceTest {
 			for (Maintainer maintainer : addOn.getMaintainers()) {
 				assertThat(maintainer.getName(), notNullValue());
 				assertThat(maintainer.getName().length(), lessThan(100));
+			}
+		}
+	}
+	
+	@Test
+	public void testModuleBackendDetails() throws Exception {
+		for (AddOnToIndex addOn : toIndex.getToIndex()) {
+			assertThat(addOn.getBackend(), notNullValue());
+		}
+		for (AddOnToIndex addOn : toIndex.getToIndex()) {
+			if (addOn.getBackend().equals(Modulus.class)) {
+				assertThat(addOn.getModulusDetails().getId(), notNullValue());
+			} else if (addOn.getBackend().equals(Bintray.class)) {
+				assertThat(addOn.getBintrayPackageDetails().getOwner(), notNullValue());
+				assertThat(addOn.getBintrayPackageDetails().getRepo(), notNullValue());
+				assertThat(addOn.getBintrayPackageDetails().getPackageName(), notNullValue());
+			} else if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
+				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
+				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
+			} else {
+				fail("Unrecognized backend: " + addOn.getBackend());
 			}
 		}
 	}

@@ -1,6 +1,25 @@
 {
   "toIndex": [
     {
+      "uid": "org.openmrs.module.addresshierarchy",
+      "type": "OMOD",
+      "name": "Address Hierarchy",
+      "maintainers": [
+        {
+          "name": "Mark Goodrich",
+          "url": "https://github.com/mogoodrich"
+        },
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "3"
+      }
+    },
+    {
       "uid": "org.openmrs.owa.conceptdictionary",
       "type": "OWA",
       "name": "Concept Dictionary OWA",

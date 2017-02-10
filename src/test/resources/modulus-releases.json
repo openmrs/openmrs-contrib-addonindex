@@ -1,0 +1,116 @@
+[
+  {
+    "moduleVersion": "1.0",
+    "module": {
+      "id": 3,
+      "dateCreated": "2008-09-11T08:44:30Z",
+      "description": "Allows for the entry of structured addresses.",
+      "documentationURL": "http://openmrs.org/wiki/Address_hierarchy_module",
+      "downloadCount": 3506,
+      "lastUpdated": "2017-02-08T15:50:02Z",
+      "legacyId": "addresshierarchy",
+      "maintainers": [
+        {
+          "id": 30,
+          "fullname": null,
+          "username": "machosry"
+        },
+        {
+          "id": 34,
+          "fullname": "Mark Goodrich",
+          "username": "mogoodrich"
+        },
+        {
+          "id": 16,
+          "fullname": null,
+          "username": "dthomas"
+        },
+        {
+          "id": 94,
+          "fullname": null,
+          "username": "sprasanna"
+        }
+      ],
+      "name": "Address Hierarchy",
+      "owner": "machosry",
+      "releases": [
+        {
+          "id": 6
+        },
+        {
+          "id": 5
+        }
+      ],
+      "screenshots": [],
+      "slug": "addresshierarchy"
+    },
+    "requiredOMRSVersion": "1.2.0.3400",
+    "lastUpdated": "2016-07-08T02:18:31Z",
+    "releasedBy": null,
+    "dateCreated": "2008-09-11T08:44:32Z",
+    "downloadCount": 324,
+    "releasedById": null,
+    "downloadURL": "https://modules.openmrs.org/modulus/api/releases/5/download/addresshierarchy-1.0.omod",
+    "contentType": "application/octet-stream",
+    "moduleId": 3,
+    "filename": "addresshierarchy-1.0.omod",
+    "id": 5
+  },
+  {
+    "filename": "addresshierarchy-1.1.omod",
+    "moduleVersion": "1.1",
+    "module": {
+      "id": 3,
+      "dateCreated": "2008-09-11T08:44:30Z",
+      "description": "Allows for the entry of structured addresses.",
+      "documentationURL": "http://openmrs.org/wiki/Address_hierarchy_module",
+      "downloadCount": 3506,
+      "lastUpdated": "2017-02-08T15:50:02Z",
+      "legacyId": "addresshierarchy",
+      "maintainers": [
+        {
+          "id": 30,
+          "fullname": null,
+          "username": "machosry"
+        },
+        {
+          "id": 34,
+          "fullname": "Mark Goodrich",
+          "username": "mogoodrich"
+        },
+        {
+          "id": 16,
+          "fullname": null,
+          "username": "dthomas"
+        },
+        {
+          "id": 94,
+          "fullname": null,
+          "username": "sprasanna"
+        }
+      ],
+      "name": "Address Hierarchy",
+      "owner": "machosry",
+      "releases": [
+        {
+          "id": 6
+        },
+        {
+          "id": 5
+        }
+      ],
+      "screenshots": [],
+      "slug": "addresshierarchy"
+    },
+    "requiredOMRSVersion": "1.2.0.3400",
+    "lastUpdated": "2016-07-08T02:18:31Z",
+    "downloadCount": 233,
+    "releasedBy": null,
+    "dateCreated": "2009-10-13T10:58:12Z",
+    "releasedById": null,
+    "contentType": "application/octet-stream",
+    "downloadURL": "https://modules.openmrs.org/modulus/api/releases/6/download/addresshierarchy-1.1.omod",
+    "moduleId": 3,
+    "id": 6
+  }
+]
