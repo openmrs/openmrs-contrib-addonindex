@@ -15,7 +15,7 @@ export default class AddOn extends Component {
 
         return (
                 
-                    <ListGroupItem>
+                    <ListGroupItem className="mainlist">
                    <Media>
                         <Media.Left>
                             <i className={icon} aria-hidden="true"></i>
