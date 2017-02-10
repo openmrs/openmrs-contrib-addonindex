@@ -105,6 +105,7 @@ public class FetchDetailsToIndex {
 					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
 		}
 		catch (Exception ex) {
+			logger.error("Error indexing " + toIndex.getUid(), ex);
 			indexingService.getIndexingStatus().setStatus(toIndex, IndexingStatus.Status.error(ex));
 		}
 	}
@@ -127,6 +128,7 @@ public class FetchDetailsToIndex {
 			}
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
+					logger.info("Fetching OMOD for " + toIndex.getUid() + " " + version);
 					String configXml = fetchConfigXml(toIndex, version);
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
