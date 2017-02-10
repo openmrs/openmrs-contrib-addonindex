@@ -48,11 +48,14 @@ export default class Show extends Component {
                     hosted = <p>Hosted at <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
                 }
             }
+            let statusClass = addon.status === "ACTIVE" ? "label label-default" :
+                              addon.status === "DEPRECATED" ? "label label-danger" : "label label-warning";
             return (
                     <div>
                         <h1>
                             <i className={icon} aria-hidden="true"></i>
                             {addon.name}
+                            <span className={statusClass}>{addon.status}</span>
                         </h1>
                         <h3>{addon.description}</h3>
                         {hosted}
