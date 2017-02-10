@@ -58,7 +58,7 @@ export default class AddOnSearch extends Component {
     render() {
         return (
                 <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
-                    <div className="col-lg-12">
+                    <div>
     <div className="input-group">
     
       <div className="input-group-btn">

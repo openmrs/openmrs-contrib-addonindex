@@ -26,7 +26,22 @@
   float: right;
 
 }
+.maintable{
+margin-bottom:0;
+}
 
+
+.titletype{
+
+margin-right:5%;
+margin-bottom:5px;
+
+}
+.titlename{
+margin-left:-15%;
+margin-bottom:5px;
+
+}
 .pushdown {
   margin-top: 40px;
 }
@@ -65,14 +80,33 @@ tr {
 .descmod {
   padding-top: 2%;
 }
-
+a:hover {
+ cursor:pointer;
+}
 footer {
   font-size: 0.8em;
   color: #555555;
   text-align: center;
   margin-top: 3em;
 }
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+.listgrp{
+padding : 0;
+}
+.takeright{
+float:right;
+}
+.spacing{
+margin-right :5px;
+}
+.panel-group{
 
+margin:0;
+
+}
 .highlight {
   font-weight: bold;
   background-color: yellow;

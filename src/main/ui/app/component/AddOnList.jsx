@@ -1,5 +1,7 @@
 import {Component} from "react";
 import AddOn from "./AddOn";
+import { ListGroup , Table} from 'react-bootstrap';
+
 
 export default class AddOnList extends Component {
 
@@ -21,21 +23,22 @@ export default class AddOnList extends Component {
         }
         else {
             return (
-                   <table className="table-responsive table-hover table-striped col-md-12 col-sm-12 col-xs-12 p">
-                    <thead class="thead-inverse lead">
-                    <tr>
-                    <th className="col-md-3">Name</th>
-                    <th className="col-md-7">Description</th>
-                    <th className="col-md-2">Type</th> 
-                    
-                    </tr>
-                    </thead>
-                    <tbody>
+                   <div>
+		   <Table className="maintable">
+    			<thead>
+      			<tr>
+			<th><i className='fa fa-2x fa-globe' aria-hidden="true"></i></th>
+        		<th><h3 className="titlename">Module Name</h3></th>
+			<th><h3 className="takeright titletype">Type</h3></th>
+     			</tr>
+    			</thead>
+		   </Table>
+                    <ListGroup>
                         {this.props.addons.map(addon =>
                                                        <AddOn key={addon.uid} addon={addon}/>
                         )}
-                    </tbody>
-                    </table>
+                    </ListGroup>
+                    </div>
             )
         }
     }
