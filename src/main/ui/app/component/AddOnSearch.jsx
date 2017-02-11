@@ -56,6 +56,10 @@ export default class AddOnSearch extends Component {
     }
 
     render() {
+
+const title = (
+<span>Type: {this.state.type}</span>
+);
         return (
                 <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
                     <div>
@@ -63,10 +67,10 @@ export default class AddOnSearch extends Component {
     
       <div className="input-group-btn">
        
- <DropdownButton title="Type"  id="dropdown-size-small" onSelect={event => this.setType(event.target.value)}>
-        <MenuItem eventKey="1" value="">All Types</MenuItem>
-        <MenuItem eventKey="2" value="OMOD">Module (OMOD)</MenuItem>
-        <MenuItem eventKey="3" value="OWA">Open Web App (OWA)</MenuItem>
+ <DropdownButton title={title}  id="dropdown-size-small" onSelect={event => this.setType(event)}>
+        <MenuItem eventKey="">All Types</MenuItem>
+        <MenuItem eventKey="OMOD" >Module (OMOD)</MenuItem>
+        <MenuItem eventKey="OWA">Open Web App (OWA)</MenuItem>
       </DropdownButton>
       </div>
   
