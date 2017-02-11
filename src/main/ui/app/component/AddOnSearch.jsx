@@ -2,7 +2,7 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
-
+import { DropdownButton , MenuItem } from 'react-bootstrap';
 
 export default class AddOnSearch extends Component {
 
@@ -56,25 +56,37 @@ export default class AddOnSearch extends Component {
     }
 
     render() {
-        return (
-                <div>
-                    Type:
-                    <select onChange={event => this.setType(event.target.value)}>
-                        <option value="">All Types</option>
-                        <option value="OMOD">Module (OMOD)</option>
-                        <option value="OWA">Open Web App (OWA)</option>
-                    </select>
 
-                    <br/>
+const title = (
+<span>Type: {this.state.type}</span>
+);
+        return (
+                <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
+                    <div>
+    <div className="input-group">
+    
+      <div className="input-group-btn">
+       
+ <DropdownButton title={title}  id="dropdown-size-small" onSelect={event => this.setType(event)}>
+        <MenuItem eventKey="">All Types</MenuItem>
+        <MenuItem eventKey="OMOD" >Module (OMOD)</MenuItem>
+        <MenuItem eventKey="OWA">Open Web App (OWA)</MenuItem>
+      </DropdownButton>
+      </div>
+  
+  
                     <DebounceInput
                             placeholder="Search..."
-                            className="search"
+                            className="form-control col-md-10 col-sm-10 col-xs-10"
                             minLength={1}
                             debounceTimeout={500}
                             onChange={event => this.setQuery(event.target.value)}/>
-                    <i className="fa fa-search fa-2x"></i>
-
-                    <br/>
+        
+                   
+        
+                
+                  </div>
+                  </div>
 
                     { (this.state.query || this.state.type) ?
                       <AddOnList addons={this.state.searchResults}/>
@@ -82,6 +94,7 @@ export default class AddOnSearch extends Component {
                       <AddOnList addons={this.state.allAddOns}/>
                     }
                 </div>
+                
         )
     }
 }

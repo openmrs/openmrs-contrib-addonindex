@@ -26,14 +26,32 @@
   float: right;
 
 }
+.maintable{
+margin-bottom:0;
+}
 
+
+.title-type{
+
+margin-right:5%;
+margin-bottom:5px;
+
+}
+.title-name{
+
+margin-bottom:5px;
+
+}
+.mainlist{
+border-width: 0;
+}
 .pushdown {
   margin-top: 40px;
 }
 
 .textdec {
-  align: center;
-  padding-top: 30px;
+  text-align: center;
+  padding-top: 3%;
 }
 
 body {
@@ -65,14 +83,30 @@ tr {
 .descmod {
   padding-top: 2%;
 }
-
+a:hover {
+ cursor:pointer;
+}
 footer {
   font-size: 0.8em;
   color: #555555;
   text-align: center;
   margin-top: 3em;
 }
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+.list-grp{
+padding : 0;
+}
+.spacing{
+margin-right :5px;
+}
+.panel-group{
 
+margin:0;
+
+}
 .highlight {
   font-weight: bold;
   background-color: yellow;
