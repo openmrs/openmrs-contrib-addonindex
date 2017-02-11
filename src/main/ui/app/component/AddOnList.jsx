@@ -27,9 +27,9 @@ export default class AddOnList extends Component {
 		   <Table className="maintable">
     			<thead>
       			<tr>
-			<th><i className='fa fa-2x fa-globe' aria-hidden="true"></i></th>
-        		<th><h3 className="titlename">Module Name</h3></th>
-			<th><h3 className="takeright titletype">Type</h3></th>
+			
+        		<th><h3 >Module Name</h3></th>
+			<th><h3 className="pull-right title-type">Type</h3></th>
      			</tr>
     			</thead>
 		   </Table>

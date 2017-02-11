@@ -7,14 +7,14 @@ export default class AddOn extends Component {
     render() {
         const addon = this.props.addon;
         const icon = addon.type === 'OWA' ? 'fa fa-2x fa-globe' : 'fa fa-2x fa-puzzle-piece';
-        const link = this.props.version ? `#/show/${addon.uid}?highlightVersion=${this.props.version}` : `#/show/${addon.uid}`;
+        const link = this.props.version ? `/show/${addon.uid}?highlightVersion=${this.props.version}` : `/show/${addon.uid}`;
 	
 	const title = (
- <div>{addon.name} <div className="takeright">{addon.type}</div></div>
+ <div>{addon.name} <div className="pull-right">{addon.type}</div></div>
 );
 
         return (
-                
+                <Link to={link}>
                     <ListGroupItem className="mainlist">
                    <Media>
                         <Media.Left>
@@ -23,19 +23,16 @@ export default class AddOn extends Component {
                    <Media.Body> 
                             
     			
-		            <Accordion>
-    <Panel header={title} className="listgrp" eventKey="1">
-      {addon.description} 
-<p><div className="takeright"><Button className="spacing" href={link} bsSize="small">More Info</Button>
-<Button  href={link} bsStyle="primary" bsSize="small">Download</Button></div>
-      </p>
+		            
+    <Panel header={title} className="list-grp" eventKey="1">
+      {addon.description}
     </Panel>
-       			</Accordion>
+       			
 </Media.Body>	
       			</Media>    
                     </ListGroupItem>
       
-                
+                </Link>
         )
     }
 

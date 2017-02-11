@@ -2,7 +2,7 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
-
+import { DropdownButton , MenuItem } from 'react-bootstrap';
 
 export default class AddOnSearch extends Component {
 
@@ -62,12 +62,12 @@ export default class AddOnSearch extends Component {
     <div className="input-group">
     
       <div className="input-group-btn">
-        <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type <span className="caret"></span></button>
-        <select className="dropdown-menu" onChange={event => this.setType(event.target.value)}>
-          <option value="">All Types</option>
-          <option value="OMOD">Module (OMOD)</option>
-          <option value="OWA">Open Web App (OWA)</option>
-        </select>
+       
+ <DropdownButton title="Type"  id="dropdown-size-small" onSelect={event => this.setType(event.target.value)}>
+        <MenuItem eventKey="1" value="">All Types</MenuItem>
+        <MenuItem eventKey="2" value="OMOD">Module (OMOD)</MenuItem>
+        <MenuItem eventKey="3" value="OWA">Open Web App (OWA)</MenuItem>
+      </DropdownButton>
       </div>
   
   

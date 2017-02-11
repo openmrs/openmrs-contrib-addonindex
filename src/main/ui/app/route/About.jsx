@@ -9,7 +9,7 @@ export default class About extends Component {
                     <h3>About</h3>
 
                     <p>
-                        <Link className="btn btn-lg btn-primary col-md-1 col-sm-12 col-xs-12 buttonfix" to="/indexingStatus">Indexing Status</Link>
+                        <Link to="/indexingStatus">Indexing Status</Link>
                     </p>
 
                     <p>

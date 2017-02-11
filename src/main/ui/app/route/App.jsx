@@ -5,7 +5,7 @@ export default class App extends Component {
 
     render() {
         return (
-                <div className="container">
+                <div className="container-fluid">
                     <header className="clearfix">
                         <h1 className="col-sm-5">
                             <a href="#/">
