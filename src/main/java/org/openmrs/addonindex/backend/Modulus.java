@@ -50,7 +50,8 @@ public class Modulus implements BackendHandler {
 	AddOnInfoAndVersions handleModuleJson(AddOnToIndex addOnToIndex, String moduleJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);
 		info.setHostedUrl(hostedUrlFor(addOnToIndex));
-		ObjectNode obj = new ObjectMapper().readValue(moduleJson, ObjectNode.class);
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectNode obj = objectMapper.readValue(moduleJson, ObjectNode.class);
 		
 		if (StringUtils.isEmpty(info.getName())) {
 			info.setName(obj.get("name").asText());
@@ -61,6 +62,10 @@ public class Modulus implements BackendHandler {
 		
 		ArrayNode releases = restTemplateBuilder.build().getForObject(releasesUrlFor(addOnToIndex), ArrayNode.class);
 		for (JsonNode releaseNode : releases) {
+			if (releaseNode.path("moduleVersion").isNull()) {
+				logger.debug("Invalid release in modulus for " + addOnToIndex.getUid());
+				continue;
+			}
 			AddOnVersion version = new AddOnVersion();
 			version.setVersion(new Version(releaseNode.path("moduleVersion").asText()));
 			version.setDownloadUri(releaseNode.path("downloadURL").asText());

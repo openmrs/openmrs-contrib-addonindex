@@ -166,7 +166,7 @@ public class FetchDetailsToIndex {
 	void handleConfigXml(String configXml, AddOnVersion addOnVersion) throws Exception {
 		// sometimes this says something like <!DOCTYPE ... "../lib-common/config-1.0.dtd">
 		// we don't need DTD validation in any case
-		configXml = configXml.replaceAll("<!DOCTYPE .*>", "");
+		configXml = configXml.replaceAll("<!DOCTYPE .*?>", "");
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		Document config = documentBuilderFactory.newDocumentBuilder().parse(
 				new InputSource(new StringReader(configXml)));
