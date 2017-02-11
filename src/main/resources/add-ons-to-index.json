@@ -1859,7 +1859,7 @@
       "description": "Take a look at these modules",
       "addOns": [
         {
-          "uid": "org.openmrs.module.xforms"
+          "uid": "org.openmrs.module.idgen"
         },
         {
           "uid": "org.openmrs.module.htmlformentry"
@@ -1876,24 +1876,12 @@
           "version": "1.7"
         },
         {
-          "uid": "org.openmrs.module.reporting",
-          "version": "0.10.6"
-        },
-        {
-          "uid": "org.openmrs.module.uiframework",
-          "version": "3.9"
-        },
-        {
           "uid": "org.openmrs.module.htmlformentry",
           "version": "3.3.0"
         },
         {
           "uid": "org.openmrs.module.htmlformentryui",
           "version": "1.6.1"
-        },
-        {
-          "uid": "org.openmrs.module.owa",
-          "version": "1.6.3"
         },
         {
           "uid": "org.openmrs.owa.conceptdictionary",
