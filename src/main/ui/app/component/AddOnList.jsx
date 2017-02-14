@@ -24,15 +24,6 @@ export default class AddOnList extends Component {
         else {
             return (
                    <div>
-		   <Table className="maintable">
-    			<thead>
-      			<tr>
-			
-        		<th><h3 >Module Name</h3></th>
-			<th><h3 className="pull-right title-type">Type</h3></th>
-     			</tr>
-    			</thead>
-		   </Table>
                     <ListGroup>
                         {this.props.addons.map(addon =>
                                                        <AddOn key={addon.uid} addon={addon}/>

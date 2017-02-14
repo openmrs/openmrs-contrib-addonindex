@@ -17,14 +17,9 @@ export default class AddOn extends Component {
                 <Link to={link}>
                     <ListGroupItem className="mainlist">
                    <Media>
-                        <Media.Left>
-                            <i className={icon} aria-hidden="true"></i>
-                     	</Media.Left>
                    <Media.Body> 
-                            
-    			
-		            
-    <Panel header={title} className="list-grp" eventKey="1">
+           	            
+    <Panel header={title} className="list-grp" >
       {addon.description}
     </Panel>
        			

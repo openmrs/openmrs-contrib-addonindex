@@ -1,6 +1,6 @@
 import {Component} from "react";
 import fetch from "isomorphic-fetch";
-
+import {Panel , Table , Button , OverlayTrigger , Tooltip , Glyphicon , Badge} from 'react-bootstrap';
 export default class Show extends Component {
 
     componentDidMount() {
@@ -39,58 +39,128 @@ export default class Show extends Component {
             const addon = this.state.addon;
             const icon = addon.type === 'OWA' ? 'fa fa-globe' : 'fa fa-puzzle-piece';
             const highlightVersion = this.props.location.query.highlightVersion;
+	        const showtitle = (
+                                <div><h2>{addon.name}</h2></div>
+                               );
+
+            const versionmeaning = (
+                                <Tooltip id="tooltip"><strong>{addon.name} version</strong></Tooltip>
+                            );
+	    const versioncountmeaning = (
+                                <Tooltip id="tooltip"><strong>No. of builds of {addon.name}</strong></Tooltip>
+                            );
+            const requirementmeaning = (
+                                <Tooltip id="tooltip"><strong>This shows the minimum version of OpenMRS required to be able to run this module</strong></Tooltip>
+                            );
+	    let check="";
             let hosted = "";
+            let hostedtext="";
             if (addon.hostedUrl) {
                 if (addon.hostedUrl.includes("bintray.com")) {
-                    hosted = <p>Hosted on <a target="_blank" href={addon.hostedUrl}>Bintray</a></p>
+                    hostedtext="Hosted on";
+                    hosted = <a target="_blank" href={addon.hostedUrl}>Bintray</a>
                 }
                 else {
-                    hosted = <p>Hosted at <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
+                    hostedtext="Hosted at";
+                    hosted =<a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a>
                 }
+	    check=(<tr>
+    <th>{hostedtext}</th>
+    <td><h5>{hosted}</h5></td>
+
+</tr>);
             }
+          
             return (
-                    <div>
-                        <h1>
-                            <i className={icon} aria-hidden="true"></i>
-                            {addon.name}
-                        </h1>
-                        <h3>{addon.description}</h3>
-                        {hosted}
-                        <p>
-                            Maintained by:
-                            {addon.maintainers.map(m => {
+
+                    <div className="showpage-body">
+<Panel header={showtitle}>
+<h4 className="lead">{addon.description}</h4>
+<div className="col-md-6 col-sm-12 col-xs-12 left-margin">
+<Table striped condensed hover>
+<tbody>
+<tr>
+<th>Type :</th>
+<td><h5>{addon.type}</h5></td>
+</tr>
+{check}
+<tr>
+        <th>Maintained by: </th>
+        <td><h5>{addon.maintainers.map(m => {
                                 if (m.url) {
                                     return (
-                                            <a target="_blank" href={m.url}>{m.name}</a>
-                                    )
+                                    
+                                   <Button bsSize="small" href={m.url}>{m.name}</Button>                                   )
                                 } else {
-                                    return <span>{m.name}</span>
+                                    return( 
+                                    <Button bsSize="small">{m.name}</Button>
+
+                                    )
                                 }
                             })}
-                        </p>
-                        Versions:
-                        <ul>
-                            {addon.versions.map(v => {
+    </h5></td>
+</tr>
+<tr>
+        <th>Version Count  <OverlayTrigger placement="right" overlay={versioncountmeaning}>
+      <Glyphicon glyph="glyphicon glyphicon-question-sign" />
+    </OverlayTrigger>: </th>
+	<td>{addon.versioncount}</td>
+</tr>
+<tr>
+<th>
+Latest Version:
+</th>
+<td>
+<Badge>{addon.latestversion}</Badge>
+</td>
+</tr>
+</tbody>
+</Table>
+</div>
+                     
+<Table condensed hover>
+    <thead>
+      <tr>
+        <th className="col-md-2 col-sm-2 col-xs-2">Version<OverlayTrigger placement="right" overlay={versionmeaning}>
+      <Glyphicon glyph="glyphicon glyphicon-question-sign" />
+    </OverlayTrigger></th>
+        <th className="col-md-6 col-sm-6 col-xs-6">OpenMRS Version Requirement<OverlayTrigger placement="right" overlay={requirementmeaning}>
+      <Glyphicon glyph="glyphicon glyphicon-question-sign" />
+    </OverlayTrigger></th>
+        <th className="col-md-2 col-sm-2 col-xs-2">Not sure</th>
+        <th className="col-md-1 col-sm-1 col-xs-1">Download</th>
+      </tr>
+    </thead>
+    <tbody>
+                    {addon.versions.map(v => {
                                 let className = v.version === highlightVersion ? "highlight" : "";
                                 return (
-                                        <li className={className}>
-                                            <span>
-                                                Version {v.version}
-                                            </span>
-                                            <span>
+                                
+                                        <tr className={className}>
+                                            <td>
+                                                {v.version}
+                                            </td>
+                                            <td>
                                                 {v.requireOpenmrsVersion}
-                                            </span>
-                                            <span>
+                                            </td>
+                                            <td>
                                                 {this.formatRequiredModules(v)}
-                                            </span>
-                                            <a href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
-                                                Download
-                                            </a>
-                                        </li>
+                                            </td>
+                                            <td>
+                                            <Button bsSize="small" href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
+                                            Download
+                                            </Button>
+                                            </td>
+                                        </tr>
                                 )
                             })}
-                        </ul>
+                         
+    </tbody>
+  </Table>
+            
+</Panel>
                     </div>
+  
             )
         }
         else {

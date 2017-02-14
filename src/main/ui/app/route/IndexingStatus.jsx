@@ -19,12 +19,12 @@ export default class IndexingStatus extends Component {
                         <h3>Indexing Status</h3>
                         <table>
                             { this.state.status.toIndex.toIndex.map(i =>
-                                                                            <tr>
-                                                                                <td>{i.uid } </td>
-                                                                                <td>
-                                                                                    <pre>{JSON.stringify(this.state.status.statuses[i.uid], null, 2)}</pre>
-                                                                                </td>
-                                                                            </tr>
+                                               <tr>
+                                                    <td>{i.uid } </td>
+                                                    <td>
+                                                      <pre>{JSON.stringify(this.state.status.statuses[i.uid], null, 2)}</pre>
+                                                     </td>
+                                              </tr>
                             )}
                         </table>
                     </div>
