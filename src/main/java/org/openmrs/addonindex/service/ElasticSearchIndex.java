@@ -35,6 +35,8 @@ public class ElasticSearchIndex implements Index {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	private final int SEARCH_SIZE = 200;
+	
 	private JestClient client;
 	
 	@Autowired
@@ -90,7 +92,7 @@ public class ElasticSearchIndex implements Index {
 			queryBuilder.minimumNumberShouldMatch(1);
 		}
 		SearchResult result = client.execute(new Search.Builder(
-				new SearchSourceBuilder().query(queryBuilder).toString())
+				new SearchSourceBuilder().size(SEARCH_SIZE).query(queryBuilder).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		return result.getHits(AddOnInfoAndVersions.class).stream()
