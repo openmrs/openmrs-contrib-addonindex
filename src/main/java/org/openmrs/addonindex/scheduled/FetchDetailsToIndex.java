@@ -52,14 +52,16 @@ public class FetchDetailsToIndex {
 	
 	private RestTemplateBuilder restTemplateBuilder;
 	
+	private DocumentBuilderFactory documentBuilderFactory;
+	
 	@Autowired
 	public FetchDetailsToIndex(IndexingService indexingService,
 	                           RestTemplateBuilder restTemplateBuilder) {
 		this.indexingService = indexingService;
 		this.restTemplateBuilder = restTemplateBuilder;
+		this.documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		this.documentBuilderFactory.setValidating(false);
 	}
-	
-	private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 	
 	@Value("${scheduler.fetch_details_to_index.fetch_extra_details}")
 	private boolean fetchExtraDetails = true;
@@ -128,7 +130,7 @@ public class FetchDetailsToIndex {
 			}
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
-					logger.info("Fetching OMOD for " + toIndex.getUid() + " " + version);
+					logger.info("Fetching OMOD for " + toIndex.getUid() + " " + version.getVersion());
 					String configXml = fetchConfigXml(toIndex, version);
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
@@ -162,6 +164,9 @@ public class FetchDetailsToIndex {
 	}
 	
 	void handleConfigXml(String configXml, AddOnVersion addOnVersion) throws Exception {
+		// sometimes this says something like <!DOCTYPE ... "../lib-common/config-1.0.dtd">
+		// we don't need DTD validation in any case
+		configXml = configXml.replaceAll("<!DOCTYPE .*?>", "");
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		Document config = documentBuilderFactory.newDocumentBuilder().parse(
 				new InputSource(new StringReader(configXml)));

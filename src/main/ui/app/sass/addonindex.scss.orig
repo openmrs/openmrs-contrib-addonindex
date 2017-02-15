@@ -32,6 +32,7 @@ margin-bottom:0;
 
 
 .title-type{
+<<<<<<< HEAD
 
 margin-right:5%;
 margin-bottom:5px;
@@ -41,6 +42,17 @@ margin-bottom:5px;
 
 margin-bottom:5px;
 
+=======
+
+margin-right:5%;
+margin-bottom:5px;
+
+}
+.title-name{
+
+margin-bottom:5px;
+
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
 }
 .mainlist{
 border-width: 0;
@@ -96,6 +108,7 @@ a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
 }
+<<<<<<< HEAD
 .list-group-item{
 
     padding-bottom: 0px;
@@ -125,6 +138,18 @@ margin-right :5px;
 
 margin:0;
 
+=======
+.list-grp{
+padding : 0;
+}
+.spacing{
+margin-right :5px;
+}
+.panel-group{
+
+margin:0;
+
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
 }
 .highlight {
   font-weight: bold;

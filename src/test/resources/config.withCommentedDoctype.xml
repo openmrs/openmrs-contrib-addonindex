@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE module PUBLIC "-//OpenMRS//DTD OpenMRS Config 1.2//EN" "http://resources.openmrs.org/doctype/config-1.2.dtd"> -->
+<module configVersion="1.2">
+	
+	<!-- Base Module Properties -->
+	<id>metadatasharing</id>
+	<name>Metadata Sharing</name>
+	<version>1.2.2</version>
+	<package>org.openmrs.module.metadatasharing</package>
+	<author>Rafal Korytkowski</author>
+	<description>
+		Allows all kinds of metadata (concepts,
+		locations, roles
+		etc.) to be exchanged
+		between different OpenMRS installations.
+	</description>
+	
+	<activator>org.openmrs.module.metadatasharing.MetadataSharingActivator</activator>
+	
+	<updateURL>https://modules.openmrs.org/modules/download/metadatasharing/update.rdf
+	</updateURL>
+	
+	<!-- /Metadata Sharing Properties -->
+	
+	<require_version>1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*</require_version>
+	
+	<require_modules>
+		<require_module version="1.2.0">org.openmrs.module.metadatamapping</require_module>
+	</require_modules>
+	
+	<aware_of_modules>
+		<aware_of_module>org.openmrs.module.legacyui</aware_of_module>
+	</aware_of_modules>
+	
+	<!-- Extensions -->
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.metadatasharing.web.extension.html.AdminList</class>
+	</extension>
+	
+	<!-- Conditional Resources -->
+	<conditionalResources>
+		<conditionalResource>
+			<path>/lib/metadatasharing-api-1.9-1.2.2.jar</path>
+			<openmrsVersion>1.9.9 - 1.12.*</openmrsVersion>
+		</conditionalResource>
+		<conditionalResource>
+			<path>/lib/metadatasharing-api-2.0-1.2.2.jar</path>
+			<openmrsVersion>2.0</openmrsVersion>
+		</conditionalResource>
+	</conditionalResources>
+	<!-- / Conditional Resources -->
+	
+	<mappingFiles>
+		ExportedPackage.hbm.xml
+		ImportedPackage.hbm.xml
+		ImportedItem.hbm.xml
+	</mappingFiles>
+	
+	<!-- Required Privileges -->
+	<privilege>
+		<name>Share Metadata</name>
+		<description>Allows user to export and import metadata</description>
+	</privilege>
+	<!-- /Required Privileges -->
+	
+	<!-- Required Global Properties -->
+	<globalProperty>
+		<property>metadatasharing.persistIdsForClasses</property>
+		<description>A comma separated list of class package/names that denotes classes to try and persist ids for. Common
+			options:
+			org.openmrs.Concept,org.openmrs.Form,org.openmrs.ConceptDatatype,org.openmrs.ConceptClass,org.openmrs.EncounterType,org.openmrs.IdentifierType,org.openmrs.RelationshipType,org.openmrs.Location
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>metadatasharing.preferredConceptSourceIds</property>
+		<description>
+			Comma-separated list of concept source Ids for preferred sources, in case an incoming concept
+			has duplicate mappings to any of these sources, no confirmation will be required unless its
+			datatype or concept class differs from that of the existing concept
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>metadatasharing.enableOnTheFlyPackages</property>
+		<defaultValue>false</defaultValue>
+		<description>
+			Specifies whether metadata packages can be exported on the fly
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>metadatasharing.webservicesKey</property>
+		<description>
+			Key to grant access to remote systems to consume module webservices RESTfully
+		</description>
+	</globalProperty>
+	<!-- /Required Global Properties -->
+	
+	<!-- Internationalization -->
+	<!-- All message codes should start with metadatasharing.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>
+

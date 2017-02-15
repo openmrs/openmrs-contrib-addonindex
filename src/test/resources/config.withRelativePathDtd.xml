@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//OpenMRS//DTD OpenMRS Config 1.0//EN" "../lib-common/config-1.0.dtd">
+<module configVersion="1.0">
+	
+	<!-- Base Module Properties -->
+	<id>mdrtb</id>
+	<name>MDR TB</name>
+	<version>3.0.2</version>
+	<package>org.openmrs.module.mdrtb</package>
+	<author>Partners in Health</author>
+	<description>MDR TB Module</description>
+	<activator>org.openmrs.module.mdrtb.MdrtbActivator</activator>
+	
+	<updateURL>https://modules.openmrs.org/modules/download/mdrtb/update.rdf</updateURL>
+	
+	<require_version>1.9.1</require_version>
+	
+	<require_modules>
+		<require_module version="0.7">org.openmrs.module.reporting</require_module>
+	</require_modules>
+	
+	<extension>
+		<point>org.openmrs.admin.list</point>
+		<class>org.openmrs.module.mdrtb.extension.html.AdminList</class>
+	</extension>
+	<extension>
+		<point>org.openmrs.patientDashboardTab</point>
+		<class>org.openmrs.module.mdrtb.extension.html.MdrtbPatientDashboardTabExt</class>
+	</extension>
+	<extension>
+		<point>org.openmrs.gutter.tools</point>
+		<class>org.openmrs.module.mdrtb.extension.html.MdrtbGutterItem</class>
+	</extension>
+	
+	<!--  AOP advice points -->
+	<advice>
+		<point>org.openmrs.api.ConceptService</point>
+		<class>org.openmrs.module.mdrtb.service.ConceptServiceAdvice</class>
+	</advice>
+	
+	<!-- Global properties -->
+	
+	<globalProperty>
+		<property>mdrtb.program_name</property>
+		<defaultValue>MDR-TB PROGRAM</defaultValue>
+		<description>
+			MDR-TB program name.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.roles_to_redirect_from_openmrs_homepage</property>
+		<defaultValue />
+		<description>
+			Comma-separated list of role names. Any user in a role listed here will not be able to see the regular OpenMRS
+			homepage.
+			That will redirect them to the MDR-TB homepage instead.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.patient_identifier_type_list</property>
+		<defaultValue />
+		<description>
+			Pipe delimited list of all patient identifier types associated with the MDRTB program.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.birt_report_list</property>
+		<defaultValue />
+		<description>
+			List all BIRT reports by name that correspond to the MDR-TB program. Pipe delimited.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.database_version</property>
+		<defaultValue>1.0.0</defaultValue>
+		<description>The version trigger for the contents of sqldiff.xml
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.formIdToAttachToBacteriologyEntry</property>
+		<defaultValue />
+		<description>If you would like for direct entry of a smear and culture to have a formId attached to the encounter,
+			enter that here. This is useful if you want direct smear entry to show up in the cat-iv treatment card.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.specimen_collection_encounter_type</property>
+		<defaultValue>Specimen Collection</defaultValue>
+		<description>Name of the specimen collection encounter type.</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.intake_encounter_type</property>
+		<defaultValue>MDR-TB Intake</defaultValue>
+		<description>Name of the intake encounter type.</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.follow_up_encounter_type</property>
+		<defaultValue>MDR-TB Follow Up</defaultValue>
+		<description>Name of the follow-up encounter type.</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.defaultDstDrugs</property>
+		<defaultValue>ISONIAZID|RIFAMPICIN|ETHAMBUTOL|PYRAZINAMIDE|STREPTOMYCIN</defaultValue>
+		<description>The list of default drugs to display in the specimen "Add Dst" list</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.fixedIdentifierLocation</property>
+		<defaultValue></defaultValue>
+		<description>Takes as a parameter a location name. If this property exists, when creating patient identifiers, the
+			patient identifier location is set to this value (and setting the location is not presented to the user as an
+			option).
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.colorMap</property>
+		<defaultValue>CONTAMINATED:lightgrey|UNSATISFACTORY SAMPLE:lightgrey|MODERATELY POSITIVE:lightcoral|STRONGLY
+			POSITIVE:lightcoral|WEAKLY POSITIVE:lightcoral|WAITING FOR TEST
+			RESULTS:lightgrey|SCANTY:khaki|NEGATIVE:lightgreen|POSITIVE:lightcoral|SUSCEPTIBLE TO TUBERCULOSIS
+			DRUG:lightgreen|INTERMEDIATE TO TUBERCULOSIS DRUG:khaki|RESISTANT TO TUBERCULOSIS DRUG:lightcoral|NONE:none
+		</defaultValue>
+		<description>Pipe-delimited list mapping concept ids or concept mappings to color names and/or hex codes for display
+			in the patient chart and (potentially) elsewhere.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.primaryPatientIdentifierType</property>
+		<defaultValue />
+		<description>The primary patient identifier to display for patients</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.findPatientNumResults</property>
+		<defaultValue>20</defaultValue>
+		<description>Number of results to display when searching for patient</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.specimenReports.daysSinceSmear</property>
+		<defaultValue>14</defaultValue>
+		<description>Stores the "days since smear" variable for the specimen reports. You should never need to modify this
+			parameter here, as it is updated via the specimen reports UI.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.specimenReports.daysSinceCulture</property>
+		<defaultValue>14</defaultValue>
+		<description>Stores the "days since culture" variable for the specimen reports. You should never need to modify this
+			parameter here, as it is updated via the specimen reports UI.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.specimenReports.defaultLabId</property>
+		<defaultValue>1</defaultValue>
+		<description>Stores the default lab ID for the specimen reports. You should never need to modify this parameter here,
+			as it is updated via the specimen reports UI.
+		</description>
+	</globalProperty>
+	
+	
+	<globalProperty>
+		<property>mdrtb.treatment_supporter_person_attribute_type</property>
+		<defaultValue>Treatment Supporter</defaultValue>
+		<description>
+			LEGACY: The person attribute type that corresponds to being a treatment supporter/acompanateur/dots worker.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.treatment_supporter_relationship_type</property>
+		<defaultValue>Treatment Supporter/Treatment Supportee</defaultValue>
+		<description>LEGACY: The relationship type used to describe the relationship from a treatment supporter (A) to a
+			patient (B)
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.patient_contact_id_attribute_type</property>
+		<defaultValue>MDR-TB Patient Contact ID Number</defaultValue>
+		<description>LEGACY: The person attribute type corresponding to a patient contact's ID number.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.test_result_encounter_type_DST</property>
+		<defaultValue />
+		<description>
+			LEGACY - Only used in 2.0 by migration script: This should be the name of the encounter type that you want to use
+			for encounters wrapping DST results.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.test_result_encounter_type_bacteriology</property>
+		<defaultValue />
+		<description>
+			LEGACY - Only used in 2.0 by migration script: This should be the name of the encounter type that you want to use
+			for encounters wrapping bacteriology (smear+culture) results.
+		</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mdrtb.mdrtb_forms_list</property>
+		<defaultValue />
+		<description>
+			LEGACY - Only used in 2.0 by migration script: List all MDR-TB forms by name, pipe delimited. These will appear
+			in the form list on the MDR-TB home.
+		</description>
+	</globalProperty>
+	
+	<dwr>
+		<allow>
+			<create creator="new" javascript="MdrtbFindPatient">
+				<param name="class" value="org.openmrs.module.mdrtb.web.dwr.MdrtbFindPatient" />
+				<include method="findPatients" />
+				<include method="findPeople" />
+				<include method="findAllPeople" />
+			</create>
+		</allow>
+		
+		<signatures>
+			<![CDATA[  ]]>
+		</signatures>
+	</dwr>
+	
+	<!-- Internationalization -->
+	<!-- All message codes should start with mdrtb.* -->
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	<messages>
+		<lang>ru</lang>
+		<file>messages_ru.properties</file>
+	</messages>
+	<!-- /Internationalization -->
+
+</module>

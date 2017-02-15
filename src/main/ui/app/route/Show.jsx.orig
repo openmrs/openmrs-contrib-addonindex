@@ -70,6 +70,7 @@ export default class Show extends Component {
 
 </tr>);
             }
+<<<<<<< HEAD
           
             return (
 
@@ -87,6 +88,22 @@ export default class Show extends Component {
 <tr>
         <th>Maintained by: </th>
         <td><h5>{addon.maintainers.map(m => {
+=======
+            let statusClass = addon.status === "ACTIVE" ? "label label-default" :
+                              addon.status === "DEPRECATED" ? "label label-danger" : "label label-warning";
+            return (
+                    <div>
+                        <h1>
+                            <i className={icon} aria-hidden="true"></i>
+                            {addon.name}
+                            <span className={statusClass}>{addon.status}</span>
+                        </h1>
+                        <h3>{addon.description}</h3>
+                        {hosted}
+                        <p>
+                            Maintained by:
+                            {addon.maintainers.map(m => {
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
                                 if (m.url) {
                                     return (
                                     

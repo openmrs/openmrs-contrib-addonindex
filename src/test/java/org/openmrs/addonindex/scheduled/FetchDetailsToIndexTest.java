@@ -50,4 +50,19 @@ public class FetchDetailsToIndexTest {
 		)));
 	}
 	
+	@Test
+	public void testParsingWithDoctypeRelativePath() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
+		// just test that we could parse at all
+	}
+	
+	@Test
+	public void testParsingWithCommentedDoctype() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version);
+		// just test that we could parse at all
+	}
 }

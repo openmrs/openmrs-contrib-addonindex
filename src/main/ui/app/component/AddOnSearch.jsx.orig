@@ -2,7 +2,11 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
+<<<<<<< HEAD
 import { DropdownButton , MenuItem , Glyphicon} from 'react-bootstrap';
+=======
+import { DropdownButton , MenuItem } from 'react-bootstrap';
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
 
 export default class AddOnSearch extends Component {
 
@@ -77,12 +81,21 @@ const title = (
   
                     <DebounceInput
                             placeholder="Search..."
+<<<<<<< HEAD
                             className="form-control col-md-8 col-sm-8 col-xs-8"
+=======
+                            className="form-control col-md-10 col-sm-10 col-xs-10"
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
                             minLength={1}
                             debounceTimeout={500}
                             onChange={event => this.setQuery(event.target.value)}/>
         
+<<<<<<< HEAD
                
+=======
+                   
+        
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
                 
                   </div>
                   </div>

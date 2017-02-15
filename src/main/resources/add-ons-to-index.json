@@ -1,25 +1,6 @@
 {
   "toIndex": [
     {
-      "uid": "org.openmrs.module.addresshierarchy",
-      "type": "OMOD",
-      "name": "Address Hierarchy",
-      "maintainers": [
-        {
-          "name": "Mark Goodrich",
-          "url": "https://github.com/mogoodrich"
-        },
-        {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
-        }
-      ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "3"
-      }
-    },
-    {
       "uid": "org.openmrs.owa.conceptdictionary",
       "type": "OWA",
       "name": "Concept Dictionary OWA",
@@ -41,145 +22,1835 @@
       }
     },
     {
+      "uid": "org.openmrs.module.accesslogging",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Access Log",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Mark Goodrich"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "1"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.addgutteritem",
+      "type": "OMOD",
+      "name": "add gutter item Module",
+      "maintainers": [
+        {
+          "name": "pcorces"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "2"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.addresshierarchy",
+      "type": "OMOD",
+      "name": "Address Hierarchy",
+      "maintainers": [
+        {
+          "name": "sprasanna"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Dave Thomas"
+        },
+        {
+          "name": "machosry"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "3"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.addresshierarchyrwanda",
+      "type": "OMOD",
+      "name": "Address Hierarchy Rwanda",
+      "maintainers": [
+        {
+          "name": "peichenauer"
+        },
+        {
+          "name": "Dave Thomas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "4"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.appframework",
+      "type": "OMOD",
+      "name": "App Framework Module",
+      "maintainers": [
+        {
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Rowan Seymour"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "5"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.appointment",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Appointment",
+      "maintainers": [
+        {
+          "name": "peichenauer"
+        },
+        {
+          "name": "gakyves"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "6"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.appointmentscheduling",
+      "type": "OMOD",
+      "name": "Appointment Scheduling",
+      "maintainers": [
+        {
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "tgreensweig"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Yonatan Grinberg"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "7"
+      }
+    },
+    {
       "uid": "org.openmrs.module.appui",
       "type": "OMOD",
-      "name": "App UI module",
+      "name": "App UI Module",
       "maintainers": [
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
         }
       ],
-      "description": "Support for using the App Framework's context in the UI Framework",
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "appui-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "8"
       }
     },
     {
-      "uid": "org.openmrs.module.reporting",
+      "uid": "org.openmrs.module.atd",
       "type": "OMOD",
-      "name": "Reporting module",
+      "name": "ATD",
       "maintainers": [
         {
-          "name": "Mike Seaton",
-          "url": "https://github.com/mseaton"
+          "name": "vanand"
         },
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "tmdugan"
+        },
+        {
+          "name": "Ben Wolfe"
         }
       ],
-      "description": "The Reporting Module provides a user interface for defining and managing core objects like reports, data sets, cohort queries, indicators, dimensions, and report designs. The module also provides an extensible API for developing custom reports and new features",
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "reporting-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "9"
       }
     },
     {
-      "uid": "org.openmrs.module.xforms",
+      "uid": "org.openmrs.module.atlas",
       "type": "OMOD",
-      "name": "XForms module",
+      "name": "Atlas Module",
       "maintainers": [
         {
-          "name": "Daniel Kayiwa",
-          "url": "https://github.com/dkayiwa"
+          "name": "Wyclif Luyima"
         },
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Alexis Duque"
+        },
+        {
+          "name": "Burke Mamlin"
+        },
+        {
+          "name": "mvorobey"
+        },
+        {
+          "name": "Darius Jazayeri"
         }
       ],
-      "description": "A browser based forms module which adds XForms support and related services to XForms clients, like user and patient download.",
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "xforms-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "10"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.atomfeed",
+      "type": "OMOD",
+      "name": "Atom Feed Module",
+      "maintainers": [
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "11"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.backports14x",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Backports 1.4.x",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "12"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.birt",
+      "type": "OMOD",
+      "name": "Birt Reports",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "14"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.calculation",
+      "type": "OMOD",
+      "name": "Calculation",
+      "maintainers": [
+        {
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "15"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.chica",
+      "type": "OMOD",
+      "name": "Chica",
+      "maintainers": [
+        {
+          "name": "tmdugan"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "16"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.chirdlutil",
+      "type": "OMOD",
+      "name": "chirdlutil",
+      "maintainers": [
+        {
+          "name": "tmdugan"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "17"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.chirdlutilbackports",
+      "type": "OMOD",
+      "name": "chirdlutilbackports",
+      "maintainers": [
+        {
+          "name": "sjmckee"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "18"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.cleaningvoided",
+      "type": "OMOD",
+      "name": "Cleaningvoided",
+      "maintainers": [
+        {
+          "name": "ajanthan"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "19"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.clinicalsummary",
+      "type": "OMOD",
+      "name": "Clinical Summary",
+      "maintainers": [
+        {
+          "name": "nyoman"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "20"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.comparelists",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Compare Lists",
+      "maintainers": [
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "21"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.conceptmanagementapps",
+      "type": "OMOD",
+      "name": "Concept Management Apps Module",
+      "maintainers": [
+        {
+          "name": "jenn"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "22"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.conceptsearch",
+      "type": "OMOD",
+      "name": "Concept Search",
+      "maintainers": [
+        {
+          "name": "maltef"
+        },
+        {
+          "name": "peichenauer"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "23"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.cpm",
+      "type": "OMOD",
+      "name": "Concept Proposal Module",
+      "maintainers": [
+        {
+          "name": "Timothy McCarthy"
+        },
+        {
+          "name": "David Sanders"
+        },
+        {
+          "name": "Gil Azaria"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "24"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.custombranding",
+      "type": "OMOD",
+      "name": "Custom Branding",
+      "maintainers": [
+        {
+          "name": "Saptarshi Purkayastha"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "25"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.custommessage",
+      "type": "OMOD",
+      "name": "Custom Message",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "mvorobey"
+        },
+        {
+          "name": "bmamlin"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "26"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.dashboardframe",
+      "type": "OMOD",
+      "name": "Dashboard Frame Module",
+      "maintainers": [
+        {
+          "name": "Joaquin Blaya"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "27"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.databasebackup",
+      "type": "OMOD",
+      "name": "Database Backup",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Mikko Suniala"
+        },
+        {
+          "name": "mathias.lin"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "28"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.databasemessages",
+      "type": "OMOD",
+      "name": "Database Messages",
+      "maintainers": [
+        {
+          "name": "Saptarshi Purkayastha"
+        },
+        {
+          "name": "sreyakmit"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "29"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.datadeletion",
+      "type": "OMOD",
+      "name": "Data Deletion",
+      "maintainers": [
+        {
+          "name": "bmckown"
+        },
+        {
+          "name": "Joaquin Blaya"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "syhaas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "30"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.dataentrystatistics",
+      "type": "OMOD",
+      "name": "Data Entry Statistics",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "31"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.dataintegrity",
+      "type": "OMOD",
+      "name": "Data Integrity",
+      "maintainers": [
+        {
+          "name": "jeremy"
+        },
+        {
+          "name": "Stephen Senkomago Musoke"
+        },
+        {
+          "name": "nimanthab"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "32"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.dhismodule",
+      "type": "OMOD",
+      "name": "DHIS Connector",
+      "maintainers": [
+        {
+          "name": "pkhumalo"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "33"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.diabetesmanagement",
+      "type": "OMOD",
+      "name": "Diabetes Management",
+      "maintainers": [
+        {
+          "name": "Keelhaul"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "34"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.doubleentryreconciliation",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Double Entry Reconciliation",
+      "maintainers": [
+        {
+          "name": "catullus"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "35"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.drawing",
+      "type": "OMOD",
+      "name": "Drawing",
+      "maintainers": [
+        {
+          "name": "pushkar"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "36"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.dss",
+      "type": "OMOD",
+      "name": "Dss",
+      "maintainers": [
+        {
+          "name": "tmdugan"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "37"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.emrapi",
+      "type": "OMOD",
+      "name": "EMR API Module",
+      "maintainers": [
+        {
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Vinay Venu"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "38"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.ermodule",
+      "type": "OMOD",
+      "name": "ER Module",
+      "maintainers": [
+        {
+          "name": "A.Medhat"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "39"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.event",
+      "type": "OMOD",
+      "name": "Event Module",
+      "maintainers": [
+        {
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Rafal Korytkowski"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "40"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.exportccd",
+      "type": "OMOD",
+      "name": "Export CCD Module",
+      "maintainers": [
+        {
+          "name": "deepaganu"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "41"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.facilitydata",
+      "type": "OMOD",
+      "name": "Facility Data",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "42"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.feedback",
+      "type": "OMOD",
+      "name": "Feedback",
+      "maintainers": [
+        {
+          "name": "gauravpaliwal"
+        },
+        {
+          "name": "harshadura"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "43"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.filebrowser",
+      "type": "OMOD",
+      "name": "File Browser",
+      "maintainers": [
+        {
+          "name": "tgreensweig"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "44"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.flowsheet",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Flowsheet",
+      "maintainers": [
+        {
+          "name": "pbiondich"
+        },
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "skelly"
+        },
+        {
+          "name": "Burke Mamlin"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "callen"
+        },
+        {
+          "name": "bmamlin"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "45"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.form2program",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Form2Program",
+      "maintainers": [
+        {
+          "name": "bmckown"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "46"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.formdataexport",
+      "type": "OMOD",
+      "name": "Form Data Export",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Dave Thomas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "47"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.formentry",
+      "type": "OMOD",
+      "name": "Form Entry",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "jeremy"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Willa Mhawila"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "bmamlin"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "48"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.formfilter",
+      "type": "OMOD",
+      "name": "Form Filter Module",
+      "maintainers": [
+        {
+          "name": "goutham"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "49"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.formimportexport",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Form Import Export",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Dave Thomas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "50"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.globalpropertyeditor",
+      "type": "OMOD",
+      "name": "Global Property Editor",
+      "maintainers": [
+        {
+          "name": "Pascal"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "51"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.gmapsimageviewer",
+      "type": "OMOD",
+      "name": "Google Maps Image Viewer",
+      "maintainers": [
+        {
+          "name": "TorLye"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "cioan"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "52"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.groovy",
+      "type": "OMOD",
+      "name": "Groovy",
+      "maintainers": [
+        {
+          "name": "jkeiper"
+        },
+        {
+          "name": "Robby O'Connor"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "bmamlin"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "53"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.growthchart",
+      "type": "OMOD",
+      "name": "Growth Chart",
+      "maintainers": [
+        {
+          "name": "rcuckovich"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "54"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.hl7query",
+      "type": "OMOD",
+      "name": "HL7 Query",
+      "maintainers": [
+        {
+          "name": "Suranga Kasthurirathne"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "downey"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "55"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.household",
+      "type": "OMOD",
+      "name": "Household Module",
+      "maintainers": [
+        {
+          "name": "jmwogi"
+        },
+        {
+          "name": "jeremy"
+        },
+        {
+          "name": "Nicholas Ingosi"
+        },
+        {
+          "name": "mwalo"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "56"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.hr",
+      "type": "OMOD",
+      "name": "Human Resource Module",
+      "maintainers": [
+        {
+          "name": "saimanohar"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "57"
       }
     },
     {
       "uid": "org.openmrs.module.htmlformentry",
       "type": "OMOD",
-      "name": "HTML Form Entry module",
-      "description": "FormEntry in-webapp, using HTML forms",
+      "name": "HTML Form Entry",
       "maintainers": [
         {
-          "name": "Mark Goodrich",
-          "url": "https://github.com/mogoodrich"
+          "name": "Mike Seaton"
         },
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Dave Thomas"
+        },
+        {
+          "name": "ball"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "htmlformentry-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "58"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.htmlformentry19ext",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "HTML Form Entry Extensions for OpenMRS 1.9 Module",
+      "maintainers": [
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "59"
       }
     },
     {
       "uid": "org.openmrs.module.htmlformentryui",
       "type": "OMOD",
-      "name": "HTML Form Entry UI Framework Integration module",
-      "description": "Pages and Fragments for using the HTML Form Entry module along with the UI Framework",
+      "name": "HTML Form Entry UI Framework Integration Module",
       "maintainers": [
         {
-          "name": "Mark Goodrich",
-          "url": "https://github.com/mogoodrich"
+          "name": "Mike Seaton"
         },
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "htmlformentryui-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "60"
       }
     },
     {
-      "uid": "org.openmrs.module.uiframework",
+      "uid": "org.openmrs.module.htmlformflowsheet",
       "type": "OMOD",
-      "name": "UI Framework module",
-      "description": "OpenMRS's custom UI Framework, built on top of Spring MVC, and leveraging Groovy templates for views",
+      "name": "HTML Form Flowsheet",
       "maintainers": [
         {
-          "name": "Darius Jazayeri",
-          "url": "https://github.com/djazayeri"
+          "name": "Darius Jazayeri"
         },
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "uiframework-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "61"
       }
     },
     {
-      "uid": "org.openmrs.module.owa",
+      "uid": "org.openmrs.module.htmlwidgets",
       "type": "OMOD",
-      "name": "Open Web Apps module",
-      "description": "Add Open Web Apps to OpenMRS",
+      "name": "HTML Widgets",
       "maintainers": [
         {
-          "name": "OpenMRS",
-          "url": "https://github.com/openmrs"
+          "name": "Wyclif Luyima"
+        },
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.OpenmrsMavenRepo",
-      "mavenRepoDetails": {
-        "groupId": "org.openmrs.module",
-        "artifactId": "owa-omod"
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "62"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.i2b2export",
+      "type": "OMOD",
+      "name": "i2b2 Export",
+      "maintainers": [
+        {
+          "name": "slorenz"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "63"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.idcards",
+      "type": "OMOD",
+      "name": "Id Cards",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "64"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.idgen",
+      "type": "OMOD",
+      "name": "ID Generation",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "65"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.infopathconverter",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Infopath to HTML Form Converter",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "66"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.inpatientcare",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Inpatient Care",
+      "maintainers": [
+        {
+          "name": "Keelhaul"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "67"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.jasperreport",
+      "type": "OMOD",
+      "name": "Jasper Report",
+      "maintainers": [
+        {
+          "name": "Wesley Brown"
+        },
+        {
+          "name": "skelly"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "68"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.jmx",
+      "type": "OMOD",
+      "name": "JMX",
+      "maintainers": [
+        {
+          "name": "Rowan Seymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "69"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.kenyadq",
+      "type": "OMOD",
+      "name": "KenyaDQ",
+      "maintainers": [
+        {
+          "name": "Rowan Seymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "70"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.kenyalab",
+      "type": "OMOD",
+      "name": "KenyaLab",
+      "maintainers": [
+        {
+          "name": "Nicholas Ingosi"
+        },
+        {
+          "name": "Rowan Seymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "71"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.kenyametadatatools",
+      "type": "OMOD",
+      "name": "Kenya Metadata Tools",
+      "maintainers": [
+        {
+          "name": "Nicholas Ingosi"
+        },
+        {
+          "name": "Rowan Seymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "72"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.kenyaui",
+      "type": "OMOD",
+      "name": "KenyaUI",
+      "maintainers": [
+        {
+          "name": "Nicholas Ingosi"
+        },
+        {
+          "name": "Rowan Seymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "73"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.logic",
+      "type": "OMOD",
+      "name": "Logic",
+      "maintainers": [
+        {
+          "name": "nyoman"
+        },
+        {
+          "name": "tmdugan"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        },
+        {
+          "name": "bmamlin"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "74"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.logicws",
+      "type": "OMOD",
+      "name": "Logic Web Service",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "kevjay"
+        },
+        {
+          "name": "rzwolinski"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "75"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.logmanager",
+      "type": "OMOD",
+      "name": "Log Manager",
+      "maintainers": [
+        {
+          "name": "Rowan Seymour"
+        },
+        {
+          "name": "rseymour"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "76"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.mdrtb",
+      "type": "OMOD",
+      "name": "MDR-TB",
+      "maintainers": [
+        {
+          "name": "Mark Goodrich"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "77"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.mdrtbpatientchartwidgets",
+      "type": "OMOD",
+      "name": "Mdrtb Patient Chart Widgets",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "Dave Thomas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "78"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.medicalproblem",
+      "type": "OMOD",
+      "name": "Medical Problem",
+      "maintainers": [
+        {
+          "name": "Keelhaul"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "79"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.messaging",
+      "type": "OMOD",
+      "name": "Messaging Module",
+      "maintainers": [
+        {
+          "name": "jeremy"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "80"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.metadatadeploy",
+      "type": "OMOD",
+      "name": "Metadata Deploy",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Rowan Seymour"
+        },
+        {
+          "name": "Mark Goodrich"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "81"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.metadatamapping",
+      "type": "OMOD",
+      "name": "Metadata Mapping",
+      "maintainers": [
+        {
+          "name": "Mikko Suniala"
+        },
+        {
+          "name": "Rafal Korytkowski"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "82"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.metadatasharing",
+      "type": "OMOD",
+      "name": "Metadata Sharing",
+      "maintainers": [
+        {
+          "name": "bryq"
+        },
+        {
+          "name": "Rafal Korytkowski"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "83"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.mirthmessaging",
+      "type": "OMOD",
+      "name": "Mirth Messaging",
+      "maintainers": [
+        {
+          "name": "jacobb"
+        },
+        {
+          "name": "rcrichton"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "84"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.moca",
+      "type": "OMOD",
+      "name": "Moca Module",
+      "maintainers": [
+        {
+          "name": "longaid"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "85"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.moduledistro",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Module Distro",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "86"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.mrngen",
+      "type": "OMOD",
+      "name": "MRN Generator",
+      "maintainers": [
+        {
+          "name": "rmalla"
+        },
+        {
+          "name": "Ben Wolfe"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "87"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.myfirst",
+      "type": "OMOD",
+      "name": "My First Module",
+      "maintainers": [
+        {
+          "name": "mshana"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "88"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.mypatients",
+      "type": "OMOD",
+      "name": "My Patients",
+      "maintainers": [
+        {
+          "name": "sophiez"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "89"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.namephonetics",
+      "type": "OMOD",
+      "name": "Name Phonetics",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Mark Goodrich"
+        },
+        {
+          "name": "Dave Thomas"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "90"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.ncd",
+      "type": "OMOD",
+      "name": "NCD",
+      "maintainers": [
+        {
+          "name": "athorson"
+        },
+        {
+          "name": "jbrown"
+        },
+        {
+          "name": "ehorstkotte"
+        },
+        {
+          "name": "suho"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "91"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.nealreporting",
+      "status": "DEPRECATED",
+      "type": "OMOD",
+      "name": "Neal Reporting",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Mike Seaton"
+        },
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "92"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.obsgroupexport",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Obs Group Export",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "93"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.odamocklogicws",
+      "type": "OMOD",
+      "name": "ODA Mock Logic Web Service",
+      "maintainers": [
+        {
+          "name": "Justin Miranda"
+        },
+        {
+          "name": "Ben Wolfe"
+        },
+        {
+          "name": "kevjay"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "94"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.omodreloader",
+      "type": "OMOD",
+      "name": "Omod Reloader Module",
+      "maintainers": [
+        {
+          "name": "Rafal Korytkowski"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "95"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.openhmis-backboneforms",
+      "type": "OMOD",
+      "name": "OpenHMIS Backbone Forms",
+      "maintainers": [
+        {
+          "name": "Wesley Brown"
+        },
+        {
+          "name": "mario"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "96"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.openhmis-cashier",
+      "type": "OMOD",
+      "name": "OpenHMIS Cashier Module",
+      "maintainers": [
+        {
+          "name": "Wesley Brown"
+        },
+        {
+          "name": "mario"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "97"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.openhmis-commons",
+      "type": "OMOD",
+      "name": "OpenHMIS Commons",
+      "maintainers": [
+        {
+          "name": "Wesley Brown"
+        },
+        {
+          "name": "mario"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "98"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.orderextension",
+      "type": "OMOD",
+      "name": "Order Extension",
+      "maintainers": [
+        {
+          "name": "Mike Seaton"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "99"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.patientchartwidgets",
+      "status": "INACTIVE",
+      "type": "OMOD",
+      "name": "Patient Chart Widgets",
+      "maintainers": [
+        {
+          "name": "Darius Jazayeri"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Modulus",
+      "modulusDetails": {
+        "id": "100"
       }
     }
-
   ],
   "lists": [
     {
@@ -188,7 +1859,7 @@
       "description": "Take a look at these modules",
       "addOns": [
         {
-          "uid": "org.openmrs.module.xforms"
+          "uid": "org.openmrs.module.idgen"
         },
         {
           "uid": "org.openmrs.module.htmlformentry"
@@ -205,24 +1876,12 @@
           "version": "1.7"
         },
         {
-          "uid": "org.openmrs.module.reporting",
-          "version": "0.10.6"
-        },
-        {
-          "uid": "org.openmrs.module.uiframework",
-          "version": "3.9"
-        },
-        {
           "uid": "org.openmrs.module.htmlformentry",
           "version": "3.3.0"
         },
         {
           "uid": "org.openmrs.module.htmlformentryui",
           "version": "1.6.1"
-        },
-        {
-          "uid": "org.openmrs.module.owa",
-          "version": "1.6.3"
         },
         {
           "uid": "org.openmrs.owa.conceptdictionary",

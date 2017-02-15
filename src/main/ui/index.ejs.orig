@@ -1,0 +1,21 @@
+<html>
+<head>
+<<<<<<< HEAD
+
+      <link rel="shortcut icon" href="img/favicon.ico">
+=======
+    
+>>>>>>> dd7dbffd59871c8976b4953f04c363483e392f8a
+         <!-- Latest compiled and minified CSS -->
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script type="text/javascript" id="globalnav-script" src="https://id.openmrs.org/globalnav/js/app-optimized.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/react-router/umd/ReactRouter.min.js"></script>
+    <script src="https://use.fontawesome.com/75c2bbc0c8.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+</body>
+</html>
