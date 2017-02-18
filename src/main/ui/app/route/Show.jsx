@@ -1,6 +1,6 @@
 import {Component} from "react";
 import fetch from "isomorphic-fetch";
-
+import {Label, Table, Button, OverlayTrigger, Tooltip, Glyphicon} from "react-bootstrap";
 export default class Show extends Component {
 
     componentDidMount() {
@@ -24,12 +24,13 @@ export default class Show extends Component {
     formatRequiredModules(version) {
         let requirements = [];
         if (version.requireModules) {
-            for (let key in version.requireModules) {
-                requirements.push(key.replace("org.openmrs.module.", ""));
-            }
+            version.requireModules.forEach(m => {
+                requirements.push(`${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`)
+            })
         }
         return requirements.join(", ");
     }
+
 
     render() {
         if (this.state && this.state.error) {
@@ -37,63 +38,123 @@ export default class Show extends Component {
         }
         else if (this.state && this.state.addon) {
             const addon = this.state.addon;
-            const icon = addon.type === 'OWA' ? 'fa fa-globe' : 'fa fa-puzzle-piece';
             const highlightVersion = this.props.location.query.highlightVersion;
+            const requirementmeaning = (
+                    <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
+            );
+            let statusClass = "default";
+            let status = addon.status;
+            switch (addon.status) {
+                case 'ACTIVE':
+                    statusClass = "success";
+                    break;
+                case 'INACTIVE':
+                    statusClass = "warning";
+                    break;
+                case 'DEPRECATED':
+                    statusClass = "danger";
+                    break;
+                default: // includes addon.status===null
+                    status = "Unknown Activity";
+                    break;
+            }
+            let hostedSection = "";
             let hosted = "";
             if (addon.hostedUrl) {
                 if (addon.hostedUrl.includes("bintray.com")) {
-                    hosted = <p>Hosted on <a target="_blank" href={addon.hostedUrl}>Bintray</a></p>
+                    hosted = <a target="_blank" href={addon.hostedUrl}>Bintray</a>
                 }
                 else {
-                    hosted = <p>Hosted at <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a></p>
+                    hosted = <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a>
                 }
+                hostedSection = (<tr>
+                    <th>Hosted at</th>
+                    <td><h5>{hosted}</h5></td>
+                </tr>);
             }
-            let statusClass = addon.status === "ACTIVE" ? "label label-default" :
-                              addon.status === "DEPRECATED" ? "label label-danger" : "label label-warning";
+
             return (
-                    <div>
-                        <h1>
-                            <i className={icon} aria-hidden="true"></i>
-                            {addon.name}
-                            <span className={statusClass}>{addon.status}</span>
-                        </h1>
-                        <h3>{addon.description}</h3>
-                        {hosted}
-                        <p>
-                            Maintained by:
-                            {addon.maintainers.map(m => {
-                                if (m.url) {
+
+                    <div className="showpage-body">
+                        <h2>{addon.name}</h2>
+                        <h4 className="lead">{addon.description}</h4>
+                        <Label bsStyle={statusClass}>{status}</Label>
+                        <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
+                            <Table condensed>
+                                <colgroup>
+                                    <col className="col-md-2"/>
+                                    <col className="col-md-10"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>Type</th>
+                                    <td><h5>{addon.type}</h5></td>
+                                </tr>
+                                {hostedSection}
+                                <tr>
+                                    <th>Maintained by</th>
+                                    <td><h5>{addon.maintainers.map(m => {
+                                        if (m.url) {
+                                            return (
+                                                    <a href={m.url}>
+                                                        <span>{m.name},&nbsp;</span>
+                                                    </a>
+                                            )
+                                        } else {
+                                            return (
+                                                    <span>{m.name},&nbsp;</span>
+                                            )
+                                        }
+                                    })}
+                                    </h5></td>
+                                </tr>
+                                </tbody>
+                            </Table>
+                        </div>
+                        <div>
+                            <Table condensed hover>
+                                <thead>
+                                <tr>
+                                    <th className="col-md-1 col-sm-1 col-xs-1">Version</th>
+                                    <th className="col-md-3 col-sm-4 col-xs-4">OpenMRS Platform Requirement<OverlayTrigger
+                                            placement="right" overlay={requirementmeaning}>
+                                        <Glyphicon glyph="glyphicon glyphicon-question-sign"/>
+                                    </OverlayTrigger></th>
+                                    <th className="col-md-7 col-sm-6 col-xs-6">Other requirements</th>
+                                    <th className="col-md-1 col-sm-1 col-xs-1">Download</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {addon.versions.map(v => {
+                                    let className = v.version === highlightVersion ? "highlight" : "";
                                     return (
-                                            <a target="_blank" href={m.url}>{m.name}</a>
+
+                                            <tr className={className}>
+                                                <td>
+                                                    {v.version}
+                                                </td>
+                                                <td>
+                                                    {v.requireOpenmrsVersion}
+                                                </td>
+                                                <td>
+                                                    {this.formatRequiredModules(v)}
+                                                </td>
+                                                <td>
+                                                    <Button bsSize="small"
+                                                            href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
+                                                        Download
+                                                    </Button>
+                                                </td>
+                                            </tr>
                                     )
-                                } else {
-                                    return <span>{m.name}</span>
-                                }
-                            })}
-                        </p>
-                        Versions:
-                        <ul>
-                            {addon.versions.map(v => {
-                                let className = v.version === highlightVersion ? "highlight" : "";
-                                return (
-                                        <li className={className}>
-                                            <span>
-                                                Version {v.version}
-                                            </span>
-                                            <span>
-                                                {v.requireOpenmrsVersion}
-                                            </span>
-                                            <span>
-                                                {this.formatRequiredModules(v)}
-                                            </span>
-                                            <a href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
-                                                Download
-                                            </a>
-                                        </li>
-                                )
-                            })}
-                        </ul>
+                                })}
+
+                                </tbody>
+                            </Table>
+
+                        </div>
                     </div>
+
             )
         }
         else {
