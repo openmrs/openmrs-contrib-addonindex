@@ -143,7 +143,7 @@ public class AddOnInfoAndVersions {
 	}
 	
 	public void addTag(String tag) {
-		if (Pattern.matches("[^\\s]*", tag)) {
+		if (!Pattern.matches("[^\\s]*", tag)) {
 			throw new IllegalArgumentException("Tag cannot contain whitespace:" + tag);
 		}
 		if (tags == null) {
