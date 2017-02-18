@@ -51,6 +51,28 @@ public class InMemoryIndexTest {
 	}
 	
 	@Test
+	public void testGetByTag() throws Exception {
+		InMemoryIndex index = new InMemoryIndex();
+		
+		AddOnInfoAndVersions yes = new AddOnInfoAndVersions();
+		yes.setUid("yes");
+		yes.addTag("form-entry");
+		yes.setType(AddOnType.OMOD);
+		
+		AddOnInfoAndVersions no = new AddOnInfoAndVersions();
+		no.setUid("no");
+		yes.addTag("reporting");
+		no.setType(AddOnType.OWA);
+		
+		index.index(yes);
+		index.index(no);
+		
+		Collection<AddOnInfoAndVersions> withTag = index.getByTag("form-entry");
+		assertThat(withTag, hasSize(1));
+		assertThat(withTag, hasItem(yes));
+	}
+	
+	@Test
 	public void testSearch() throws Exception {
 		InMemoryIndex index = new InMemoryIndex();
 		

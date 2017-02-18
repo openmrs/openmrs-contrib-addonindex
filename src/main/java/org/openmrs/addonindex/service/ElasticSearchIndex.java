@@ -103,6 +103,7 @@ public class ElasticSearchIndex implements Index {
 	@Override
 	public Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws IOException {
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(SEARCH_SIZE)
 				.query(QueryBuilders.matchQuery("type", type)).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
@@ -115,5 +116,17 @@ public class ElasticSearchIndex implements Index {
 	public AddOnInfoAndVersions getByUid(String uid) throws IOException {
 		return client.execute(new Get.Builder(AddOnInfoAndVersions.ES_INDEX, uid).build())
 				.getSourceAsObject(AddOnInfoAndVersions.class);
+	}
+	
+	@Override
+	public Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(SEARCH_SIZE)
+				.query(QueryBuilders.matchQuery("tags", tag)).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		return result.getHits(AddOnInfoAndVersions.class).stream()
+				.map(sr -> sr.source)
+				.collect(Collectors.toList());
 	}
 }

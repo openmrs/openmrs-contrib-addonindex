@@ -23,6 +23,8 @@ public class AddOnToIndex {
 	
 	private String description;
 	
+	private List<String> tags;
+	
 	private List<Maintainer> maintainers;
 	
 	private Class<? extends BackendHandler> backend;
@@ -71,6 +73,14 @@ public class AddOnToIndex {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<String> getTags() {
+		return tags;
+	}
+	
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 	
 	public List<Maintainer> getMaintainers() {

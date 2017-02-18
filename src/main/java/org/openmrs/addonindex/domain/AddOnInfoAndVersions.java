@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.openmrs.addonindex.util.Version;
 
@@ -29,6 +30,8 @@ public class AddOnInfoAndVersions {
 	
 	private String description;
 	
+	private List<String> tags;
+	
 	private List<Maintainer> maintainers;
 	
 	private String hostedUrl;
@@ -41,6 +44,7 @@ public class AddOnInfoAndVersions {
 		ret.setStatus(toIndex.getStatus());
 		ret.setName(toIndex.getName());
 		ret.setDescription(toIndex.getDescription());
+		ret.setTags(toIndex.getTags());
 		ret.setType(toIndex.getType());
 		ret.setMaintainers(toIndex.getMaintainers());
 		return ret;
@@ -99,6 +103,14 @@ public class AddOnInfoAndVersions {
 		this.description = description;
 	}
 	
+	public List<String> getTags() {
+		return tags;
+	}
+	
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+	
 	public List<Maintainer> getMaintainers() {
 		return maintainers;
 	}
@@ -128,5 +140,15 @@ public class AddOnInfoAndVersions {
 			return null;
 		}
 		return versions.stream().filter(v -> v.getVersion().equals(version)).findFirst();
+	}
+	
+	public void addTag(String tag) {
+		if (Pattern.matches("[^\\s]*", tag)) {
+			throw new IllegalArgumentException("Tag cannot contain whitespace:" + tag);
+		}
+		if (tags == null) {
+			tags = new ArrayList<>();
+		}
+		tags.add(tag);
 	}
 }

@@ -2,6 +2,7 @@ package org.openmrs.addonindex;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -14,6 +15,7 @@ import static org.junit.Assert.fail;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -132,5 +134,19 @@ public class IndexingServiceTest {
 						toIndex.getAddOnByUid(reference.getUid()).isPresent());
 			}
 		}
+	}
+	
+	@Test
+	public void testTagsHaveNoWhitespace() throws Exception {
+		for (AddOnToIndex addOn : toIndex.getToIndex()) {
+			if (addOn.getTags() != null) {
+				for (String tag : addOn.getTags()) {
+					assertThat(tag, not(isEmptyOrNullString()));
+					assertTrue("Tag should not have whitespace: \"" + tag + "\" (" + addOn.getUid() + ")",
+							Pattern.matches("[^\\s]*", tag));
+				}
+			}
+		}
+		
 	}
 }

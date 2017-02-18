@@ -47,6 +47,16 @@ public class InMemoryIndex implements Index {
 	}
 	
 	@Override
+	public Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception {
+		if (tag == null) {
+			return Collections.emptyList();
+		}
+		return index.values().stream()
+				.filter(i -> i.getTags() != null && i.getTags().contains(tag))
+				.collect(Collectors.toList());
+	}
+	
+	@Override
 	public AddOnInfoAndVersions getByUid(String uid) {
 		return index.get(uid);
 	}

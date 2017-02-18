@@ -889,6 +889,9 @@
       "uid": "org.openmrs.module.formentry",
       "type": "OMOD",
       "name": "Form Entry",
+      "tags": [
+        "form-entry"
+      ],
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1087,6 +1090,9 @@
       "uid": "org.openmrs.module.htmlformentry",
       "type": "OMOD",
       "name": "HTML Form Entry",
+      "tags": [
+        "form-entry"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1131,6 +1137,9 @@
       "uid": "org.openmrs.module.htmlformentryui",
       "type": "OMOD",
       "name": "HTML Form Entry UI Framework Integration Module",
+      "tags": [
+        "form-entry"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"

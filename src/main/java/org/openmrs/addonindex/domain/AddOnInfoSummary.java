@@ -1,5 +1,7 @@
 package org.openmrs.addonindex.domain;
 
+import java.util.List;
+
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.BeanUtils;
 
@@ -15,6 +17,8 @@ public class AddOnInfoSummary {
 	private String name;
 	
 	private String description;
+	
+	private List<String> tags;
 	
 	private int versionCount;
 	
@@ -54,6 +58,14 @@ public class AddOnInfoSummary {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public List<String> getTags() {
+		return tags;
+	}
+	
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 	
 	public int getVersionCount() {
