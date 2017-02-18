@@ -2,7 +2,7 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
-import { DropdownButton , MenuItem , Glyphicon} from 'react-bootstrap';
+import { DropdownButton , MenuItem } from 'react-bootstrap';
 
 export default class AddOnSearch extends Component {
 
