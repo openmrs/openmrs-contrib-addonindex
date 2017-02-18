@@ -192,7 +192,13 @@ public class FetchDetailsToIndex {
 			Node item = nodeList.item(i);
 			Node version = item.getAttributes().getNamedItem("version");
 			String requiredModule = item.getTextContent().trim();
-			addOnVersion.addRequiredModule(requiredModule, version == null ? null : version.getTextContent().trim());
+			String requiredVersion = version == null ? null : version.getTextContent().trim();
+			// sometimes modules are inadvertently uploaded without substituting maven variables in config.xml and we end
+			// up with a required module version like ${reportingVersion}
+			if (requiredVersion != null && requiredVersion.startsWith("${")) {
+				requiredVersion = null;
+			}
+			addOnVersion.addRequiredModule(requiredModule, requiredVersion);
 		}
 	}
 	

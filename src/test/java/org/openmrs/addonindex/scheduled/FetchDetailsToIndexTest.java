@@ -42,7 +42,7 @@ public class FetchDetailsToIndexTest {
 		assertThat(version.getRequireModules().size(), is(2));
 		assertThat(version.getRequireModules(), hasItem(allOf(
 				hasProperty("module", is("org.openmrs.module.reporting")),
-				hasProperty("version", is("${reportingModuleVersion}"))
+				hasProperty("version", is("?"))
 		)));
 		assertThat(version.getRequireModules(), hasItem(allOf(
 				hasProperty("module", is("org.openmrs.event")),
