@@ -52,6 +52,8 @@ export default class Show extends Component {
 	    let check="";
             let hosted = "";
             let hostedtext="";
+	    let statusClass = addon.status === "ACTIVE" ? "" :
+                             addon.status === "DEPRECATED" ? "danger" : "warning";
             if (addon.hostedUrl) {
                 if (addon.hostedUrl.includes("bintray.com")) {
                     hostedtext="Hosted on";
@@ -97,6 +99,14 @@ export default class Show extends Component {
                                 }
                             })}
     </h5></td>
+</tr>
+<tr>
+<th>
+Addon status:
+</th>
+<td>
+<Label bsStyle={statusClass}>{addon.status}</Label>
+</td>
 </tr>
 <tr>
 <th>
