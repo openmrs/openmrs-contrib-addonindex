@@ -54,8 +54,9 @@ export default class Show extends Component {
                 case 'DEPRECATED':
                     statusClass = "danger";
                     break;
-                default: // includes addon.status===null
-                    status = "Unknown Activity";
+                default:
+                    // if we want to display a placeholder here when status is unspecified, uncomment the next line:
+                    // status = "Unknown Activity";
                     break;
             }
             let hostedSection = "";
