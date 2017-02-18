@@ -2,7 +2,7 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
-import { DropdownButton , MenuItem } from 'react-bootstrap';
+import {DropdownButton, MenuItem} from "react-bootstrap";
 
 export default class AddOnSearch extends Component {
 
@@ -57,35 +57,35 @@ export default class AddOnSearch extends Component {
 
     render() {
 
-const title = (
-<span>Type: {this.state.type}</span>
-);
+        const title = (
+                <span>Type: {this.state.type}</span>
+        );
         return (
                 <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
                     <div>
-    <div className="input-group">
-    
-      <div className="input-group-btn">
-       
- <DropdownButton title={title}  id="dropdown-size-small" onSelect={event => this.setType(event)}>
-        <MenuItem eventKey="">All Types</MenuItem>
-        <MenuItem eventKey="OMOD" >Module (OMOD)</MenuItem>
-        <MenuItem eventKey="OWA">Open Web App (OWA)</MenuItem>
-      </DropdownButton>
-      </div>
-  
-  
-                    <DebounceInput
-                            placeholder="Search..."
-                            className="form-control col-md-8 col-sm-8 col-xs-8"
-                            minLength={1}
-                            debounceTimeout={500}
-                            onChange={event => this.setQuery(event.target.value)}/>
-        
-               
-                
-                  </div>
-                  </div>
+                        <div className="input-group">
+
+                            <div className="input-group-btn">
+
+                                <DropdownButton title={title} id="dropdown-size-small"
+                                                onSelect={event => this.setType(event)}>
+                                    <MenuItem eventKey="">All Types</MenuItem>
+                                    <MenuItem eventKey="OMOD">Module (OMOD)</MenuItem>
+                                    <MenuItem eventKey="OWA">Open Web App (OWA)</MenuItem>
+                                </DropdownButton>
+                            </div>
+
+
+                            <DebounceInput
+                                    placeholder="Search..."
+                                    className="form-control col-md-8 col-sm-8 col-xs-8"
+                                    minLength={1}
+                                    debounceTimeout={500}
+                                    onChange={event => this.setQuery(event.target.value)}/>
+
+
+                        </div>
+                    </div>
 
                     { (this.state.query || this.state.type) ?
                       <AddOnList addons={this.state.searchResults}/>
@@ -93,7 +93,7 @@ const title = (
                       <AddOnList addons={this.state.allAddOns}/>
                     }
                 </div>
-                
+
         )
     }
 }

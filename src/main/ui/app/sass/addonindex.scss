@@ -26,25 +26,28 @@
   float: right;
 
 }
-.maintable{
-margin-bottom:0;
+
+.maintable {
+  margin-bottom: 0;
 }
 
+.title-type {
 
-.title-type{
-
-margin-right:5%;
-margin-bottom:5px;
-
-}
-.title-name{
-
-margin-bottom:5px;
+  margin-right: 5%;
+  margin-bottom: 5px;
 
 }
-.mainlist{
-border-width: 0;
+
+.title-name {
+
+  margin-bottom: 5px;
+
 }
+
+.mainlist {
+  border-width: 0;
+}
+
 .pushdown {
   margin-top: 40px;
 }
@@ -83,51 +86,62 @@ tr {
 .descmod {
   padding-top: 2%;
 }
+
 a:hover {
- cursor:pointer;
+  cursor: pointer;
 }
+
 footer {
   font-size: 0.8em;
   color: #555555;
   text-align: center;
   margin-top: 3em;
 }
-a:hover, a:visited, a:link, a:active
-{
-    text-decoration: none;
-}
-.list-group-item{
 
-    padding-bottom: 0px;
-    padding-top: 0px;
-
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
 }
-.left-margin{
-padding-left: 0px;
-margin-bottom: 2%;
-margin-top: 1%;
+
+.list-group-item {
+
+  padding-bottom: 0px;
+  padding-top: 0px;
 
 }
-.input-group{
-margin-bottom : 2%;
-}
-.table  td{
-    width: auto !important;
-}
-.showpage-body{
-margin-top: 3%;
-}
-.list-grp{
-padding : 0;
-}
-.spacing{
-margin-right :5px;
-}
-.panel-group{
 
-margin:0;
+.left-margin {
+  padding-left: 0px;
+  margin-bottom: 2%;
+  margin-top: 1%;
 
 }
+
+.input-group {
+  margin-bottom: 2%;
+}
+
+.table td {
+  width: auto !important;
+}
+
+.showpage-body {
+  margin-top: 3%;
+}
+
+.list-grp {
+  padding: 0;
+}
+
+.spacing {
+  margin-right: 5px;
+}
+
+.panel-group {
+
+  margin: 0;
+
+}
+
 .highlight {
   font-weight: bold;
   background-color: yellow;
