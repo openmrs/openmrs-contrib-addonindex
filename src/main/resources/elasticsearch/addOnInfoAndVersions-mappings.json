@@ -4,6 +4,9 @@
       "type": {
         "type": "keyword"
       },
+      "status": {
+        "type": "keyword"
+      },
       "name": {
         "type": "text"
       },

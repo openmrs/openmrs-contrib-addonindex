@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -50,14 +51,16 @@ public class ElasticSearchIndex implements Index {
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		if (result.isSucceeded()) {
-			logger.info("Existing ES Index with " + result.getCount() + " documents");
+			logger.info("Existing ES index with " + result.getCount() + " documents");
 		} else {
 			// need to create the index
+			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
-			handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
-					AddOnInfoAndVersions.ES_TYPE,
-					loadResource("elasticsearch/addOnInfoAndVersions-mappings.json")).build()));
 		}
+		logger.info("Updating mappings on ES index");
+		handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
+				AddOnInfoAndVersions.ES_TYPE,
+				loadResource("elasticsearch/addOnInfoAndVersions-mappings.json")).build()));
 	}
 	
 	private String loadResource(String name) throws IOException {
@@ -82,17 +85,24 @@ public class ElasticSearchIndex implements Index {
 	@Override
 	public Collection<AddOnInfoSummary> search(AddOnType type, String query) throws IOException {
 		
-		BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (type != null) {
-			queryBuilder.filter(QueryBuilders.matchQuery("type", type));
+			boolQB.filter(QueryBuilders.matchQuery("type", type));
 		}
 		if (query != null) {
-			queryBuilder.should(QueryBuilders.matchPhrasePrefixQuery("_all", query).slop(2).fuzziness("AUTO"));
-			queryBuilder.should(QueryBuilders.prefixQuery("_all", query));
-			queryBuilder.minimumNumberShouldMatch(1);
+			boolQB.should(QueryBuilders.matchQuery("name", query).boost(4.0f));
+			boolQB.should(QueryBuilders.prefixQuery("_all", query).boost(1.5f));
+			boolQB.should(QueryBuilders.matchPhrasePrefixQuery("_all", query).slop(2).fuzziness("AUTO"));
+			boolQB.minimumNumberShouldMatch(1);
 		}
+		
+		BoostingQueryBuilder boostingQB = QueryBuilders.boostingQuery();
+		boostingQB.positive(boolQB);
+		boostingQB.negative(QueryBuilders.termsQuery("status", "DEPRECATED", "INACTIVE"));
+		boostingQB.negativeBoost(0.2f);
+		
 		SearchResult result = client.execute(new Search.Builder(
-				new SearchSourceBuilder().size(SEARCH_SIZE).query(queryBuilder).toString())
+				new SearchSourceBuilder().size(SEARCH_SIZE).query(boostingQB).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		return result.getHits(AddOnInfoAndVersions.class).stream()
