@@ -12,6 +12,8 @@ public class AddOnInfoSummary {
 	
 	private String uid;
 	
+	private AddOnStatus status;
+	
 	private AddOnType type;
 	
 	private String name;
@@ -34,6 +36,14 @@ public class AddOnInfoSummary {
 	
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+	
+	public AddOnStatus getStatus() {
+		return status;
+	}
+	
+	public void setStatus(AddOnStatus status) {
+		this.status = status;
 	}
 	
 	public AddOnType getType() {
