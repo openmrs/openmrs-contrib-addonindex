@@ -3,13 +3,17 @@
 .logo1 {
   float: left;
 
-  margin-top: 2%;
   height: 39px;
   width: 284px;
 }
 
 .logotext {
   margin-top: 30px;
+}
+
+.vertical-align-center {
+  display: flex;
+  align-items: center;
 }
 
 .ma {
@@ -44,12 +48,12 @@
 
 }
 
-.mainlist {
-  border-width: 0;
+.pushdown {
+  margin-top: 10px;
 }
 
-.pushdown {
-  margin-top: 40px;
+.push-right {
+  margin-left: 20px;
 }
 
 .textdec {
@@ -74,7 +78,6 @@ header h1 sup {
 .p {
   margin-left: 2%;
   margin-top: 3%;
-
 }
 
 tr {
@@ -103,17 +106,14 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .list-group-item {
-
   padding-bottom: 0px;
   padding-top: 0px;
-
 }
 
 .left-margin {
   padding-left: 0px;
   margin-bottom: 2%;
   margin-top: 1%;
-
 }
 
 .input-group {
@@ -137,9 +137,7 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .panel-group {
-
   margin: 0;
-
 }
 
 .highlight {

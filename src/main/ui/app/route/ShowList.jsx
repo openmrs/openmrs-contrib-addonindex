@@ -1,12 +1,13 @@
 import {Component} from "react";
 import {Link} from "react-router";
 import fetch from "isomorphic-fetch";
-import AddOn from "../component/AddOn";
+import NamedList from "../component/NamedList";
 
-export default class Show extends Component {
+export default class ShowList extends Component {
 
-    componentDidMount() {
-        fetch('/api/v1/list/' + this.props.params.uid)
+    updateList() {
+        this.setState({list: null});
+        return fetch('/api/v1/list/' + this.props.params.uid)
                 .then(response => {
                     if (response.status >= 400) {
                         throw new Error(response.statusText);
@@ -23,51 +24,23 @@ export default class Show extends Component {
                 })
     }
 
-    half(array, whichHalf) {
-        const split = Math.ceil(array.length / 2);
-        return whichHalf == 0 ?
-               array.slice(0, split) :
-               array.slice(split);
+    componentDidMount() {
+        this.updateList();
     }
 
-    display(addon) {
-        if (addon.version) {
-            return (
-                    <AddOn key={addon.uid} addon={addon.details} version={addon.version}/>
-            )
-        } else {
-            return (
-                    <AddOn key={addon.uid} addon={addon.details}/>
-            )
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.params.uid !== prevProps.params.uid) {
+            this.updateList();
         }
     }
 
     render() {
-        const COLUMNS_IF_SIZE = 5;
-
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
         }
         else if (this.state && this.state.list) {
             const list = this.state.list;
-            return (
-                    <div>
-                        <h1>{list.name}</h1>
-                        <h3>{list.description}</h3>
-                        { list.addOns.length > COLUMNS_IF_SIZE ?
-                          <div className="row">
-                              <div className="col-md-6">
-                                  { this.half(list.addOns, 0).map(addon => this.display(addon)) }
-                              </div>
-                              <div className="col-md-6">
-                                  { this.half(list.addOns, 1).map(addon => this.display(addon)) }
-                              </div>
-                          </div>
-                                :
-                          list.addOns.map(addon => this.display(addon))
-                        }
-                    </div>
-            )
+            return <NamedList list={list}/>
         }
         else {
             return <div>Loading...</div>

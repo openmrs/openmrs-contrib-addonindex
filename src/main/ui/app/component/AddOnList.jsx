@@ -1,7 +1,5 @@
 import {Component} from "react";
 import AddOn from "./AddOn";
-import {ListGroup} from "react-bootstrap";
-
 
 export default class AddOnList extends Component {
 
@@ -16,18 +14,25 @@ export default class AddOnList extends Component {
         else if (this.props.addons.length === 0) {
             return (
                     <section>
-                        <h1 class="lead textdec">No Results</h1>
+                        <p class="lead textdec">No Results</p>
                     </section>
             )
         }
         else {
             return (
                     <div>
-                        <ListGroup>
+                        {this.props.heading ?
+                         <h4>{this.props.heading}</h4>
+                                :
+                         null
+                        }
+                        <div className="row">
                             {this.props.addons.map(addon =>
-                                                           <AddOn key={addon.uid} addon={addon}/>
+                                                           <div className="col-md-12 col-sm-12 col-xs-12">
+                                                               <AddOn key={addon.uid} addon={addon}/>
+                                                           </div>
                             )}
-                        </ListGroup>
+                        </div>
                     </div>
             )
         }

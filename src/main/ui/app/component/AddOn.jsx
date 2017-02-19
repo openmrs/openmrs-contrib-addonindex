@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {Link} from "react-router";
-import {ListGroupItem, Panel, Media} from "react-bootstrap";
+import {Label, Panel, Media} from "react-bootstrap";
 
 export default class AddOn extends Component {
 
@@ -9,24 +9,32 @@ export default class AddOn extends Component {
         const link = this.props.version ? `/show/${addon.uid}?highlightVersion=${this.props.version}` : `/show/${addon.uid}`;
 
         const title = (
-                <div>{addon.name}
+                <div>
+                    {addon.name}
+                    &nbsp;
+                    {addon.status === "DEPRECATED" ?
+                     <Label bsStyle="danger">{addon.status}</Label>
+                            :
+                     addon.status === "INACTIVE" ?
+                     <Label bsStyle="warning">{addon.status}</Label>
+                             :
+                     null
+                    }
                     <div className="pull-right">{addon.type}</div>
                 </div>
         );
 
         return (
                 <Link to={link}>
-                    <ListGroupItem className="mainlist">
-                        <Media>
-                            <Media.Body>
+                    <Media>
+                        <Media.Body>
 
-                                <Panel header={title} className="list-grp">
-                                    {addon.description}
-                                </Panel>
+                            <Panel header={title} className="list-grp">
+                                {addon.description}
+                            </Panel>
 
-                            </Media.Body>
-                        </Media>
-                    </ListGroupItem>
+                        </Media.Body>
+                    </Media>
                 </Link>
         )
     }

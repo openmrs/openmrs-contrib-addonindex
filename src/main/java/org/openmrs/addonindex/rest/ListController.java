@@ -1,6 +1,7 @@
 package org.openmrs.addonindex.rest;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
 import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.MaterializedAddOnList;
@@ -28,7 +29,15 @@ public class ListController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/list/{uid}")
 	public MaterializedAddOnList getOne(@PathVariable String uid) throws Exception {
-		AddOnList list = indexingService.getAllToIndex().getListByUid(uid).get();
+		AddOnList list;
+		if (uid.equals("DEFAULT")) {
+			if (indexingService.getAllToIndex().getLists().isEmpty()) {
+				throw new NoSuchElementException("Lists not available during server startup");
+			}
+			list = indexingService.getAllToIndex().getLists().get(0);
+		} else {
+			list = indexingService.getAllToIndex().getListByUid(uid).get();
+		}
 		return indexingService.materialize(list);
 	}
 	

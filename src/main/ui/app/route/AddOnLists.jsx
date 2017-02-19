@@ -20,14 +20,17 @@ export default class AddOnLists extends Component {
                     <div>
 
                         <h3>Lists</h3>
-                        <ul>
+                        <ul className="list-group">
                             {this.state.lists.map(list =>
-                                                          <li>
+                                                          <li className="list-group-item">
                                                               <Link to={`/list/${list.uid}`}>
-                                                                  <strong>{list.name}</strong>
+                                                                  <h3>
+                                                                      {list.name}
+                                                                      <small className="push-right">
+                                                                          {list.description}
+                                                                      </small>
+                                                                  </h3>
                                                               </Link>
-                                                              {list.description}
-                                                              ...{list.addOns.length} add-on(s)
                                                           </li>
                             )}
                         </ul>

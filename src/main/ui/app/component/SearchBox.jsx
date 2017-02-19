@@ -1,38 +1,27 @@
 import {Component} from "react";
 import fetch from "isomorphic-fetch";
-import AddOnList from "./AddOnList";
 import DebounceInput from "react-debounce-input";
 import {DropdownButton, MenuItem} from "react-bootstrap";
 
-export default class AddOnSearch extends Component {
+export default class SearchBox extends Component {
 
     constructor(props) {
         super(props);
         this.state = {};
     }
 
-    componentDidMount() {
-        fetch('/api/v1/addon')
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    this.setState({allAddOns: json});
-                })
-    }
-
     setType(type) {
+        this.props.onSearchResults(null);
         this.setState({
-                          type: type,
-                          searchResults: null
+                          type: type
                       }, this.doSearch);
 
     }
 
     setQuery(query) {
+        this.props.onSearchResults(null);
         this.setState({
-                          query: query,
-                          searchResults: null
+                          query: query
                       }, this.doSearch);
     }
 
@@ -50,48 +39,51 @@ export default class AddOnSearch extends Component {
                         return response.json();
                     })
                     .then(json => {
-                        this.setState({searchResults: json});
+                        this.props.onSearchResults(json);
                     });
         }
     }
 
-    render() {
+    formatType(type) {
+        if (type === "OMOD") {
+            return "Module (OMOD)";
+        }
+        else if (type === "OWA") {
+            return "Open Web App (OWA)";
+        }
+        else {
+            return "All Types";
+        }
+    }
 
+    render() {
         const title = (
-                <span>Type: {this.state.type}</span>
+                <span>{this.formatType(this.state.type)}</span>
         );
         return (
-                <div className="row col-md-12 col-sm-12 col-xs-12 pushdown">
-                    <div>
+                <div className="row pushdown">
+                    <div className="col-md-12 col-sm-12 col-xs-12">
                         <div className="input-group">
 
                             <div className="input-group-btn">
-
                                 <DropdownButton title={title} id="dropdown-size-small"
+                                                bsSize="large"
                                                 onSelect={event => this.setType(event)}>
-                                    <MenuItem eventKey="">All Types</MenuItem>
-                                    <MenuItem eventKey="OMOD">Module (OMOD)</MenuItem>
-                                    <MenuItem eventKey="OWA">Open Web App (OWA)</MenuItem>
+                                    <MenuItem eventKey="">{this.formatType("")}</MenuItem>
+                                    <MenuItem eventKey="OMOD">{this.formatType("OMOD")}</MenuItem>
+                                    <MenuItem eventKey="OWA">{this.formatType("OWA")}</MenuItem>
                                 </DropdownButton>
                             </div>
 
-
                             <DebounceInput
                                     placeholder="Search..."
-                                    className="form-control col-md-8 col-sm-8 col-xs-8"
+                                    className="form-control input-lg col-md-8 col-sm-8 col-xs-8"
                                     minLength={1}
                                     debounceTimeout={500}
                                     onChange={event => this.setQuery(event.target.value)}/>
 
-
                         </div>
                     </div>
-
-                    { (this.state.query || this.state.type) ?
-                      <AddOnList addons={this.state.searchResults}/>
-                            :
-                      <AddOnList addons={this.state.allAddOns}/>
-                    }
                 </div>
 
         )
