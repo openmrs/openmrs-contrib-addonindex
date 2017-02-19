@@ -14,17 +14,51 @@ export default class IndexingStatus extends Component {
 
     render() {
         if (this.state && this.state.status) {
+            let okay = 0;
+            let error = 0;
+            this.state.status.toIndex.toIndex.forEach(i => {
+                const stat = this.state.status.statuses[i.uid];
+                if (stat.error) {
+                    error += 1;
+                }
+                else {
+                    okay += 1;
+                }
+            });
             return (
                     <div>
-                        <h3>Indexing Status</h3>
+                        <h3>
+                            Indexing Status
+                            &nbsp;
+                            {okay ?
+                             <span className="label label-success">Okay: {okay}</span>
+                                    :
+                             null
+                            }
+                            &nbsp;
+                            {error ?
+                             <span className="label label-danger">Error: {error}</span>
+                                    :
+                             null
+                            }
+                        </h3>
+                        <hr/>
                         <table>
                             { this.state.status.toIndex.toIndex.map(i =>
-                                               <tr>
-                                                    <td>{i.uid } </td>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    {i.uid}
+                                                                                    <br/>
+                                                                                    {this.state.status.statuses[i.uid] && this.state.status.statuses[i.uid].error ?
+                                                                                     <span className="label label-danger">Error</span>
+                                                                                            :
+                                                                                     <span className="label label-success">Okay</span>
+                                                                                    }
+                                                                                </td>
                                                     <td>
-                                                      <pre>{JSON.stringify(this.state.status.statuses[i.uid], null, 2)}</pre>
-                                                     </td>
-                                              </tr>
+                                                        <pre>{JSON.stringify(this.state.status.statuses[i.uid], null, 2)}</pre>
+                                                    </td>
+                                                                            </tr>
                             )}
                         </table>
                     </div>
