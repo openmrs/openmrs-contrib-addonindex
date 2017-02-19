@@ -265,6 +265,7 @@
       "uid": "org.openmrs.module.birt",
       "type": "OMOD",
       "name": "Birt Reports",
+      "status": "INACTIVE",
       "maintainers": [
         {
           "name": "Justin Miranda"
