@@ -2875,6 +2875,9 @@
       "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms",
+      "tags": [
+        "form-entry"
+      ],
       "maintainers": [
         {
           "name": "Paul Biondich"
@@ -3657,6 +3660,9 @@
         },
         {
           "uid": "org.openmrs.module.htmlformentry"
+        },
+        {
+          "uid": "org.openmrs.module.xforms"
         }
       ]
     },
