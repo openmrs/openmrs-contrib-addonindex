@@ -95,7 +95,7 @@ public class AddOnControllerIT {
 						+ "version:\"1.0\","
 						+ "releaseDatetime:\"2016-09-12T18:51:14.574Z\","
 						+ "downloadUri:\"http://www.google.com\""
-						+ "]}",
+						+ "}]}",
 				entity.getBody(), false);
 	}
 }
