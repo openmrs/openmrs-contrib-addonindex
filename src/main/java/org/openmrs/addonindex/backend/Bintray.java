@@ -1,6 +1,7 @@
 package org.openmrs.addonindex.backend;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
@@ -77,6 +78,7 @@ public class Bintray implements BackendHandler {
 					// TODO maybe test that it has the version number in it?
 					AddOnVersion version = new AddOnVersion();
 					version.setVersion(new Version(versionString));
+					version.setReleaseDatetime(OffsetDateTime.parse(fileNode.get("created").asText()));
 					version.setDownloadUri(downloadUriFor(addOnToIndex, fileNode.get("path").asText()));
 					info.addVersion(version);
 					break;

@@ -1,6 +1,7 @@
 package org.openmrs.addonindex.backend;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
@@ -68,6 +69,7 @@ public class Modulus implements BackendHandler {
 			}
 			AddOnVersion version = new AddOnVersion();
 			version.setVersion(new Version(releaseNode.path("moduleVersion").asText()));
+			version.setReleaseDatetime(OffsetDateTime.parse(releaseNode.path("dateCreated").asText()));
 			version.setDownloadUri(releaseNode.path("downloadURL").asText());
 			info.addVersion(version);
 		}

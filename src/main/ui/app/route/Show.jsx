@@ -1,6 +1,8 @@
 import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import {Label, Table, Button, OverlayTrigger, Tooltip, Glyphicon} from "react-bootstrap";
+import moment from "moment";
+
 export default class Show extends Component {
 
     componentDidMount() {
@@ -31,6 +33,44 @@ export default class Show extends Component {
         return requirements.join(", ");
     }
 
+    formatDateTime(dt) {
+        const m = moment(dt);
+        return <span>
+            {m.fromNow()}
+            <br/>
+            {m.format("ll")}
+        </span>
+    }
+
+    formatTags(addon) {
+        let statusClass = "default";
+        let status = addon.status;
+        switch (addon.status) {
+            case 'ACTIVE':
+                statusClass = "success";
+                break;
+            case 'INACTIVE':
+                statusClass = "warning";
+                break;
+            case 'DEPRECATED':
+                statusClass = "danger";
+                break;
+            default:
+                // if we want to display a placeholder here when status is unspecified, uncomment the next line:
+                // status = "Unknown Activity";
+                break;
+        }
+        return <div>
+            <Label bsStyle={statusClass}>{status}</Label>
+            {addon.tags ?
+             addon.tags.map(t =>
+                 <Label bsStyle="default">{t}</Label>
+             ) :
+             null
+            }
+        </div>
+    }
+
 
     render() {
         if (this.state && this.state.error) {
@@ -42,23 +82,6 @@ export default class Show extends Component {
             const requirementmeaning = (
                     <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
             );
-            let statusClass = "default";
-            let status = addon.status;
-            switch (addon.status) {
-                case 'ACTIVE':
-                    statusClass = "success";
-                    break;
-                case 'INACTIVE':
-                    statusClass = "warning";
-                    break;
-                case 'DEPRECATED':
-                    statusClass = "danger";
-                    break;
-                default:
-                    // if we want to display a placeholder here when status is unspecified, uncomment the next line:
-                    // status = "Unknown Activity";
-                    break;
-            }
             let hostedSection = "";
             let hosted = "";
             if (addon.hostedUrl) {
@@ -79,7 +102,7 @@ export default class Show extends Component {
                     <div className="showpage-body">
                         <h2>{addon.name}</h2>
                         <h4 className="lead">{addon.description}</h4>
-                        <Label bsStyle={statusClass}>{status}</Label>
+                        { this.formatTags(addon) }
                         <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
                             <Table condensed>
                                 <colgroup>
@@ -117,11 +140,12 @@ export default class Show extends Component {
                                 <thead>
                                 <tr>
                                     <th className="col-md-1 col-sm-1 col-xs-1">Version</th>
-                                    <th className="col-md-3 col-sm-4 col-xs-4">OpenMRS Platform Requirement<OverlayTrigger
+                                    <th className="col-md-2 col-sm-2 col-xs-2">Release Date</th>
+                                    <th className="col-md-3 col-sm-3 col-xs-3">Platform Requirement<OverlayTrigger
                                             placement="right" overlay={requirementmeaning}>
                                         <Glyphicon glyph="glyphicon glyphicon-question-sign"/>
                                     </OverlayTrigger></th>
-                                    <th className="col-md-7 col-sm-6 col-xs-6">Other requirements</th>
+                                    <th className="col-md-5 col-sm-5 col-xs-5">Other requirements</th>
                                     <th className="col-md-1 col-sm-1 col-xs-1">Download</th>
                                 </tr>
                                 </thead>
@@ -129,10 +153,12 @@ export default class Show extends Component {
                                 {addon.versions.map(v => {
                                     let className = v.version === highlightVersion ? "highlight" : "";
                                     return (
-
                                             <tr className={className}>
                                                 <td>
                                                     {v.version}
+                                                </td>
+                                                <td>
+                                                    {this.formatDateTime(v.releaseDatetime)}
                                                 </td>
                                                 <td>
                                                     {v.requireOpenmrsVersion}
@@ -143,6 +169,7 @@ export default class Show extends Component {
                                                 <td>
                                                     <Button bsSize="small"
                                                             href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
+                                                        <i className="fa fa-download"></i>
                                                         Download
                                                     </Button>
                                                 </td>

@@ -8,6 +8,8 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
+import java.time.OffsetDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -62,11 +64,13 @@ public class ModulusTest {
 		assertThat(info.getVersionCount(), is(2));
 		assertThat(info.getVersions().get(0), is(allOf(
 				hasProperty("version", equalTo(new Version("1.1"))),
+				hasProperty("releaseDatetime", is(OffsetDateTime.parse("2009-10-13T10:58:12Z"))),
 				hasProperty("downloadUri",
 						is("https://modules.openmrs.org/modulus/api/releases/6/download/addresshierarchy-1.1.omod"))
 		)));
 		assertThat(info.getVersions().get(1), is(allOf(
 				hasProperty("version", equalTo(new Version("1.0"))),
+				hasProperty("releaseDatetime", is(OffsetDateTime.parse("2008-09-11T08:44:32Z"))),
 				hasProperty("downloadUri",
 						is("https://modules.openmrs.org/modulus/api/releases/5/download/addresshierarchy-1.0.omod"))
 		)));

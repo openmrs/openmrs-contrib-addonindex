@@ -1,5 +1,6 @@
 package org.openmrs.addonindex.domain;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.openmrs.addonindex.util.Version;
 public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	private Version version;
+	
+	private OffsetDateTime releaseDatetime;
 	
 	private String downloadUri;
 	
@@ -28,6 +31,14 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	public void setVersion(Version version) {
 		this.version = version;
+	}
+	
+	public OffsetDateTime getReleaseDatetime() {
+		return releaseDatetime;
+	}
+	
+	public void setReleaseDatetime(OffsetDateTime releaseDatetime) {
+		this.releaseDatetime = releaseDatetime;
 	}
 	
 	public String getDownloadUri() {

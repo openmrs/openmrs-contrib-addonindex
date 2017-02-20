@@ -26,6 +26,9 @@
           "version": {
             "type": "keyword"
           },
+          "releaseDatetime": {
+            "type": "date"
+          },
           "downloadUri": {
             "type": "keyword",
             "index": false

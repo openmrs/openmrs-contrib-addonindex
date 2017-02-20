@@ -20,15 +20,23 @@ export default class Home extends Component {
                 })
     }
 
-    handleSearchResults(searchResults) {
+    handleStartSearch(searchKey) {
         this.setState({
-                          searchResults: searchResults
+                          latestSearch: searchKey
                       });
+    }
+
+    handleSearchResults(searchKey, searchResults) {
+        if (this.state.latestSearch === searchKey) {
+            this.setState({
+                              latestSearch: null,
+                              searchResults: searchResults
+                          });
+        }
     }
 
     renderDefaultList() {
         if (this.state.defaultList) {
-            console.log(this.state.defaultList);
             return <NamedList list={this.state.defaultList}/>
         }
         else {
@@ -39,12 +47,18 @@ export default class Home extends Component {
     render() {
         return (
                 <div>
-                    <SearchBox onSearchResults={(sr) => this.handleSearchResults(sr)}/>
+                    <SearchBox
+                            onStartSearch={(key) => this.handleStartSearch(key)}
+                            onSearchResults={(key, results) => this.handleSearchResults(key, results)}
+                    />
 
-                    { this.state.searchResults ?
-                      <AddOnList addons={this.state.searchResults} heading={`${this.state.searchResults.length} results`}/>
+                    {this.state.latestSearch ?
+                     <div>Searching for {this.state.latestSearch}</div>
                             :
-                      this.renderDefaultList()
+                     this.state.searchResults ?
+                     <AddOnList addons={this.state.searchResults} heading={`${this.state.searchResults.length} result(s)`}/>
+                             :
+                     this.renderDefaultList()
                     }
                 </div>
         )

@@ -5,6 +5,7 @@ import org.openmrs.addonindex.util.VersionTypeConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fatboyindustrial.gsonjavatime.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,6 +15,7 @@ public class GsonConfiguration {
 	@Bean
 	public Gson gson() {
 		GsonBuilder builder = new GsonBuilder();
+		Converters.registerAll(builder);
 		builder.registerTypeAdapter(Version.class, new VersionTypeConverter());
 		return builder.create();
 	}

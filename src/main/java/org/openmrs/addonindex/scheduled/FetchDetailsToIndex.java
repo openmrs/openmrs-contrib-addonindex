@@ -120,7 +120,9 @@ public class FetchDetailsToIndex {
 			if (existingInfo != null) {
 				Optional<AddOnVersion> existingVersion = existingInfo.getVersion(version.getVersion());
 				if (existingVersion.isPresent() &&
-						existingVersion.get().getDownloadUri().equals(version.getDownloadUri())) {
+						existingVersion.get().getDownloadUri().equals(version.getDownloadUri()) &&
+						(version.getReleaseDatetime() == null ||
+								 version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Using existing data for " + toIndex.getUid() + " version " + version.getVersion());
 					}

@@ -27,19 +27,21 @@ export default class SearchBox extends Component {
 
     doSearch() {
         if (this.state.type || this.state.query) {
-            var url = "/api/v1/addon?";
+            let url = "/api/v1/addon?";
             if (this.state.type) {
                 url += "type=" + this.state.type;
             }
             if (this.state.query) {
                 url += "&q=" + this.state.query;
             }
+            let searchKey = `type:${this.state.type ? this.state.type : "all"} query:${this.state.query}`;
+            this.props.onStartSearch(searchKey);
             fetch(url)
                     .then(response => {
                         return response.json();
                     })
                     .then(json => {
-                        this.props.onSearchResults(json);
+                        this.props.onSearchResults(searchKey, json);
                     });
         }
     }

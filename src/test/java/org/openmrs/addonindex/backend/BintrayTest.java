@@ -9,6 +9,8 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
+import java.time.OffsetDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -66,6 +68,7 @@ public class BintrayTest {
 		assertThat(info.getVersionCount(), is(1));
 		assertThat(info.getVersions().get(0), is(allOf(
 				hasProperty("version", equalTo(new Version("1.0.0"))),
+				hasProperty("releaseDatetime", is(OffsetDateTime.parse("2016-09-12T18:51:14.574Z"))),
 				hasProperty("downloadUri",
 						is("https://bintray.com/openmrs/owa/download_file?file_path=conceptdictionary-1.0.0.zip"))
 		)));

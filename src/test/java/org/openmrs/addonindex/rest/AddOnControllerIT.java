@@ -5,6 +5,8 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.time.OffsetDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,6 +45,7 @@ public class AddOnControllerIT {
 	public void setUp() throws Exception {
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version("1.0"));
+		version.setReleaseDatetime(OffsetDateTime.parse("2016-09-12T18:51:14.574Z"));
 		version.setDownloadUri("http://www.google.com");
 		
 		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
@@ -84,10 +87,15 @@ public class AddOnControllerIT {
 				String.class);
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
 		JSONAssert.assertEquals("{uid:\"reporting-module\","
-				+ "name:\"Reporting Module\","
-				+ "description:\"For reporting\","
-				+ "versionCount:1,"
-				+ "latestVersion:\"1.0\","
-				+ "versions:[{version:\"1.0\",downloadUri:\"http://www.google.com\"}]}", entity.getBody(), false);
+						+ "name:\"Reporting Module\","
+						+ "description:\"For reporting\","
+						+ "versionCount:1,"
+						+ "latestVersion:\"1.0\","
+						+ "versions:[{"
+						+ "version:\"1.0\","
+						+ "releaseDatetime:\"2016-09-12T18:51:14.574Z\","
+						+ "downloadUri:\"http://www.google.com\""
+						+ "]}",
+				entity.getBody(), false);
 	}
 }
