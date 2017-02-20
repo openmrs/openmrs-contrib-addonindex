@@ -82,6 +82,7 @@ export default class SearchBox extends Component {
                                     className="form-control input-lg col-md-8 col-sm-8 col-xs-8"
                                     minLength={1}
                                     debounceTimeout={500}
+                                    autoFocus
                                     onChange={event => this.setQuery(event.target.value)}/>
 
                         </div>
