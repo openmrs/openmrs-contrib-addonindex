@@ -16,28 +16,41 @@ export default class IndexingStatus extends Component {
         if (this.state && this.state.status) {
             let okay = 0;
             let error = 0;
+            let pending = 0;
             this.state.status.toIndex.toIndex.forEach(i => {
                 const stat = this.state.status.statuses[i.uid];
-                if (stat.error) {
-                    error += 1;
+                if (stat) {
+                    if (stat.error) {
+                        error += 1;
+                    }
+                    else {
+                        okay += 1;
+                    }
                 }
                 else {
-                    okay += 1;
+                    pending += 1;
                 }
+
             });
             return (
                     <div>
                         <h3>
                             Indexing Status
                             &nbsp;
-                            {okay ?
-                             <span className="label label-success">Okay: {okay}</span>
+                            {error ?
+                             <span className="label label-danger">Error: {error}</span>
                                     :
                              null
                             }
                             &nbsp;
-                            {error ?
-                             <span className="label label-danger">Error: {error}</span>
+                            {pending ?
+                             <span className="label label-info">Pending: {pending}</span>
+                                    :
+                             null
+                            }
+                            &nbsp;
+                            {okay ?
+                             <span className="label label-success">Okay: {okay}</span>
                                     :
                              null
                             }
