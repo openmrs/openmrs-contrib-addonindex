@@ -89,7 +89,7 @@ public class IndexingServiceTest {
 	public void testMaintainersPresentAndNamesNotTooLong() throws Exception {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getMaintainers(), notNullValue());
-			assertThat(addOn.getMaintainers().size(), greaterThan(0));
+			assertThat("maintainers for " + addOn.getUid(), addOn.getMaintainers().size(), greaterThan(0));
 			for (Maintainer maintainer : addOn.getMaintainers()) {
 				assertThat(maintainer.getName(), notNullValue());
 				assertThat(maintainer.getName().length(), lessThan(100));
