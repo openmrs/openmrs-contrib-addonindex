@@ -1,0 +1,15 @@
+{
+  "sEcho": 123,
+  "iTotalRecords": 2,
+  "iTotalDisplayRecords": 1,
+  "sColumns": "Action,Name,Version,Author,Description",
+  "aaData": [
+    [
+      "https://modules.openmrs.org/modulus/api/releases/1367/download/appui-1.0.omod",
+      "App UI Module",
+      "1.0",
+      "darius",
+      "Support for using the App Framework's context in the UI Framework"
+    ]
+  ]
+}
