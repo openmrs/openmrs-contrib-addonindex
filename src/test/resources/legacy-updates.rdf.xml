@@ -1,0 +1,16 @@
+<updates configVersion="1.1" moduleId="appui">
+	<update>
+		<currentVersion>2.0</currentVersion>
+		<requireOpenMRSVersion>1.12.5</requireOpenMRSVersion>
+		<downloadURL>
+			https://modules.openmrs.org/modulus/api/releases/1368/download/appui-2.0.omod
+		</downloadURL>
+	</update>
+	<update>
+		<currentVersion>1.0</currentVersion>
+		<requireOpenMRSVersion>1.8.0</requireOpenMRSVersion>
+		<downloadURL>
+			https://modules.openmrs.org/modulus/api/releases/1367/download/appui-1.0.omod
+		</downloadURL>
+	</update>
+</updates>

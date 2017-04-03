@@ -1,6 +1,8 @@
 package org.openmrs.addonindex.legacy;
 
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -79,6 +81,9 @@ public class LegacyControllerIT {
 		
 		given(indexingService.getAllToIndex())
 				.willReturn(allToIndex);
+		
+		given(indexingService.getByUid(full.getUid()))
+				.willReturn(full);
 	}
 	
 	@Test
@@ -107,5 +112,12 @@ public class LegacyControllerIT {
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules-exclude.json");
 		JSONAssert.assertEquals(expectedJson, json, false);
+	}
+	
+	@Test
+	public void testGetUpdates() throws Exception {
+		String xml = controller.checkUpdate("appui");
+		String expectedXml = TestUtil.getFileAsString("legacy-updates.rdf.xml");
+		assertThat(xml, isSimilarTo(expectedXml).ignoreWhitespace());
 	}
 }

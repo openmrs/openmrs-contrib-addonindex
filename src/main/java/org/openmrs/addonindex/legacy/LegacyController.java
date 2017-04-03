@@ -13,12 +13,14 @@ import org.openmrs.addonindex.service.IndexingService;
 import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Supports functionality required by the OpenMRS Legacy UI module
+ * Supports legacy functionality required by the OpenMRS Module API and Legacy UI
  */
 @Controller
 public class LegacyController {
@@ -28,6 +30,27 @@ public class LegacyController {
 	
 	@Autowired
 	private IndexingService indexingService;
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/modules/download/{moduleId}/update.rdf", produces = "text/xml; "
+			+ "charset=utf-8")
+	@ResponseBody
+	public String checkUpdate(@PathVariable("moduleId") String moduleId) throws Exception {
+		AddOnInfoAndVersions info = indexingService.getByUid("org.openmrs.module." + moduleId);
+		if (info == null) {
+			throw new NullPointerException(); // should map to a 404
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("<updates configVersion=\"1.1\" moduleId=\"" + moduleId + "\">\n");
+		for (AddOnVersion version : info.getVersions()) {
+			sb.append("<update>\n");
+			sb.append("<currentVersion>" + version.getVersion() + "</currentVersion>\n");
+			sb.append("<requireOpenMRSVersion>" + version.getRequireOpenmrsVersion() + "</requireOpenMRSVersion>\n");
+			sb.append("<downloadURL>" + version.getDownloadUri() + "</downloadURL>\n");
+			sb.append("</update>\n");
+		}
+		sb.append("</updates>");
+		return sb.toString();
+	}
 	
 	/**
 	 * These parameters are theoretically required but I don't think we need to handle them:

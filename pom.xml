@@ -62,11 +62,26 @@
 			<artifactId>transport</artifactId>
 			<version>5.1.1</version>
 		</dependency>
+		
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-core</artifactId>
+			<version>${xmlunit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-matchers</artifactId>
+			<version>${xmlunit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 	<properties>
 		<java.version>1.8</java.version>
 		<docker.image.prefix>openmrs</docker.image.prefix>
+		<xmlunit.version>2.3.0</xmlunit.version>
 	</properties>
 	
 	<build>
