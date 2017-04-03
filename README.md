@@ -1,3 +1,5 @@
+[![Build status](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex/branch/master/build_image)](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex/branch/master/)
+
 # OpenMRS Add-On Index
 
 This application serves as an _index_ of add-ons for the OpenMRS Platform.
