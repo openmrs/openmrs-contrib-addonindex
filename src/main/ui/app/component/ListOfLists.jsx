@@ -23,11 +23,6 @@ export default class ListOfLists extends Component {
             const selectedUid = this.props ? this.props.selectedUid : null;
             return (
                     <ul className="nav nav-pills">
-                        <li>
-                            <Link to="/">
-                                <strong>Search</strong>
-                            </Link>
-                        </li>
                         {toShow.map(list =>
                                             <li className={list.uid === selectedUid ? "active" : ""}>
                                                 <Link to={`/list/${list.uid}`}>

@@ -20,21 +20,6 @@ export default class Home extends Component {
                 })
     }
 
-    handleStartSearch(searchKey) {
-        this.setState({
-                          latestSearch: searchKey
-                      });
-    }
-
-    handleSearchResults(searchKey, searchResults) {
-        if (this.state.latestSearch === searchKey) {
-            this.setState({
-                              latestSearch: null,
-                              searchResults: searchResults
-                          });
-        }
-    }
-
     renderDefaultList() {
         if (this.state.defaultList) {
             return <NamedList list={this.state.defaultList}/>

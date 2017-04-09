@@ -1,48 +1,31 @@
 import {Component} from "react";
-import fetch from "isomorphic-fetch";
-import DebounceInput from "react-debounce-input";
-import {DropdownButton, MenuItem} from "react-bootstrap";
+import {withRouter} from "react-router";
+import {Button, Col, Form, FormControl, InputGroup} from "react-bootstrap";
 
-export default class SearchBox extends Component {
+class SearchBox extends Component {
 
     constructor(props) {
         super(props);
         this.state = {};
     }
 
-    setType(type) {
-        this.props.onSearchResults(null);
-        this.setState({
-                          type: type
-                      }, this.doSearch);
-
-    }
-
     setQuery(query) {
-        this.props.onSearchResults(null);
         this.setState({
                           query: query
-                      }, this.doSearch);
+                      });
     }
 
     doSearch() {
         if (this.state.type || this.state.query) {
-            let url = "/api/v1/addon?";
+            let url = "/search?";
             if (this.state.type) {
                 url += "type=" + this.state.type;
             }
             if (this.state.query) {
                 url += "&q=" + this.state.query;
             }
-            let searchKey = `type:${this.state.type ? this.state.type : "all"} query:${this.state.query}`;
-            this.props.onStartSearch(searchKey);
-            fetch(url)
-                    .then(response => {
-                        return response.json();
-                    })
-                    .then(json => {
-                        this.props.onSearchResults(searchKey, json);
-                    });
+
+            this.props.router.push(url);
         }
     }
 
@@ -64,31 +47,32 @@ export default class SearchBox extends Component {
         );
         return (
                 <div className="row pushdown">
-                    <div className="col-md-12 col-sm-12 col-xs-12">
-                        <div className="input-group">
-
-                            <div className="input-group-btn">
-                                <DropdownButton title={title} id="dropdown-size-small"
-                                                bsSize="large"
-                                                onSelect={event => this.setType(event)}>
-                                    <MenuItem eventKey="">{this.formatType("")}</MenuItem>
-                                    <MenuItem eventKey="OMOD">{this.formatType("OMOD")}</MenuItem>
-                                    <MenuItem eventKey="OWA">{this.formatType("OWA")}</MenuItem>
-                                </DropdownButton>
-                            </div>
-
-                            <DebounceInput
-                                    placeholder="Search..."
-                                    className="form-control input-lg col-md-8 col-sm-8 col-xs-8"
-                                    minLength={1}
-                                    debounceTimeout={500}
-                                    autoFocus
-                                    onChange={event => this.setQuery(event.target.value)}/>
-
-                        </div>
-                    </div>
+                    <Form onSubmit={(evt) => {
+                        evt.preventDefault();
+                        this.doSearch()
+                    }}>
+                        <Col sm={12} md={8}>
+                            <InputGroup className="input-group-lg">
+                                <FormControl controlId="query"
+                                             type="text"
+                                             name="query"
+                                             defaultValue={this.props.initialQuery}
+                                             placeholder="Search..."
+                                             autoFocus
+                                             onChange={evt => this.setQuery(evt.target.value)}
+                                />
+                                <InputGroup.Button>
+                                    <Button type="submit">
+                                        <i className="fa fa-search"></i>
+                                    </Button>
+                                </InputGroup.Button>
+                            </InputGroup>
+                        </Col>
+                    </Form>
                 </div>
 
         )
     }
 }
+
+export default withRouter(SearchBox)
