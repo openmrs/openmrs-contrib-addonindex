@@ -1,6 +1,6 @@
 import {Component} from "react";
 import fetch from "isomorphic-fetch";
-import {Label, Table, Button, OverlayTrigger, Tooltip, Glyphicon} from "react-bootstrap";
+import {Button, Col, Glyphicon, Label, OverlayTrigger, Row, Table, Tooltip} from "react-bootstrap";
 import moment from "moment";
 
 export default class Show extends Component {
@@ -100,9 +100,16 @@ export default class Show extends Component {
             return (
 
                     <div className="showpage-body">
-                        <h2>{addon.name}</h2>
-                        <h4 className="lead">{addon.description}</h4>
-                        { this.formatTags(addon) }
+                        <Row>
+                            <Col sm={1} md={1} className="hidden-xs">
+                                <i className={`fa fa-5x fa-${addon.icon ? addon.icon : 'file-o'}`}></i>
+                            </Col>
+                            <Col sm={11} md={11}>
+                                <h2>{addon.name}</h2>
+                                <h4 className="lead">{addon.description}</h4>
+                                { this.formatTags(addon) }
+                            </Col>
+                        </Row>
                         <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
                             <Table condensed>
                                 <colgroup>

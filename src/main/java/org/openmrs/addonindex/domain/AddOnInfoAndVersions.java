@@ -30,6 +30,8 @@ public class AddOnInfoAndVersions {
 	
 	private String description;
 	
+	private String icon;
+	
 	private List<String> tags;
 	
 	private List<Maintainer> maintainers;
@@ -44,6 +46,7 @@ public class AddOnInfoAndVersions {
 		ret.setStatus(toIndex.getStatus());
 		ret.setName(toIndex.getName());
 		ret.setDescription(toIndex.getDescription());
+		ret.setIcon(toIndex.getIcon());
 		ret.setTags(toIndex.getTags());
 		ret.setType(toIndex.getType());
 		ret.setMaintainers(toIndex.getMaintainers());
@@ -101,6 +104,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	public List<String> getTags() {

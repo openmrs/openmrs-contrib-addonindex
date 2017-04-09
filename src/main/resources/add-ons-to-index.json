@@ -1091,6 +1091,7 @@
       "uid": "org.openmrs.module.htmlformentry",
       "type": "OMOD",
       "name": "HTML Form Entry",
+      "icon": "code",
       "tags": [
         "form-entry"
       ],
@@ -1238,6 +1239,7 @@
       "uid": "org.openmrs.module.idgen",
       "type": "OMOD",
       "name": "ID Generation",
+      "icon": "id-card-o",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2169,6 +2171,7 @@
       "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting",
+      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -2875,6 +2878,7 @@
       "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms",
+      "icon": "pencil-square-o",
       "tags": [
         "form-entry"
       ],

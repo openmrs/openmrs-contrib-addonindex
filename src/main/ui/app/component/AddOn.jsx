@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {Link} from "react-router";
-import {Label, Panel, Media} from "react-bootstrap";
+import {Label, Media} from "react-bootstrap";
 
 export default class AddOn extends Component {
 
@@ -26,13 +26,13 @@ export default class AddOn extends Component {
 
         return (
                 <Link to={link}>
-                    <Media>
+                    <Media className="addon">
+                        <Media.Left>
+                            <i className={`fa fa-3x fa-fw fa-${addon.icon}`}></i>
+                        </Media.Left>
                         <Media.Body>
-
-                            <Panel header={title} className="list-grp">
-                                {addon.description}
-                            </Panel>
-
+                            <Media.Heading>{title}</Media.Heading>
+                            <p>{addon.description}</p>
                         </Media.Body>
                     </Media>
                 </Link>

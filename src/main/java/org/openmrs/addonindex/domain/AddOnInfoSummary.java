@@ -20,6 +20,8 @@ public class AddOnInfoSummary {
 	
 	private String description;
 	
+	private String icon;
+	
 	private List<String> tags;
 	
 	private int versionCount;
@@ -68,6 +70,14 @@ public class AddOnInfoSummary {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	public List<String> getTags() {

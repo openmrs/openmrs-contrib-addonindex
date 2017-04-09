@@ -23,6 +23,8 @@ public class AddOnToIndex {
 	
 	private String description;
 	
+	private String icon;
+	
 	private List<String> tags;
 	
 	private List<Maintainer> maintainers;
@@ -73,6 +75,14 @@ public class AddOnToIndex {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	public List<String> getTags() {
