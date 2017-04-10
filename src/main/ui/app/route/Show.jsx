@@ -102,9 +102,9 @@ export default class Show extends Component {
                     <div className="showpage-body">
                         <Row>
                             <Col sm={1} md={1} className="hidden-xs">
-                                <i className={`fa fa-5x fa-${addon.icon ? addon.icon : 'file-o'}`}></i>
+                                <i className={`fa fa-4x fa-${addon.icon ? addon.icon : 'file-o'} shiftdown`}></i>
                             </Col>
-                            <Col sm={11} md={11}>
+                            <Col sm={11} md={11} className="delete-left-padding">
                                 <h2>{addon.name}</h2>
                                 <h4 className="lead">{addon.description}</h4>
                                 { this.formatTags(addon) }
