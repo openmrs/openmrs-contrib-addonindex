@@ -3732,7 +3732,7 @@
           "version": "1.7.0"
         },
 	{
-          "uid": "org.openmrs.module.formentry",
+          "uid": "org.openmrs.module.form-entry-app-module",
           "version": "1.4.1"
         },
 	{
@@ -3780,7 +3780,7 @@
           "version": "2.6.0"
         },
 	{
-          "uid": "org.openmrs.module.registration",
+          "uid": "org.openmrs.module.registration-app-module",
           "version": "1.8.0"
         },
 	{
