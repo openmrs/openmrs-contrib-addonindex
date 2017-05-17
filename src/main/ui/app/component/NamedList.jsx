@@ -4,12 +4,6 @@ import AddOn from "./AddOn";
 
 export default class NamedList extends Component {
 
-    half(array, whichHalf) {
-        const split = Math.ceil(array.length / 2);
-        return whichHalf == 0 ?
-               array.slice(0, split) :
-               array.slice(split);
-    }
 
     display(addon) {
         if (addon.version) {
