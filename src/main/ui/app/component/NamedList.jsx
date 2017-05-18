@@ -3,8 +3,7 @@ import AddOn from "./AddOn";
 
 
 export default class NamedList extends Component {
-
-
+    
     display(addon) {
         if (addon.version) {
             return (
