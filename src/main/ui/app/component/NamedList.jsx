@@ -17,7 +17,6 @@ export default class NamedList extends Component {
     }
 
     render() {
-        const COLUMNS_IF_SIZE = 5;
 
         const list = this.props.list;
 
