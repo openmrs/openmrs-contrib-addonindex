@@ -3833,6 +3833,13 @@
         }
 
       ]
+    },
+    {
+      "uid": "About",
+      "name": "About",
+      "description": "About Page",
+      "addOns": [
+      ]
     }
   ]
 }
