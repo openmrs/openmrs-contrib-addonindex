@@ -3671,6 +3671,13 @@
       ]
     },
     {
+      "uid": "About",
+      "name": "About",
+      "description": "About Page",
+      "addOns": [
+      ]
+    },
+    {
       "uid": "refapp_2_6",
       "name": "RefApp 2.6",
       "description": "Included in Reference Application 2.6",

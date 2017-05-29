@@ -14,7 +14,7 @@ export default class ListOfLists extends Component {
     }
 
     render() {
-        const LISTS_TO_SHOW = 3;
+        const LISTS_TO_SHOW = 4;
         // show {list.description} in a tooltip
         // consider showing ...{list.addOns.length} add-on(s)
         if (this.state && this.state.lists) {
@@ -25,7 +25,7 @@ export default class ListOfLists extends Component {
                     <ul className="nav nav-pills">
                         {toShow.map(list =>
                                             <li className={list.uid === selectedUid ? "active" : ""}>
-                                                <Link to={`/list/${list.uid}`}>
+                                                <Link to={list.name.toString() === "About" ? `/About` : `/list/${list.uid}`}>
                                                     <strong>{list.name}</strong>
                                                 </Link>
                                             </li>
