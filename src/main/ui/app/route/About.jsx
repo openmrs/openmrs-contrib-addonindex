@@ -1,3 +1,13 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
+
 import {Component} from "react";
 import {Link} from "react-router";
 
@@ -20,8 +30,7 @@ export default class About extends Component {
                            href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/PUBLISHING-AN-ADD-ON.md">Publishing an Add on document</a> on Github which contains a comprehensive list of steps.
 		            <br/>
 		            <br/>
-                        Discussions on the working of this tool and/or proposal of new features may be done under the <a target="_blank"
-                           href="https://talk.openmrs.org/c/projects/add-on-index"> Add Ons project category on OpenMRS talk</a>
+                        Discussions on the working of this tool and/or proposal of new features may be done under the Add Ons project category on OpenMRS talk
                     
                     </p>
 
