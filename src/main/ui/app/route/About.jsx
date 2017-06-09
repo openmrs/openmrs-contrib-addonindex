@@ -45,7 +45,7 @@ export default class About extends Component {
                            href="https://talk.openmrs.org/c/projects/add-on-index">here</a>
                     </li>
                     <li>
-                        <b>License: </b>The licenese for this project is located <a target="_blank"
+                        <b>License: </b>The license for this project is located <a target="_blank"
                            href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/LICENSE">here</a>
                     </li>
                     </ul>
