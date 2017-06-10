@@ -97,19 +97,36 @@ public class ElasticSearchIndex implements Index {
 		
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (type != null) {
+			//Gets all modules of the type specified by variable type
 			boolQB.filter(QueryBuilders.matchQuery("type", type));
 		}
 		if (query != null) {
-			boolQB.should(QueryBuilders.matchQuery("name", query).boost(4.0f));
-			boolQB.should(QueryBuilders.prefixQuery("_all", query).boost(1.5f));
-			boolQB.should(QueryBuilders.matchPhrasePrefixQuery("_all", query).slop(2).fuzziness("AUTO"));
+			//Following clause returns a module whose UID matches exactly(Highest priority)
+			boolQB.should(QueryBuilders.termQuery("_id", query).boost(1700.0f));
+
+			//Following clause returns all modules whose tags matche exactly(High priority)
+			boolQB.should(QueryBuilders.termQuery("tags", query).boost(1500.0f));
+
+			//Following clause returns all modules whose prefix of name matches query(Medium priority)
+			boolQB.should(QueryBuilders.prefixQuery("name", query).boost(4.0f));
+
+			//Following clause returns all modules whose name matches the query(Medium priority)
+			boolQB.should(QueryBuilders.matchQuery("name", query).boost(2.0f));
+
+			//Following clause returns all modules whose description words match the query(Low priority)
+			boolQB.should(QueryBuilders.matchQuery("description", query).boost(0.5f));
+
+			//Allow for spelling mistake while searching for a particular module
+			boolQB.should(QueryBuilders.matchPhraseQuery("name", query).slop(2).fuzziness("AUTO"));
 			boolQB.minimumNumberShouldMatch(1);
 		}
 		
 		BoostingQueryBuilder boostingQB = QueryBuilders.boostingQuery();
 		boostingQB.positive(boolQB);
+
+		//Decrease ranking of those modules which are "Deprecated" or "Inactive"
 		boostingQB.negative(QueryBuilders.termsQuery("status", "DEPRECATED", "INACTIVE"));
-		boostingQB.negativeBoost(0.2f);
+		boostingQB.negativeBoost(0.01f);
 		
 		SearchResult result = client.execute(new Search.Builder(
 				new SearchSourceBuilder().size(SEARCH_SIZE).query(boostingQB).toString())
