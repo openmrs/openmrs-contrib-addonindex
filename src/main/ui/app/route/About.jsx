@@ -45,8 +45,10 @@ export default class About extends Component {
                            href="https://talk.openmrs.org/c/projects/add-on-index">here</a>
                     </li>
                     <li>
-                        <b>License: </b>The license for this project is located <a target="_blank"
-                           href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/LICENSE">here</a>
+                        <b>License: </b>Software is available under the <a target="_blank"
+                           href="http://openmrs.org/license/">Mozilla Public License 2.0 with Healthcare Disclaimer (MPL 2.0 HD)</a>.
+			    <br/>
+			    "OpenMRS" is a registered trademark and the OpenMRS graphic logo is a trademark of OpenMRS Inc.
                     </li>
                     </ul>
 
