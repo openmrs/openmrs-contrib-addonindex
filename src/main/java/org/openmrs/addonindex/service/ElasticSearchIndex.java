@@ -156,14 +156,14 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception {
+	public Collection<AddOnInfoSummary> getByTag(String tag) throws Exception {
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
 				.size(SEARCH_SIZE)
 				.query(QueryBuilders.matchQuery("tags", tag)).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());
 		return result.getHits(AddOnInfoAndVersions.class).stream()
-				.map(sr -> sr.source)
+				.map(sr -> new AddOnInfoSummary(sr.source))
 				.collect(Collectors.toList());
 	}
 }

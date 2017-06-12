@@ -27,7 +27,7 @@ public interface Index {
 	
 	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;
 	
-	Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception;
+	Collection<AddOnInfoSummary> getByTag(String tag) throws Exception;
 	
 	AddOnInfoAndVersions getByUid(String uid) throws Exception;
 }
