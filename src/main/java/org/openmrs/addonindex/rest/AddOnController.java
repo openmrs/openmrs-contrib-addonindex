@@ -37,13 +37,8 @@ public class AddOnController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
-	                                           @RequestParam(value = "q", required = false) String query) throws Exception {
-		return index.search(type, query);
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/tags")
-	public Collection<AddOnInfoSummary> getByTag(@RequestParam(value = "tag", required = true) String tag) throws Exception {
-		return index.getByTag(tag);
+	                                           @RequestParam(value = "q", required = false) String query, @RequestParam(value = "tag", required = false) String tag) throws Exception {
+		return index.search(type, query, tag);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")

@@ -68,7 +68,7 @@ public class LegacyControllerIT {
 		
 		AddOnInfoSummary summary = new AddOnInfoSummary(full);
 		
-		given(elasticSearchIndex.search(AddOnType.OMOD, "appui"))
+		given(elasticSearchIndex.search(AddOnType.OMOD, "appui",null))
 				.willReturn(Collections.singleton(summary));
 		given(elasticSearchIndex.getByUid("org.openmrs.module.appui"))
 				.willReturn(full);
@@ -88,7 +88,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesWithoutVersion() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, null, null);
+		LegacyFindModulesResponse response = controller.findModules("appui",null, 0, 0, 123, null, null);
 		String json = new ObjectMapper().writeValueAsString(response);
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules.json");
@@ -97,7 +97,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesWithOpenMrsVersion() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, "1.9.3", null);
+		LegacyFindModulesResponse response = controller.findModules("appui",null, 0, 0, 123, "1.9.3", null);
 		String json = new ObjectMapper().writeValueAsString(response);
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules-old-version.json");
@@ -106,7 +106,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesExcludeModule() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, "1.9.3",
+		LegacyFindModulesResponse response = controller.findModules("appui",null, 0, 0, 123, "1.9.3",
 				Arrays.asList("appui"));
 		String json = new ObjectMapper().writeValueAsString(response);
 		

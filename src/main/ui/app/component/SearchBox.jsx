@@ -34,6 +34,9 @@ class SearchBox extends Component {
             if (this.state.query) {
                 url += "&q=" + this.state.query;
             }
+	    if (this.state.tag) {
+                url += "&tag=" + this.state.tag;
+            }
 
             this.props.router.push(url);
         }

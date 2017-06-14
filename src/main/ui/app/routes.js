@@ -16,7 +16,6 @@ import SearchPage from "./route/SearchPage";
 import AddOnLists from "./route/AddOnLists";
 import ShowList from "./route/ShowList";
 import IndexingStatus from "./route/IndexingStatus";
-import TagPage from "./route/TagPage";
 
 export default {
     path: '/',
@@ -29,6 +28,5 @@ export default {
         {path: 'show/:uid', component: Show},
         {path: 'lists', component: AddOnLists},
         {path: 'list/:uid', component: ShowList},
-	{path: 'tags', component: TagPage},
     ]
 }

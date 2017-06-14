@@ -33,7 +33,8 @@ export default class SearchPage extends Component {
     doSearch() {
         const query = this.props.location.query.q;
         const type = this.props.location.query.type;
-        const searchKey = `type:${type ? type : "all"} query:${query ? query : ""}`;
+	const tag = this.props.location.query.tag;
+        const searchKey = `type:${type ? type : "all"} query:${query ? query : ""} tag:${tag ? tag : ""}`;
 
         console.log(searchKey);
         console.log(this.state.latestSearch);
@@ -50,6 +51,9 @@ export default class SearchPage extends Component {
         }
         if (query) {
             url += "&q=" + query;
+        }
+	if (tag) {
+            url += "&tag=" + tag;
         }
         fetch(url)
                 .then(response => {
@@ -85,7 +89,7 @@ export default class SearchPage extends Component {
                         <SearchBox initialQuery={this.props.location.query.q}/>
 
                         {this.state.latestSearch ?
-                         <div>Searching for {this.state.latestSearch}</div>
+                         <div>Searching for {this.state.latestSearch} and </div>
                                 :
                          this.state.searchResults ?
                          <AddOnList addons={this.state.searchResults}

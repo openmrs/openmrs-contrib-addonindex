@@ -75,13 +75,14 @@ public class LegacyController {
 	@RequestMapping(method = RequestMethod.GET, value = "findModules")
 	public LegacyFindModulesResponse findModules(
 			@RequestParam(value = "sSearch", required = false) String query,
+			@RequestParam(value = "tags", required = false) String tag,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") Integer start,
 			@RequestParam(value = "iDisplayLength", defaultValue = "100") Integer length,
 			@RequestParam(value = "sEcho", required = false) Integer sEcho,
 			@RequestParam(value = "openmrs_version", required = false) String openmrsVersion,
 			@RequestParam(value = "excludeModule", required = false) List<String> excludeModuleIds
 	) throws Exception {
-		Collection<AddOnInfoSummary> results = index.search(AddOnType.OMOD, query);
+		Collection<AddOnInfoSummary> results = index.search(AddOnType.OMOD, query, tag);
 		
 		LegacyFindModulesResponse response = new LegacyFindModulesResponse();
 		response.setsEcho(sEcho);
