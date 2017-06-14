@@ -76,7 +76,7 @@ export default class Show extends Component {
             <Label bsStyle={statusClass}>{status}</Label>
             {addon.tags ?
              addon.tags.map(t =>
-                 <Link to={`/tags?&tag=${t}`}><Label bsStyle="default">{t}</Label></Link>
+                 <Link to={`/search?&tag=${t}`}><Label bsStyle="default">{t}</Label></Link>
              ) :
              null
             }
