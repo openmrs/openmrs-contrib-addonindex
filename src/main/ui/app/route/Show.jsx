@@ -9,6 +9,7 @@
  */
 
 import {Component} from "react";
+import {Link} from "react-router";
 import fetch from "isomorphic-fetch";
 import {Button, Col, Glyphicon, Label, OverlayTrigger, Row, Table, Tooltip} from "react-bootstrap";
 import moment from "moment";
@@ -53,6 +54,7 @@ export default class Show extends Component {
     }
 
     formatTags(addon) {
+        
         let statusClass = "default";
         let status = addon.status;
         switch (addon.status) {
@@ -74,7 +76,7 @@ export default class Show extends Component {
             <Label bsStyle={statusClass}>{status}</Label>
             {addon.tags ?
              addon.tags.map(t =>
-                 <Label bsStyle="default">{t}</Label>
+                 <Link to={`/search?&tag=${t}`}><Label bsStyle="default">{t}</Label></Link>
              ) :
              null
             }

@@ -61,7 +61,7 @@ public class ElasticSearchIndexManualTest {
 		Collection<AddOnInfoAndVersions> allByType = elasticSearchIndex.getAllByType(AddOnType.OMOD);
 		assertThat(allByType.size(), greaterThanOrEqualTo(1));
 		
-		Collection<AddOnInfoSummary> results = elasticSearchIndex.search(AddOnType.OMOD, "testing");
+		Collection<AddOnInfoSummary> results = elasticSearchIndex.search(AddOnType.OMOD, "testing", null);
 		assertThat(allByType.size(), greaterThanOrEqualTo(1));
 	}
 	
@@ -69,6 +69,19 @@ public class ElasticSearchIndexManualTest {
 	public void testSearch() throws Exception {
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
 				.query(QueryBuilders.matchPhrasePrefixQuery("_all", "dictionary conc").slop(2).fuzziness("AUTO"))
+				.toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		System.out.println("Hits: " + result.getTotal());
+		for (String s : result.getSourceAsStringList()) {
+			System.out.println(s);
+		}
+	}
+
+	@Test
+	public void testTag() throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.query(QueryBuilders.matchQuery("tags", "form-entry"))
 				.toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
 				.build());

@@ -54,7 +54,7 @@ public class AddOnControllerIT {
 		info.setDescription("For reporting");
 		info.addVersion(version);
 		
-		when(index.search(null, "report")).thenReturn(singletonList(new AddOnInfoSummary(info)));
+		when(index.search(null, "report", null)).thenReturn(singletonList(new AddOnInfoSummary(info)));
 		when(index.getByUid("reporting-module")).thenReturn(info);
 	}
 	

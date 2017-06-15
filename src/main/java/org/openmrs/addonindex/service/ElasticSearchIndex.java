@@ -93,27 +93,29 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoSummary> search(AddOnType type, String query) throws IOException {
-		
+	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws IOException {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (type != null) {
-			//Gets all modules of the type specified by variable type
-			boolQB.filter(QueryBuilders.matchQuery("type", type));
+			//Exact match on type
+		        boolQB.filter(QueryBuilders.matchQuery("type", type));
+		}
+		if (tag != null) {	
+			boolQB.filter(QueryBuilders.matchQuery("tags", tag));
 		}
 		if (query != null) {
-			//Following clause returns a module whose UID matches exactly(Highest priority)
+			//Exact match on id(Highest priority)
 			boolQB.should(QueryBuilders.termQuery("_id", query).boost(1700.0f));
 
-			//Following clause returns all modules whose tags matche exactly(High priority)
+			//Exact match on tag(High priority)
 			boolQB.should(QueryBuilders.termQuery("tags", query).boost(1500.0f));
 
-			//Following clause returns all modules whose prefix of name matches query(Medium priority)
+			//Prefix match of module name(Medium priority)
 			boolQB.should(QueryBuilders.prefixQuery("name", query).boost(4.0f));
 
-			//Following clause returns all modules whose name matches the query(Medium priority)
+			//Query is subset of module name(Medium priority)
 			boolQB.should(QueryBuilders.matchQuery("name", query).boost(2.0f));
 
-			//Following clause returns all modules whose description words match the query(Low priority)
+			//Description matches query either completely or partially(Low priority)
 			boolQB.should(QueryBuilders.matchQuery("description", query).boost(0.5f));
 
 			//Allow for spelling mistake while searching for a particular module
