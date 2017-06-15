@@ -36,9 +36,6 @@ export default class SearchPage extends Component {
 	const tag = this.props.location.query.tag;
         const searchKey = `type:${type ? type : "all"} query:${query ? query : ""} tag:${tag ? tag : ""}`;
 
-        console.log(searchKey);
-        console.log(this.state.latestSearch);
-
         if (this.state.latestSearch === searchKey) {
             return;
         }
@@ -89,7 +86,7 @@ export default class SearchPage extends Component {
                         <SearchBox initialQuery={this.props.location.query.q}/>
 
                         {this.state.latestSearch ?
-                         <div>Searching for {this.state.latestSearch} and </div>
+                         <div>Searching for {this.state.latestSearch}</div>
                                 :
                          this.state.searchResults ?
                          <AddOnList addons={this.state.searchResults}

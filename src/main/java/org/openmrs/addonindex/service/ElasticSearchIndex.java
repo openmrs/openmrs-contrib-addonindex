@@ -94,14 +94,12 @@ public class ElasticSearchIndex implements Index {
 	
 	@Override
 	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws IOException {
-		
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (type != null) {
 			//Exact match on type
-			boolQB.filter(QueryBuilders.matchQuery("type", type));
+		        boolQB.filter(QueryBuilders.matchQuery("type", type));
 		}
-		if (tag != null) {
-			
+		if (tag != null && query == null && type == null) {	
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
 				.size(SEARCH_SIZE)
 				.query(QueryBuilders.matchQuery("tags", tag)).toString())
@@ -110,9 +108,13 @@ public class ElasticSearchIndex implements Index {
 		return result.getHits(AddOnInfoAndVersions.class).stream()
 				.map(sr -> new AddOnInfoSummary(sr.source))
 				.collect(Collectors.toList());
-
 		}
 		if (query != null) {
+			if (tag != null) {
+			//Exact match on tag
+			boolQB.filter(QueryBuilders.matchQuery("tags", tag));
+			}
+
 			//Exact match on id(Highest priority)
 			boolQB.should(QueryBuilders.termQuery("_id", query).boost(1700.0f));
 
@@ -147,8 +149,6 @@ public class ElasticSearchIndex implements Index {
 		return result.getHits(AddOnInfoAndVersions.class).stream()
 				.map(sr -> new AddOnInfoSummary(sr.source))
 				.collect(Collectors.toList());
-		
-	
 	}
 	
 	@Override

@@ -77,4 +77,17 @@ public class ElasticSearchIndexManualTest {
 			System.out.println(s);
 		}
 	}
+
+	@Test
+	public void testTag() throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.query(QueryBuilders.matchQuery("tags", "form-entry"))
+				.toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		System.out.println("Hits: " + result.getTotal());
+		for (String s : result.getSourceAsStringList()) {
+			System.out.println(s);
+		}
+	}
 }
