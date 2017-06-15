@@ -99,22 +99,10 @@ public class ElasticSearchIndex implements Index {
 			//Exact match on type
 		        boolQB.filter(QueryBuilders.matchQuery("type", type));
 		}
-		if (tag != null && query == null && type == null) {	
-		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
-				.size(SEARCH_SIZE)
-				.query(QueryBuilders.matchQuery("tags", tag)).toString())
-				.addIndex(AddOnInfoAndVersions.ES_INDEX)
-				.build());
-		return result.getHits(AddOnInfoAndVersions.class).stream()
-				.map(sr -> new AddOnInfoSummary(sr.source))
-				.collect(Collectors.toList());
+		if (tag != null) {	
+			boolQB.filter(QueryBuilders.matchQuery("tags", tag));
 		}
 		if (query != null) {
-			if (tag != null) {
-			//Exact match on tag
-			boolQB.filter(QueryBuilders.matchQuery("tags", tag));
-			}
-
 			//Exact match on id(Highest priority)
 			boolQB.should(QueryBuilders.termQuery("_id", query).boost(1700.0f));
 
