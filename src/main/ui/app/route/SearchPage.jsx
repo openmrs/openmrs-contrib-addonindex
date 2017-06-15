@@ -34,7 +34,7 @@ export default class SearchPage extends Component {
         const query = this.props.location.query.q;
         const type = this.props.location.query.type;
 	const tag = this.props.location.query.tag;
-        const searchKey = `type:${type ? type : "all"} query:${query ? query : ""} tag:${tag ? tag : ""}`;
+	const searchKey = `type:${type ? type : "all"} query:${query ? query : ""} tag:${tag ? tag : ""}`;
 
         if (this.state.latestSearch === searchKey) {
             return;
@@ -47,11 +47,11 @@ export default class SearchPage extends Component {
             url += "type=" + type;
         }
         if (query) {
-            url += "&q=" + query;
-        }
-	if (tag) {
-            url += "&tag=" + tag;
-        }
+			url += "&q=" + query;
+		}
+		if (tag) {
+			url += "&tag=" + tag;
+		}
         fetch(url)
                 .then(response => {
                     return response.json();
