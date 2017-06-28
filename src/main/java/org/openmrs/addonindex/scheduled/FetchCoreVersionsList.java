@@ -22,7 +22,7 @@ import java.util.List;
 public class FetchCoreVersionsList {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final String[] STRINGS_TO_EXCLUDE = {"alpha", "beta", "maven", "RC", "SNAPSHOT"};
+    private static final String[] STRINGS_TO_EXCLUDE = {"alpha", "beta", "RC", "SNAPSHOT"};
 
     @Value("${core_version_list.url}")
     private String url;
