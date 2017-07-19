@@ -27,7 +27,8 @@ with npm (using webpack).
 
 It uses ElasticSearch to store its index.
 
-We use [Snap CI](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex) to continuously build this application.  
+We use [Snap CI](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex) to continuously build this application. (We 
+know that Snap CI is going away, and we'll migrate somewhere else soon.)  
 
 To build locally, you need to build the web UI first, and then run the server. (Though if you skip building the web UI 
 you'll still be able to see the server's REST API)
@@ -100,12 +101,20 @@ This application is bandwidth-heavy on its first run (e.g. it downloads all OMOD
  
 ## Docker Packaging
 
-In order to deploy this to OpenMRS infrastructure, we package this application as a docker container and publish it to  
-dockerhub as `openmrs/addonindex`. You would do this manually as
+In order to deploy this to OpenMRS staging infrastructure, we package this application as a docker container and publish it 
+to  dockerhub as `openmrs/addonindex`. You would do this manually as
 
     mvn package docker:build
     
-but CI builds it automatically, so you don't need to do this. 
+but CI builds it automatically, so you don't need to do this.
+
+## Deploying to production
+
+This is not yet automated in CI (but should be soon). You need to do build everything locally (first the UI then the jar +
+docker build, and look for output like `Successfully built 089a664e4a61`), and then
+ 
+    docker tag <id-you-just-built> openmrs/addonindex:production
+    docker push openmrs/addonindex:production
 
 ## Contributing
 
