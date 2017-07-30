@@ -3,7 +3,7 @@
     {
       "uid": "org.openmrs.owa.conceptdictionary",
       "moduleId": "",
-      "modulePackage":"",
+      "modulePackage": "",
       "type": "OWA",
       "name": "Concept Dictionary OWA",
       "maintainers": [
@@ -24,9 +24,9 @@
       }
     },
     {
-      "uid": "org.omodopenmrs.module.accesslogging",
-      "moduleId": "1",
-      "modulePackage":"org.openmrs.module.accesslogging",
+      "uid": "org.openmrs.module.accesslogging",
+      "moduleId": "accesslogging",
+      "modulePackage": "org.openmrs.module.accesslogging",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Access Log",
@@ -47,8 +47,8 @@
     },
     {
       "uid": "org.openmrs.module.addgutteritem",
-      "moduleId": "2",
-      "modulePackage":"org.openmrs.module.addgutteritem",
+      "moduleId": "addgutteritem",
+      "modulePackage": "org.openmrs.module.addgutteritem",
       "type": "OMOD",
       "name": "add gutter item Module",
       "maintainers": [
@@ -65,8 +65,8 @@
     },
     {
       "uid": "org.openmrs.module.addresshierarchy",
-      "moduleId": "3",
-      "modulePackage":"org.openmrs.module.addresshierarchy",
+      "moduleId": "addresshierarchy",
+      "modulePackage": "org.openmrs.module.addresshierarchy",
       "type": "OMOD",
       "name": "Address Hierarchy",
       "maintainers": [
@@ -92,8 +92,8 @@
     },
     {
       "uid": "org.openmrs.module.addresshierarchyrwanda",
-      "moduleId": "4",
-      "modulePackage":"org.openmrs.module.addresshierarchyrwanda",
+      "moduleId": "addresshierarchyrwanda",
+      "modulePackage": "org.openmrs.module.addresshierarchyrwanda",
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
       "maintainers": [
@@ -113,8 +113,8 @@
     },
     {
       "uid": "org.openmrs.module.appframework",
-      "moduleId": "5",
-      "modulePackage":"org.openmrs.module.appframework",
+      "moduleId": "appframework",
+      "modulePackage": "org.openmrs.module.appframework",
       "type": "OMOD",
       "name": "App Framework Module",
       "maintainers": [
@@ -140,8 +140,8 @@
     },
     {
       "uid": "org.openmrs.module.appointment",
-      "moduleId": "6",
-      "modulePackage":"org.openmrs.module.appointment",
+      "moduleId": "appointment",
+      "modulePackage": "org.openmrs.module.appointment",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Appointment",
@@ -162,8 +162,8 @@
     },
     {
       "uid": "org.openmrs.module.appointmentscheduling",
-      "moduleId": "7",
-      "modulePackage":"org.openmrs.module.appointmentscheduling",
+      "moduleId": "appointmentscheduling",
+      "modulePackage": "org.openmrs.module.appointmentscheduling",
       "type": "OMOD",
       "name": "Appointment Scheduling",
       "maintainers": [
@@ -189,8 +189,8 @@
     },
     {
       "uid": "org.openmrs.module.appui",
-      "moduleId": "8",
-      "modulePackage":"org.openmrs.module.appui",
+      "moduleId": "appui",
+      "modulePackage": "org.openmrs.module.appui",
       "type": "OMOD",
       "name": "App UI Module",
       "maintainers": [
@@ -213,8 +213,8 @@
     },
     {
       "uid": "org.openmrs.module.atd",
-      "moduleId": "9",
-      "modulePackage":"org.openmrs.module.atd",
+      "moduleId": "atd",
+      "modulePackage": "org.openmrs.module.atd",
       "type": "OMOD",
       "name": "ATD",
       "maintainers": [
@@ -237,8 +237,8 @@
     },
     {
       "uid": "org.openmrs.module.atlas",
-      "moduleId": "10",
-      "modulePackage":"org.openmrs.module.atlas",
+      "moduleId": "atlas",
+      "modulePackage": "org.openmrs.module.atlas",
       "type": "OMOD",
       "name": "Atlas Module",
       "maintainers": [
@@ -267,8 +267,8 @@
     },
     {
       "uid": "org.openmrs.module.atomfeed",
-      "moduleId": "11",
-      "modulePackage":"org.openmrs.module.atomfeed",
+      "moduleId": "atomfeed",
+      "modulePackage": "org.openmrs.module.atomfeed",
       "type": "OMOD",
       "name": "Atom Feed Module",
       "maintainers": [
@@ -285,8 +285,8 @@
     },
     {
       "uid": "org.openmrs.module.backports14x",
-      "moduleId": "12",
-      "modulePackage":"org.openmrs.module.backports14x",
+      "moduleId": "backports14x",
+      "modulePackage": "org.openmrs.module.backports14x",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Backports 1.4.x",
@@ -313,8 +313,8 @@
     },
     {
       "uid": "org.openmrs.module.birt",
-      "moduleId": "14",
-      "modulePackage":"org.openmrs.module.birt",
+      "moduleId": "birt",
+      "modulePackage": "org.openmrs.module.birt",
       "type": "OMOD",
       "name": "Birt Reports",
       "status": "INACTIVE",
@@ -335,8 +335,8 @@
     },
     {
       "uid": "org.openmrs.module.calculation",
-      "moduleId": "15",
-      "modulePackage":"org.openmrs.calculation",
+      "moduleId": "calculation",
+      "modulePackage": "org.openmrs.calculation",
       "type": "OMOD",
       "name": "Calculation",
       "maintainers": [
@@ -362,8 +362,8 @@
     },
     {
       "uid": "org.openmrs.module.chica",
-      "moduleId": "16",
-      "modulePackage":"org.openmrs.module.chica",
+      "moduleId": "chica",
+      "modulePackage": "org.openmrs.module.chica",
       "type": "OMOD",
       "name": "Chica",
       "maintainers": [
@@ -380,8 +380,8 @@
     },
     {
       "uid": "org.openmrs.module.chirdlutil",
-      "moduleId": "17",
-      "modulePackage":"org.openmrs.module.chirdlutil",
+      "moduleId": "chirdlutil",
+      "modulePackage": "org.openmrs.module.chirdlutil",
       "type": "OMOD",
       "name": "chirdlutil",
       "maintainers": [
@@ -398,8 +398,8 @@
     },
     {
       "uid": "org.openmrs.module.chirdlutilbackports",
-      "moduleId": "18",
-      "modulePackage":"org.openmrs.module.chirdlutilbackports",
+      "moduleId": "chirdlutilbackports",
+      "modulePackage": "org.openmrs.module.chirdlutilbackports",
       "type": "OMOD",
       "name": "chirdlutilbackports",
       "maintainers": [
@@ -416,8 +416,8 @@
     },
     {
       "uid": "org.openmrs.module.cleaningvoided",
-      "moduleId": "19",
-      "modulePackage":"org.openmrs.module.cleaningvoided",
+      "moduleId": "cleaningvoided",
+      "modulePackage": "org.openmrs.module.cleaningvoided",
       "type": "OMOD",
       "name": "Cleaningvoided",
       "maintainers": [
@@ -434,8 +434,8 @@
     },
     {
       "uid": "org.openmrs.module.clinicalsummary",
-      "moduleId": "20",
-      "modulePackage":"org.openmrs.module.clinicalsummary",
+      "moduleId": "clinicalsummary",
+      "modulePackage": "org.openmrs.module.clinicalsummary",
       "type": "OMOD",
       "name": "Clinical Summary",
       "maintainers": [
@@ -455,8 +455,8 @@
     },
     {
       "uid": "org.openmrs.module.comparelists",
-      "moduleId": "21",
-      "modulePackage":"org.openmrs.module.comparelists",
+      "moduleId": "comparelists",
+      "modulePackage": "org.openmrs.module.comparelists",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Compare Lists",
@@ -477,8 +477,8 @@
     },
     {
       "uid": "org.openmrs.module.conceptmanagementapps",
-      "moduleId": "22",
-      "modulePackage":"org.openmrs.module.conceptmanagementapps",
+      "moduleId": "conceptmanagementapps",
+      "modulePackage": "org.openmrs.module.conceptmanagementapps",
       "type": "OMOD",
       "name": "Concept Management Apps Module",
       "maintainers": [
@@ -495,8 +495,8 @@
     },
     {
       "uid": "org.openmrs.module.conceptsearch",
-      "moduleId": "23",
-      "modulePackage":"org.openmrs.module.conceptsearch",
+      "moduleId": "conceptsearch",
+      "modulePackage": "org.openmrs.module.conceptsearch",
       "type": "OMOD",
       "name": "Concept Search",
       "maintainers": [
@@ -516,8 +516,8 @@
     },
     {
       "uid": "org.openmrs.module.cpm",
-      "moduleId": "24",
-      "modulePackage":"org.openmrs.module.conceptpropose",
+      "moduleId": "conceptpropose",
+      "modulePackage": "org.openmrs.module.conceptpropose",
       "type": "OMOD",
       "name": "Concept Proposal Module",
       "maintainers": [
@@ -540,8 +540,8 @@
     },
     {
       "uid": "org.openmrs.module.custombranding",
-      "moduleId": "25",
-      "modulePackage":"org.openmrs.module.custombranding",
+      "moduleId": "custombranding",
+      "modulePackage": "org.openmrs.module.custombranding",
       "type": "OMOD",
       "name": "Custom Branding",
       "maintainers": [
@@ -558,8 +558,8 @@
     },
     {
       "uid": "org.openmrs.module.custommessage",
-      "moduleId": "26",
-      "modulePackage":"org.openmrs.module.custommessage",
+      "moduleId": "custommessage",
+      "modulePackage": "org.openmrs.module.custommessage",
       "type": "OMOD",
       "name": "Custom Message",
       "maintainers": [
@@ -582,8 +582,8 @@
     },
     {
       "uid": "org.openmrs.module.dashboardframe",
-      "moduleId": "27",
-      "modulePackage":"org.openmrs.module.dashboardframe",
+      "moduleId": "dashboardframe",
+      "modulePackage": "org.openmrs.module.dashboardframe",
       "type": "OMOD",
       "name": "Dashboard Frame Module",
       "maintainers": [
@@ -600,8 +600,8 @@
     },
     {
       "uid": "org.openmrs.module.databasebackup",
-      "moduleId": "28",
-      "modulePackage":"org.openmrs.module.databasebackup",
+      "moduleId": "databasebackup",
+      "modulePackage": "org.openmrs.module.databasebackup",
       "type": "OMOD",
       "name": "Database Backup",
       "maintainers": [
@@ -630,8 +630,8 @@
     },
     {
       "uid": "org.openmrs.module.databasemessages",
-      "moduleId": "29",
-      "modulePackage":"org.openmrs.module.databasemessages",
+      "moduleId": "databasemessages",
+      "modulePackage": "org.openmrs.module.databasemessages",
       "type": "OMOD",
       "name": "Database Messages",
       "maintainers": [
@@ -654,8 +654,8 @@
     },
     {
       "uid": "org.openmrs.module.datadeletion",
-      "moduleId": "30",
-      "modulePackage":"org.openmrs.module.datadeletion",
+      "moduleId": "datadeletion",
+      "modulePackage": "org.openmrs.module.datadeletion",
       "type": "OMOD",
       "name": "Data Deletion",
       "maintainers": [
@@ -681,8 +681,8 @@
     },
     {
       "uid": "org.openmrs.module.dataentrystatistics",
-      "moduleId": "31",
-      "modulePackage":"org.openmrs.module.dataentrystatistics",
+      "moduleId": "dataentrystatistics",
+      "modulePackage": "org.openmrs.module.dataentrystatistics",
       "type": "OMOD",
       "name": "Data Entry Statistics",
       "maintainers": [
@@ -705,8 +705,8 @@
     },
     {
       "uid": "org.openmrs.module.dataintegrity",
-      "moduleId": "32",
-      "modulePackage":"org.openmrs.module.dataintegrity",
+      "moduleId": "dataintegrity",
+      "modulePackage": "org.openmrs.module.dataintegrity",
       "type": "OMOD",
       "name": "Data Integrity",
       "maintainers": [
@@ -732,8 +732,8 @@
     },
     {
       "uid": "org.openmrs.module.dhismodule",
-      "moduleId": "33",
-      "modulePackage":"org.openmrs.module.dhismodule",
+      "moduleId": "dhismodule",
+      "modulePackage": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
       "maintainers": [
@@ -753,8 +753,8 @@
     },
     {
       "uid": "org.openmrs.module.diabetesmanagement",
-      "moduleId": "34",
-      "modulePackage":"org.openmrs.module.diabetesmanagement",
+      "moduleId": "diabetesmanagement",
+      "modulePackage": "org.openmrs.module.diabetesmanagement",
       "type": "OMOD",
       "name": "Diabetes Management",
       "maintainers": [
@@ -771,8 +771,8 @@
     },
     {
       "uid": "org.openmrs.module.doubleentryreconciliation",
-      "moduleId": "35",
-      "modulePackage":"org.openmrs.module.doubleentryreconciliation",
+      "moduleId": "doubleentryreconciliation",
+      "modulePackage": "org.openmrs.module.doubleentryreconciliation",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Double Entry Reconciliation",
@@ -796,8 +796,8 @@
     },
     {
       "uid": "org.openmrs.module.drawing",
-      "moduleId": "36",
-      "modulePackage":"org.openmrs.module.drawing",
+      "moduleId": "drawing",
+      "modulePackage": "org.openmrs.module.drawing",
       "type": "OMOD",
       "name": "Drawing",
       "maintainers": [
@@ -814,8 +814,8 @@
     },
     {
       "uid": "org.openmrs.module.dss",
-      "moduleId": "37",
-      "modulePackage":"org.openmrs.module.dss",
+      "moduleId": "dss",
+      "modulePackage": "org.openmrs.module.dss",
       "type": "OMOD",
       "name": "Dss",
       "maintainers": [
@@ -832,8 +832,8 @@
     },
     {
       "uid": "org.openmrs.module.emrapi",
-      "moduleId": "38",
-      "modulePackage":"org.openmrs.module.emrapi",
+      "moduleId": "emrapi",
+      "modulePackage": "org.openmrs.module.emrapi",
       "type": "OMOD",
       "name": "EMR API Module",
       "maintainers": [
@@ -859,8 +859,8 @@
     },
     {
       "uid": "org.openmrs.module.ermodule",
-      "moduleId": "39",
-      "modulePackage":"eg.gov.iti.jets.module.ermodule",
+      "moduleId": "ermodule",
+      "modulePackage": "eg.gov.iti.jets.module.ermodule",
       "type": "OMOD",
       "name": "ER Module",
       "maintainers": [
@@ -877,8 +877,8 @@
     },
     {
       "uid": "org.openmrs.module.event",
-      "moduleId": "40",
-      "modulePackage":"org.openmrs.event",
+      "moduleId": "event",
+      "modulePackage": "org.openmrs.event",
       "type": "OMOD",
       "name": "Event Module",
       "maintainers": [
@@ -904,8 +904,8 @@
     },
     {
       "uid": "org.openmrs.module.exportccd",
-      "moduleId": "41",
-      "modulePackage":"org.openmrs.module.exportccd",
+      "moduleId": "exportccd",
+      "modulePackage": "org.openmrs.module.exportccd",
       "type": "OMOD",
       "name": "Export CCD Module",
       "maintainers": [
@@ -922,8 +922,8 @@
     },
     {
       "uid": "org.openmrs.module.facilitydata",
-      "moduleId": "42",
-      "modulePackage":"org.openmrs.module.facilitydata",
+      "moduleId": "facilitydata",
+      "modulePackage": "org.openmrs.module.facilitydata",
       "type": "OMOD",
       "name": "Facility Data",
       "maintainers": [
@@ -940,8 +940,8 @@
     },
     {
       "uid": "org.openmrs.module.feedback",
-      "moduleId": "43",
-      "modulePackage":"org.openmrs.module.feedback",
+      "moduleId": "feedback",
+      "modulePackage": "org.openmrs.module.feedback",
       "type": "OMOD",
       "name": "Feedback",
       "maintainers": [
@@ -964,8 +964,8 @@
     },
     {
       "uid": "org.openmrs.module.filebrowser",
-      "moduleId": "44",
-      "modulePackage":"org.openmrs.module.filebrowser",
+      "moduleId": "filebrowser",
+      "modulePackage": "org.openmrs.module.filebrowser",
       "type": "OMOD",
       "name": "File Browser",
       "maintainers": [
@@ -982,8 +982,8 @@
     },
     {
       "uid": "org.openmrs.module.flowsheet",
-      "moduleId": "45",
-      "modulePackage":"org.openmrs.module.flowsheet",
+      "moduleId": "flowsheet",
+      "modulePackage": "org.openmrs.module.flowsheet",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Flowsheet",
@@ -1022,8 +1022,8 @@
     },
     {
       "uid": "org.openmrs.module.form2program",
-      "moduleId": "46",
-      "modulePackage":"org.openmrs.module.form2program",
+      "moduleId": "form2program",
+      "modulePackage": "org.openmrs.module.form2program",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Form2Program",
@@ -1047,8 +1047,8 @@
     },
     {
       "uid": "org.openmrs.module.formdataexport",
-      "moduleId": "47",
-      "modulePackage":"org.openmrs.module.formdataexport",
+      "moduleId": "formdataexport",
+      "modulePackage": "org.openmrs.module.formdataexport",
       "type": "OMOD",
       "name": "Form Data Export",
       "maintainers": [
@@ -1074,8 +1074,8 @@
     },
     {
       "uid": "org.openmrs.module.formentry",
-      "moduleId": "48",
-      "modulePackage":"org.openmrs.module.formentry",
+      "moduleId": "formentry",
+      "modulePackage": "org.openmrs.module.formentry",
       "type": "OMOD",
       "name": "Form Entry",
       "tags": [
@@ -1110,8 +1110,8 @@
     },
     {
       "uid": "org.openmrs.module.formfilter",
-      "moduleId": "48",
-      "modulePackage":"org.openmrs.module.formfilter",
+      "moduleId": "formfilter",
+      "modulePackage": "org.openmrs.module.formfilter",
       "type": "OMOD",
       "name": "Form Filter Module",
       "maintainers": [
@@ -1128,8 +1128,8 @@
     },
     {
       "uid": "org.openmrs.module.formimportexport",
-      "moduleId": "50",
-      "modulePackage":"org.openmrs.module.formimportexport",
+      "moduleId": "formimportexport",
+      "modulePackage": "org.openmrs.module.formimportexport",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Form Import Export",
@@ -1156,8 +1156,8 @@
     },
     {
       "uid": "org.openmrs.module.globalpropertyeditor",
-      "moduleId": "51",
-      "modulePackage":"org.openmrs.module.globalpropertyeditor",
+      "moduleId": "globalpropertyeditor",
+      "modulePackage": "org.openmrs.module.globalpropertyeditor",
       "type": "OMOD",
       "name": "Global Property Editor",
       "maintainers": [
@@ -1174,8 +1174,8 @@
     },
     {
       "uid": "org.openmrs.module.gmapsimageviewer",
-      "moduleId": "52",
-      "modulePackage":"org.openmrs.module.gmapsimageviewer",
+      "moduleId": "gmapsimageviewer",
+      "modulePackage": "org.openmrs.module.gmapsimageviewer",
       "type": "OMOD",
       "name": "Google Maps Image Viewer",
       "maintainers": [
@@ -1198,8 +1198,8 @@
     },
     {
       "uid": "org.openmrs.module.groovy",
-      "moduleId": "53",
-      "modulePackage":"org.openmrs.module.groovy",
+      "moduleId": "groovy",
+      "modulePackage": "org.openmrs.module.groovy",
       "type": "OMOD",
       "name": "Groovy",
       "maintainers": [
@@ -1228,8 +1228,8 @@
     },
     {
       "uid": "org.openmrs.module.growthchart",
-      "moduleId": "54",
-      "modulePackage":"org.openmrs.module.growthchart",
+      "moduleId": "growthchart",
+      "modulePackage": "org.openmrs.module.growthchart",
       "type": "OMOD",
       "name": "Growth Chart",
       "maintainers": [
@@ -1246,8 +1246,8 @@
     },
     {
       "uid": "org.openmrs.module.hl7query",
-      "moduleId": "55",
-      "modulePackage":"org.openmrs.module.hl7query",
+      "moduleId": "hl7query",
+      "modulePackage": "org.openmrs.module.hl7query",
       "type": "OMOD",
       "name": "HL7 Query",
       "maintainers": [
@@ -1270,8 +1270,8 @@
     },
     {
       "uid": "org.openmrs.module.household",
-      "moduleId": "56",
-      "modulePackage":"org.openmrs.module.household",
+      "moduleId": "household",
+      "modulePackage": "org.openmrs.module.household",
       "type": "OMOD",
       "name": "Household Module",
       "maintainers": [
@@ -1297,8 +1297,8 @@
     },
     {
       "uid": "org.openmrs.module.hr",
-      "moduleId": "57",
-      "modulePackage":"org.openmrs.module.hr",
+      "moduleId": "hr",
+      "modulePackage": "org.openmrs.module.hr",
       "type": "OMOD",
       "name": "Human Resource Module",
       "maintainers": [
@@ -1315,8 +1315,8 @@
     },
     {
       "uid": "org.openmrs.module.htmlformentry",
-      "moduleId": "58",
-      "modulePackage":"org.openmrs.module.htmlformentry",
+      "moduleId": "htmlformentry",
+      "modulePackage": "org.openmrs.module.htmlformentry",
       "type": "OMOD",
       "name": "HTML Form Entry",
       "icon": "code",
@@ -1349,8 +1349,8 @@
     },
     {
       "uid": "org.openmrs.module.htmlformentry19ext",
-      "moduleId": "59",
-      "modulePackage":"org.openmrs.module.htmlformentry19ext",
+      "moduleId": "htmlformentry19ext",
+      "modulePackage": "org.openmrs.module.htmlformentry19ext",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "HTML Form Entry Extensions for OpenMRS 1.9 Module",
@@ -1371,8 +1371,8 @@
     },
     {
       "uid": "org.openmrs.module.htmlformentryui",
-      "moduleId": "60",
-      "modulePackage":"org.openmrs.module.htmlformentryui",
+      "moduleId": "htmlformentryui",
+      "modulePackage": "org.openmrs.module.htmlformentryui",
       "type": "OMOD",
       "name": "HTML Form Entry UI Framework Integration Module",
       "tags": [
@@ -1398,8 +1398,8 @@
     },
     {
       "uid": "org.openmrs.module.htmlformflowsheet",
-      "moduleId": "61",
-      "modulePackage":"org.openmrs.module.htmlformflowsheet",
+      "moduleId": "htmlformflowsheet",
+      "modulePackage": "org.openmrs.module.htmlformflowsheet",
       "type": "OMOD",
       "name": "HTML Form Flowsheet",
       "maintainers": [
@@ -1422,8 +1422,8 @@
     },
     {
       "uid": "org.openmrs.module.htmlwidgets",
-      "moduleId": "62",
-      "modulePackage":"org.openmrs.module.htmlwidgets",
+      "moduleId": "htmlwidgets",
+      "modulePackage": "org.openmrs.module.htmlwidgets",
       "type": "OMOD",
       "name": "HTML Widgets",
       "maintainers": [
@@ -1452,8 +1452,8 @@
     },
     {
       "uid": "org.openmrs.module.i2b2export",
-      "moduleId": "63",
-      "modulePackage":"org.openmrs.module.i2b2export",
+      "moduleId": "i2b2export",
+      "modulePackage": "org.openmrs.module.i2b2export",
       "type": "OMOD",
       "name": "i2b2 Export",
       "maintainers": [
@@ -1470,8 +1470,8 @@
     },
     {
       "uid": "org.openmrs.module.idcards",
-      "moduleId": "64",
-      "modulePackage":"org.openmrs.module.idcards",
+      "moduleId": "idcards",
+      "modulePackage": "org.openmrs.module.idcards",
       "type": "OMOD",
       "name": "Id Cards",
       "maintainers": [
@@ -1491,8 +1491,8 @@
     },
     {
       "uid": "org.openmrs.module.idgen",
-      "moduleId": "65",
-      "modulePackage":"org.openmrs.module.idgen",
+      "moduleId": "idgen",
+      "modulePackage": "org.openmrs.module.idgen",
       "type": "OMOD",
       "name": "ID Generation",
       "icon": "id-card-o",
@@ -1516,8 +1516,8 @@
     },
     {
       "uid": "org.openmrs.module.infopathconverter",
-      "moduleId": "66",
-      "modulePackage":"org.openmrs.module.infopathconverter",
+      "moduleId": "infopathconverter",
+      "modulePackage": "org.openmrs.module.infopathconverter",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Infopath to HTML Form Converter",
@@ -1535,8 +1535,8 @@
     },
     {
       "uid": "org.openmrs.module.inpatientcare",
-      "moduleId": "67",
-      "modulePackage":"org.openmrs.module.inpatientcare",
+      "moduleId": "inpatientcare",
+      "modulePackage": "org.openmrs.module.inpatientcare",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Inpatient Care",
@@ -1554,8 +1554,8 @@
     },
     {
       "uid": "org.openmrs.module.jasperreport",
-      "moduleId": "68",
-      "modulePackage":"org.openmrs.module.jasperreport",
+      "moduleId": "jasperreport",
+      "modulePackage": "org.openmrs.module.jasperreport",
       "type": "OMOD",
       "name": "Jasper Report",
       "maintainers": [
@@ -1578,8 +1578,8 @@
     },
     {
       "uid": "org.openmrs.module.jmx",
-      "moduleId": "69",
-      "modulePackage":"org.openmrs.module.jmx",
+      "moduleId": "jmx",
+      "modulePackage": "org.openmrs.module.jmx",
       "type": "OMOD",
       "name": "JMX",
       "maintainers": [
@@ -1596,8 +1596,8 @@
     },
     {
       "uid": "org.openmrs.module.kenyadq",
-      "moduleId": "70",
-      "modulePackage":"org.openmrs.module.kenyadq",
+      "moduleId": "kenyadq",
+      "modulePackage": "org.openmrs.module.kenyadq",
       "type": "OMOD",
       "name": "KenyaDQ",
       "maintainers": [
@@ -1614,8 +1614,8 @@
     },
     {
       "uid": "org.openmrs.module.kenyalab",
-      "moduleId": "71",
-      "modulePackage":"org.openmrs.module.kenyalab",
+      "moduleId": "kenyalab",
+      "modulePackage": "org.openmrs.module.kenyalab",
       "type": "OMOD",
       "name": "KenyaLab",
       "maintainers": [
@@ -1635,8 +1635,8 @@
     },
     {
       "uid": "org.openmrs.module.kenyametadatatools",
-      "moduleId": "72",
-      "modulePackage":"org.openmrs.module.kenyametadatatools",
+      "moduleId": "kenyametadatatools",
+      "modulePackage": "org.openmrs.module.kenyametadatatools",
       "type": "OMOD",
       "name": "Kenya Metadata Tools",
       "maintainers": [
@@ -1656,8 +1656,8 @@
     },
     {
       "uid": "org.openmrs.module.kenyaui",
-      "moduleId": "73",
-      "modulePackage":"org.openmrs.module.kenyaui",
+      "moduleId": "kenyaui",
+      "modulePackage": "org.openmrs.module.kenyaui",
       "type": "OMOD",
       "name": "KenyaUI",
       "maintainers": [
@@ -1677,8 +1677,8 @@
     },
     {
       "uid": "org.openmrs.module.logic",
-      "moduleId": "74",
-      "modulePackage":"org.openmrs.module.logic",
+      "moduleId": "logic",
+      "modulePackage": "org.openmrs.module.logic",
       "type": "OMOD",
       "name": "Logic",
       "maintainers": [
@@ -1707,8 +1707,8 @@
     },
     {
       "uid": "org.openmrs.module.logicws",
-      "moduleId": "75",
-      "modulePackage":"org.openmrs.module.logicws",
+      "moduleId": "logicws",
+      "modulePackage": "org.openmrs.module.logicws",
       "type": "OMOD",
       "name": "Logic Web Service",
       "maintainers": [
@@ -1734,8 +1734,8 @@
     },
     {
       "uid": "org.openmrs.module.logmanager",
-      "moduleId": "76",
-      "modulePackage":"org.openmrs.module.logmanager",
+      "moduleId": "logmanager",
+      "modulePackage": "org.openmrs.module.logmanager",
       "type": "OMOD",
       "name": "Log Manager",
       "maintainers": [
@@ -1755,8 +1755,8 @@
     },
     {
       "uid": "org.openmrs.module.mdrtb",
-      "moduleId": "77",
-      "modulePackage":"org.openmrs.module.mdrtb",
+      "moduleId": "mdrtb",
+      "modulePackage": "org.openmrs.module.mdrtb",
       "type": "OMOD",
       "name": "MDR-TB",
       "maintainers": [
@@ -1773,8 +1773,8 @@
     },
     {
       "uid": "org.openmrs.module.mdrtbpatientchartwidgets",
-      "moduleId": "78",
-      "modulePackage":"org.openmrs.module.mdrtbpatientchartwidgets",
+      "moduleId": "mdrtbpatientchartwidgets",
+      "modulePackage": "org.openmrs.module.mdrtbpatientchartwidgets",
       "type": "OMOD",
       "name": "Mdrtb Patient Chart Widgets",
       "maintainers": [
@@ -1800,8 +1800,8 @@
     },
     {
       "uid": "org.openmrs.module.medicalproblem",
-      "moduleId": "79",
-      "modulePackage":"org.openmrs.module.medicalproblem",
+      "moduleId": "medicalproblem",
+      "modulePackage": "org.openmrs.module.medicalproblem",
       "type": "OMOD",
       "name": "Medical Problem",
       "maintainers": [
@@ -1818,8 +1818,8 @@
     },
     {
       "uid": "org.openmrs.module.messaging",
-      "moduleId": "80",
-      "modulePackage":"org.openmrs.module.messaging",
+      "moduleId": "messaging",
+      "modulePackage": "org.openmrs.module.messaging",
       "type": "OMOD",
       "name": "Messaging Module",
       "maintainers": [
@@ -1836,8 +1836,8 @@
     },
     {
       "uid": "org.openmrs.module.metadatadeploy",
-      "moduleId": "81",
-      "modulePackage":"org.openmrs.module.metadatadeploy",
+      "moduleId": "metadatadeploy",
+      "modulePackage": "org.openmrs.module.metadatadeploy",
       "type": "OMOD",
       "name": "Metadata Deploy",
       "maintainers": [
@@ -1860,8 +1860,8 @@
     },
     {
       "uid": "org.openmrs.module.metadatamapping",
-      "moduleId": "82",
-      "modulePackage":"org.openmrs.module.metadatamapping",
+      "moduleId": "metadatamapping",
+      "modulePackage": "org.openmrs.module.metadatamapping",
       "type": "OMOD",
       "name": "Metadata Mapping",
       "maintainers": [
@@ -1881,8 +1881,8 @@
     },
     {
       "uid": "org.openmrs.module.metadatasharing",
-      "moduleId": "83",
-      "modulePackage":"org.openmrs.module.metadatasharing",
+      "moduleId": "metadatasharing",
+      "modulePackage": "org.openmrs.module.metadatasharing",
       "type": "OMOD",
       "name": "Metadata Sharing",
       "maintainers": [
@@ -1908,8 +1908,8 @@
     },
     {
       "uid": "org.openmrs.module.mirthmessaging",
-      "moduleId": "84",
-      "modulePackage":"org.openmrs.module.mirthmessaging",
+      "moduleId": "mirthmessaging",
+      "modulePackage": "org.openmrs.module.mirthmessaging",
       "type": "OMOD",
       "name": "Mirth Messaging",
       "maintainers": [
@@ -1932,8 +1932,8 @@
     },
     {
       "uid": "org.openmrs.module.moca",
-      "moduleId": "85",
-      "modulePackage":"org.moca",
+      "moduleId": "moca",
+      "modulePackage": "org.moca",
       "type": "OMOD",
       "name": "Moca Module",
       "maintainers": [
@@ -1950,8 +1950,8 @@
     },
     {
       "uid": "org.openmrs.module.moduledistro",
-      "moduleId": "86",
-      "modulePackage":"org.openmrs.module.moduledistro",
+      "moduleId": "moduledistro",
+      "modulePackage": "org.openmrs.module.moduledistro",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Module Distro",
@@ -1969,8 +1969,8 @@
     },
     {
       "uid": "org.openmrs.module.mrngen",
-      "moduleId": "87",
-      "modulePackage":"org.openmrs.module.mrngen",
+      "moduleId": "mrngen",
+      "modulePackage": "org.openmrs.module.mrngen",
       "type": "OMOD",
       "name": "MRN Generator",
       "maintainers": [
@@ -1990,8 +1990,8 @@
     },
     {
       "uid": "org.openmrs.module.myfirst",
-      "moduleId": "88",
-      "modulePackage":"org.openmrs.module.myfirst",
+      "moduleId": "myfirst",
+      "modulePackage": "org.openmrs.module.myfirst",
       "type": "OMOD",
       "name": "My First Module",
       "maintainers": [
@@ -2008,8 +2008,8 @@
     },
     {
       "uid": "org.openmrs.module.mypatients",
-      "moduleId": "89",
-      "modulePackage":"org.openmrs.module.mypatients",
+      "moduleId": "mypatients",
+      "modulePackage": "org.openmrs.module.mypatients",
       "type": "OMOD",
       "name": "My Patients",
       "maintainers": [
@@ -2026,8 +2026,8 @@
     },
     {
       "uid": "org.openmrs.module.namephonetics",
-      "moduleId": "90",
-      "modulePackage":"org.openmrs.module.namephonetics",
+      "moduleId": "namephonetics",
+      "modulePackage": "org.openmrs.module.namephonetics",
       "type": "OMOD",
       "name": "Name Phonetics",
       "maintainers": [
@@ -2050,8 +2050,8 @@
     },
     {
       "uid": "org.openmrs.module.ncd",
-      "moduleId": "91",
-      "modulePackage":"org.openmrs.module.ncd",
+      "moduleId": "ncd",
+      "modulePackage": "org.openmrs.module.ncd",
       "type": "OMOD",
       "name": "NCD",
       "maintainers": [
@@ -2077,8 +2077,8 @@
     },
     {
       "uid": "org.openmrs.module.nealreporting",
-      "moduleId": "92",
-      "modulePackage":"org.openmrs.module.nealreporting",
+      "moduleId": "nealreporting",
+      "modulePackage": "org.openmrs.module.nealreporting",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Neal Reporting",
@@ -2102,8 +2102,8 @@
     },
     {
       "uid": "org.openmrs.module.obsgroupexport",
-      "moduleId": "93",
-      "modulePackage":"org.openmrs.module.obsgroupexport",
+      "moduleId": "obsgroupexport",
+      "modulePackage": "org.openmrs.module.obsgroupexport",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Obs Group Export",
@@ -2121,8 +2121,8 @@
     },
     {
       "uid": "org.openmrs.module.odamocklogicws",
-      "moduleId": "94",
-      "modulePackage":"org.openmrs.module.odamocklogicws",
+      "moduleId": "odamocklogicws",
+      "modulePackage": "org.openmrs.module.odamocklogicws",
       "type": "OMOD",
       "name": "ODA Mock Logic Web Service",
       "maintainers": [
@@ -2145,8 +2145,8 @@
     },
     {
       "uid": "org.openmrs.module.omodreloader",
-      "moduleId": "95",
-      "modulePackage":"org.openmrs.module.omodreloader",
+      "moduleId": "omodreloader",
+      "modulePackage": "org.openmrs.module.omodreloader",
       "type": "OMOD",
       "name": "Omod Reloader Module",
       "maintainers": [
@@ -2163,8 +2163,8 @@
     },
     {
       "uid": "org.openmrs.module.openhmis-backboneforms",
-      "moduleId": "96",
-      "modulePackage":"org.openmrs.module.backboneforms",
+      "moduleId": "backboneforms",
+      "modulePackage": "org.openmrs.module.backboneforms",
       "type": "OMOD",
       "name": "OpenHMIS Backbone Forms",
       "maintainers": [
@@ -2184,8 +2184,8 @@
     },
     {
       "uid": "org.openmrs.module.openhmis-cashier",
-      "moduleId": "97",
-      "modulePackage":"org.openmrs.module.openhmis.cashier",
+      "moduleId": "cashier",
+      "modulePackage": "org.openmrs.module.openhmis.cashier",
       "type": "OMOD",
       "name": "OpenHMIS Cashier Module",
       "maintainers": [
@@ -2205,8 +2205,8 @@
     },
     {
       "uid": "org.openmrs.module.openhmis-commons",
-      "moduleId": "98",
-      "modulePackage":"org.openmrs.module.openhmis.commons",
+      "moduleId": "commons",
+      "modulePackage": "org.openmrs.module.openhmis.commons",
       "type": "OMOD",
       "name": "OpenHMIS Commons",
       "maintainers": [
@@ -2226,8 +2226,8 @@
     },
     {
       "uid": "org.openmrs.module.orderextension",
-      "moduleId": "99",
-      "modulePackage":"org.openmrs.module.orderextension",
+      "moduleId": "orderextension",
+      "modulePackage": "org.openmrs.module.orderextension",
       "type": "OMOD",
       "name": "Order Extension",
       "maintainers": [
@@ -2244,8 +2244,8 @@
     },
     {
       "uid": "org.openmrs.module.patientchartwidgets",
-      "moduleId": "100",
-      "modulePackage":"org.openmrs.module.patientchartwidgets",
+      "moduleId": "patientchartwidgets",
+      "modulePackage": "org.openmrs.module.patientchartwidgets",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Patient Chart Widgets",
@@ -2263,8 +2263,8 @@
     },
     {
       "uid": "org.openmrs.module.patientflags",
-      "moduleId": "101",
-      "modulePackage":"org.openmrs.module.patientflags",
+      "moduleId": "patientflags",
+      "modulePackage": "org.openmrs.module.patientflags",
       "type": "OMOD",
       "name": "Patient Flags",
       "maintainers": [
@@ -2281,8 +2281,8 @@
     },
     {
       "uid": "org.openmrs.module.patientimage",
-      "moduleId": "102",
-      "modulePackage":"org.openmrs.module.patientimage",
+      "moduleId": "patientimage",
+      "modulePackage": "org.openmrs.module.patientimage",
       "type": "OMOD",
       "name": "Patient Image",
       "maintainers": [
@@ -2299,8 +2299,8 @@
     },
     {
       "uid": "org.openmrs.module.patientmatching",
-      "moduleId": "103",
-      "modulePackage":"org.openmrs.module.patientmatching",
+      "moduleId": "patientmatching",
+      "modulePackage": "org.openmrs.module.patientmatching",
       "type": "OMOD",
       "name": "Patient Matching",
       "maintainers": [
@@ -2326,8 +2326,8 @@
     },
     {
       "uid": "org.openmrs.module.patientnarratives",
-      "moduleId": "104",
-      "modulePackage":"org.openmrs.module.patientnarratives",
+      "moduleId": "patientnarratives",
+      "modulePackage": "org.openmrs.module.patientnarratives",
       "type": "OMOD",
       "name": "Patient Narratives",
       "maintainers": [
@@ -2344,8 +2344,8 @@
     },
     {
       "uid": "org.openmrs.module.patientsummary",
-      "moduleId": "105",
-      "modulePackage":"org.openmrs.module.patientsummary",
+      "moduleId": "patientsummary",
+      "modulePackage": "org.openmrs.module.patientsummary",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Patient Summary",
@@ -2378,8 +2378,8 @@
     },
     {
       "uid": "org.openmrs.module.pihlesothotbupload",
-      "moduleId": "106",
-      "modulePackage":"org.openmrs.module.pihlesothotbupload",
+      "moduleId": "pihlesothotbupload",
+      "modulePackage": "org.openmrs.module.pihlesothotbupload",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "PIH Lesotho TB Upload",
@@ -2397,8 +2397,8 @@
     },
     {
       "uid": "org.openmrs.module.pixpdq",
-      "moduleId": "107",
-      "modulePackage":"org.openmrs.module.pixpdq",
+      "moduleId": "pixpdq",
+      "modulePackage": "org.openmrs.module.pixpdq",
       "type": "OMOD",
       "name": "PIX/PDQ Module",
       "maintainers": [
@@ -2415,8 +2415,8 @@
     },
     {
       "uid": "org.openmrs.module.printing",
-      "moduleId": "108",
-      "modulePackage":"org.openmrs.module.printing",
+      "moduleId": "printing",
+      "modulePackage": "org.openmrs.module.printing",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Printing",
@@ -2434,8 +2434,8 @@
     },
     {
       "uid": "org.openmrs.module.privilegehelper",
-      "moduleId": "109",
-      "modulePackage":"org.openmrs.module.privilegehelper",
+      "moduleId": "privilegehelper",
+      "modulePackage": "org.openmrs.module.privilegehelper",
       "type": "OMOD",
       "name": "Privilege Helper",
       "maintainers": [
@@ -2452,8 +2452,8 @@
     },
     {
       "uid": "org.openmrs.module.programlocation",
-      "moduleId": "110",
-      "modulePackage":"org.openmrs.module.programlocation",
+      "moduleId": "programlocation",
+      "modulePackage": "org.openmrs.module.programlocation",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Program Location",
@@ -2474,8 +2474,8 @@
     },
     {
       "uid": "org.openmrs.module.programoverview",
-      "moduleId": "111",
-      "modulePackage":"org.openmrs.module.programoverview",
+      "moduleId": "programoverview",
+      "modulePackage": "org.openmrs.module.programoverview",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Program Overview",
@@ -2493,8 +2493,8 @@
     },
     {
       "uid": "org.openmrs.module.providermanagement",
-      "moduleId": "112",
-      "modulePackage":"org.openmrs.module.providermanagement",
+      "moduleId": "providermanagement",
+      "modulePackage": "org.openmrs.module.providermanagement",
       "type": "OMOD",
       "name": "Provider Management Module",
       "maintainers": [
@@ -2514,8 +2514,8 @@
     },
     {
       "uid": "org.openmrs.module.randomization",
-      "moduleId": "113",
-      "modulePackage":"org.openmrs.module.randomization",
+      "moduleId": "randomization",
+      "modulePackage": "org.openmrs.module.randomization",
       "type": "OMOD",
       "name": "Randomization",
       "maintainers": [
@@ -2532,8 +2532,8 @@
     },
     {
       "uid": "org.openmrs.module.register",
-      "moduleId": "114",
-      "modulePackage":"org.openmrs.module.register",
+      "moduleId": "register",
+      "modulePackage": "org.openmrs.module.register",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Register",
@@ -2560,8 +2560,8 @@
     },
     {
       "uid": "org.openmrs.module.registration",
-      "moduleId": "115",
-      "modulePackage":"org.openmrs.module.registration",
+      "moduleId": "registration",
+      "modulePackage": "org.openmrs.module.registration",
       "type": "OMOD",
       "name": "Registration",
       "maintainers": [
@@ -2578,8 +2578,8 @@
     },
     {
       "uid": "org.openmrs.module.releasetestinghelper",
-      "moduleId": "116",
-      "modulePackage":"org.openmrs.module.releasetestinghelper",
+      "moduleId": "releasetestinghelper",
+      "modulePackage": "org.openmrs.module.releasetestinghelper",
       "type": "OMOD",
       "name": "Release Testing Helper",
       "maintainers": [
@@ -2599,8 +2599,8 @@
     },
     {
       "uid": "org.openmrs.module.remarksmodule",
-      "moduleId": "117",
-      "modulePackage":"org.openmrs.module.remarksmodule",
+      "moduleId": "remarksmodule",
+      "modulePackage": "org.openmrs.module.remarksmodule",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Remarks",
@@ -2618,8 +2618,8 @@
     },
     {
       "uid": "org.openmrs.module.remoteformentry",
-      "moduleId": "118",
-      "modulePackage":"org.openmrs.module.remoteformentry",
+      "moduleId": "remoteformentry",
+      "modulePackage": "org.openmrs.module.remoteformentry",
       "type": "OMOD",
       "name": "Remote FormEntry",
       "maintainers": [
@@ -2639,8 +2639,8 @@
     },
     {
       "uid": "org.openmrs.module.reporting",
-      "moduleId": "119",
-      "modulePackage":"org.openmrs.module.reporting",
+      "moduleId": "reporting",
+      "modulePackage": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting",
       "icon": "bar-chart",
@@ -2670,8 +2670,8 @@
     },
     {
       "uid": "org.openmrs.module.reportingcompatibility",
-      "moduleId": "120",
-      "modulePackage":"org.openmrs.module.reportingcompatibility",
+      "moduleId": "reportingcompatibility",
+      "modulePackage": "org.openmrs.module.reportingcompatibility",
       "type": "OMOD",
       "name": "Reporting Compatibility",
       "maintainers": [
@@ -2703,8 +2703,8 @@
     },
     {
       "uid": "org.openmrs.module.reportingrest",
-      "moduleId": "121",
-      "modulePackage":"org.openmrs.module.reportingrest",
+      "moduleId": "reportingrest",
+      "modulePackage": "org.openmrs.module.reportingrest",
       "type": "OMOD",
       "name": "reportingrest",
       "maintainers": [
@@ -2736,8 +2736,8 @@
     },
     {
       "uid": "org.openmrs.module.reporttemplate",
-      "moduleId": "122",
-      "modulePackage":"org.openmrs.module.reporttemplate",
+      "moduleId": "reporttemplate",
+      "modulePackage": "org.openmrs.module.reporttemplate",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Report Template",
@@ -2758,8 +2758,8 @@
     },
     {
       "uid": "org.openmrs.module.requestaccount",
-      "moduleId": "123",
-      "modulePackage":"org.openmrs.module.requestaccount",
+      "moduleId": "requestaccount",
+      "modulePackage": "org.openmrs.module.requestaccount",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Request Account",
@@ -2777,8 +2777,8 @@
     },
     {
       "uid": "org.openmrs.module.researchencounters",
-      "moduleId": "124",
-      "modulePackage":"org.openmrs.module.researchencounters",
+      "moduleId": "researchencounters",
+      "modulePackage": "org.openmrs.module.researchencounters",
       "type": "OMOD",
       "name": "Research Encounters",
       "maintainers": [
@@ -2807,8 +2807,8 @@
     },
     {
       "uid": "org.openmrs.module.rest-old",
-      "moduleId": "125",
-      "modulePackage":"org.openmrs.module.restmodule",
+      "moduleId": "restmodule",
+      "modulePackage": "org.openmrs.module.restmodule",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "REST (old)",
@@ -2835,8 +2835,8 @@
     },
     {
       "uid": "org.openmrs.module.restrictbyrole",
-      "moduleId": "126",
-      "modulePackage":"org.openmrs.module.restrictbyrole",
+      "moduleId": "restrictbyrole",
+      "modulePackage": "org.openmrs.module.restrictbyrole",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Restrict By Role",
@@ -2857,8 +2857,8 @@
     },
     {
       "uid": "org.openmrs.module.rgccd",
-      "moduleId": "127",
-      "modulePackage":"org.openmrs.module.rgccd",
+      "moduleId": "rgccd",
+      "modulePackage": "org.openmrs.module.rgccd",
       "type": "OMOD",
       "name": "RG CCD",
       "maintainers": [
@@ -2875,8 +2875,8 @@
     },
     {
       "uid": "org.openmrs.module.rolebasedhomepage",
-      "moduleId": "128",
-      "modulePackage":"org.openmrs.module.rolebasedhomepage",
+      "moduleId": "rolebasedhomepage",
+      "modulePackage": "org.openmrs.module.rolebasedhomepage",
       "type": "OMOD",
       "name": "Role-Based Homepage",
       "maintainers": [
@@ -2893,8 +2893,8 @@
     },
     {
       "uid": "org.openmrs.module.rwandaprimarycare",
-      "moduleId": "129",
-      "modulePackage":"org.openmrs.module.rwandaprimarycare",
+      "moduleId": "rwandaprimarycare",
+      "modulePackage": "org.openmrs.module.rwandaprimarycare",
       "type": "OMOD",
       "name": "Rwanda Primary Care Module",
       "maintainers": [
@@ -2914,8 +2914,8 @@
     },
     {
       "uid": "org.openmrs.module.schedulerquartz",
-      "moduleId": "130",
-      "modulePackage":"org.openmrs.module.schedulerquartz",
+      "moduleId": "schedulerquartz",
+      "modulePackage": "org.openmrs.module.schedulerquartz",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Quartz Scheduler",
@@ -2936,8 +2936,8 @@
     },
     {
       "uid": "org.openmrs.module.sdmxhdintegration",
-      "moduleId": "131",
-      "modulePackage":"org.openmrs.module.sdmxhdintegration",
+      "moduleId": "sdmxhdintegration",
+      "modulePackage": "org.openmrs.module.sdmxhdintegration",
       "type": "OMOD",
       "name": "SDMX-HD Integration",
       "maintainers": [
@@ -2957,8 +2957,8 @@
     },
     {
       "uid": "org.openmrs.module.serialization-xstream",
-      "moduleId": "132",
-      "modulePackage":"org.openmrs.module.serialization.xstream",
+      "moduleId": "xstream",
+      "modulePackage": "org.openmrs.module.serialization.xstream",
       "type": "OMOD",
       "name": "Serialization Xstream",
       "maintainers": [
@@ -2984,8 +2984,8 @@
     },
     {
       "uid": "org.openmrs.module.simplelabentry",
-      "moduleId": "133",
-      "modulePackage":"org.openmrs.module.simplelabentry",
+      "moduleId": "simplelabentry",
+      "modulePackage": "org.openmrs.module.simplelabentry",
       "type": "OMOD",
       "name": "Simple Lab Entry",
       "maintainers": [
@@ -3014,8 +3014,8 @@
     },
     {
       "uid": "org.openmrs.module.smartcontainer",
-      "moduleId": "134",
-      "modulePackage":"org.openmrs.module.smartcontainer",
+      "moduleId": "smartcontainer",
+      "modulePackage": "org.openmrs.module.smartcontainer",
       "type": "OMOD",
       "name": "SMART Container",
       "maintainers": [
@@ -3032,8 +3032,8 @@
     },
     {
       "uid": "org.openmrs.module.smsmodule",
-      "moduleId": "135",
-      "modulePackage":"org.openmrs.module.smsmodule",
+      "moduleId": "smsmodule",
+      "modulePackage": "org.openmrs.module.smsmodule",
       "type": "OMOD",
       "name": "SMS Module",
       "maintainers": [
@@ -3050,8 +3050,8 @@
     },
     {
       "uid": "org.openmrs.module.sockethl7listener",
-      "moduleId": "136",
-      "modulePackage":"org.openmrs.module.sockethl7listener",
+      "moduleId": "sockethl7listener",
+      "modulePackage": "org.openmrs.module.sockethl7listener",
       "type": "OMOD",
       "name": "sockethl7listener",
       "maintainers": [
@@ -3068,8 +3068,8 @@
     },
     {
       "uid": "org.openmrs.module.spreadsheetimport",
-      "moduleId": "137",
-      "modulePackage":"org.openmrs.module.spreadsheetimport",
+      "moduleId": "spreadsheetimport",
+      "modulePackage": "org.openmrs.module.spreadsheetimport",
       "type": "OMOD",
       "name": "Spreadsheet Import",
       "maintainers": [
@@ -3092,8 +3092,8 @@
     },
     {
       "uid": "org.openmrs.module.spreadsheetupload",
-      "moduleId": "138",
-      "modulePackage":"org.openmrs.module.spreadsheetupload",
+      "moduleId": "spreadsheetupload",
+      "modulePackage": "org.openmrs.module.spreadsheetupload",
       "type": "OMOD",
       "name": "Spreadsheet Upload",
       "maintainers": [
@@ -3116,8 +3116,8 @@
     },
     {
       "uid": "org.openmrs.module.stateprocessing",
-      "moduleId": "139",
-      "modulePackage":"org.openmrs.module.stateprocessing",
+      "moduleId": "stateprocessing",
+      "modulePackage": "org.openmrs.module.stateprocessing",
       "type": "OMOD",
       "name": "stateprocessing",
       "maintainers": [
@@ -3134,8 +3134,8 @@
     },
     {
       "uid": "org.openmrs.module.sync",
-      "moduleId": "140",
-      "modulePackage":"org.openmrs.module.sync",
+      "moduleId": "sync",
+      "modulePackage": "org.openmrs.module.sync",
       "type": "OMOD",
       "name": "Synchronization",
       "maintainers": [
@@ -3170,8 +3170,8 @@
     },
     {
       "uid": "org.openmrs.module.tribe",
-      "moduleId": "141",
-      "modulePackage":"org.openmrs.module.tribe",
+      "moduleId": "tribe",
+      "modulePackage": "org.openmrs.module.tribe",
       "type": "OMOD",
       "name": "Tribe",
       "maintainers": [
@@ -3191,8 +3191,8 @@
     },
     {
       "uid": "org.openmrs.module.ui-springmvc",
-      "moduleId": "142",
-      "modulePackage":"org.openmrs.module.ui.springmvc",
+      "moduleId": "springmvc",
+      "modulePackage": "org.openmrs.module.ui.springmvc",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Spring MVC UI Framework",
@@ -3210,8 +3210,8 @@
     },
     {
       "uid": "org.openmrs.module.uicommons",
-      "moduleId": "143",
-      "modulePackage":"org.openmrs.module.uicommons",
+      "moduleId": "uicommons",
+      "modulePackage": "org.openmrs.module.uicommons",
       "type": "OMOD",
       "name": "UI Commons Module",
       "maintainers": [
@@ -3234,8 +3234,8 @@
     },
     {
       "uid": "org.openmrs.module.uiframework",
-      "moduleId": "144",
-      "modulePackage":"org.openmrs.module.uiframework",
+      "moduleId": "uiframework",
+      "modulePackage": "org.openmrs.module.uiframework",
       "type": "OMOD",
       "name": "OpenMRS UI Framework",
       "maintainers": [
@@ -3258,8 +3258,8 @@
     },
     {
       "uid": "org.openmrs.module.uilibrary",
-      "moduleId": "145",
-      "modulePackage":"org.openmrs.module.uilibrary",
+      "moduleId": "uilibrary",
+      "modulePackage": "org.openmrs.module.uilibrary",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "UI Library Module",
@@ -3283,8 +3283,8 @@
     },
     {
       "uid": "org.openmrs.module.usagestatistics",
-      "moduleId": "146",
-      "modulePackage":"org.openmrs.module.usagestatistics",
+      "moduleId": "usagestatistics",
+      "modulePackage": "org.openmrs.module.usagestatistics",
       "type": "OMOD",
       "name": "Usage Statistics",
       "maintainers": [
@@ -3307,8 +3307,8 @@
     },
     {
       "uid": "org.openmrs.module.validation",
-      "moduleId": "147",
-      "modulePackage":"org.openmrs.module.validation",
+      "moduleId": "validation",
+      "modulePackage": "org.openmrs.module.validation",
       "type": "OMOD",
       "name": "Validation",
       "maintainers": [
@@ -3325,8 +3325,8 @@
     },
     {
       "uid": "org.openmrs.module.versionedfileupload",
-      "moduleId": "148",
-      "modulePackage":"org.openmrs.module.versionedfileupload",
+      "moduleId": "versionedfileupload",
+      "modulePackage": "org.openmrs.module.versionedfileupload",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Versioned File Upload",
@@ -3350,8 +3350,8 @@
     },
     {
       "uid": "org.openmrs.module.visitmanagement",
-      "moduleId": "149",
-      "modulePackage":"org.openmrs.module.visitmanagement",
+      "moduleId": "visitmanagement",
+      "modulePackage": "org.openmrs.module.visitmanagement",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Visit Management Module",
@@ -3369,8 +3369,8 @@
     },
     {
       "uid": "org.openmrs.module.visitscheduler",
-      "moduleId": "150",
-      "modulePackage":"org.openmrs.module.visitscheduler",
+      "moduleId": "visitscheduler",
+      "modulePackage": "org.openmrs.module.visitscheduler",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Visit Scheduler For OpenMRS 1.7.x",
@@ -3394,8 +3394,8 @@
     },
     {
       "uid": "org.openmrs.module.webservices-jaxws",
-      "moduleId": "151",
-      "modulePackage":"org.openmrs.module.webservices.jaxws",
+      "moduleId": "jaxws",
+      "modulePackage": "org.openmrs.module.webservices.jaxws",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "JaxWS Web Services",
@@ -3413,8 +3413,8 @@
     },
     {
       "uid": "org.openmrs.module.webservices-jaxws-api",
-      "moduleId": "152",
-      "modulePackage":"org.openmrs.module.webservices.jaxws.api",
+      "moduleId": "api",
+      "modulePackage": "org.openmrs.module.webservices.jaxws.api",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "JaxWS API Web Services",
@@ -3435,8 +3435,8 @@
     },
     {
       "uid": "org.openmrs.module.webservices-rest",
-      "moduleId": "153",
-      "modulePackage":"org.openmrs.module.webservices.rest",
+      "moduleId": "rest",
+      "modulePackage": "org.openmrs.module.webservices.rest",
       "type": "OMOD",
       "name": "Rest Web Services",
       "maintainers": [
@@ -3468,8 +3468,8 @@
     },
     {
       "uid": "org.openmrs.module.webservices-rest19ext",
-      "moduleId": "154",
-      "modulePackage":"org.openmrs.module.webservices.rest19ext",
+      "moduleId": "rest19ext",
+      "modulePackage": "org.openmrs.module.webservices.rest19ext",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Rest Web Services 1.9 Extension",
@@ -3490,8 +3490,8 @@
     },
     {
       "uid": "org.openmrs.module.xforms",
-      "moduleId": "155",
-      "modulePackage":"org.openmrs.module.xforms",
+      "moduleId": "xforms",
+      "modulePackage": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms",
       "icon": "pencil-square-o",
@@ -3518,8 +3518,8 @@
     },
     {
       "uid": "org.openmrs.module.upgradehelperoneten",
-      "moduleId": "156",
-      "modulePackage":"org.openmrs.module.upgradehelperoneten",
+      "moduleId": "upgradehelperoneten",
+      "modulePackage": "org.openmrs.module.upgradehelperoneten",
       "type": "OMOD",
       "name": "Prepare For Upgrade To 1.10 Module",
       "maintainers": [
@@ -3536,8 +3536,8 @@
     },
     {
       "uid": "org.openmrs.module.system-performance-and-utilization-module",
-      "moduleId": "157",
-      "modulePackage":"org.openmrs.module.systemmetrics",
+      "moduleId": "systemmetrics",
+      "modulePackage": "org.openmrs.module.systemmetrics",
       "type": "OMOD",
       "name": "System Performance and Utilization Module",
       "maintainers": [
@@ -3554,8 +3554,8 @@
     },
     {
       "uid": "org.openmrs.module.chart-search-module",
-      "moduleId": "158",
-      "modulePackage":"org.openmrs.module.chartsearch",
+      "moduleId": "chartsearch",
+      "modulePackage": "org.openmrs.module.chartsearch",
       "type": "OMOD",
       "name": "Chart Search Module",
       "maintainers": [
@@ -3575,8 +3575,8 @@
     },
     {
       "uid": "org.openmrs.module.etl-module",
-      "moduleId": "159",
-      "modulePackage":"org.openmrs.module.mysqletl",
+      "moduleId": "mysqletl",
+      "modulePackage": "org.openmrs.module.mysqletl",
       "type": "OMOD",
       "name": "ETL Module",
       "maintainers": [
@@ -3593,8 +3593,8 @@
     },
     {
       "uid": "org.openmrs.module.openhmis-inventory-module",
-      "moduleId": "160",
-      "modulePackage":"org.openmrs.module.openhmis.inventory",
+      "moduleId": "inventory",
+      "modulePackage": "org.openmrs.module.openhmis.inventory",
       "type": "OMOD",
       "name": "OpenHMIS Inventory Module",
       "maintainers": [
@@ -3614,8 +3614,8 @@
     },
     {
       "uid": "org.openmrs.module.form-entry-app-module",
-      "moduleId": "161",
-      "modulePackage":"org.openmrs.module.formentryapp",
+      "moduleId": "formentryapp",
+      "modulePackage": "org.openmrs.module.formentryapp",
       "type": "OMOD",
       "name": "Form Entry App Module",
       "maintainers": [
@@ -3638,8 +3638,8 @@
     },
     {
       "uid": "org.openmrs.module.allergies-ui",
-      "moduleId": "162",
-      "modulePackage":"org.openmrs.module.allergyui",
+      "moduleId": "allergyui",
+      "modulePackage": "org.openmrs.module.allergyui",
       "type": "OMOD",
       "name": "Allergies UI",
       "maintainers": [
@@ -3659,8 +3659,8 @@
     },
     {
       "uid": "org.openmrs.module.allergies-api",
-      "moduleId": "163",
-      "modulePackage":"org.openmrs.module.allergyapi",
+      "moduleId": "allergyapi",
+      "modulePackage": "org.openmrs.module.allergyapi",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Allergies API",
@@ -3684,8 +3684,8 @@
     },
     {
       "uid": "org.openmrs.module.reference-metadata-module",
-      "moduleId": "164",
-      "modulePackage":"org.openmrs.module.referencemetadata",
+      "moduleId": "referencemetadata",
+      "modulePackage": "org.openmrs.module.referencemetadata",
       "type": "OMOD",
       "name": "Reference Metadata Module",
       "maintainers": [
@@ -3708,8 +3708,8 @@
     },
     {
       "uid": "org.openmrs.module.core-apps-module",
-      "moduleId": "165",
-      "modulePackage":"org.openmrs.module.coreapps",
+      "moduleId": "coreapps",
+      "modulePackage": "org.openmrs.module.coreapps",
       "type": "OMOD",
       "name": "Core Apps Module",
       "maintainers": [
@@ -3738,8 +3738,8 @@
     },
     {
       "uid": "org.openmrs.module.reference-demo-data-module",
-      "moduleId": "166",
-      "modulePackage":"org.openmrs.module.referencedemodata",
+      "moduleId": "referencedemodata",
+      "modulePackage": "org.openmrs.module.referencedemodata",
       "type": "OMOD",
       "name": "Reference Demo Data Module",
       "maintainers": [
@@ -3765,8 +3765,8 @@
     },
     {
       "uid": "org.openmrs.module.reference-application-module",
-      "moduleId": "167",
-      "modulePackage":"org.openmrs.module.referenceapplication",
+      "moduleId": "referenceapplication",
+      "modulePackage": "org.openmrs.module.referenceapplication",
       "type": "OMOD",
       "name": "Reference Application Module",
       "maintainers": [
@@ -3786,8 +3786,8 @@
     },
     {
       "uid": "org.openmrs.module.complex-data-to-db-module",
-      "moduleId": "168",
-      "modulePackage":"org.openmrs.module.complexdatadb",
+      "moduleId": "complexdatadb",
+      "modulePackage": "org.openmrs.module.complexdatadb",
       "type": "OMOD",
       "name": "Complex Data To DB Module",
       "maintainers": [
@@ -3804,8 +3804,8 @@
     },
     {
       "uid": "org.openmrs.module.printer-module",
-      "moduleId": "169",
-      "modulePackage":"org.openmrs.module.printer",
+      "moduleId": "printer",
+      "modulePackage": "org.openmrs.module.printer",
       "type": "OMOD",
       "name": "Printer Module",
       "maintainers": [
@@ -3822,8 +3822,8 @@
     },
     {
       "uid": "org.openmrs.module.rest-module",
-      "moduleId": "170",
-      "modulePackage":"org.openmrs.module.restmodule",
+      "moduleId": "restmodule",
+      "modulePackage": "org.openmrs.module.restmodule",
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "REST Module",
@@ -3841,8 +3841,8 @@
     },
     {
       "uid": "org.openmrs.module.media-viewer-module",
-      "moduleId": "171",
-      "modulePackage":"org.openmrs.module.flashmediaviewer",
+      "moduleId": "flashmediaviewer",
+      "modulePackage": "org.openmrs.module.flashmediaviewer",
       "type": "OMOD",
       "name": "Media Viewer Module",
       "maintainers": [
@@ -3859,8 +3859,8 @@
     },
     {
       "uid": "org.openmrs.module.moca-module",
-      "moduleId": "172",
-      "modulePackage":"org.moca",
+      "moduleId": "moca",
+      "modulePackage": "org.moca",
       "type": "OMOD",
       "name": "Moca Module",
       "maintainers": [
@@ -3877,8 +3877,8 @@
     },
     {
       "uid": "org.openmrs.module.data-exchange-module",
-      "moduleId": "173",
-      "modulePackage":"org.openmrs.module.dataexchange",
+      "moduleId": "dataexchange",
+      "modulePackage": "org.openmrs.module.dataexchange",
       "type": "OMOD",
       "name": "Data Exchange Module",
       "maintainers": [
@@ -3895,8 +3895,8 @@
     },
     {
       "uid": "org.openmrs.module.concept-review-module",
-      "moduleId": "174",
-      "modulePackage":"org.openmrs.module.conceptreview",
+      "moduleId": "conceptreview",
+      "modulePackage": "org.openmrs.module.conceptreview",
       "type": "OMOD",
       "name": "Concept Review Module",
       "maintainers": [
@@ -3916,8 +3916,8 @@
     },
     {
       "uid": "org.openmrs.module.appointment-scheduling-ui-module",
-      "moduleId": "175",
-      "modulePackage":"org.openmrs.module.appointmentschedulingui",
+      "moduleId": "appointmentschedulingui",
+      "modulePackage": "org.openmrs.module.appointmentschedulingui",
       "type": "OMOD",
       "name": "Appointment Scheduling UI Module",
       "maintainers": [
@@ -3937,8 +3937,8 @@
     },
     {
       "uid": "org.openmrs.module.registration-core-module",
-      "moduleId": "176",
-      "modulePackage":"org.openmrs.module.registrationcore",
+      "moduleId": "registrationcore",
+      "modulePackage": "org.openmrs.module.registrationcore",
       "type": "OMOD",
       "name": "Registration Core Module",
       "maintainers": [
@@ -3958,8 +3958,8 @@
     },
     {
       "uid": "org.openmrs.module.registration-app-module",
-      "moduleId": "177",
-      "modulePackage":"org.openmrs.module.registrationapp",
+      "moduleId": "registrationapp",
+      "modulePackage": "org.openmrs.module.registrationapp",
       "type": "OMOD",
       "name": "Registration App Module",
       "maintainers": [
@@ -3979,8 +3979,8 @@
     },
     {
       "uid": "org.openmrs.module.blood-bank-module-module",
-      "moduleId": "178",
-      "modulePackage":"org.openmrs.module.bloodbank",
+      "moduleId": "bloodbank",
+      "modulePackage": "org.openmrs.module.bloodbank",
       "type": "OMOD",
       "name": "Blood Bank Module Module",
       "maintainers": [
@@ -3997,8 +3997,8 @@
     },
     {
       "uid": "org.openmrs.module.dhis2-reporting-module",
-      "moduleId": "179",
-      "modulePackage":"org.openmrs.module.dhisreport",
+      "moduleId": "dhisreport",
+      "modulePackage": "org.openmrs.module.dhisreport",
       "type": "OMOD",
       "name": "DHIS2 Reporting Module",
       "maintainers": [
@@ -4015,8 +4015,8 @@
     },
     {
       "uid": "org.openmrs.module.openmrs-fhir-module",
-      "moduleId": "180",
-      "modulePackage":"org.openmrs.module.fhir",
+      "moduleId": "fhir",
+      "modulePackage": "org.openmrs.module.fhir",
       "type": "OMOD",
       "name": "OpenMRS FHIR Module",
       "maintainers": [
@@ -4033,8 +4033,8 @@
     },
     {
       "uid": "org.openmrs.module.open-concept-lab",
-      "moduleId": "181",
-      "modulePackage":"org.openmrs.module.openconceptlab",
+      "moduleId": "openconceptlab",
+      "modulePackage": "org.openmrs.module.openconceptlab",
       "type": "OMOD",
       "name": "Open Concept Lab",
       "maintainers": [
@@ -4051,8 +4051,8 @@
     },
     {
       "uid": "org.openmrs.module.reporting-ui-module",
-      "moduleId": "182",
-      "modulePackage":"org.openmrs.module.reportingui",
+      "moduleId": "reportingui",
+      "modulePackage": "org.openmrs.module.reportingui",
       "type": "OMOD",
       "name": "Reporting UI Module",
       "maintainers": [
@@ -4075,8 +4075,8 @@
     },
     {
       "uid": "org.openmrs.module.visit-notes-analysis-module",
-      "moduleId": "183",
-      "modulePackage":"org.openmrs.module.bannerprototype",
+      "moduleId": "bannerprototype",
+      "modulePackage": "org.openmrs.module.bannerprototype",
       "type": "OMOD",
       "name": "Visit Notes Analysis Module",
       "maintainers": [
@@ -4093,8 +4093,8 @@
     },
     {
       "uid": "org.openmrs.module.data-import-tool",
-      "moduleId": "184",
-      "modulePackage":"org.openmrs.module.dataimporttool",
+      "moduleId": "dataimporttool",
+      "modulePackage": "org.openmrs.module.dataimporttool",
       "type": "OMOD",
       "name": "Data Import Tool",
       "maintainers": [
@@ -4111,8 +4111,8 @@
     },
     {
       "uid": "org.openmrs.module.allergy-ui-module",
-      "moduleId": "185",
-      "modulePackage":"org.openmrs.module.allergyui",
+      "moduleId": "allergyui",
+      "modulePackage": "org.openmrs.module.allergyui",
       "type": "OMOD",
       "name": "Allergy UI Module",
       "maintainers": [
@@ -4129,8 +4129,8 @@
     },
     {
       "uid": "org.openmrs.module.admin-ui-module",
-      "moduleId": "186",
-      "modulePackage":"org.openmrs.module.adminui",
+      "moduleId": "adminui",
+      "modulePackage": "org.openmrs.module.adminui",
       "type": "OMOD",
       "name": "Admin UI Module",
       "maintainers": [
@@ -4159,8 +4159,8 @@
     },
     {
       "uid": "org.openmrs.module.cas-authentication",
-      "moduleId": "187",
-      "modulePackage":"org.openmrs.module.casauth",
+      "moduleId": "casauth",
+      "modulePackage": "org.openmrs.module.casauth",
       "type": "OMOD",
       "name": "CAS Authentication",
       "maintainers": [
@@ -4177,8 +4177,8 @@
     },
     {
       "uid": "org.openmrs.module.open-web-apps-module",
-      "moduleId": "188",
-      "modulePackage":"org.openmrs.module.owa",
+      "moduleId": "owa",
+      "modulePackage": "org.openmrs.module.owa",
       "type": "OMOD",
       "name": "Open Web Apps Module",
       "maintainers": [
@@ -4201,8 +4201,8 @@
     },
     {
       "uid": "org.openmrs.module.omod-export-module",
-      "moduleId": "189",
-      "modulePackage":"org.openmrs.module.omodexport",
+      "moduleId": "omodexport",
+      "modulePackage": "org.openmrs.module.omodexport",
       "type": "OMOD",
       "name": "Omod Export Module",
       "maintainers": [
@@ -4219,8 +4219,8 @@
     },
     {
       "uid": "org.openmrs.module.ebola-example-module",
-      "moduleId": "190",
-      "modulePackage":"org.openmrs.module.ebolaexample",
+      "moduleId": "ebolaexample",
+      "modulePackage": "org.openmrs.module.ebolaexample",
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Ebola Example Module",
@@ -4238,8 +4238,8 @@
     },
     {
       "uid": "org.openmrs.module.legacy-ui-module",
-      "moduleId": "191",
-      "modulePackage":"org.openmrs.module.legacyui",
+      "moduleId": "legacyui",
+      "modulePackage": "org.openmrs.module.legacyui",
       "type": "OMOD",
       "name": "Legacy UI Module",
       "maintainers": [
@@ -4262,8 +4262,8 @@
     },
     {
       "uid": "org.openmrs.module.radiology-app-module",
-      "moduleId": "192",
-      "modulePackage":"org.openmrs.module.radiologyapp",
+      "moduleId": "radiologyapp",
+      "modulePackage": "org.openmrs.module.radiologyapp",
       "type": "OMOD",
       "name": "Radiology App Module",
       "maintainers": [
@@ -4280,8 +4280,8 @@
     },
     {
       "uid": "org.openmrs.module.paper-record-management-module",
-      "moduleId": "193",
-      "modulePackage":"org.openmrs.module.paperrecord",
+      "moduleId": "paperrecord",
+      "modulePackage": "org.openmrs.module.paperrecord",
       "type": "OMOD",
       "name": "Paper Record Management Module",
       "maintainers": [
@@ -4298,8 +4298,8 @@
     },
     {
       "uid": "org.openmrs.module.dispensing-module",
-      "moduleId": "194",
-      "modulePackage":"org.openmrs.module.dispensing",
+      "moduleId": "dispensing",
+      "modulePackage": "org.openmrs.module.dispensing",
       "type": "OMOD",
       "name": "Dispensing Module",
       "maintainers": [
@@ -4316,8 +4316,8 @@
     },
     {
       "uid": "org.openmrs.module.xreports",
-      "moduleId": "195",
-      "modulePackage":"org.openmrs.module.xreports",
+      "moduleId": "xreports",
+      "modulePackage": "org.openmrs.module.xreports",
       "type": "OMOD",
       "name": "XReports",
       "maintainers": [
@@ -4334,8 +4334,8 @@
     },
     {
       "uid": "org.openmrs.module.audit-log-module",
-      "moduleId": "196",
-      "modulePackage":"org.openmrs.module.auditlog",
+      "moduleId": "auditlog",
+      "modulePackage": "org.openmrs.module.auditlog",
       "type": "OMOD",
       "name": "Audit Log Module",
       "maintainers": [
@@ -4352,8 +4352,8 @@
     },
     {
       "uid": "org.openmrs.module.dermatology-lesionmapper",
-      "moduleId": "197",
-      "modulePackage":"org.openmrs.module.skinhelpdesk",
+      "moduleId": "skinhelpdesk",
+      "modulePackage": "org.openmrs.module.skinhelpdesk",
       "type": "OMOD",
       "name": "Dermatology LesionMapper",
       "maintainers": [
@@ -4370,8 +4370,8 @@
     },
     {
       "uid": "org.openmrs.module.clinical-images",
-      "moduleId": "198",
-      "modulePackage":"org.openmrs.module.dermimage",
+      "moduleId": "dermimage",
+      "modulePackage": "org.openmrs.module.dermimage",
       "type": "OMOD",
       "name": "Clinical Images",
       "maintainers": [
@@ -4388,8 +4388,8 @@
     },
     {
       "uid": "org.openmrs.module.nuform",
-      "moduleId": "199",
-      "modulePackage":"org.openmrs.module.nuform",
+      "moduleId": "nuform",
+      "modulePackage": "org.openmrs.module.nuform",
       "type": "OMOD",
       "name": "NuForm",
       "maintainers": [
@@ -4406,8 +4406,8 @@
     },
     {
       "uid": "org.openmrs.module.openmrs-module-ncd-1",
-      "moduleId": "200",
-      "modulePackage":"org.openmrs.module.ncd",
+      "moduleId": "ncd",
+      "modulePackage": "org.openmrs.module.ncd",
       "type": "OMOD",
       "name": "openmrs-module-ncd",
       "maintainers": [
@@ -4424,8 +4424,8 @@
     },
     {
       "uid": "org.openmrs.module.emr-monitor-module",
-      "moduleId": "201",
-      "modulePackage":"org.openmrs.module.emrmonitor",
+      "moduleId": "emrmonitor",
+      "modulePackage": "org.openmrs.module.emrmonitor",
       "type": "OMOD",
       "name": "Emr Monitor Module",
       "maintainers": [
@@ -4442,8 +4442,8 @@
     },
     {
       "uid": "org.openmrs.module.visit-documents-ui",
-      "moduleId": "202",
-      "modulePackage":"org.openmrs.module.visitdocumentsui",
+      "moduleId": "visitdocumentsui",
+      "modulePackage": "org.openmrs.module.visitdocumentsui",
       "type": "OMOD",
       "name": "Visit Documents UI",
       "maintainers": [
