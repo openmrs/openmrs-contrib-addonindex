@@ -31,6 +31,10 @@ public class AddOnInfoAndVersions {
 	
 	@JestId
 	private String uid;
+
+    private String modulePackage;
+
+    private String moduleId;
 	
 	private AddOnStatus status;
 	
@@ -53,6 +57,8 @@ public class AddOnInfoAndVersions {
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
 		ret.setUid(toIndex.getUid());
+		ret.setModulePackage(toIndex.getModulePackage());
+		ret.setModuleId(toIndex.getModuleId());
 		ret.setStatus(toIndex.getStatus());
 		ret.setName(toIndex.getName());
 		ret.setDescription(toIndex.getDescription());
@@ -83,6 +89,22 @@ public class AddOnInfoAndVersions {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
+
+    public String getModulePackage() {
+        return modulePackage;
+    }
+
+    public void setModulePackage(String modulePackage) {
+        this.modulePackage = modulePackage;
+    }
+
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
 	
 	public AddOnStatus getStatus() {
 		return status;

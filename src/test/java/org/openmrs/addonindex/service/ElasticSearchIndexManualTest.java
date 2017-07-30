@@ -1,13 +1,11 @@
 package org.openmrs.addonindex.service;
 
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-
-import java.util.Collection;
-
+import io.searchbox.client.JestClient;
+import io.searchbox.core.Search;
+import io.searchbox.core.SearchResult;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import io.searchbox.client.JestClient;
-import io.searchbox.core.Search;
-import io.searchbox.core.SearchResult;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * This test will write to your live elasticsearch database
@@ -47,6 +50,8 @@ public class ElasticSearchIndexManualTest {
 		
 		AddOnInfoAndVersions a = new AddOnInfoAndVersions();
 		a.setUid("testing-module");
+        a.setModulePackage("testing-mod");
+        a.setModuleId("1");
 		a.setType(AddOnType.OMOD);
 		a.setName("Testing ES");
 		a.setDescription("This is a test");
@@ -77,6 +82,29 @@ public class ElasticSearchIndexManualTest {
 			System.out.println(s);
 		}
 	}
+
+    @Test
+    public void testGetByModulePackage() throws Exception {
+        SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+                .size(1)
+                .query(QueryBuilders.matchQuery("modulePackage", "testing-mod")).toString())
+                .addIndex(AddOnInfoAndVersions.ES_INDEX)
+                .build());
+        SearchResult resultNotFound = client.execute(new Search.Builder(new SearchSourceBuilder()
+                .size(1)
+                .query(QueryBuilders.matchQuery("modulePackage", "fake-mod")).toString())
+                .addIndex(AddOnInfoAndVersions.ES_INDEX)
+                .build());
+        List<AddOnInfoAndVersions> searchResult = result.getHits(AddOnInfoAndVersions.class).stream()
+                .map(sr -> sr.source)
+                .collect(Collectors.toList());
+        List<AddOnInfoAndVersions> searchResultNotFound = resultNotFound.getHits(AddOnInfoAndVersions.class).stream()
+                .map(sr -> sr.source)
+                .collect(Collectors.toList());
+        assertNotNull(searchResult);
+        assertThat(searchResultNotFound, IsEmptyCollection.empty());
+        System.out.println("Module Package Name: "+searchResult.get(0).getModulePackage());
+    }
 
 	@Test
 	public void testTag() throws Exception {
