@@ -25,10 +25,6 @@ public class AddOnToIndex {
 	
 	private String uid;
 
-    private String modulePackage;
-
-    private String moduleId;
-	
 	private AddOnStatus status;
 	
 	private AddOnType type;
@@ -59,22 +55,6 @@ public class AddOnToIndex {
 		this.uid = uid;
 	}
 
-    public String getModulePackage() {
-        return modulePackage;
-    }
-
-    public void setModulePackage(String modulePackage) {
-        this.modulePackage = modulePackage;
-    }
-
-    public String getModuleId() {
-        return moduleId;
-    }
-
-    public void setModuleId(String moduleId) {
-        this.moduleId = moduleId;
-    }
-	
 	public AddOnStatus getStatus() {
 		return status;
 	}
@@ -106,7 +86,7 @@ public class AddOnToIndex {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getIcon() {
 		return icon;
 	}

@@ -1,6 +1,12 @@
 {
   "add_on_info_and_versions": {
     "properties": {
+      "moduleId": {
+        "type": "keyword"
+      },
+      "modulePackage": {
+        "type": "keyword"
+      },
       "type": {
         "type": "keyword"
       },

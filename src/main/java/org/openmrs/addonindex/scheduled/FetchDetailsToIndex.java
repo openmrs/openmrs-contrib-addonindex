@@ -123,9 +123,8 @@ public class FetchDetailsToIndex {
 	}
 	
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
-        boolean idAndPackageSet;
+        boolean alreadySetIdAndPackage = false;
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
-		idAndPackageSet = false;
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
 			AddOnVersion version = iter.next();
 			if (existingInfo != null) {
@@ -148,8 +147,8 @@ public class FetchDetailsToIndex {
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
-						handleConfigXml(configXml, version, infoAndVersions, idAndPackageSet);
-						idAndPackageSet = true;
+						handleConfigXml(configXml, version, infoAndVersions, alreadySetIdAndPackage);
+						alreadySetIdAndPackage = true;
 					}
 				}
 			}
@@ -178,7 +177,7 @@ public class FetchDetailsToIndex {
 	}
 	
 	void handleConfigXml(String configXml, AddOnVersion addOnVersion,
-                         AddOnInfoAndVersions addOnInfoAndVersions, Boolean idAndPackageSetStatus) throws Exception {
+                         AddOnInfoAndVersions addOnInfoAndVersions, boolean setModuleIdAndPackage) throws Exception {
 		// sometimes this says something like <!DOCTYPE ... "../lib-common/config-1.0.dtd">
 		// we don't need DTD validation in any case
 		configXml = configXml.replaceAll("<!DOCTYPE .*?>", "");
@@ -188,7 +187,8 @@ public class FetchDetailsToIndex {
 		handleRequireOpenmrsVersion(addOnVersion, xpath, config);
 		handleRequireModules(addOnVersion, xpath, config);
 		handleSupportedLanguages(addOnVersion, xpath, config);
-		if (!idAndPackageSetStatus){
+		if (!setModuleIdAndPackage){
+		    //The module versions are already sorted such that latest version is fetched first
 		    handleModuleIdAndPackage(addOnInfoAndVersions, xpath, config);
         }
 	}
@@ -230,7 +230,6 @@ public class FetchDetailsToIndex {
 
 	private void  handleModuleIdAndPackage(AddOnInfoAndVersions addOnInfoAndVersions, XPath xpath,
                                            Document config) throws XPathExpressionException{
-	    logger.info("Setting Info Hopefully Once");
         Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
         Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
         if (StringUtils.hasText((String) modulePackage)) {

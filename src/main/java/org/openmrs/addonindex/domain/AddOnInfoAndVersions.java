@@ -57,8 +57,6 @@ public class AddOnInfoAndVersions {
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
 		ret.setUid(toIndex.getUid());
-		ret.setModulePackage(toIndex.getModulePackage());
-		ret.setModuleId(toIndex.getModuleId());
 		ret.setStatus(toIndex.getStatus());
 		ret.setName(toIndex.getName());
 		ret.setDescription(toIndex.getDescription());
