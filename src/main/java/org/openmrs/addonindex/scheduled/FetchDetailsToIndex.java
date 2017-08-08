@@ -125,6 +125,7 @@ public class FetchDetailsToIndex {
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
         boolean alreadySetIdAndPackage = false;
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
+
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
 			AddOnVersion version = iter.next();
 			if (existingInfo != null) {

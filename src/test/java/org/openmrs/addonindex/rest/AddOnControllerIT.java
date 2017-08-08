@@ -75,35 +75,33 @@ public class AddOnControllerIT {
 				entity.getBody(), false);
 	}
 
-    @Test
-    public void getByModulePackage() throws Exception{
-	    ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?&modulePackage=org.openmrs.module.reporting-module",
-                String.class);
-        assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-        JSONAssert.assertEquals("{uid:\"reporting-module\","
-                        + "\"modulePackage\":org.openmrs.module.reporting-module,"
-                        + "\"moduleId\":\"1\","
-                        + "name:\"Reporting Module\","
-                        + "description:\"For reporting\","
-                        + "versionCount:1,"
-                        + "latestVersion:\"1.0\","
-                        + "versions:[{"
-                        + "version:\"1.0\","
-                        + "releaseDatetime:\"2016-09-12T18:51:14.574Z\","
-                        + "downloadUri:\"http://www.google.com\""
-                        + "}]}",
-                entity.getBody(), false);
+	@Test
+	public void getByModulePackage() throws Exception{
+		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?&modulePackage=org.openmrs.module.reporting-module",
+				String.class);
+		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+		JSONAssert.assertEquals("{uid:\"reporting-module\","
+						+ "\"modulePackage\":org.openmrs.module.reporting-module,"
+						+ "\"moduleId\":\"1\","
+						+ "name:\"Reporting Module\","
+						+ "description:\"For reporting\","
+						+ "versionCount:1,"
+						+ "latestVersion:\"1.0\","
+						+ "versions:[{"
+						+ "version:\"1.0\","
+						+ "releaseDatetime:\"2016-09-12T18:51:14.574Z\","
+						+ "downloadUri:\"http://www.google.com\""
+						+ "}]}",
+				entity.getBody(), false);
+	}
 
-
-    }
-
-    @Test
-    public void getByModulePackageNotFound() throws Exception {
-        ResponseEntity<String> entity = testRestTemplate.getForEntity(
-                "http://localhost:" + port + "/api/v1/addon?&modulePackage=fake-module",
-                String.class);
-        assertThat(entity.getStatusCode(), is(HttpStatus.NOT_FOUND));
-    }
+	@Test
+	public void getByModulePackageNotFound() throws Exception {
+		ResponseEntity<String> entity = testRestTemplate.getForEntity(
+				"http://localhost:" + port + "/api/v1/addon?&modulePackage=fake-module",
+				String.class);
+		assertThat(entity.getStatusCode(), is(HttpStatus.NOT_FOUND));
+	}
 
 	@Test
 	public void getOneNotFound() throws Exception {

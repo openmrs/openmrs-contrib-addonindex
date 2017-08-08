@@ -19,7 +19,7 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForLanguages() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-        AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
 		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version, addOnInfoAndVersions, true);
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
 		assertThat(version.getRequireModules(), nullValue());
@@ -55,16 +55,16 @@ public class FetchDetailsToIndexTest {
 	}
 
     @Test
-    public void testParsingConfigXmlForSettingModulePackageAndId() throws Exception {
-        FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
-        AddOnVersion version = new AddOnVersion();
-        AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-        task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, false);
-        assertThat(addOnInfoAndVersions.getModulePackage(), is("org.openmrs.module.mdrtb"));
-        assertThat(addOnInfoAndVersions.getModuleId(), is("mdrtb"));
-    }
-	
-	@Test
+	public void testParsingConfigXmlForSettingModulePackageAndId() throws Exception {
+	    FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+	    AddOnVersion version = new AddOnVersion();
+	    AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+	    task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, false);
+	    assertThat(addOnInfoAndVersions.getModulePackage(), is("org.openmrs.module.mdrtb"));
+	    assertThat(addOnInfoAndVersions.getModuleId(), is("mdrtb"));
+	}
+
+    @Test
 	public void testParsingWithDoctypeRelativePath() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();

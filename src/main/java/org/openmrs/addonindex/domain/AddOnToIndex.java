@@ -58,7 +58,7 @@ public class AddOnToIndex {
 	public AddOnStatus getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(AddOnStatus status) {
 		this.status = status;
 	}

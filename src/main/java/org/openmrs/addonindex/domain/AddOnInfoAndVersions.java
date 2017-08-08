@@ -32,10 +32,10 @@ public class AddOnInfoAndVersions {
 	@JestId
 	private String uid;
 
-    private String modulePackage;
+	private String modulePackage;
 
-    private String moduleId;
-	
+	private String moduleId;
+
 	private AddOnStatus status;
 	
 	private AddOnType type;
@@ -88,22 +88,22 @@ public class AddOnInfoAndVersions {
 		this.uid = uid;
 	}
 
-    public String getModulePackage() {
-        return modulePackage;
-    }
+	public String getModulePackage() {
+		return modulePackage;
+	}
 
-    public void setModulePackage(String modulePackage) {
-        this.modulePackage = modulePackage;
-    }
+	public void setModulePackage(String modulePackage) {
+		this.modulePackage = modulePackage;
+	}
 
-    public String getModuleId() {
-        return moduleId;
-    }
+	public String getModuleId() {
+		return moduleId;
+	}
 
-    public void setModuleId(String moduleId) {
-        this.moduleId = moduleId;
-    }
-	
+	public void setModuleId(String moduleId) {
+		this.moduleId = moduleId;
+	}
+
 	public AddOnStatus getStatus() {
 		return status;
 	}

@@ -50,8 +50,8 @@ public class ElasticSearchIndexManualTest {
 		
 		AddOnInfoAndVersions a = new AddOnInfoAndVersions();
 		a.setUid("testing-module");
-        a.setModulePackage("testing-mod");
-        a.setModuleId("1");
+		a.setModulePackage("testing-mod");
+		a.setModuleId("1");
 		a.setType(AddOnType.OMOD);
 		a.setName("Testing ES");
 		a.setDescription("This is a test");
@@ -83,28 +83,28 @@ public class ElasticSearchIndexManualTest {
 		}
 	}
 
-    @Test
-    public void testGetByModulePackage() throws Exception {
-        SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
-                .size(1)
-                .query(QueryBuilders.matchQuery("modulePackage", "testing-mod")).toString())
-                .addIndex(AddOnInfoAndVersions.ES_INDEX)
-                .build());
-        SearchResult resultNotFound = client.execute(new Search.Builder(new SearchSourceBuilder()
-                .size(1)
-                .query(QueryBuilders.matchQuery("modulePackage", "fake-mod")).toString())
-                .addIndex(AddOnInfoAndVersions.ES_INDEX)
-                .build());
-        List<AddOnInfoAndVersions> searchResult = result.getHits(AddOnInfoAndVersions.class).stream()
-                .map(sr -> sr.source)
-                .collect(Collectors.toList());
-        List<AddOnInfoAndVersions> searchResultNotFound = resultNotFound.getHits(AddOnInfoAndVersions.class).stream()
-                .map(sr -> sr.source)
-                .collect(Collectors.toList());
-        assertNotNull(searchResult);
-        assertThat(searchResultNotFound, IsEmptyCollection.empty());
-        System.out.println("Module Package Name: "+searchResult.get(0).getModulePackage());
-    }
+	@Test
+	public void testGetByModulePackage() throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(1)
+				.query(QueryBuilders.matchQuery("modulePackage", "testing-mod")).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		SearchResult resultNotFound = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(1)
+				.query(QueryBuilders.matchQuery("modulePackage", "fake-mod")).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		List<AddOnInfoAndVersions> searchResult = result.getHits(AddOnInfoAndVersions.class).stream()
+				.map(sr -> sr.source)
+				.collect(Collectors.toList());
+		List<AddOnInfoAndVersions> searchResultNotFound = resultNotFound.getHits(AddOnInfoAndVersions.class).stream()
+				.map(sr -> sr.source)
+				.collect(Collectors.toList());
+		assertNotNull(searchResult);
+		assertThat(searchResultNotFound, IsEmptyCollection.empty());
+		System.out.println("Module Package Name: "+searchResult.get(0).getModulePackage());
+	}
 
 	@Test
 	public void testTag() throws Exception {
