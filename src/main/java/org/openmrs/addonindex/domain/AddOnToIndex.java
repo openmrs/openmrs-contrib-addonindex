@@ -24,7 +24,7 @@ import org.openmrs.addonindex.backend.ModulusModuleDetails;
 public class AddOnToIndex {
 	
 	private String uid;
-	
+
 	private AddOnStatus status;
 	
 	private AddOnType type;
@@ -54,11 +54,11 @@ public class AddOnToIndex {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	
+
 	public AddOnStatus getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(AddOnStatus status) {
 		this.status = status;
 	}
@@ -86,7 +86,7 @@ public class AddOnToIndex {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public String getIcon() {
 		return icon;
 	}

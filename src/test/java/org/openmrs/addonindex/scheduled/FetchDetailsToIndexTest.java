@@ -10,6 +10,7 @@ import static org.junit.Assert.assertThat;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import org.junit.Test;
+import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnVersion;
 
 public class FetchDetailsToIndexTest {
@@ -18,7 +19,8 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForLanguages() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version);
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version, addOnInfoAndVersions, true);
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
 		assertThat(version.getRequireModules(), nullValue());
 		assertThat(version.getSupportedLanguages(), contains("en", "fr", "de"));
@@ -28,7 +30,8 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForRequiredOpenmrsVersion() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version);
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version, addOnInfoAndVersions, true);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules(), nullValue());
 	}
@@ -37,7 +40,8 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForRequiredModuleVersion() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version);
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version, addOnInfoAndVersions, true);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules().size(), is(2));
 		assertThat(version.getRequireModules(), hasItem(allOf(
@@ -49,12 +53,23 @@ public class FetchDetailsToIndexTest {
 				hasProperty("version", is("?"))
 		)));
 	}
-	
-	@Test
+
+    @Test
+	public void testParsingConfigXmlForSettingModulePackageAndId() throws Exception {
+	    FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+	    AddOnVersion version = new AddOnVersion();
+	    AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+	    task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, false);
+	    assertThat(addOnInfoAndVersions.getModulePackage(), is("org.openmrs.module.mdrtb"));
+	    assertThat(addOnInfoAndVersions.getModuleId(), is("mdrtb"));
+	}
+
+    @Test
 	public void testParsingWithDoctypeRelativePath() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, true);
 		// just test that we could parse at all
 	}
 	
@@ -62,7 +77,8 @@ public class FetchDetailsToIndexTest {
 	public void testParsingWithCommentedDoctype() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version);
+		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
+		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version, addOnInfoAndVersions, true);
 		// just test that we could parse at all
 	}
 }

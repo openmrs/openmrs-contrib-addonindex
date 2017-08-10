@@ -41,6 +41,12 @@ public class AddOnController {
 						   @RequestParam(value = "tag", required = false) String tag) throws Exception {
 		return index.search(type, query, tag);
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")
+	public ResponseEntity<AddOnInfoAndVersions> getByModulePackage(@RequestParam(value = "modulePackage") String modulePackage) throws Exception {
+		AddOnInfoAndVersions addOn = index.getByModulePackage(modulePackage);
+		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")
 	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) throws Exception {

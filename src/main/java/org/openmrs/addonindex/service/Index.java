@@ -28,6 +28,8 @@ public interface Index {
 	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;
 	
 	Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception;
+
+	AddOnInfoAndVersions getByModulePackage(String modulePackage) throws Exception;
 	
 	AddOnInfoAndVersions getByUid(String uid) throws Exception;
 }
