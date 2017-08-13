@@ -34,9 +34,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "1"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "accesslogging"
       }
     },
     {
@@ -48,9 +50,11 @@
           "name": "pcorces"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "2"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "addgutteritem"
       }
     },
     {
@@ -71,9 +75,11 @@
           "name": "machosry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "3"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "addresshierarchy"
       }
     },
     {
@@ -88,9 +94,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "4"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "addresshierarchyrwanda"
       }
     },
     {
@@ -111,9 +119,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "5"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "appframework"
       }
     },
     {
@@ -129,9 +139,11 @@
           "name": "gakyves"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "6"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "appointment"
       }
     },
     {
@@ -152,9 +164,11 @@
           "name": "Yonatan Grinberg"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "7"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "appointmentscheduling"
       }
     },
     {
@@ -172,9 +186,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "8"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "appui"
       }
     },
     {
@@ -192,9 +208,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "9"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "atd"
       }
     },
     {
@@ -218,9 +236,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "10"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "atlas"
       }
     },
     {
@@ -232,9 +252,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "11"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "atomfeed"
       }
     },
     {
@@ -256,9 +278,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "12"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "backports14x"
       }
     },
     {
@@ -274,9 +298,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "14"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "birt"
       }
     },
     {
@@ -297,9 +323,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "15"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "calculation"
       }
     },
     {
@@ -311,9 +339,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "16"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "chica"
       }
     },
     {
@@ -325,9 +355,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "17"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "chirdlutil"
       }
     },
     {
@@ -339,9 +371,11 @@
           "name": "sjmckee"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "18"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "chirdlutilbackports"
       }
     },
     {
@@ -353,9 +387,11 @@
           "name": "ajanthan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "19"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "cleaningvoided"
       }
     },
     {
@@ -370,9 +406,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "20"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "clinicalsummary"
       }
     },
     {
@@ -388,9 +426,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "21"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "comparelists"
       }
     },
     {
@@ -402,9 +442,11 @@
           "name": "jenn"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "22"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "conceptmanagementapps"
       }
     },
     {
@@ -419,9 +461,11 @@
           "name": "peichenauer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "23"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "conceptsearch"
       }
     },
     {
@@ -439,9 +483,11 @@
           "name": "Gil Azaria"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "24"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "cpm"
       }
     },
     {
@@ -453,9 +499,11 @@
           "name": "Saptarshi Purkayastha"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "25"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "custombranding"
       }
     },
     {
@@ -473,9 +521,11 @@
           "name": "bmamlin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "26"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "custommessage"
       }
     },
     {
@@ -487,9 +537,11 @@
           "name": "Joaquin Blaya"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "27"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dashboardframe"
       }
     },
     {
@@ -513,9 +565,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "28"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "databasebackup"
       }
     },
     {
@@ -533,9 +587,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "29"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "databasemessages"
       }
     },
     {
@@ -556,9 +612,11 @@
           "name": "syhaas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "30"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "datadeletion"
       }
     },
     {
@@ -576,9 +634,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "31"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dataentrystatistics"
       }
     },
     {
@@ -599,9 +659,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "32"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dataintegrity"
       }
     },
     {
@@ -616,9 +678,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "33"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dhismodule"
       }
     },
     {
@@ -630,9 +694,11 @@
           "name": "Keelhaul"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "34"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "diabetesmanagement"
       }
     },
     {
@@ -651,9 +717,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "35"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "doubleentryreconciliation"
       }
     },
     {
@@ -665,9 +733,11 @@
           "name": "pushkar"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "36"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "drawing"
       }
     },
     {
@@ -679,9 +749,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "37"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dss"
       }
     },
     {
@@ -702,9 +774,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "38"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "emrapi"
       }
     },
     {
@@ -716,9 +790,11 @@
           "name": "A.Medhat"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "39"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "ermodule"
       }
     },
     {
@@ -739,9 +815,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "40"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "event"
       }
     },
     {
@@ -753,9 +831,11 @@
           "name": "deepaganu"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "41"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "exportccd"
       }
     },
     {
@@ -767,9 +847,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "42"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "facilitydata"
       }
     },
     {
@@ -787,9 +869,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "43"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "feedback"
       }
     },
     {
@@ -801,9 +885,11 @@
           "name": "tgreensweig"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "44"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "filebrowser"
       }
     },
     {
@@ -837,9 +923,11 @@
           "name": "bmamlin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "45"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "flowsheet"
       }
     },
     {
@@ -858,9 +946,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "46"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "form2program"
       }
     },
     {
@@ -881,9 +971,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "47"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "formdataexport"
       }
     },
     {
@@ -913,9 +1005,11 @@
           "name": "bmamlin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "48"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "formentry"
       }
     },
     {
@@ -927,9 +1021,11 @@
           "name": "goutham"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "49"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "formfilter"
       }
     },
     {
@@ -951,9 +1047,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "50"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "formimportexport"
       }
     },
     {
@@ -965,9 +1063,11 @@
           "name": "Pascal"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "51"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "globalpropertyeditor"
       }
     },
     {
@@ -985,9 +1085,11 @@
           "name": "cioan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "52"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "gmapsimageviewer"
       }
     },
     {
@@ -1011,9 +1113,11 @@
           "name": "bmamlin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "53"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "groovy"
       }
     },
     {
@@ -1025,9 +1129,11 @@
           "name": "rcuckovich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "54"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "growthchart"
       }
     },
     {
@@ -1045,9 +1151,11 @@
           "name": "downey"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "55"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "hl7query"
       }
     },
     {
@@ -1068,9 +1176,11 @@
           "name": "mwalo"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "56"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "household"
       }
     },
     {
@@ -1082,9 +1192,11 @@
           "name": "saimanohar"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "57"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "hr"
       }
     },
     {
@@ -1112,9 +1224,11 @@
           "name": "ball"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "58"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "htmlformentry"
       }
     },
     {
@@ -1130,9 +1244,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "59"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "htmlformentry19ext"
       }
     },
     {
@@ -1153,9 +1269,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "60"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "htmlformentryui"
       }
     },
     {
@@ -1173,9 +1291,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "61"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "htmlformflowsheet"
       }
     },
     {
@@ -1199,9 +1319,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "62"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "htmlwidgets"
       }
     },
     {
@@ -1213,9 +1335,11 @@
           "name": "slorenz"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "63"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "i2b2export"
       }
     },
     {
@@ -1230,9 +1354,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "64"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "idcards"
       }
     },
     {
@@ -1251,9 +1377,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "65"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "idgen"
       }
     },
     {
@@ -1266,9 +1394,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "66"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "infopathconverter"
       }
     },
     {
@@ -1281,9 +1411,11 @@
           "name": "Keelhaul"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "67"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "inpatientcare"
       }
     },
     {
@@ -1301,9 +1433,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "68"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "jasperreport"
       }
     },
     {
@@ -1315,9 +1449,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "69"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "jmx"
       }
     },
     {
@@ -1329,9 +1465,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "70"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "kenyadq"
       }
     },
     {
@@ -1346,9 +1484,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "71"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "kenyalab"
       }
     },
     {
@@ -1363,9 +1503,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "72"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "kenyametadatatools"
       }
     },
     {
@@ -1380,9 +1522,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "73"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "kenyaui"
       }
     },
     {
@@ -1406,9 +1550,11 @@
           "name": "bmamlin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "74"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "logic"
       }
     },
     {
@@ -1429,9 +1575,11 @@
           "name": "rzwolinski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "75"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "logicws"
       }
     },
     {
@@ -1446,9 +1594,11 @@
           "name": "rseymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "76"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "logmanager"
       }
     },
     {
@@ -1460,9 +1610,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "77"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mdrtb"
       }
     },
     {
@@ -1483,9 +1635,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "78"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mdrtbpatientchartwidgets"
       }
     },
     {
@@ -1497,9 +1651,11 @@
           "name": "Keelhaul"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "79"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "medicalproblem"
       }
     },
     {
@@ -1511,9 +1667,11 @@
           "name": "jeremy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "80"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "messaging"
       }
     },
     {
@@ -1531,9 +1689,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "81"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "metadatadeploy"
       }
     },
     {
@@ -1548,9 +1708,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "82"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "metadatamapping"
       }
     },
     {
@@ -1571,9 +1733,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "83"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "metadatasharing"
       }
     },
     {
@@ -1591,9 +1755,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "84"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mirthmessaging"
       }
     },
     {
@@ -1605,9 +1771,11 @@
           "name": "longaid"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "85"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "moca"
       }
     },
     {
@@ -1620,9 +1788,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "86"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "moduledistro"
       }
     },
     {
@@ -1637,9 +1807,11 @@
           "name": "Ben Wolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "87"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mrngen"
       }
     },
     {
@@ -1651,9 +1823,11 @@
           "name": "mshana"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "88"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "myfirst"
       }
     },
     {
@@ -1665,9 +1839,11 @@
           "name": "sophiez"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "89"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mypatients"
       }
     },
     {
@@ -1685,9 +1861,11 @@
           "name": "Dave Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "90"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "namephonetics"
       }
     },
     {
@@ -1708,9 +1886,11 @@
           "name": "suho"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "91"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "ncd"
       }
     },
     {
@@ -1729,9 +1909,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "92"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "nealreporting"
       }
     },
     {
@@ -1744,9 +1926,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "93"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "obsgroupexport"
       }
     },
     {
@@ -1764,9 +1948,11 @@
           "name": "kevjay"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "94"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "odamocklogicws"
       }
     },
     {
@@ -1778,9 +1964,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "95"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "omodreloader"
       }
     },
     {
@@ -1795,9 +1983,11 @@
           "name": "mario"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "96"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "backboneforms"
       }
     },
     {
@@ -1812,9 +2002,11 @@
           "name": "mario"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "97"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "openhmis.cashier"
       }
     },
     {
@@ -1829,9 +2021,11 @@
           "name": "mario"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "98"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "openhmis.commons"
       }
     },
     {
@@ -1843,9 +2037,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "99"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "orderextension"
       }
     },
     {
@@ -1858,9 +2054,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "100"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientchartwidgets"
       }
     },
     {
@@ -1872,9 +2070,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "101"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientflags"
       }
     },
     {
@@ -1886,9 +2086,11 @@
           "name": "Saptarshi Purkayastha"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "102"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientimage"
       }
     },
     {
@@ -1909,9 +2111,11 @@
           "name": "Jamie Thomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "103"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientmatching"
       }
     },
     {
@@ -1923,9 +2127,11 @@
           "name": "harshadura"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "104"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientnarratives"
       }
     },
     {
@@ -1953,9 +2159,11 @@
           "name": "yanokwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "105"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "patientsummary"
       }
     },
     {
@@ -1968,9 +2176,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "106"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "pihlesothotbupload"
       }
     },
     {
@@ -1982,9 +2192,11 @@
           "name": "arahulkmit"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "107"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "pixpdq"
       }
     },
     {
@@ -1997,9 +2209,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "108"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "printing"
       }
     },
     {
@@ -2011,9 +2225,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "109"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "privilegehelper"
       }
     },
     {
@@ -2029,9 +2245,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "110"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "programlocation"
       }
     },
     {
@@ -2044,9 +2262,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "111"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "programoverview"
       }
     },
     {
@@ -2061,9 +2281,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "112"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "providermanagement"
       }
     },
     {
@@ -2075,9 +2297,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "113"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "randomization"
       }
     },
     {
@@ -2099,9 +2323,11 @@
           "name": "gbalaji"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "114"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "register"
       }
     },
     {
@@ -2113,9 +2339,11 @@
           "name": "Saptarshi Purkayastha"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "115"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "registration"
       }
     },
     {
@@ -2130,9 +2358,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "116"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "releasetestinghelper"
       }
     },
     {
@@ -2145,9 +2375,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "117"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "remarksmodule"
       }
     },
     {
@@ -2162,9 +2394,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "118"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "remoteformentry"
       }
     },
     {
@@ -2189,9 +2423,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "119"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "reporting"
       }
     },
     {
@@ -2218,9 +2454,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "120"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "reportingcompatibility"
       }
     },
     {
@@ -2247,9 +2485,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "121"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "reportingrest"
       }
     },
     {
@@ -2265,9 +2505,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "122"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "reporttemplate"
       }
     },
     {
@@ -2280,9 +2522,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "123"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "requestaccount"
       }
     },
     {
@@ -2306,9 +2550,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "124"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "researchencounters"
       }
     },
     {
@@ -2330,9 +2576,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "125"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "restmodule"
       }
     },
     {
@@ -2348,9 +2596,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "126"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "restrictbyrole"
       }
     },
     {
@@ -2362,9 +2612,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "127"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "rgccd"
       }
     },
     {
@@ -2376,9 +2628,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "128"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "rolebasedhomepage"
       }
     },
     {
@@ -2393,9 +2647,11 @@
           "name": "peichenauer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "129"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "rwandaprimarycare"
       }
     },
     {
@@ -2411,9 +2667,11 @@
           "name": "jmiranda"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "130"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "schedulerquartz"
       }
     },
     {
@@ -2428,9 +2686,11 @@
           "name": "dthomas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "131"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "sdmxhdintegration"
       }
     },
     {
@@ -2451,9 +2711,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "132"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "serialization.xstream"
       }
     },
     {
@@ -2477,9 +2739,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "133"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "simplelabentry"
       }
     },
     {
@@ -2491,9 +2755,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "134"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "smartcontainer"
       }
     },
     {
@@ -2505,9 +2771,11 @@
           "name": "araza10"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "135"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "smsmodule"
       }
     },
     {
@@ -2519,9 +2787,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "136"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "sockethl7listener"
       }
     },
     {
@@ -2539,9 +2809,11 @@
           "name": "misha680"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "137"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "spreadsheetimport"
       }
     },
     {
@@ -2559,9 +2831,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "138"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "spreadsheetupload"
       }
     },
     {
@@ -2573,9 +2847,11 @@
           "name": "tmdugan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "139"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "stateprocessing"
       }
     },
     {
@@ -2605,9 +2881,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "140"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "sync"
       }
     },
     {
@@ -2622,9 +2900,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "141"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "tribe"
       }
     },
     {
@@ -2637,9 +2917,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "142"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "springmvc"
       }
     },
     {
@@ -2657,9 +2939,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "143"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "uicommons"
       }
     },
     {
@@ -2677,9 +2961,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "144"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "uiframework"
       }
     },
     {
@@ -2698,9 +2984,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "145"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "uilibrary"
       }
     },
     {
@@ -2718,9 +3006,11 @@
           "name": "Rowan Seymour"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "146"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "usagestatistics"
       }
     },
     {
@@ -2732,9 +3022,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "147"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "validation"
       }
     },
     {
@@ -2753,9 +3045,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "148"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "versionedfileupload"
       }
     },
     {
@@ -2768,9 +3062,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "149"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "visitmanagement"
       }
     },
     {
@@ -2789,9 +3085,11 @@
           "name": "Reichert Victor"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "150"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "visitscheduler"
       }
     },
     {
@@ -2804,9 +3102,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "151"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "webservices.jaxws"
       }
     },
     {
@@ -2822,9 +3122,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "152"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "webservices.jaxws.api"
       }
     },
     {
@@ -2851,9 +3153,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "153"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "webservices.rest"
       }
     },
     {
@@ -2869,9 +3173,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "154"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "webservices.rest19ext"
       }
     },
     {
@@ -2893,9 +3199,11 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "155"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "xforms"
       }
     },
     {
@@ -2907,9 +3215,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "156"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "upgradehelperoneten"
       }
     },
     {
@@ -2921,9 +3231,11 @@
           "name": "Milinda Rukshan"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "162"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "systemperformanceandutilization"
       }
     },
     {
@@ -2938,9 +3250,11 @@
           "name": "Kaweesi Joseph"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "164"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "chartsearch"
       }
     },
     {
@@ -2952,9 +3266,11 @@
           "name": "Vineet Kumar"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "165"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mysqletl"
       }
     },
     {
@@ -2969,9 +3285,11 @@
           "name": "mario"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "172"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "openhmis.inventory"
       }
     },
     {
@@ -2989,9 +3307,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "173"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "formentryapp"
       }
     },
     {
@@ -3006,9 +3326,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "174"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "allergyui"
       }
     },
     {
@@ -3027,9 +3349,11 @@
           "name": "James deGraft-Johnson"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "175"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "allergyapi"
       }
     },
     {
@@ -3047,9 +3371,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "176"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "referencemetadata"
       }
     },
     {
@@ -3073,9 +3399,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "177"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "coreapps"
       }
     },
     {
@@ -3096,9 +3424,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "178"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "referencedemodata"
       }
     },
     {
@@ -3113,9 +3443,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "179"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "referenceapplication"
       }
     },
     {
@@ -3127,9 +3459,11 @@
           "name": "Victor Garcia"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "186"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "complexdatatodb"
       }
     },
     {
@@ -3141,9 +3475,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "189"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "printer"
       }
     },
     {
@@ -3156,9 +3492,11 @@
           "name": "wolf schnab"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "190"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "restmodule"
       }
     },
     {
@@ -3170,9 +3508,11 @@
           "name": "wolf schnab"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "194"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mediaviewer"
       }
     },
     {
@@ -3184,9 +3524,11 @@
           "name": "wolf schnab"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "195"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "moca"
       }
     },
     {
@@ -3198,9 +3540,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "196"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dataexchange"
       }
     },
     {
@@ -3215,9 +3559,11 @@
           "name": "Timothy McCarthy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "197"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "conceptreview"
       }
     },
     {
@@ -3232,9 +3578,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "200"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "appointmentschedulingui"
       }
     },
     {
@@ -3249,9 +3597,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "201"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "registrationcore"
       }
     },
     {
@@ -3266,9 +3616,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "202"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "registrationapp"
       }
     },
     {
@@ -3280,9 +3632,11 @@
           "name": "khairul islam"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "204"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "bloodbank"
       }
     },
     {
@@ -3294,9 +3648,11 @@
           "name": "Sri Maurya Kummamuru"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "206"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dhisreport"
       }
     },
     {
@@ -3308,9 +3664,11 @@
           "name": "Suranga Kasthurirathne"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "207"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "fhir"
       }
     },
     {
@@ -3322,9 +3680,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "209"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "openconceptlab"
       }
     },
     {
@@ -3342,9 +3702,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "212"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "reportingui"
       }
     },
     {
@@ -3356,9 +3718,11 @@
           "name": "Ryan Eshleman"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "213"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "visitnotesanalysis"
       }
     },
     {
@@ -3370,9 +3734,11 @@
           "name": "Nyah Check"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "214"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dataimporttool"
       }
     },
     {
@@ -3384,9 +3750,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "215"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "allergyui"
       }
     },
     {
@@ -3410,9 +3778,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "220"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "adminui"
       }
     },
     {
@@ -3424,9 +3794,11 @@
           "name": "Saptarshi Purkayastha"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "223"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "casauth"
       }
     },
     {
@@ -3444,9 +3816,11 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "224"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "owa"
       }
     },
     {
@@ -3458,9 +3832,11 @@
           "name": "Bailly Rurangirwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "227"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "omodexport"
       }
     },
     {
@@ -3473,9 +3849,11 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "228"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "ebolaexample"
       }
     },
     {
@@ -3493,9 +3871,11 @@
           "name": "Ivo Ulrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "231"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "legacyui"
       }
     },
     {
@@ -3507,9 +3887,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "234"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "radiologyapp"
       }
     },
     {
@@ -3521,9 +3903,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "235"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "paperrecord"
       }
     },
     {
@@ -3535,9 +3919,11 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "236"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "dispensing"
       }
     },
     {
@@ -3549,9 +3935,11 @@
           "name": "Daniel Kayiwa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "237"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "xreports"
       }
     },
     {
@@ -3563,9 +3951,11 @@
           "name": "Wyclif Luyima"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "254"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "auditlog"
       }
     },
     {
@@ -3577,9 +3967,11 @@
           "name": "Bell Eapen"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "255"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "skinhelpdesk"
       }
     },
     {
@@ -3591,9 +3983,11 @@
           "name": "Bell Eapen"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "256"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "clinicalimages"
       }
     },
     {
@@ -3605,9 +3999,11 @@
           "name": "Bell Eapen"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "257"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "nuform"
       }
     },
     {
@@ -3619,9 +4015,11 @@
           "name": "Tom Hunter"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "261"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "ncd"
       }
     },
     {
@@ -3633,9 +4031,11 @@
           "name": "Mike Seaton"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "262"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "emrmonitor"
       }
     },
     {
@@ -3647,9 +4047,11 @@
           "name": "Dimitri Renault"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Modulus",
-      "modulusDetails": {
-        "id": "264"
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "visitdocumentsui"
       }
     }
   ],
@@ -3691,143 +4093,143 @@
           "uid": "org.openmrs.module.appui",
           "version": "1.8.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.appointmentscheduling",
           "version": "1.8.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.appointment-scheduling-ui-module",
           "version": "1.6.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.atlas",
           "version": "2.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.calculation",
           "version": "1.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.chart-search-module",
           "version": "2.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.core-apps-module",
           "version": "1.13.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.data-exchange-module",
           "version": "1.3.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.emrapi",
           "version": "1.21.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.event",
           "version": "2.5"
         },
-	{
+        {
           "uid": "org.openmrs.module.openmrs-fhir-module",
           "version": "1.7.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.form-entry-app-module",
           "version": "1.4.1"
         },
-	{
+        {
           "uid": "org.openmrs.module.htmlformentry",
           "version": "3.3.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.htmlformentryui",
           "version": "1.6.3"
         },
-	{
+        {
           "uid": "org.openmrs.module.htmlwidgets",
           "version": "1.9.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.idgen",
           "version": "4.4.1"
         },
-	{
+        {
           "uid": "org.openmrs.module.metadatadeploy",
           "version": "1.8.1"
         },
-	{
+        {
           "uid": "org.openmrs.module.metadatamapping",
           "version": "1.3.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.metadatasharing",
           "version": "1.2.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.providermanagement",
           "version": "2.6.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.reference-application-module",
           "version": "2.6.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.reference-demo-data-module",
           "version": "1.4.3"
         },
-	{
+        {
           "uid": "org.openmrs.module.reference-metadata-module",
           "version": "2.6.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.registration-app-module",
           "version": "1.8.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.registration-core-module",
           "version": "1.7.1"
         },
-	{
+        {
           "uid": "org.openmrs.module.reporting",
           "version": "1.12.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.reportingrest",
           "version": "1.8.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.reporting-ui-module",
           "version": "1.3.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.webservices-rest",
           "version": "2.19.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.serialization-xstream",
           "version": "0.2.12"
         },
-	{
+        {
           "uid": "org.openmrs.module.uicommons",
           "version": "2.3.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.uilibrary",
           "version": "2.0.4"
         },
-	{
+        {
           "uid": "org.openmrs.module.uiframework",
           "version": "3.11.0"
         },
-	{
+        {
           "uid": "org.openmrs.module.reportingcompatibility",
           "version": "2.0.2"
         },
-	{
+        {
           "uid": "org.openmrs.module.legacy-ui-module",
           "version": "1.3.1"
         },
-	{
+        {
           "uid": "org.openmrs.module.open-web-apps-module",
           "version": "1.7.0"
         }

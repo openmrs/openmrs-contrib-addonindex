@@ -13,7 +13,9 @@ package org.openmrs.addonindex.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -97,7 +99,7 @@ public class ElasticSearchIndex implements Index {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (type != null) {
 			//Exact match on type
-		        boolQB.filter(QueryBuilders.matchQuery("type", type));
+			boolQB.filter(QueryBuilders.matchQuery("type", type));
 		}
 		if (tag != null) {	
 			boolQB.filter(QueryBuilders.matchQuery("tags", tag));
@@ -156,6 +158,24 @@ public class ElasticSearchIndex implements Index {
 		return client.execute(new Get.Builder(AddOnInfoAndVersions.ES_INDEX, uid).build())
 				.getSourceAsObject(AddOnInfoAndVersions.class);
 	}
+
+	@Override
+	public AddOnInfoAndVersions getByModulePackage(String modulePackage) throws IOException {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(1)
+				.query(QueryBuilders.matchQuery("modulePackage", modulePackage)).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+
+		List<AddOnInfoAndVersions> modules = result.getHits(AddOnInfoAndVersions.class).stream()
+                .map(sr -> sr.source)
+                .collect(Collectors.toList());
+
+		if (modules.isEmpty()) {
+            return null;
+        }
+        return modules.get(0);
+    }
 	
 	@Override
 	public Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception {
