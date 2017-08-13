@@ -31,7 +31,43 @@ export default class Show extends Component {
                 })
                 .catch(err => {
                     this.setState({error: err});
-                })
+                });
+
+        this.getLatestSupportedVersion(this.props.selectedVersion)
+    }
+
+    getLatestSupportedVersion(openmrsCoreVersion){
+        let url = '/api/v1/addon/' + this.props.params.uid + '/latestVersion';
+        if (openmrsCoreVersion) {
+            url += '?&coreversion=' + openmrsCoreVersion;
+        }
+        console.log("fetchign for version"+ openmrsCoreVersion);
+        fetch(url)
+            .then(response => {
+                if (response.status >= 400) {
+                    throw new Error(response.statusText);
+                }
+                else if (response.status === 204){
+                    console.log(response.status.toString());
+                    this.setState({latestModule: null});
+                }
+                else {
+                    return response.json();
+                }
+            })
+            .then(version => {
+                this.setState({latestModule: version});
+            })
+            .catch(err => {
+                this.setState({error: err});
+            })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.selectedVersion !== this.props.selectedVersion){
+            this.getLatestSupportedVersion(nextProps.selectedVersion)
+            console.log(this.state.latestModule);
+        }
     }
 
     formatRequiredModules(version) {
@@ -54,7 +90,6 @@ export default class Show extends Component {
     }
 
     formatTags(addon) {
-        
         let statusClass = "default";
         let status = addon.status;
         switch (addon.status) {
@@ -83,7 +118,6 @@ export default class Show extends Component {
         </div>
     }
 
-
     render() {
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
@@ -94,6 +128,10 @@ export default class Show extends Component {
             const requirementmeaning = (
                     <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
             );
+            let version = this.state.latestModule ?
+                "Latest Version(" + this.state.latestModule.version + ")" :
+                "Version not supported";
+            let versionDownloadUri = this.state.latestModule ? this.state.latestModule.downloadUri : null;
             let hostedSection = "";
             let hosted = "";
             if (addon.hostedUrl) {
@@ -123,6 +161,7 @@ export default class Show extends Component {
                             </Col>
                         </Row>
                         <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
+                            <div className="col-md-10 col-sm-10 col-xs-10">
                             <Table condensed>
                                 <colgroup>
                                     <col className="col-md-2"/>
@@ -153,6 +192,19 @@ export default class Show extends Component {
                                 </tr>
                                 </tbody>
                             </Table>
+                            </div>
+                            <div className="col-md-2 col-sm-2 col-xs-2">
+                                <a href={versionDownloadUri}>
+                                    <Button className="primary" bsStyle="primary" bsSize="large"
+                                            disabled={versionDownloadUri === null}>
+                                        <span>Download</span>
+                                        <br/>
+                                        <span>
+                                            {version}
+                                        </span>
+                                    </Button>
+                                </a>
+                            </div>
                         </div>
                         <div>
                             <Table condensed hover>

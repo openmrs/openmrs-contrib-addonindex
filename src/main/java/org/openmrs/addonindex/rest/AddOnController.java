@@ -15,6 +15,7 @@ import java.util.Collection;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.Index;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,14 @@ public class AddOnController {
 	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) throws Exception {
 		AddOnInfoAndVersions addOn = index.getByUid(uid);
 		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+	}
+
+    @RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}/latestVersion")
+    public ResponseEntity<AddOnVersion> getLatestVersion(
+            @RequestParam(value = "coreversion", required = false) String userCoreVersion,
+            @PathVariable String uid) throws Exception {
+	    AddOnVersion addOnVersion = index.getByUid(uid).getLatestSupportedVersion(userCoreVersion);
+            return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
 	}
 	
 }

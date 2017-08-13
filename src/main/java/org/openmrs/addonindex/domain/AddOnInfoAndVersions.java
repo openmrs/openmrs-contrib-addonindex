@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
 import org.openmrs.addonindex.util.Version;
 
 import io.searchbox.annotations.JestId;
@@ -172,4 +173,16 @@ public class AddOnInfoAndVersions {
 		}
 		tags.add(tag);
 	}
+
+    public AddOnVersion getLatestSupportedVersion(String userCoreVersion) throws Exception {
+        if (userCoreVersion != null) {
+            for (AddOnVersion addOnVersion : getVersions()) {
+                if (OpenmrsVersionCompareUtil.matchRequiredVersions(userCoreVersion, addOnVersion.getRequireOpenmrsVersion())) {
+                    return addOnVersion;
+                }
+            }
+            return null;
+        }
+        return getVersion(getLatestVersion()).orElseThrow(IllegalArgumentException::new);
+    }
 }

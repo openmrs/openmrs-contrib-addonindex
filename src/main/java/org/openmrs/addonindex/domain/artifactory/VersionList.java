@@ -27,7 +27,7 @@ public class VersionList {
         }
     }
 
-    public SortedSet<Version> getVersionSortedSet() {
+    public SortedSet<Version> getVersions() {
         return versions;
     }
 

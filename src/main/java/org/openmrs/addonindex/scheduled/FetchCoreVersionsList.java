@@ -67,7 +67,7 @@ public class FetchCoreVersionsList {
             throw new IllegalStateException("File downloaded from " + url + " could not be parsed", ex);
         }
         if (logger.isInfoEnabled()) {
-            logger.info("There are " + versionlist.getChildren().size() + " versions to index");
+            logger.info("There are " + versionlist.getChildren().size() + " openmrs-core versions");
         }
         if (versionlist.size() > 0) {
             List<String> versions = new ArrayList<>();
@@ -83,7 +83,7 @@ public class FetchCoreVersionsList {
         }
     }
 
-    private static boolean stringContainsItemFromList(String inputStr, String[] items) {
+    public boolean stringContainsItemFromList(String inputStr, String[] items) {
         return Arrays.stream(items).parallel().anyMatch(inputStr::contains);
     }
 

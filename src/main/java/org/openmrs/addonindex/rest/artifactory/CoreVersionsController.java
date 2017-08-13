@@ -32,6 +32,6 @@ public class CoreVersionsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "api/v1/coreversions")
     public SortedSet<Version> coreversions() throws Exception {
-        return versionsService.getVersions().getVersionSortedSet();
+        return versionsService.getVersions().getVersions();
     }
 }

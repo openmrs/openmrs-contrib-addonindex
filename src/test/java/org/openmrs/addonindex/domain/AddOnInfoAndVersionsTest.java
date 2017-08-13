@@ -1,8 +1,6 @@
 package org.openmrs.addonindex.domain;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.util.Version;
@@ -11,7 +9,9 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @JsonTest
@@ -40,5 +40,30 @@ public class AddOnInfoAndVersionsTest {
 		assertThat(parsed.getVersions().size(), is(1));
 		assertThat(parsed.getVersions().get(0).getVersion().toString(), is("1.0"));
 	}
+
+    @Test(expected=NullPointerException.class)
+    public void testGetLatestMatchedVersion() throws Exception {
+        AddOnInfoAndVersions info = new AddOnInfoAndVersions();
+        info.setName("OpenMRS");
+        info.setDescription("Write code, save lives");
+
+        AddOnVersion latestVersion = new AddOnVersion();
+        latestVersion.setVersion(new Version("2.0"));
+        latestVersion.setRequireOpenmrsVersion("2.1.0");
+        info.addVersion(latestVersion);
+
+        AddOnVersion earlierVersion = new AddOnVersion();
+        earlierVersion.setVersion(new Version("1.0"));
+        earlierVersion.setRequireOpenmrsVersion("1.9.0");
+
+        info.addVersion(latestVersion);
+        info.addVersion(earlierVersion);
+
+        assertThat(info.getLatestSupportedVersion("2.1.0").getVersion().toString(), is("2.0"));
+
+        assertThat(info.getLatestSupportedVersion("2.0.0").getVersion().toString(), is("1.0"));
+
+        assertNull(info.getLatestSupportedVersion("1.6.3").getVersion().toString());
+    }
 	
 }
