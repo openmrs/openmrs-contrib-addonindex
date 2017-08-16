@@ -1987,7 +1987,7 @@
       "bintrayPackageDetails": {
         "owner": "openmrs",
         "repo": "omod",
-        "package": "backboneforms"
+        "package": "openhmis.backboneforms"
       }
     },
     {
@@ -2921,7 +2921,7 @@
       "bintrayPackageDetails": {
         "owner": "openmrs",
         "repo": "omod",
-        "package": "springmvc"
+        "package": "ui.springmvc"
       }
     },
     {
@@ -3798,7 +3798,7 @@
       "bintrayPackageDetails": {
         "owner": "openmrs",
         "repo": "omod",
-        "package": "casauth"
+        "package": "casauthentication"
       }
     },
     {
