@@ -192,4 +192,9 @@ public class AddOnInfoAndVersions {
 		}
 		tags.add(tag);
 	}
+
+	public void setDetailsBasedOnLatestVersion(AddOnVersion version){
+	    setModuleId(version.getModuleId());
+	    setModulePackage(version.getModulePackage());
+    }
 }
