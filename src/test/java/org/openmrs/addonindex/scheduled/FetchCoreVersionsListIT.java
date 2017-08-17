@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.artifactory.VersionList;
 import org.openmrs.addonindex.service.artifactory.VersionsService;
 
+import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,6 +17,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -57,12 +59,8 @@ public class FetchCoreVersionsListIT {
         fetchCoreVersionsList.fetchCoreVersionsList();
         versionList = versionsService.getVersions();
         assertNotNull(versionList);
+        Version testVersion = new Version("1.9.12-SNAPSHOT");
+        assertFalse(versionList.getVersions().contains(testVersion));
         assertThat(versionList.getVersions().first().toString(),is("1.6.3"));
-    }
-
-    @Test
-    public void testStringContainsItemFromList(){
-        String inputVersion = "2.0.5-SNAPSHOT";
-        assertTrue(fetchCoreVersionsList.stringContainsItemFromList(inputVersion, STRINGS_TO_EXCLUDE));
     }
 }

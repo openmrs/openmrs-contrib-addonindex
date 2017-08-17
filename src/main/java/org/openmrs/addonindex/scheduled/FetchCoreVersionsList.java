@@ -83,7 +83,7 @@ public class FetchCoreVersionsList {
         }
     }
 
-    public boolean stringContainsItemFromList(String inputStr, String[] items) {
+    private static boolean stringContainsItemFromList(String inputStr, String[] items) {
         return Arrays.stream(items).parallel().anyMatch(inputStr::contains);
     }
 

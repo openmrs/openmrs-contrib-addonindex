@@ -31,6 +31,7 @@ export default class Show extends Component {
                 })
                 .catch(err => {
                     this.setState({error: err});
+
                 });
 
         this.getLatestSupportedVersion(this.props.selectedVersion)
@@ -41,32 +42,31 @@ export default class Show extends Component {
         if (openmrsCoreVersion) {
             url += '?&coreversion=' + openmrsCoreVersion;
         }
-        console.log("fetchign for version"+ openmrsCoreVersion);
         fetch(url)
             .then(response => {
                 if (response.status >= 400) {
                     throw new Error(response.statusText);
                 }
+                //Handles case when no compatible module version is found
                 else if (response.status === 204){
-                    console.log(response.status.toString());
-                    this.setState({latestModule: null});
+                    return null;
                 }
                 else {
                     return response.json();
                 }
             })
             .then(version => {
-                this.setState({latestModule: version});
+                this.setState({latestVersion: version});
             })
             .catch(err => {
                 this.setState({error: err});
+                console.log(this.state.error);
             })
     }
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.selectedVersion !== this.props.selectedVersion){
             this.getLatestSupportedVersion(nextProps.selectedVersion)
-            console.log(this.state.latestModule);
         }
     }
 
@@ -128,10 +128,23 @@ export default class Show extends Component {
             const requirementmeaning = (
                     <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
             );
-            let version = this.state.latestModule ?
-                "Latest Version(" + this.state.latestModule.version + ")" :
-                "Version not supported";
-            let versionDownloadUri = this.state.latestModule ? this.state.latestModule.downloadUri : null;
+            let version = "";
+            if (this.state.latestVersion){
+                if (this.state.latestVersion.version === addon.versions[0].version){
+                    version = <span>Download Latest<br/>
+                        <small>Version {this.state.latestVersion.version}</small></span>;
+                }
+                else {
+                    version = <span>Download Latest Supported<br/>
+                        <small>Version {this.state.latestVersion.version}</small></span>;
+                }
+            }
+            else {
+                version = <span>No module version supports<br/>
+                        <small>OpenMRS Core {this.props.selectedVersion}</small></span>;
+            }
+
+            let versionDownloadUri = this.state.latestVersion ? this.state.latestVersion.downloadUri : null;
             let hostedSection = "";
             let hosted = "";
             if (addon.hostedUrl) {
@@ -161,7 +174,7 @@ export default class Show extends Component {
                             </Col>
                         </Row>
                         <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
-                            <div className="col-md-10 col-sm-10 col-xs-10">
+                            <div className="col-md-9 col-sm-9 col-xs-9">
                             <Table condensed>
                                 <colgroup>
                                     <col className="col-md-2"/>
@@ -193,15 +206,11 @@ export default class Show extends Component {
                                 </tbody>
                             </Table>
                             </div>
-                            <div className="col-md-2 col-sm-2 col-xs-2">
+                            <div className="col-md-3 col-sm-3 col-xs-3">
                                 <a href={versionDownloadUri}>
                                     <Button className="primary" bsStyle="primary" bsSize="large"
                                             disabled={versionDownloadUri === null}>
-                                        <span>Download</span>
-                                        <br/>
-                                        <span>
-                                            {version}
-                                        </span>
+                                        {version}
                                     </Button>
                                 </a>
                             </div>

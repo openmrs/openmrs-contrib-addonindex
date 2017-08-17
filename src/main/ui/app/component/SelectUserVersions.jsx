@@ -43,7 +43,7 @@ export default class SelectUserVersions extends Component {
                         placeholder='Select Platform version'
                         options={openmrsCoreVersionOptions}
                         name="selected-state"
-                        onChange={this.props.updateValue}
+                        onChange={selection => this.props.updateValue(selection.value)}
                         searchable="true"/>)
 
 

@@ -22,16 +22,9 @@ export default class App extends Component {
     }
 
     setOpenmrsCoreVersion(userOpenmrsCoreVersion) {
-        if(userOpenmrsCoreVersion) {
             this.setState({
-                openmrsCoreVersion: userOpenmrsCoreVersion.value
+                openmrsCoreVersion: userOpenmrsCoreVersion
             });
-        }
-        else{
-            this.setState({
-                openmrsCoreVersion: null
-                })
-        }
     }
 
     render() {
