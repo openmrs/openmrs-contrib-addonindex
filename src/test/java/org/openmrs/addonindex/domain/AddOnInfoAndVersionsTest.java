@@ -43,16 +43,22 @@ public class AddOnInfoAndVersionsTest {
 	@Test
     public void setDetailsBasedOnLatestVersion(){
         AddOnVersion version = new AddOnVersion();
-        version.setVersion(new Version("2.0"));
-        version.setModuleId("1");
-        version.setModulePackage("org.openmrs.module.openmrs");
+        version.setVersion(new Version("1.0"));
+        version.setModuleId("0");
+        version.setModulePackage("org.openmrs.module.differentPackageName");
+
+        AddOnVersion version2 = new AddOnVersion();
+        version2.setVersion(new Version("2.0"));
+        version2.setModuleId("1");
+        version2.setModulePackage("org.openmrs.module.openmrs");
 
         AddOnInfoAndVersions info = new AddOnInfoAndVersions();
         info.setName("OpenMRS");
         info.setDescription("Write code, save lives");
         info.addVersion(version);
+        info.addVersion(version2);
 
-        info.setDetailsBasedOnLatestVersion(version);
+        info.setDetailsBasedOnLatestVersion();
 
         assertThat(info.getModuleId(), is("1"));
         assertThat(info.getModulePackage(), is("org.openmrs.module.openmrs"));

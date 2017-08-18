@@ -112,8 +112,7 @@ public class FetchDetailsToIndex {
 				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
 			}
 
-			infoAndVersions.setDetailsBasedOnLatestVersion(infoAndVersions.getVersion(
-			        infoAndVersions.getLatestVersion()).orElseThrow(IllegalArgumentException::new));
+			infoAndVersions.setDetailsBasedOnLatestVersion();
 			indexingService.index(infoAndVersions);
 			indexingService.getIndexingStatus().setStatus(toIndex,
 					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
