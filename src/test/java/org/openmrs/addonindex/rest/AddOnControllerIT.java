@@ -5,6 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.net.URI;
 import java.time.OffsetDateTime;
 
 import org.junit.Before;
@@ -21,7 +22,9 @@ import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -74,7 +77,17 @@ public class AddOnControllerIT {
 						+ "latestVersion:\"1.0\"}]",
 				entity.getBody(), false);
 	}
-
+	
+	@Test
+	public void testCors() throws Exception {
+		String origin = "http://openmrs.org/news";
+		ResponseEntity<String> entity = testRestTemplate.exchange(RequestEntity.get(
+				uri("http://localhost:" + port + "/api/v1/addon?q=report"))
+				.header(HttpHeaders.ORIGIN, origin).build(), String.class);
+		
+		assertThat(entity.getHeaders().getAccessControlAllowOrigin(), is(origin));
+	}
+	
 	@Test
 	public void getByModulePackage() throws Exception{
 		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?&modulePackage=org.openmrs.module.reporting-module",
@@ -128,5 +141,9 @@ public class AddOnControllerIT {
 						+ "downloadUri:\"http://www.google.com\""
 						+ "}]}",
 				entity.getBody(), false);
+	}
+	
+	private URI uri(String path) {
+		return testRestTemplate.getRestTemplate().getUriTemplateHandler().expand(path);
 	}
 }

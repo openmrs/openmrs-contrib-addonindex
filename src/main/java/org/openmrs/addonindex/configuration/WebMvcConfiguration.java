@@ -11,6 +11,7 @@
 package org.openmrs.addonindex.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -21,6 +22,13 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 	public void configurePathMatch(PathMatchConfigurer configurer) {
 		// Fix handling of /api/v1/addon/org.openmrs.module.appui (otherwise appui is treated as a file extension)
 		configurer.setUseRegisteredSuffixPatternMatch(true);
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		// It's okay to make cross-origin requests to our API. For example we specifically expect that the OpenMRS OWA for
+		// managing modules will do this.
+		registry.addMapping("/**");
 	}
 	
 }
