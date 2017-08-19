@@ -111,7 +111,8 @@ public class FetchDetailsToIndex {
 			if (fetchExtraDetails) {
 				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
 			}
-			
+
+			infoAndVersions.setDetailsBasedOnLatestVersion();
 			indexingService.index(infoAndVersions);
 			indexingService.getIndexingStatus().setStatus(toIndex,
 					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
@@ -123,7 +124,6 @@ public class FetchDetailsToIndex {
 	}
 	
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
-        boolean alreadySetIdAndPackage = false;
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
 
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
@@ -148,8 +148,7 @@ public class FetchDetailsToIndex {
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
-						handleConfigXml(configXml, version, infoAndVersions, alreadySetIdAndPackage);
-						alreadySetIdAndPackage = true;
+						handleConfigXml(configXml, version);
 					}
 				}
 			}
@@ -177,8 +176,7 @@ public class FetchDetailsToIndex {
 		return null;
 	}
 	
-	void handleConfigXml(String configXml, AddOnVersion addOnVersion,
-                         AddOnInfoAndVersions addOnInfoAndVersions, boolean setModuleIdAndPackage) throws Exception {
+	void handleConfigXml(String configXml, AddOnVersion addOnVersion) throws Exception {
 		// sometimes this says something like <!DOCTYPE ... "../lib-common/config-1.0.dtd">
 		// we don't need DTD validation in any case, so we strip any DOCTYPE
 		configXml = configXml.replaceAll("(?s)<!DOCTYPE .*?>", "");
@@ -188,10 +186,8 @@ public class FetchDetailsToIndex {
 		handleRequireOpenmrsVersion(addOnVersion, xpath, config);
 		handleRequireModules(addOnVersion, xpath, config);
 		handleSupportedLanguages(addOnVersion, xpath, config);
-		if (!setModuleIdAndPackage){
-		    //The module versions are already sorted such that latest version is fetched first
-		    handleModuleIdAndPackage(addOnInfoAndVersions, xpath, config);
-        }
+		handleModuleIdAndPackage(addOnVersion, xpath, config);
+
 	}
 	
 	private void handleSupportedLanguages(AddOnVersion addOnVersion, XPath xpath, Document config)
@@ -229,15 +225,15 @@ public class FetchDetailsToIndex {
 		}
 	}
 
-	private void  handleModuleIdAndPackage(AddOnInfoAndVersions addOnInfoAndVersions, XPath xpath,
+	private void  handleModuleIdAndPackage(AddOnVersion addOnVersion, XPath xpath,
                                            Document config) throws XPathExpressionException{
         Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
         Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
         if (StringUtils.hasText((String) modulePackage)) {
-            addOnInfoAndVersions.setModulePackage((String) modulePackage);
+            addOnVersion.setModulePackage((String) modulePackage);
         }
         if (StringUtils.hasText((String) moduleId)) {
-            addOnInfoAndVersions.setModuleId((String) moduleId);
+            addOnVersion.setModuleId((String) moduleId);
         }
     }
 }

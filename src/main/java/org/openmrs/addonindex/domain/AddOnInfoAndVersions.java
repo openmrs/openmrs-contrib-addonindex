@@ -192,4 +192,10 @@ public class AddOnInfoAndVersions {
 		}
 		tags.add(tag);
 	}
+
+	public void setDetailsBasedOnLatestVersion(){
+        AddOnVersion version = getVersion(getLatestVersion()).orElseThrow(IllegalArgumentException::new);
+	    setModuleId(version.getModuleId());
+	    setModulePackage(version.getModulePackage());
+    }
 }

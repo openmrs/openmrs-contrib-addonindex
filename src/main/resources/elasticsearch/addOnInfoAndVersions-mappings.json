@@ -29,6 +29,12 @@
       "versions": {
         "type": "nested",
         "properties": {
+          "moduleId": {
+            "type": "keyword"
+          },
+          "modulePackage": {
+            "type": "keyword"
+          },
           "version": {
             "type": "keyword"
           },
