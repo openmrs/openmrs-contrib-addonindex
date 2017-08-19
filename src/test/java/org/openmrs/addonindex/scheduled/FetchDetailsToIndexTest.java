@@ -20,7 +20,7 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version, addOnInfoAndVersions, true);
+		task.handleConfigXml(getFileAsString("config.withNoRequirements.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
 		assertThat(version.getRequireModules(), nullValue());
 		assertThat(version.getSupportedLanguages(), contains("en", "fr", "de"));
@@ -31,7 +31,7 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version, addOnInfoAndVersions, true);
+		task.handleConfigXml(getFileAsString("config.withRequiredVersion.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules(), nullValue());
 	}
@@ -41,7 +41,7 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version, addOnInfoAndVersions, true);
+		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules().size(), is(2));
 		assertThat(version.getRequireModules(), hasItem(allOf(
@@ -58,10 +58,9 @@ public class FetchDetailsToIndexTest {
 	public void testParsingConfigXmlForSettingModulePackageAndId() throws Exception {
 	    FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 	    AddOnVersion version = new AddOnVersion();
-	    AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-	    task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, false);
-	    assertThat(addOnInfoAndVersions.getModulePackage(), is("org.openmrs.module.mdrtb"));
-	    assertThat(addOnInfoAndVersions.getModuleId(), is("mdrtb"));
+	    task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
+	    assertThat(version.getModulePackage(), is("org.openmrs.module.mdrtb"));
+	    assertThat(version.getModuleId(), is("mdrtb"));
 	}
 
     @Test
@@ -69,7 +68,7 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version, addOnInfoAndVersions, true);
+		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
 		// just test that we could parse at all
 	}
 	
@@ -77,8 +76,7 @@ public class FetchDetailsToIndexTest {
 	public void testParsingWithDoctypeRelativePathOnTwoLines() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
-		task.handleConfigXml(getFileAsString("config.withRelativePathDtdOnTwoLines.xml"), version,
-				new AddOnInfoAndVersions(), false);
+		task.handleConfigXml(getFileAsString("config.withRelativePathDtdOnTwoLines.xml"), version);
 		// just test that we could parse at all
 	}
 	
@@ -87,7 +85,7 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		AddOnInfoAndVersions addOnInfoAndVersions = new AddOnInfoAndVersions();
-		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version, addOnInfoAndVersions, true);
+		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version);
 		// just test that we could parse at all
 	}
 }
