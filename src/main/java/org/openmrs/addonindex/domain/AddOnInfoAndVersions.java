@@ -192,10 +192,12 @@ public class AddOnInfoAndVersions {
 		}
 		tags.add(tag);
 	}
-
-	public void setDetailsBasedOnLatestVersion(){
-        AddOnVersion version = getVersion(getLatestVersion()).orElseThrow(IllegalArgumentException::new);
-	    setModuleId(version.getModuleId());
-	    setModulePackage(version.getModulePackage());
-    }
+	
+	public void setDetailsBasedOnLatestVersion() {
+		Optional<AddOnVersion> version = getVersion(getLatestVersion());
+		if (version.isPresent()) {
+			setModuleId(version.get().getModuleId());
+			setModulePackage(version.get().getModulePackage());
+		}
+	}
 }
