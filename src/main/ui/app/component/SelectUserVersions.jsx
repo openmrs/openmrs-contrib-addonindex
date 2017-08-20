@@ -31,7 +31,7 @@ export default class SelectUserVersions extends Component {
     render() {
         let openmrsCoreVersionOptions = [];
         if (this.state.coreversions) {
-            this.state.coreversions.forEach(versions =>
+            this.state.coreversions.slice(0).reverse().forEach(versions =>
                 openmrsCoreVersionOptions.push({
                     value: versions,
                     label: versions
@@ -40,10 +40,10 @@ export default class SelectUserVersions extends Component {
         }
 
         return (<Select value={this.props.value}
-                        placeholder='Select Platform version'
+                        placeholder='Version'
                         options={openmrsCoreVersionOptions}
                         name="selected-state"
-                        onChange={selection => this.props.updateValue(selection.value)}
+                        onChange={selection => selection ? this.props.updateValue(selection.value): this.props.updateValue(null)}
                         searchable="true"/>)
 
 

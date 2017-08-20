@@ -41,7 +41,10 @@ export default class App extends Component {
                         <div className="col-sm-4">
                             <ListOfLists/>
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-sm-2">
+                            <h5><b>Select Platform Version:</b></h5>
+                        </div>
+                        <div className="col-sm-2">
                             <SelectUserVersions value={this.state.openmrsCoreVersion} updateValue={this.setOpenmrsCoreVersion}/>
                         </div>
                     </header>

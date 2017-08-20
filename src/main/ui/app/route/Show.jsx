@@ -131,12 +131,12 @@ export default class Show extends Component {
             let version = "";
             if (this.state.latestVersion){
                 if (this.state.latestVersion.version === addon.versions[0].version){
-                    version = <span>Download Latest<br/>
-                        <small>Version {this.state.latestVersion.version}</small></span>;
+                    version = <span>Download<br/>
+                        <small>Latest Version {this.state.latestVersion.version}</small></span>;
                 }
                 else {
-                    version = <span>Download Latest Supported<br/>
-                        <small>Version {this.state.latestVersion.version}</small></span>;
+                    version = <span>Download<br/>
+                        <small>Latest SupportedVersion {this.state.latestVersion.version}</small></span>;
                 }
             }
             else {
@@ -208,7 +208,7 @@ export default class Show extends Component {
                             </div>
                             <div className="col-md-3 col-sm-3 col-xs-3">
                                 <a href={versionDownloadUri}>
-                                    <Button className="primary" bsStyle="primary" bsSize="large"
+                                    <Button className="primary" bsStyle={versionDownloadUri ? "primary" : "default"} bsSize="large"
                                             disabled={versionDownloadUri === null}>
                                         {version}
                                     </Button>
