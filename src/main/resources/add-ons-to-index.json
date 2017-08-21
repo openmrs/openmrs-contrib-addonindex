@@ -4057,9 +4057,9 @@
   ],
   "lists": [
     {
-      "uid": "highlighted_modules",
-      "name": "Highlighted Modules",
-      "description": "Take a look at these modules",
+      "uid": "highlighted",
+      "name": "Highlighted",
+      "description": "Take a look at these addons",
       "addOns": [
         {
           "uid": "org.openmrs.module.idgen"
@@ -4069,6 +4069,18 @@
         },
         {
           "uid": "org.openmrs.module.xforms"
+        },
+        {
+          "uid": "org.openmrs.module.reporting"
+        },
+        {
+          uid: "org.openmrs.module.admin-ui-module"
+        },
+        {
+          "uid": "org.openmrs.module.legacy-ui-module"
+        },
+        {
+          "uid": "org.openmrs.module.registration-core-module"
         }
       ]
     },
