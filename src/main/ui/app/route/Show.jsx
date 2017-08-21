@@ -132,11 +132,11 @@ export default class Show extends Component {
             if (this.state.latestVersion){
                 if (this.state.latestVersion.version === addon.versions[0].version){
                     version = <span>Download<br/>
-                        <small>Latest Version {this.state.latestVersion.version}</small></span>;
+                        <small>Latest Version: {this.state.latestVersion.version}</small></span>;
                 }
                 else {
                     version = <span>Download<br/>
-                        <small>Latest SupportedVersion {this.state.latestVersion.version}</small></span>;
+                        <small>Supported Version: {this.state.latestVersion.version}</small></span>;
                 }
             }
             else {
