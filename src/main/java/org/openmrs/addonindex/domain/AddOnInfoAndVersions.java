@@ -203,7 +203,7 @@ public class AddOnInfoAndVersions {
             }
             return null;
         }
-        return getVersion(getLatestVersion()).orElseThrow(IllegalArgumentException::new);
+        return getVersion(getLatestVersion()).isPresent() ? getVersion(getLatestVersion()).get() : null;
     }
 	
 	public void setDetailsBasedOnLatestVersion() {
