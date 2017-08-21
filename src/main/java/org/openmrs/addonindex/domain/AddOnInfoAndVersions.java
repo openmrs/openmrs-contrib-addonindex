@@ -205,4 +205,12 @@ public class AddOnInfoAndVersions {
         }
         return getVersion(getLatestVersion()).orElseThrow(IllegalArgumentException::new);
     }
+	
+	public void setDetailsBasedOnLatestVersion() {
+		Optional<AddOnVersion> version = getVersion(getLatestVersion());
+		if (version.isPresent()) {
+			setModuleId(version.get().getModuleId());
+			setModulePackage(version.get().getModulePackage());
+		}
+	}
 }
