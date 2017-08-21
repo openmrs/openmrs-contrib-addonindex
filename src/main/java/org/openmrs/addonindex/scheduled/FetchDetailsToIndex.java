@@ -230,7 +230,7 @@ public class FetchDetailsToIndex {
         Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
         Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
         if (StringUtils.hasText((String) modulePackage)) {
-            addOnVersion.setModulePackage((String) modulePackage);
+            addOnVersion.setModulePackage(((String) modulePackage).trim());
         }
         if (StringUtils.hasText((String) moduleId)) {
             addOnVersion.setModuleId((String) moduleId);
