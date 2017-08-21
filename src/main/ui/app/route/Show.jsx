@@ -31,7 +31,43 @@ export default class Show extends Component {
                 })
                 .catch(err => {
                     this.setState({error: err});
-                })
+
+                });
+
+        this.getLatestSupportedVersion(this.props.selectedVersion)
+    }
+
+    getLatestSupportedVersion(openmrsCoreVersion){
+        let url = '/api/v1/addon/' + this.props.params.uid + '/latestVersion';
+        if (openmrsCoreVersion) {
+            url += '?&coreversion=' + openmrsCoreVersion;
+        }
+        fetch(url)
+            .then(response => {
+                if (response.status >= 400) {
+                    throw new Error(response.statusText);
+                }
+                //Handles case when no compatible module version is found
+                else if (response.status === 204){
+                    return null;
+                }
+                else {
+                    return response.json();
+                }
+            })
+            .then(version => {
+                this.setState({latestVersion: version});
+            })
+            .catch(err => {
+                this.setState({error: err});
+                console.log(this.state.error);
+            })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.selectedVersion !== this.props.selectedVersion){
+            this.getLatestSupportedVersion(nextProps.selectedVersion)
+        }
     }
 
     formatRequiredModules(version) {
@@ -54,7 +90,6 @@ export default class Show extends Component {
     }
 
     formatTags(addon) {
-        
         let statusClass = "default";
         let status = addon.status;
         switch (addon.status) {
@@ -83,7 +118,6 @@ export default class Show extends Component {
         </div>
     }
 
-
     render() {
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
@@ -94,6 +128,23 @@ export default class Show extends Component {
             const requirementmeaning = (
                     <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
             );
+            let version = "";
+            if (this.state.latestVersion){
+                if (this.state.latestVersion.version === addon.versions[0].version){
+                    version = <span>Download<br/>
+                        <small>Latest Version: {this.state.latestVersion.version}</small></span>;
+                }
+                else {
+                    version = <span>Download<br/>
+                        <small>Supported Version: {this.state.latestVersion.version}</small></span>;
+                }
+            }
+            else {
+                version = <span>No module version supports<br/>
+                        <small>OpenMRS Core {this.props.selectedVersion}</small></span>;
+            }
+
+            let versionDownloadUri = this.state.latestVersion ? this.state.latestVersion.downloadUri : null;
             let hostedSection = "";
             let hosted = "";
             if (addon.hostedUrl) {
@@ -123,6 +174,7 @@ export default class Show extends Component {
                             </Col>
                         </Row>
                         <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
+                            <div className="col-md-9 col-sm-9 col-xs-9">
                             <Table condensed>
                                 <colgroup>
                                     <col className="col-md-2"/>
@@ -153,6 +205,15 @@ export default class Show extends Component {
                                 </tr>
                                 </tbody>
                             </Table>
+                            </div>
+                            <div className="col-md-3 col-sm-3 col-xs-3">
+                                <a href={versionDownloadUri}>
+                                    <Button className="primary" bsStyle={versionDownloadUri ? "primary" : "default"} bsSize="large"
+                                            disabled={versionDownloadUri === null}>
+                                        {version}
+                                    </Button>
+                                </a>
+                            </div>
                         </div>
                         <div>
                             <Table condensed hover>

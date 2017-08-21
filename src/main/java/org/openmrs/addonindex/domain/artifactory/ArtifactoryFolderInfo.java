@@ -13,7 +13,7 @@ package org.openmrs.addonindex.domain.artifactory;
 import java.util.List;
 
 /**
- * Represents the response from (link to the REST call)
+ * Represents the response from https://www.jfrog.com/confluence/display/RTF/Artifactory+REST+API#ArtifactoryRESTAPI-FolderInfo
  * We use this to determine the list of OpenMRS core versions
  */
 
