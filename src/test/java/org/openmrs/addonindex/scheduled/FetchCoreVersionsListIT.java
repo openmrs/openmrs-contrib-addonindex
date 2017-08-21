@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.openmrs.addonindex.domain.artifactory.VersionList;
+import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.service.artifactory.VersionsService;
 
 import org.openmrs.addonindex.util.Version;
@@ -28,6 +29,9 @@ import static org.openmrs.addonindex.TestUtil.getFileAsString;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class FetchCoreVersionsListIT {
+
+    @MockBean
+    private Index index;
 
     @MockBean
     private RestTemplateBuilder restTemplateBuilder;

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.artifactory.VersionList;
 import org.openmrs.addonindex.rest.artifactory.CoreVersionsController;
+import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.service.artifactory.VersionsService;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ import static org.mockito.Mockito.doReturn;
 public class CoreVersionsControllerIT {
     @LocalServerPort
     private int port;
+
+    @MockBean
+    private Index index;
 
     @Autowired
     private TestRestTemplate testRestTemplate;
