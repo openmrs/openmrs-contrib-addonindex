@@ -42,7 +42,7 @@ export default class App extends Component {
                             <ListOfLists/>
                         </div>
                         <div className="col-sm-2">
-                            <h5><b>Select Platform Version:</b></h5>
+                            <h5><b>Your Platform Version:</b></h5>
                         </div>
                         <div className="col-sm-2">
                             <SelectUserVersions value={this.state.openmrsCoreVersion} updateValue={this.setOpenmrsCoreVersion}/>
