@@ -1,4 +1,4 @@
-[![Build status](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex/branch/master/build_image)](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex/branch/master/)
+[![Build status](https://omrs-shields.psbrandt.io/plan/AD/BAOIS)](https://ci.openmrs.org/browse/AD-BAOIS)
 
 # OpenMRS Add-On Index
 
@@ -27,8 +27,7 @@ with npm (using webpack).
 
 It uses ElasticSearch to store its index.
 
-We use [Snap CI](https://app.snap-ci.com/openmrs/openmrs-contrib-addonindex) to continuously build this application. (We 
-know that Snap CI is going away, and we'll migrate somewhere else soon.)  
+We use [OpenMRS's Bamboo CI server](https://ci.openmrs.org/browse/AD-BAOIS) to continuously build this application.
 
 To build locally, you need to build the web UI first, and then run the server. (Though if you skip building the web UI 
 you'll still be able to see the server's REST API)
@@ -93,7 +92,8 @@ this file with contents:
       
 
 This application is bandwidth-heavy on its first run (e.g. it downloads all OMOD versions to inspect their configuration).
- If you want to save bandwidth, set this in your custom config:
+ If you want to save bandwidth, set this in your custom config (though this will lose some functionality, like being able 
+ to fetch modules by their package):
  
     scheduler:
       fetch_details_to_index:
@@ -110,11 +110,21 @@ but CI builds it automatically, so you don't need to do this.
 
 ## Deploying to production
 
-This is not yet automated in CI (but should be soon). You need to do build everything locally (first the UI then the jar +
-docker build, and look for output like `Successfully built 089a664e4a61`), and then
+The production server is updated via a webhook whenever you push to the `production` tag on dockerhub.
+
+This is automated in CI as a manual stage in the build plan. In case you need to do this manually, first you need to have 
+a docker image to tag, which you do either by:
+
+* (Option A) build everything locally (first the UI then the jar + docker build, and looking for output like `Successfully 
+built 
+089a664e4a61`)
+* (Option B) do `docker pull <id>`
+    
+Then you need to tag this and push to dockerhub, like: 
  
-    docker tag <id-you-just-built> openmrs/addonindex:production
+    docker tag <id> openmrs/addonindex:production
     docker push openmrs/addonindex:production
+
 
 ## Contributing
 
