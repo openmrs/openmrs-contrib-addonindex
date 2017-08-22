@@ -4059,7 +4059,7 @@
     {
       "uid": "highlighted",
       "name": "Highlighted",
-      "description": "Take a look at these addons",
+      "description": "Here are some Add Ons you might want to get started with",
       "addOns": [
         {
           "uid": "org.openmrs.module.idgen"
@@ -4074,7 +4074,7 @@
           "uid": "org.openmrs.module.reporting"
         },
         {
-          uid: "org.openmrs.module.admin-ui-module"
+          "uid": "org.openmrs.module.admin-ui-module"
         },
         {
           "uid": "org.openmrs.module.legacy-ui-module"

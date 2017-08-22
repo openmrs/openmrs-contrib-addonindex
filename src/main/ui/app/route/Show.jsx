@@ -162,7 +162,7 @@ export default class Show extends Component {
 
             return (
 
-                    <div className="showpage-body">
+                    <div>
                         <Row>
                             <Col sm={1} md={1} className="hidden-xs">
                                 <i className={`fa fa-4x fa-${addon.icon ? addon.icon : 'file-o'} shiftdown`}></i>
@@ -192,12 +192,12 @@ export default class Show extends Component {
                                         if (m.url) {
                                             return (
                                                     <a href={m.url}>
-                                                        <span>{m.name},&nbsp;</span>
+                                                        <span className="maintainer">{m.name}</span>
                                                     </a>
                                             )
                                         } else {
                                             return (
-                                                    <span>{m.name},&nbsp;</span>
+                                                    <span className="maintainer">{m.name}</span>
                                             )
                                         }
                                     })}
