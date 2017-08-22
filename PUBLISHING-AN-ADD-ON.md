@@ -19,6 +19,17 @@ Regardless of where your add-on is published, you must provide the following fie
 
 You will see examples of the format in the file itself.
 
+### Bintray
+ 
+If your add-on is published to Bintray, you need to specify:
+
+    "backend": "org.openmrs.addonindex.backend.Bintray",
+    "bintrayPackageDetails": {
+    	"owner": "openmrs",
+    	"repo": "owa",
+    	"package": "openmrs-owa-conceptdictionary"
+    }
+ 
 ### OpenMRS Maven Repository
 
 If your module is published to the OpenMRS Maven Repository, then you also need specify details like the following:
@@ -29,17 +40,6 @@ If your module is published to the OpenMRS Maven Repository, then you also need 
 	    "artifactId": "reporting-omod"
 	}
 	
-### Bintray
- 
-If your add-on is published to Bintray, you need to specify:
-
-	"backend": "org.openmrs.addonindex.backend.Bintray",
-	"bintrayPackageDetails": {
-		"owner": "openmrs",
-		"repo": "owa",
-		"package": "openmrs-owa-conceptdictionary"
-	}
- 
 ### Github Releases, etc
 
 In the future we intend to support indexing add-ons that you have published via Github Releases. We welcome other 
