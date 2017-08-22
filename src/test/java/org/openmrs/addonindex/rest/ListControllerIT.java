@@ -52,11 +52,11 @@ public class ListControllerIT {
 	@Test
 	public void testGetOne() throws Exception {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity(
-				"http://localhost:" + port + "/api/v1/list/highlighted_modules",
+				"http://localhost:" + port + "/api/v1/list/highlighted",
 				String.class);
 		
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-		JSONAssert.assertEquals("{uid:\"highlighted_modules\"}", entity.getBody(), false);
+		JSONAssert.assertEquals("{uid:\"highlighted\"}", entity.getBody(), false);
 	}
 	
 	@Test
