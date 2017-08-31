@@ -22,6 +22,27 @@
       }
     },
     {
+    "uid": "org.openmrs.owa.cohortbuilder",
+    "type": "OWA",
+    "name": "Cohort Builder OWA",
+    "maintainers": [
+      {
+        "name": "Andela apprentices",
+        "url": "https://github.com/openmrs/openmrs-owa-cohortbuilder"
+      },
+      {
+        "name": "OpenMRS",
+        "url": "https://github.com/openmrs"
+      }
+    ],
+    "backend": "org.openmrs.addonindex.backend.Bintray",
+    "bintrayPackageDetails": {
+      "owner": "openmrs",
+      "repo": "owa",
+      "package": "openmrs-owa-cohortbuilder"
+      }
+    },
+    {
       "uid": "org.openmrs.module.accesslogging",
       "status": "DEPRECATED",
       "type": "OMOD",
