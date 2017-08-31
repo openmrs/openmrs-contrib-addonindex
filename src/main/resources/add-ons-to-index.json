@@ -22,6 +22,23 @@
       }
     },
     {
+      "uid": "org.openmrs.owa.sysadmin",
+      "type": "OWA",
+      "name": "System Administration OWA",
+      "maintainers": [
+        {
+          "name": "Kailayapathy Suthagar",
+          "url": "https://github.com/suthagar23"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "suthagar23",
+        "repo": "owa",
+        "package": "openmrs-owa-sysadmin"
+      }
+    },
+    {
       "uid": "org.openmrs.module.accesslogging",
       "status": "DEPRECATED",
       "type": "OMOD",
@@ -4053,7 +4070,8 @@
         "repo": "omod",
         "package": "visitdocumentsui"
       }
-    }
+    },
+    
   ],
   "lists": [
     {
