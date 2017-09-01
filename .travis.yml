@@ -1,0 +1,14 @@
+matrix:
+  include:
+    - language: node_js
+      node_js: 5
+      before_script:
+        - cd src/main/ui
+        - npm install
+      script:
+        - npm run build:dev
+
+    - language: java
+      jdk: oraclejdk8
+      script:
+        - mvn clean package
