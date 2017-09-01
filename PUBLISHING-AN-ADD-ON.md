@@ -6,6 +6,8 @@ The master list of add-ons that we index the information and versions of in insi
 If you want to add your OMOD or OWA to the list, then you should submit a Pull Request, changing only that file, adding 
 the details of your add-on to the `toIndex` list.
 
+(It is _not_ necessary to create an OpenMRS JIRA issue to go with this Pull Request.)
+
 ## Fields to specify
 
 Regardless of where your add-on is published, you must provide the following fields:
@@ -29,6 +31,9 @@ If your add-on is published to Bintray, you need to specify:
     	"repo": "owa",
     	"package": "openmrs-owa-conceptdictionary"
     }
+    
+If your add-on is published to your own Bintray account and also linked to the OpenMRS account, please use the URL that's 
+in the OpenMRS account as part of your submission.
  
 ### OpenMRS Maven Repository
 
