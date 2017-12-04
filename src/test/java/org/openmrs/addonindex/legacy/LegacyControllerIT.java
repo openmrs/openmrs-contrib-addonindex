@@ -1,5 +1,6 @@
 package org.openmrs.addonindex.legacy;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
@@ -119,5 +120,11 @@ public class LegacyControllerIT {
 		String xml = controller.checkUpdate("appui");
 		String expectedXml = TestUtil.getFileAsString("legacy-updates.rdf.xml");
 		assertThat(xml, isSimilarTo(expectedXml).ignoreWhitespace());
+	}
+	
+	@Test
+	public void testOldDownloadRdf() throws Exception {
+		assertEquals(controller.checkUpdate("appui"),
+				controller.oldestLegacyGetUpdateRdf("appui"));
 	}
 }

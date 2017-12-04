@@ -41,8 +41,8 @@ public class LegacyController {
 	@Autowired
 	private IndexingService indexingService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/modules/download/{moduleId}/update.rdf", produces = "text/xml; "
-			+ "charset=utf-8")
+	@RequestMapping(method = RequestMethod.GET, value = "/modulus/feeds/{moduleId}/update.rdf",
+			produces = { "application/rdf+xml", "application/xml", "text/xml; charset=utf-8" })
 	@ResponseBody
 	public String checkUpdate(@PathVariable("moduleId") String moduleId) throws Exception {
 		AddOnInfoAndVersions info = indexingService.getByUid("org.openmrs.module." + moduleId);
@@ -63,6 +63,20 @@ public class LegacyController {
 	}
 	
 	/**
+	 * According to https://tickets.openmrs.org/browse/MOD-5 there is an even older URL path we need to support (from before
+	 * modulus, even)
+	 *
+	 * @param moduleId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/modules/download/{moduleId}/update.rdf")
+	@ResponseBody
+	public String oldestLegacyGetUpdateRdf(@PathVariable("moduleId") String moduleId) throws Exception {
+		return checkUpdate(moduleId);
+	}
+	
+	/**
 	 * These parameters are theoretically required but I don't think we need to handle them:
 	 * <li>iSortingCols = 1, 2, 3, 4 for name, version, author, description
 	 * <li>iSortCol_ =
@@ -72,7 +86,8 @@ public class LegacyController {
 	 * @param start
 	 * @param length
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "findModules")
+	@RequestMapping(method = RequestMethod.GET, value = "/modules/findModules")
+	@ResponseBody
 	public LegacyFindModulesResponse findModules(
 			@RequestParam(value = "sSearch", required = false) String query,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") Integer start,
