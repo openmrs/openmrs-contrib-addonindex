@@ -2,6 +2,7 @@ package org.openmrs.addonindex.legacy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
@@ -27,8 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -89,8 +88,19 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesWithoutVersion() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, null, null);
-		String json = new ObjectMapper().writeValueAsString(response);
+		String json = controller.findModules(null, "appui", 0, 0, 123, null, null);
+		
+		String expectedJson = TestUtil.getFileAsString("legacy-findModules.json");
+		JSONAssert.assertEquals(expectedJson, json, false);
+	}
+	
+	@Test
+	public void testFindModulesWithCallback() throws Exception {
+		String callback = "jQuery17106625551879598879_1512456844335";
+		String response = controller.findModules(callback, "appui", 0, 0, 123, null, null);
+		assertTrue(response.startsWith(callback + "("));
+		assertTrue(response.endsWith(")"));
+		String json = response.substring(response.indexOf("(") + 1, response.lastIndexOf(")"));
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules.json");
 		JSONAssert.assertEquals(expectedJson, json, false);
@@ -98,8 +108,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesWithOpenMrsVersion() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, "1.9.3", null);
-		String json = new ObjectMapper().writeValueAsString(response);
+		String json = controller.findModules(null, "appui", 0, 0, 123, "1.9.3", null);
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules-old-version.json");
 		JSONAssert.assertEquals(expectedJson, json, false);
@@ -107,9 +116,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesExcludeModule() throws Exception {
-		LegacyFindModulesResponse response = controller.findModules("appui", 0, 0, 123, "1.9.3",
-				Arrays.asList("appui"));
-		String json = new ObjectMapper().writeValueAsString(response);
+		String json = controller.findModules(null, "appui", 0, 0, 123, "1.9.3", Arrays.asList("appui"));
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules-exclude.json");
 		JSONAssert.assertEquals(expectedJson, json, false);

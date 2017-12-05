@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Supports legacy functionality required by the OpenMRS Module API and Legacy UI
  */
@@ -40,6 +42,9 @@ public class LegacyController {
 	
 	@Autowired
 	private IndexingService indexingService;
+	
+	@Autowired
+	private ObjectMapper objectMapper;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/modulus/feeds/{moduleId}/update.rdf",
 			produces = { "application/rdf+xml", "application/xml", "text/xml; charset=utf-8" })
@@ -88,7 +93,8 @@ public class LegacyController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/modules/findModules")
 	@ResponseBody
-	public LegacyFindModulesResponse findModules(
+	public String findModules(
+			@RequestParam(value = "callback", required = false) String callback,
 			@RequestParam(value = "sSearch", required = false) String query,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") Integer start,
 			@RequestParam(value = "iDisplayLength", defaultValue = "100") Integer length,
@@ -130,7 +136,12 @@ public class LegacyController {
 					result.getDescription());
 		}
 		
-		return response;
+		String json = objectMapper.writeValueAsString(response);
+		if (callback != null) {
+			return callback + "(" + json + ")";
+		} else {
+			return json;
+		}
 	}
 	
 	private boolean shouldExclude(List<String> excludeModuleIds, AddOnInfoSummary candidate) {
