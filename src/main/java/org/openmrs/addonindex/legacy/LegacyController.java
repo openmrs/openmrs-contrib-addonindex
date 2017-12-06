@@ -13,6 +13,8 @@ package org.openmrs.addonindex.legacy;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -60,7 +62,7 @@ public class LegacyController {
 			sb.append("<update>\n");
 			sb.append("<currentVersion>" + version.getVersion() + "</currentVersion>\n");
 			sb.append("<requireOpenMRSVersion>" + version.getRequireOpenmrsVersion() + "</requireOpenMRSVersion>\n");
-			sb.append("<downloadURL>" + version.getDownloadUri() + "</downloadURL>\n");
+			sb.append("<downloadURL>" + convertDownloadFilenameHack(version.getDownloadUri()) + "</downloadURL>\n");
 			sb.append("</update>\n");
 		}
 		sb.append("</updates>");
@@ -156,4 +158,22 @@ public class LegacyController {
 		return excludeModuleIds.contains(lookFor);
 	}
 	
+	private Pattern hackUrlPattern = Pattern.compile("https+://bintray.com/(.+)/omod/download_file\\?file_path=(.+)");
+	
+	/**
+	 * There's a bug in openmrs-core where it doesn't handle a "response-content-disposition" header in the download link
+	 * (and Bintray uses this). We hackily apply what we know of bintray urls to get around this
+	 *
+	 * @param original
+	 * @return
+	 * @see https://talk.openmrs.org/t/new-guidelines-for-module-releases/13357/17
+	 */
+	public String convertDownloadFilenameHack(String original) {
+		Matcher matcher = hackUrlPattern.matcher(original);
+		if (matcher.matches()) {
+			return "https://dl.bintray.com/" + matcher.group(1) + "/omod/" + matcher.group(2);
+		} else {
+			return original;
+		}
+	}
 }
