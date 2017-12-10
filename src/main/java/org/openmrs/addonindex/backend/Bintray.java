@@ -103,7 +103,7 @@ public class Bintray implements BackendHandler {
 	
 	private String downloadUriFor(AddOnToIndex addOnToIndex, String filePath) {
 		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
-		return String.format("https://bintray.com/%s/%s/download_file?file_path=%s",
+		return String.format("https://dl.bintray.com/%s/%s/%s",
 				details.getOwner(),
 				details.getRepo(),
 				filePath);
