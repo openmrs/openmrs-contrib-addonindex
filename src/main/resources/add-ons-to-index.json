@@ -948,6 +948,9 @@
       "uid": "org.openmrs.module.filebrowser",
       "type": "OMOD",
       "name": "File Browser",
+      "tags": [
+        "search"
+      ],
       "maintainers": [
         {
           "name": "tgreensweig"
@@ -2456,6 +2459,9 @@
       "uid": "org.openmrs.module.registration",
       "type": "OMOD",
       "name": "Registration",
+      "tags": [
+        "registration"
+      ],
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -3141,6 +3147,9 @@
       "uid": "org.openmrs.module.usagestatistics",
       "type": "OMOD",
       "name": "Usage Statistics",
+      "tags": [
+        "data-management"
+      ],
       "maintainers": [
         {
           "name": "rseymour"
@@ -3759,6 +3768,9 @@
       "uid": "org.openmrs.module.registration-core-module",
       "type": "OMOD",
       "name": "Registration Core Module",
+      "tags": [
+        "registration"
+      ],
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3778,6 +3790,9 @@
       "uid": "org.openmrs.module.registration-app-module",
       "type": "OMOD",
       "name": "Registration App Module",
+      "tags": [
+        "registration"
+      ],
       "maintainers": [
         {
           "name": "Mark Goodrich"
