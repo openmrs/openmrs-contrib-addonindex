@@ -25,6 +25,9 @@
     "uid": "org.openmrs.owa.cohortbuilder",
     "type": "OWA",
     "name": "Cohort Builder OWA",
+    "tags": [
+       "Cohort"
+      ],
     "maintainers": [
       {
         "name": "Andela apprentices",
@@ -105,6 +108,9 @@
       "uid": "org.openmrs.module.addresshierarchy",
       "type": "OMOD",
       "name": "Address Hierarchy",
+      "tags": [
+          " Address","Hierarchy"
+        ]
       "maintainers": [
         {
           "name": "sprasanna"
@@ -130,6 +136,9 @@
       "uid": "org.openmrs.module.addresshierarchyrwanda",
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
+      "tags": [
+          "Address","Rwanda"
+        ]
       "maintainers": [
         {
           "name": "peichenauer"
@@ -149,6 +158,9 @@
       "uid": "org.openmrs.module.appframework",
       "type": "OMOD",
       "name": "App Framework Module",
+      "tags": [
+          "Framework","App"
+        ]
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -269,6 +281,9 @@
       "uid": "org.openmrs.module.atlas",
       "type": "OMOD",
       "name": "Atlas Module",
+      "tags": [
+          "Atlas"
+        ]
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -314,6 +329,9 @@
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Backports 1.4.x",
+      "tags": [
+          "Backsports"
+        ]
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -400,6 +418,9 @@
       "uid": "org.openmrs.module.chirdlutil",
       "type": "OMOD",
       "name": "chirdlutil",
+      "tags": [
+          "Chirdlutil"
+        ]
       "maintainers": [
         {
           "name": "tmdugan"
@@ -416,6 +437,9 @@
       "uid": "org.openmrs.module.chirdlutilbackports",
       "type": "OMOD",
       "name": "chirdlutilbackports",
+      "tags": [
+          "Chirdlutil","Backsports"
+        ]
       "maintainers": [
         {
           "name": "sjmckee"
@@ -487,6 +511,9 @@
       "uid": "org.openmrs.module.conceptmanagementapps",
       "type": "OMOD",
       "name": "Concept Management Apps Module",
+      "tags": [
+          "App","Concept"
+        ]
       "maintainers": [
         {
           "name": "jenn"
@@ -525,6 +552,9 @@
       "uid": "org.openmrs.module.cpm",
       "type": "OMOD",
       "name": "Concept Proposal Module",
+      "tags": [
+          "Concept"
+        ]
       "maintainers": [
         {
           "name": "Timothy McCarthy"
@@ -1435,6 +1465,9 @@
       "uid": "org.openmrs.module.idcards",
       "type": "OMOD",
       "name": "Id Cards",
+      "tags": [
+         "ID Generation"
+        ]
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1454,6 +1487,9 @@
       "uid": "org.openmrs.module.idgen",
       "type": "OMOD",
       "name": "ID Generation",
+      "tags": [
+        "ID Generation"
+        ]
       "icon": "id-card-o",
       "maintainers": [
         {
@@ -1555,6 +1591,9 @@
       "uid": "org.openmrs.module.kenyadq",
       "type": "OMOD",
       "name": "KenyaDQ",
+      "tags": [
+          "Kenya Data"
+        ]
       "maintainers": [
         {
           "name": "Rowan Seymour"
@@ -1571,6 +1610,9 @@
       "uid": "org.openmrs.module.kenyalab",
       "type": "OMOD",
       "name": "KenyaLab",
+      "tags": [
+          "Kenya Data"
+        ]
       "maintainers": [
         {
           "name": "Nicholas Ingosi"
@@ -1612,6 +1654,9 @@
       "uid": "org.openmrs.module.kenyaui",
       "type": "OMOD",
       "name": "KenyaUI",
+      "tags": [
+          "Kenya Data"
+        ]
       "maintainers": [
         {
           "name": "Nicholas Ingosi"
@@ -1631,6 +1676,9 @@
       "uid": "org.openmrs.module.logic",
       "type": "OMOD",
       "name": "Logic",
+      "tags": [
+        "Logic"
+        ]
       "maintainers": [
         {
           "name": "nyoman"
@@ -1659,6 +1707,9 @@
       "uid": "org.openmrs.module.logicws",
       "type": "OMOD",
       "name": "Logic Web Service",
+      "tags": [
+        "Logic","Web Service"
+        ]
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -3605,6 +3656,9 @@
       "uid": "org.openmrs.module.reference-application-module",
       "type": "OMOD",
       "name": "Reference Application Module",
+      "tags": [
+         "reference-application"
+        ]
       "maintainers": [
         {
           "name": "Wyclif Luyima"
