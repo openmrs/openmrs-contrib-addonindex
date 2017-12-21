@@ -152,6 +152,7 @@
       "uid": "org.openmrs.module.appframework",
       "type": "OMOD",
       "name": "App Framework Module",
+      "icon": "puzzle-piece",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -197,6 +198,7 @@
       "uid": "org.openmrs.module.appointmentscheduling",
       "type": "OMOD",
       "name": "Appointment Scheduling",
+      "icon": "calendar-times-o",
       "tags": [
         "scheduling"
       ],
@@ -225,6 +227,7 @@
       "uid": "org.openmrs.module.appui",
       "type": "OMOD",
       "name": "App UI Module",
+      "icon": "desktop",
       "tags": [
         "back-end"
       ],
@@ -272,6 +275,7 @@
       "uid": "org.openmrs.module.atlas",
       "type": "OMOD",
       "name": "Atlas Module",
+      "icon": "globe",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -362,6 +366,7 @@
       "uid": "org.openmrs.module.calculation",
       "type": "OMOD",
       "name": "Calculation",
+      "icon": "calculator",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -515,6 +520,7 @@
       "uid": "org.openmrs.module.conceptsearch",
       "type": "OMOD",
       "name": "Concept Search",
+      "icon": "search-plus",
       "tags": [
         "search"
       ],
@@ -669,6 +675,7 @@
       "uid": "org.openmrs.module.datadeletion",
       "type": "OMOD",
       "name": "Data Deletion",
+      "icon": "trash-o",
       "tags": [
         "data-management"
       ],
@@ -697,6 +704,7 @@
       "uid": "org.openmrs.module.dataentrystatistics",
       "type": "OMOD",
       "name": "Data Entry Statistics",
+      "icon": "bar-chart",
       "tags": [
         "data-management"
       ],
@@ -722,6 +730,7 @@
       "uid": "org.openmrs.module.dataintegrity",
       "type": "OMOD",
       "name": "Data Integrity",
+      "icon": "shield",
       "tags": [
         "data-management"
       ],
@@ -890,6 +899,7 @@
       "uid": "org.openmrs.module.event",
       "type": "OMOD",
       "name": "Event Module",
+      "icon": "check-square-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -972,6 +982,7 @@
       "uid": "org.openmrs.module.filebrowser",
       "type": "OMOD",
       "name": "File Browser",
+      "icon": "folder-o",
       "tags": [
         "search"
       ],
@@ -1055,6 +1066,7 @@
       "uid": "org.openmrs.module.formdataexport",
       "type": "OMOD",
       "name": "Form Data Export",
+      "icon": "upload",
       "tags": [
         "form-entry"
       ],
@@ -1083,6 +1095,7 @@
       "uid": "org.openmrs.module.formentry",
       "type": "OMOD",
       "name": "Form Entry",
+      "icon": "pencil-square-o",
       "tags": [
         "form-entry"
       ],
@@ -1117,6 +1130,7 @@
       "uid": "org.openmrs.module.formfilter",
       "type": "OMOD",
       "name": "Form Filter Module",
+      "icon": "filter",
       "tags": [
         "form-entry"
       ],
@@ -1349,6 +1363,7 @@
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "HTML Form Entry Extensions for OpenMRS 1.9 Module",
+      "icon": "code",
       "tags": [
         "form-entry"
       ],
@@ -1371,6 +1386,7 @@
       "uid": "org.openmrs.module.htmlformentryui",
       "type": "OMOD",
       "name": "HTML Form Entry UI Framework Integration Module",
+      "icon": "code",
       "tags": [
         "form-entry"
       ],
@@ -1396,6 +1412,7 @@
       "uid": "org.openmrs.module.htmlformflowsheet",
       "type": "OMOD",
       "name": "HTML Form Flowsheet",
+      "icon": "code",
       "tags": [
         "form-entry"
       ],
@@ -1547,6 +1564,7 @@
       "uid": "org.openmrs.module.jasperreport",
       "type": "OMOD",
       "name": "Jasper Report",
+      "icon": "file-text-o",
       "tags": [
         "reporting"
       ],
@@ -1811,6 +1829,7 @@
       "uid": "org.openmrs.module.messaging",
       "type": "OMOD",
       "name": "Messaging Module",
+      "icon": "envelope-o",
       "tags": [
         "messaging"
       ],
@@ -1877,6 +1896,7 @@
       "uid": "org.openmrs.module.metadatasharing",
       "type": "OMOD",
       "name": "Metadata Sharing",
+      "icon": "share-alt-square",
       "tags": [
         "metadata"
       ],
@@ -1905,6 +1925,7 @@
       "uid": "org.openmrs.module.mirthmessaging",
       "type": "OMOD",
       "name": "Mirth Messaging",
+      "icon": "envelope-o",
       "tags": [
         "messaging"
       ],
@@ -2014,6 +2035,7 @@
       "uid": "org.openmrs.module.namephonetics",
       "type": "OMOD",
       "name": "Name Phonetics",
+      "icon": "file-audio-o",
       "tags": [
         "search", "pih-rwanda"
       ],
@@ -2148,6 +2170,7 @@
       "uid": "org.openmrs.module.openhmis-backboneforms",
       "type": "OMOD",
       "name": "OpenHMIS Backbone Forms",
+      "icon": "book",
       "tags": [
         "form-entry"
       ],
@@ -2276,6 +2299,7 @@
       "uid": "org.openmrs.module.patientmatching",
       "type": "OMOD",
       "name": "Patient Matching",
+      "icon": "link",
       "tags": [
         "data-management"
       ],
@@ -2455,6 +2479,7 @@
       "uid": "org.openmrs.module.providermanagement",
       "type": "OMOD",
       "name": "Provider Management Module",
+      "icon": "briefcase",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -2593,10 +2618,10 @@
       "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting",
+      "icon": "bar-chart",
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -2625,6 +2650,7 @@
       "uid": "org.openmrs.module.reportingcompatibility",
       "type": "OMOD",
       "name": "Reporting Compatibility",
+      "icon": "bar-chart",
       "tags": [
         "reporting"
       ],
@@ -2659,6 +2685,7 @@
       "uid": "org.openmrs.module.reportingrest",
       "type": "OMOD",
       "name": "reportingrest",
+      "icon": "bar-chart",
       "tags": [
         "reporting"
       ],
@@ -2733,6 +2760,7 @@
       "uid": "org.openmrs.module.researchencounters",
       "type": "OMOD",
       "name": "Research Encounters",
+      "icon": "files-o",
       "maintainers": [
         {
           "name": "dthomas"
@@ -2871,6 +2899,7 @@
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Quartz Scheduler",
+      "icon": "tasks",
       "tags": [
         "scheduling"
       ],
@@ -2984,6 +3013,7 @@
       "uid": "org.openmrs.module.smsmodule",
       "type": "OMOD",
       "name": "SMS Module",
+      "icon": "envelope-o",
       "tags": [
         "messaging"
       ],
@@ -3152,6 +3182,7 @@
       "uid": "org.openmrs.module.uicommons",
       "type": "OMOD",
       "name": "UI Commons Module",
+      "icon": "picture-o",
       "tags": [
         "back-end"
       ],
@@ -3177,6 +3208,7 @@
       "uid": "org.openmrs.module.uiframework",
       "type": "OMOD",
       "name": "OpenMRS UI Framework",
+      "icon": "file-image-o",
       "tags": [
         "back-end"
       ],
@@ -3225,6 +3257,7 @@
       "uid": "org.openmrs.module.usagestatistics",
       "type": "OMOD",
       "name": "Usage Statistics",
+      "icon": "bar-chart",
       "tags": [
         "data-management"
       ],
@@ -3369,6 +3402,7 @@
       "uid": "org.openmrs.module.webservices-rest",
       "type": "OMOD",
       "name": "Rest Web Services",
+      "icon": "server",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -3478,6 +3512,7 @@
       "uid": "org.openmrs.module.chart-search-module",
       "type": "OMOD",
       "name": "Chart Search Module",
+      "icon": "search",
       "tags": [
         "search"
       ],
@@ -3535,6 +3570,7 @@
       "uid": "org.openmrs.module.form-entry-app-module",
       "type": "OMOD",
       "name": "Form Entry App Module",
+      "icon": "pencil-square-o",
       "tags": [
         "form-entry"
       ],
@@ -3602,6 +3638,7 @@
       "uid": "org.openmrs.module.reference-metadata-module",
       "type": "OMOD",
       "name": "Reference Metadata Module",
+      "icon": "database",
       "tags": [
         "metadata", "reference-application"
       ],
@@ -3627,6 +3664,7 @@
       "uid": "org.openmrs.module.core-apps-module",
       "type": "OMOD",
       "name": "Core Apps Module",
+      "icon": "th-large",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -3655,6 +3693,7 @@
       "uid": "org.openmrs.module.reference-demo-data-module",
       "type": "OMOD",
       "name": "Reference Demo Data Module",
+      "icon": "laptop",
       "tags": [
         "demo", "reference-application"
       ],
@@ -3705,6 +3744,7 @@
       "uid": "org.openmrs.module.complex-data-to-db-module",
       "type": "OMOD",
       "name": "Complex Data To DB Module",
+      "icon": "database",
       "tags": [
         "data-management", "administration"
       ],
@@ -3792,6 +3832,7 @@
       "uid": "org.openmrs.module.data-exchange-module",
       "type": "OMOD",
       "name": "Data Exchange Module",
+      "icon": "exchange",
       "tags": [
         "data-management"
       ],
@@ -3830,6 +3871,7 @@
       "uid": "org.openmrs.module.appointment-scheduling-ui-module",
       "type": "OMOD",
       "name": "Appointment Scheduling UI Module",
+      "icon": "calendar-o",
       "tags": [
         "scheduling"
       ],
@@ -3852,6 +3894,7 @@
       "uid": "org.openmrs.module.registration-core-module",
       "type": "OMOD",
       "name": "Registration Core Module",
+      "icon": "user-plus",
       "tags": [
         "registration"
       ],
@@ -3874,6 +3917,7 @@
       "uid": "org.openmrs.module.registration-app-module",
       "type": "OMOD",
       "name": "Registration App Module",
+      "icon": "user-plus",
       "tags": [
         "registration"
       ],
@@ -3963,6 +4007,7 @@
       "uid": "org.openmrs.module.reporting-ui-module",
       "type": "OMOD",
       "name": "Reporting UI Module",
+      "icon": "bar-chart",
       "tags": [
         "reporting"
       ],
@@ -4004,6 +4049,7 @@
       "uid": "org.openmrs.module.data-import-tool",
       "type": "OMOD",
       "name": "Data Import Tool",
+      "icon": "download",
       "tags": [
         "data-management"
       ],
@@ -4185,6 +4231,7 @@
       "uid": "org.openmrs.module.paper-record-management-module",
       "type": "OMOD",
       "name": "Paper Record Management Module",
+      "icon": "file-text-o",
       "maintainers": [
         {
           "name": "Mark Goodrich"
