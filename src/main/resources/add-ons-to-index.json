@@ -130,6 +130,9 @@
       "uid": "org.openmrs.module.addresshierarchyrwanda",
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
+      "tags": [
+        "pih-rwanda"
+      ],
       "maintainers": [
         {
           "name": "peichenauer"
@@ -384,6 +387,9 @@
       "uid": "org.openmrs.module.chica",
       "type": "OMOD",
       "name": "Chica",
+      "tags": [
+        "chica"
+      ],
       "maintainers": [
         {
           "name": "tmdugan"
@@ -400,6 +406,9 @@
       "uid": "org.openmrs.module.chirdlutil",
       "type": "OMOD",
       "name": "chirdlutil",
+      "tags": [
+        "chica"
+      ],
       "maintainers": [
         {
           "name": "tmdugan"
@@ -416,6 +425,9 @@
       "uid": "org.openmrs.module.chirdlutilbackports",
       "type": "OMOD",
       "name": "chirdlutilbackports",
+      "tags": [
+        "chica"
+      ],
       "maintainers": [
         {
           "name": "sjmckee"
@@ -738,6 +750,9 @@
       "uid": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
+      "tags": [
+        "interoperability"
+      ],
       "maintainers": [
         {
           "name": "pkhumalo"
@@ -796,6 +811,9 @@
       "uid": "org.openmrs.module.drawing",
       "type": "OMOD",
       "name": "Drawing",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "pushkar"
@@ -812,6 +830,9 @@
       "uid": "org.openmrs.module.dss",
       "type": "OMOD",
       "name": "Dss",
+      "tags": [
+        "logic"
+      ],
       "maintainers": [
         {
           "name": "tmdugan"
@@ -894,6 +915,9 @@
       "uid": "org.openmrs.module.exportccd",
       "type": "OMOD",
       "name": "Export CCD Module",
+      "tags": [
+        "ccd"
+      ],
       "maintainers": [
         {
           "name": "deepaganu"
@@ -1157,6 +1181,9 @@
       "uid": "org.openmrs.module.gmapsimageviewer",
       "type": "OMOD",
       "name": "Google Maps Image Viewer",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "TorLye"
@@ -1223,6 +1250,9 @@
       "uid": "org.openmrs.module.hl7query",
       "type": "OMOD",
       "name": "HL7 Query",
+      "tags": [
+        "hl7"
+      ],
       "maintainers": [
         {
           "name": "Suranga Kasthurirathne"
@@ -1419,6 +1449,9 @@
       "uid": "org.openmrs.module.i2b2export",
       "type": "OMOD",
       "name": "i2b2 Export",
+      "tags": [
+        "interoperability"
+      ],
       "maintainers": [
         {
           "name": "slorenz"
@@ -1555,6 +1588,9 @@
       "uid": "org.openmrs.module.kenyadq",
       "type": "OMOD",
       "name": "KenyaDQ",
+      "tags": [
+        "kenya-emr"
+      ],
       "maintainers": [
         {
           "name": "Rowan Seymour"
@@ -1571,6 +1607,9 @@
       "uid": "org.openmrs.module.kenyalab",
       "type": "OMOD",
       "name": "KenyaLab",
+      "tags": [
+        "kenya-emr"
+      ],
       "maintainers": [
         {
           "name": "Nicholas Ingosi"
@@ -1591,7 +1630,7 @@
       "type": "OMOD",
       "name": "Kenya Metadata Tools",
       "tags": [
-        "metadata"
+        "metadata", "kenya-emr"
       ],
       "maintainers": [
         {
@@ -1612,6 +1651,9 @@
       "uid": "org.openmrs.module.kenyaui",
       "type": "OMOD",
       "name": "KenyaUI",
+      "tags": [
+        "kenya-emr"
+      ],
       "maintainers": [
         {
           "name": "Nicholas Ingosi"
@@ -1631,6 +1673,9 @@
       "uid": "org.openmrs.module.logic",
       "type": "OMOD",
       "name": "Logic",
+      "tags": [
+        "logic"
+      ],
       "maintainers": [
         {
           "name": "nyoman"
@@ -1659,6 +1704,9 @@
       "uid": "org.openmrs.module.logicws",
       "type": "OMOD",
       "name": "Logic Web Service",
+      "tags": [
+        "logic"
+      ],
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1966,6 +2014,9 @@
       "uid": "org.openmrs.module.namephonetics",
       "type": "OMOD",
       "name": "Name Phonetics",
+      "tags": [
+        "search", "pih-rwanda"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2056,6 +2107,9 @@
       "uid": "org.openmrs.module.odamocklogicws",
       "type": "OMOD",
       "name": "ODA Mock Logic Web Service",
+      "tags": [
+        "logic"
+      ],
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -2203,6 +2257,9 @@
       "uid": "org.openmrs.module.patientimage",
       "type": "OMOD",
       "name": "Patient Image",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -2731,6 +2788,9 @@
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Restrict By Role",
+      "tags": [
+        "access-control"
+      ],
       "maintainers": [
         {
           "name": "Darius Jazayeri"
@@ -2750,6 +2810,9 @@
       "uid": "org.openmrs.module.rgccd",
       "type": "OMOD",
       "name": "RG CCD",
+      "tags": [
+        "ccd"
+      ],
       "maintainers": [
         {
           "name": "tmdugan"
@@ -2766,6 +2829,9 @@
       "uid": "org.openmrs.module.rolebasedhomepage",
       "type": "OMOD",
       "name": "Role-Based Homepage",
+      "tags": [
+        "access-control"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2782,6 +2848,9 @@
       "uid": "org.openmrs.module.rwandaprimarycare",
       "type": "OMOD",
       "name": "Rwanda Primary Care Module",
+      "tags": [
+        "pih-rwanda"
+      ],
       "maintainers": [
         {
           "name": "dthomas"
@@ -2824,6 +2893,9 @@
       "uid": "org.openmrs.module.sdmxhdintegration",
       "type": "OMOD",
       "name": "SDMX-HD Integration",
+      "tags": [
+        "interoperability"
+      ],
       "maintainers": [
         {
           "name": "rcrichton"
@@ -2912,6 +2984,9 @@
       "uid": "org.openmrs.module.smsmodule",
       "type": "OMOD",
       "name": "SMS Module",
+      "tags": [
+        "messaging"
+      ],
       "maintainers": [
         {
           "name": "araza10"
@@ -2928,6 +3003,9 @@
       "uid": "org.openmrs.module.sockethl7listener",
       "type": "OMOD",
       "name": "sockethl7listener",
+      "tags": [
+        "hl7"
+      ],
       "maintainers": [
         {
           "name": "tmdugan"
@@ -3605,6 +3683,9 @@
       "uid": "org.openmrs.module.reference-application-module",
       "type": "OMOD",
       "name": "Reference Application Module",
+      "tags": [
+        "reference-application"
+      ],
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -3676,6 +3757,9 @@
       "uid": "org.openmrs.module.media-viewer-module",
       "type": "OMOD",
       "name": "Media Viewer Module",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "wolf schnab"
@@ -4024,6 +4108,9 @@
       "uid": "org.openmrs.module.omod-export-module",
       "type": "OMOD",
       "name": "Omod Export Module",
+      "tags": [
+        "administration"
+      ],
       "maintainers": [
         {
           "name": "Bailly Rurangirwa"
@@ -4079,6 +4166,9 @@
       "uid": "org.openmrs.module.radiology-app-module",
       "type": "OMOD",
       "name": "Radiology App Module",
+      "tags": [
+        "radiology"
+      ],
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4165,6 +4255,9 @@
       "uid": "org.openmrs.module.dermatology-lesionmapper",
       "type": "OMOD",
       "name": "Dermatology LesionMapper",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "Bell Eapen"
@@ -4181,6 +4274,9 @@
       "uid": "org.openmrs.module.clinical-images",
       "type": "OMOD",
       "name": "Clinical Images",
+      "tags": [
+        "image-handling"
+      ],
       "maintainers": [
         {
           "name": "Bell Eapen"
@@ -4213,6 +4309,9 @@
       "uid": "org.openmrs.module.openmrs-module-ncd-1",
       "type": "OMOD",
       "name": "openmrs-module-ncd",
+      "tags": [
+        "hl7"
+      ],
       "maintainers": [
         {
           "name": "Tom Hunter"
