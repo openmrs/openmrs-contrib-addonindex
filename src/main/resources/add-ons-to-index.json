@@ -109,7 +109,7 @@
       "type": "OMOD",
       "name": "Address Hierarchy",
       "tags": [
-        "Address", "Hierarchy"
+        "address-entry" 
       ],
       "maintainers": [
         {
@@ -137,7 +137,7 @@
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
       "tags": [
-        "pih-rwanda", "Address"
+        "pih-rwanda", "address-entry"
       ],
       "maintainers": [
         {
@@ -159,7 +159,7 @@
       "type": "OMOD",
       "name": "App Framework Module",
       "tags": [
-        "Framework", "App"
+        "ui-framework"
       ],
       "maintainers": [
         {
@@ -282,7 +282,7 @@
       "type": "OMOD",
       "name": "Atlas Module",
       "tags": [
-        "Atlas"
+        "implementation"
       ],
       "maintainers": [
         {
@@ -329,9 +329,6 @@
       "status": "DEPRECATED",
       "type": "OMOD",
       "name": "Backports 1.4.x",
-      "tags": [
-        "Backports"
-      ],
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -422,7 +419,7 @@
       "type": "OMOD",
       "name": "chirdlutil",
       "tags": [
-        "chica", "chirdlutil"
+        "chica", "utility-method"
       ],
       "maintainers": [
         {
@@ -441,7 +438,7 @@
       "type": "OMOD",
       "name": "chirdlutilbackports",
       "tags": [
-        "chica", "Chirdlutil", "Backsports"
+        "chica", "utility-method"
       ],
       "maintainers": [
         {
@@ -515,7 +512,7 @@
       "type": "OMOD",
       "name": "Concept Management Apps Module",
        "tags": [
-        "App", "Concept", "app-management"
+        "batch-operations", "tools", "app-management"
       ],
       "maintainers": [
         {
@@ -557,7 +554,7 @@
       "name": "Concept Proposal Module",
       "name": "Concept Management Apps Module",
        "tags": [
-        "App", "Concept", "app-management"
+       "batch-operations", "app-management"
       ],
       "maintainers": [
         {
@@ -598,7 +595,7 @@
       "type": "OMOD",
       "name": "Custom Message",
        "tags": [
-        "Message", "Custom"
+        "user-defined", "Custom"
       ],
       "maintainers": [
         {
@@ -1620,7 +1617,7 @@
       "type": "OMOD",
       "name": "KenyaDQ",
       "tags": [
-        "kenya-emr", "kenya-data"
+        "kenya-emr", "data-management"
       ],
       "maintainers": [
         {
@@ -1683,7 +1680,7 @@
       "type": "OMOD",
       "name": "KenyaUI",
       "tags": [
-        "kenya-emr", "kenya-data"
+        "kenya-emr", "library"
       ],
       "maintainers": [
         {
@@ -1736,7 +1733,7 @@
       "type": "OMOD",
       "name": "Logic Web Service",
       "tags": [
-        "logic", "web-service"
+        "logic-service", "web-service"
       ],
       "maintainers": [
         {
