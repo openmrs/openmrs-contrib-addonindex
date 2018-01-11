@@ -16,6 +16,7 @@ import java.time.OffsetDateTime;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
+import org.openmrs.addonindex.domain.BintrayGeoStats;
 import org.openmrs.addonindex.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,17 +28,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class Bintray implements BackendHandler {
+public class Bintray implements BackendHandler, SupportsDownloadCounts {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private RestTemplateBuilder restTemplateBuilder;
-	
+
+	private ObjectMapper mapper;
+
 	@Value("${bintray.username}")
 	private String bintrayUsername;
 	
@@ -45,8 +48,9 @@ public class Bintray implements BackendHandler {
 	private String bintrayApiKey;
 	
 	@Autowired
-	public Bintray(RestTemplateBuilder restTemplateBuilder) {
+	public Bintray(RestTemplateBuilder restTemplateBuilder, ObjectMapper mapper) {
 		this.restTemplateBuilder = restTemplateBuilder;
+		this.mapper = mapper;
 	}
 	
 	@Override
@@ -65,7 +69,27 @@ public class Bintray implements BackendHandler {
 			return handlePackageJson(addOnToIndex, json);
 		}
 	}
-	
+
+	@Override
+	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+		//We won't be checking for existing info as download counts is dynamic
+		// and has to be fetched each time
+		logger.info("Fetching Download Counts for " + toIndex.getUid());
+		BintrayGeoStats downloadCounts;
+		Integer totalDownloadCounts = 0;
+		String json;
+		String downloadStatsUrl = downloadCountUrlFor(toIndex);
+		try {
+			json = restTemplateBuilder.build().getForObject(downloadStatsUrl, String.class);
+			downloadCounts = mapper.readValue(json, BintrayGeoStats.class);
+			totalDownloadCounts = handleBintrayGeoStats(toIndex, downloadCounts);
+			infoAndVersions.setDownloadCountInLast30Days(totalDownloadCounts);
+		}
+		catch (Exception ex) {
+			logger.error("Error fetching details for" + toIndex.getUid(), ex);
+		}
+	}
+
 	AddOnInfoAndVersions handlePackageJson(AddOnToIndex addOnToIndex, String packageJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);
 		info.setHostedUrl(hostedUrlFor(addOnToIndex));
@@ -100,6 +124,14 @@ public class Bintray implements BackendHandler {
 		}
 		return info;
 	}
+
+	private Integer handleBintrayGeoStats(AddOnToIndex toIndex, BintrayGeoStats downloadCounts) {
+		int totalDownloadCount = 0;
+		for (Integer downloadCount : downloadCounts.getTotalDownloads().values()) {
+			totalDownloadCount += downloadCount;
+		}
+		return totalDownloadCount;
+	}
 	
 	private String downloadUriFor(AddOnToIndex addOnToIndex, String filePath) {
 		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
@@ -129,6 +161,14 @@ public class Bintray implements BackendHandler {
 	private String packageUrlFor(AddOnToIndex addOnToIndex) {
 		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
 		return String.format("https://bintray.com/api/v1/packages/%s/%s/%s",
+				details.getOwner(),
+				details.getRepo(),
+				details.getPackageName());
+	}
+
+	private String downloadCountUrlFor(AddOnToIndex addOnToIndex) {
+		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
+		return String.format("https://bintray.com/statistics/packageGeoStats?&pkgPath=/%s/%s/%s",
 				details.getOwner(),
 				details.getRepo(),
 				details.getPackageName());

@@ -203,6 +203,10 @@ export default class Show extends Component {
                                     })}
                                     </h5></td>
                                 </tr>
+                                <tr>
+                                    <th>Downloads in the last 30 days</th>
+                                    <td>{addon.downloadCountInLast30Days ? addon.downloadCountInLast30Days : "?"}</td>
+                                </tr>
                                 </tbody>
                             </Table>
                             </div>

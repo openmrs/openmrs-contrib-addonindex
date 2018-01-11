@@ -27,38 +27,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class BintrayTest {
-	
+
 	@Mock
 	private RestTemplateBuilder builder;
-	
+
 	@Mock
 	private RestTemplate restTemplate;
-	
+
 	@InjectMocks
 	private Bintray bintray;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		when(builder.basicAuthorization(anyString(), anyString())).thenReturn(builder);
 		when(builder.build()).thenReturn(restTemplate);
 	}
-	
+
 	@Test
 	public void testHandleJson() throws Exception {
 		String json = getFileAsString("bintray-package.json");
-		
+
 		when(restTemplate.getForObject("https://bintray.com/api/v1/packages/openmrs/owa/openmrs-owa-conceptdictionary/"
 				+ "versions/1.0.0/files?include_unpublished=0", ArrayNode.class))
 				.thenReturn(new ObjectMapper().readValue(getFileAsString("bintray-version-files.json"), ArrayNode.class));
-		
+
 		AddOnToIndex addOnToIndex = new AddOnToIndex();
 		addOnToIndex.setType(AddOnType.OWA);
 		addOnToIndex.setUid("conceptdictionary-owa");
 		addOnToIndex.setBackend(Bintray.class);
 		addOnToIndex.setBintrayPackageDetails(new BintrayPackageDetails("openmrs", "owa",
 				"openmrs-owa-conceptdictionary"));
-		
+
 		AddOnInfoAndVersions info = bintray.handlePackageJson(addOnToIndex, json);
 		assertThat(info.getName(), is("openmrs-owa-conceptdictionary"));
 		assertThat(info.getDescription(),
@@ -73,5 +73,5 @@ public class BintrayTest {
 						is("https://dl.bintray.com/openmrs/owa/conceptdictionary-1.0.0.zip"))
 		)));
 	}
-	
+
 }

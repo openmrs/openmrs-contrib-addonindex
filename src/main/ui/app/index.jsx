@@ -12,9 +12,21 @@ import React from "react";
 import {render} from "react-dom";
 import {Router, hashHistory} from "react-router";
 import routes from "./routes";
+import ReactGA from 'react-ga';
+
 import "./sass/addonindex.scss";
 
+if (GA_ID) {
+    ReactGA.initialize(GA_ID);
+}
+
+function trackView() {
+    if (GA_ID) {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+}
+
 render(
-        <Router history={hashHistory} routes={routes}/>,
+        <Router onUpdate={trackView} history={hashHistory} routes={routes}/>,
         document.getElementById('root')
-)
+);
