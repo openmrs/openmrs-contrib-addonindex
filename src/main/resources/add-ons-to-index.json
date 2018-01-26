@@ -200,6 +200,7 @@
       "tags": [
         "scheduling"
       ],
+      "icon": "calendar",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -518,6 +519,7 @@
       "tags": [
         "search"
       ],
+      "icon": "search",
       "maintainers": [
         {
           "name": "maltef"
@@ -814,6 +816,7 @@
       "tags": [
         "image-handling"
       ],
+      "icon": "picture-o",
       "maintainers": [
         {
           "name": "pushkar"
@@ -975,6 +978,7 @@
       "tags": [
         "search"
       ],
+      "icon": "search",
       "maintainers": [
         {
           "name": "tgreensweig"
@@ -1058,6 +1062,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "share-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1086,6 +1091,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1120,6 +1126,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "filter",
       "maintainers": [
         {
           "name": "goutham"
@@ -1184,6 +1191,7 @@
       "tags": [
         "image-handling"
       ],
+      "icon": "picture-o",
       "maintainers": [
         {
           "name": "TorLye"
@@ -1374,6 +1382,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "code",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1399,6 +1408,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "code",
       "maintainers": [
         {
           "name": "Darius Jazayeri"
@@ -1550,6 +1560,7 @@
       "tags": [
         "reporting"
       ],
+      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -1676,6 +1687,7 @@
       "tags": [
         "logic"
       ],
+      "icon": "superscript",
       "maintainers": [
         {
           "name": "nyoman"
@@ -1707,6 +1719,7 @@
       "tags": [
         "logic"
       ],
+      "icon": "superscript",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1735,6 +1748,7 @@
       "tags": [
         "logging"
       ],
+      "icon": "file-text-o",
       "maintainers": [
         {
           "name": "Rowan Seymour"
@@ -1814,6 +1828,7 @@
       "tags": [
         "messaging"
       ],
+      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jeremy"
@@ -1833,6 +1848,7 @@
       "tags": [
         "metadata"
       ],
+      "icon": "tags",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1880,6 +1896,7 @@
       "tags": [
         "metadata"
       ],
+      "icon": "share-alt",
       "maintainers": [
         {
           "name": "bryq"
@@ -1908,6 +1925,7 @@
       "tags": [
         "messaging"
       ],
+      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jacobb"
@@ -2017,6 +2035,7 @@
       "tags": [
         "search", "pih-rwanda"
       ],
+      "icon": "search",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2151,6 +2170,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "code",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -2260,6 +2280,7 @@
       "tags": [
         "image-handling"
       ],
+      "icon": "user-circle-o",
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -2279,6 +2300,7 @@
       "tags": [
         "data-management"
       ],
+      "icon": "link",
       "maintainers": [
         {
           "name": "Burke Mamlin"
@@ -2519,6 +2541,7 @@
       "tags": [
         "registration"
       ],
+      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -2574,6 +2597,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "jeremy"
@@ -2628,6 +2652,7 @@
       "tags": [
         "reporting"
       ],
+      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -2662,6 +2687,7 @@
       "tags": [
         "reporting"
       ],
+      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -2832,6 +2858,7 @@
       "tags": [
         "access-control"
       ],
+      "icon": "users",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2874,6 +2901,7 @@
       "tags": [
         "scheduling"
       ],
+      "icon": "calendar",
       "maintainers": [
         {
           "name": "djmlog103"
@@ -2987,6 +3015,7 @@
       "tags": [
         "messaging"
       ],
+      "icon": "bell-o",
       "maintainers": [
         {
           "name": "araza10"
@@ -3180,6 +3209,7 @@
       "tags": [
         "back-end"
       ],
+      "icon": "code",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3228,6 +3258,7 @@
       "tags": [
         "data-management"
       ],
+      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "rseymour"
@@ -3310,6 +3341,7 @@
       "tags": [
         "scheduling"
       ],
+      "icon": "calendar",
       "maintainers": [
         {
           "name": "vistorr05"
@@ -3481,6 +3513,7 @@
       "tags": [
         "search"
       ],
+      "icon": "search",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -3538,6 +3571,7 @@
       "tags": [
         "form-entry"
       ],
+      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -3760,6 +3794,7 @@
       "tags": [
         "image-handling"
       ],
+      "icon": "picture-o",
       "maintainers": [
         {
           "name": "wolf schnab"
@@ -3833,6 +3868,7 @@
       "tags": [
         "scheduling"
       ],
+      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3855,6 +3891,7 @@
       "tags": [
         "registration"
       ],
+      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3877,6 +3914,7 @@
       "tags": [
         "registration"
       ],
+      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3966,6 +4004,7 @@
       "tags": [
         "reporting"
       ],
+      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4220,6 +4259,7 @@
       "tags": [
         "reporting"
       ],
+      "icon": "print",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -4239,6 +4279,7 @@
       "tags": [
         "logging"
       ],
+      "icon": "file-text-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -4277,6 +4318,7 @@
       "tags": [
         "image-handling"
       ],
+      "icon": "picture-o",
       "maintainers": [
         {
           "name": "Bell Eapen"
