@@ -200,7 +200,6 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -519,7 +518,6 @@
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "maltef"
@@ -816,7 +814,6 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
       "maintainers": [
         {
           "name": "pushkar"
@@ -978,7 +975,6 @@
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "tgreensweig"
@@ -1062,7 +1058,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "share-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1091,7 +1086,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1126,7 +1120,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "filter",
       "maintainers": [
         {
           "name": "goutham"
@@ -1191,7 +1184,6 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
       "maintainers": [
         {
           "name": "TorLye"
@@ -1382,7 +1374,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1408,7 +1399,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Darius Jazayeri"
@@ -1560,7 +1550,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -1687,7 +1676,6 @@
       "tags": [
         "logic"
       ],
-      "icon": "superscript",
       "maintainers": [
         {
           "name": "nyoman"
@@ -1719,7 +1707,6 @@
       "tags": [
         "logic"
       ],
-      "icon": "superscript",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1748,7 +1735,6 @@
       "tags": [
         "logging"
       ],
-      "icon": "file-text-o",
       "maintainers": [
         {
           "name": "Rowan Seymour"
@@ -1828,7 +1814,6 @@
       "tags": [
         "messaging"
       ],
-      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jeremy"
@@ -1848,7 +1833,6 @@
       "tags": [
         "metadata"
       ],
-      "icon": "tags",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1896,7 +1880,6 @@
       "tags": [
         "metadata"
       ],
-      "icon": "share-alt",
       "maintainers": [
         {
           "name": "bryq"
@@ -1925,7 +1908,6 @@
       "tags": [
         "messaging"
       ],
-      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jacobb"
@@ -2035,7 +2017,6 @@
       "tags": [
         "search", "pih-rwanda"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2170,7 +2151,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -2280,7 +2260,6 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "user-circle-o",
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -2300,7 +2279,6 @@
       "tags": [
         "data-management"
       ],
-      "icon": "link",
       "maintainers": [
         {
           "name": "Burke Mamlin"
@@ -2541,7 +2519,6 @@
       "tags": [
         "registration"
       ],
-      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Saptarshi Purkayastha"
@@ -2597,7 +2574,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "jeremy"
@@ -2652,7 +2628,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -2687,7 +2662,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -2858,7 +2832,6 @@
       "tags": [
         "access-control"
       ],
-      "icon": "users",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2901,7 +2874,6 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
       "maintainers": [
         {
           "name": "djmlog103"
@@ -3015,7 +2987,6 @@
       "tags": [
         "messaging"
       ],
-      "icon": "bell-o",
       "maintainers": [
         {
           "name": "araza10"
@@ -3209,7 +3180,6 @@
       "tags": [
         "back-end"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3258,7 +3228,6 @@
       "tags": [
         "data-management"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "rseymour"
@@ -3341,7 +3310,6 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
       "maintainers": [
         {
           "name": "vistorr05"
@@ -3513,7 +3481,6 @@
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -3571,7 +3538,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -3794,7 +3760,6 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
       "maintainers": [
         {
           "name": "wolf schnab"
@@ -3868,7 +3833,6 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3891,7 +3855,6 @@
       "tags": [
         "registration"
       ],
-      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3914,7 +3877,6 @@
       "tags": [
         "registration"
       ],
-      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4004,7 +3966,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4259,7 +4220,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "print",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -4279,7 +4239,6 @@
       "tags": [
         "logging"
       ],
-      "icon": "file-text-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -4318,7 +4277,6 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
       "maintainers": [
         {
           "name": "Bell Eapen"
@@ -4428,171 +4386,6 @@
         }
       ]
     },
-{
-      "uid": "refapp_2_7",
-      "name": "RefApp 2.7",
-      "description": "Included in Reference Application 2.7",
-      "addOns": [
-        {
-          "uid": "org.openmrs.module.admin-ui-module",
-          "version": "1.2.2"
-        },
-        {
-          "uid": "org.openmrs.module.allergy-ui-module",
-          "version": "1.8.0"
-        },
-        {
-          "uid": "org.openmrs.module.appframework",
-          "version": "2.10.0"
-        },
-        {
-          "uid": "org.openmrs.module.appui",
-          "version": "1.8.0"
-        },
-        {
-          "uid": "org.openmrs.module.appointmentscheduling",
-          "version": "1.8.0"
-        },
-        {
-          "uid": "org.openmrs.module.appointment-scheduling-ui-module",
-          "version": "1.6.1"
-        },
-        {
-          "uid": "org.openmrs.module.atlas",
-          "version": "2.2"
-        },
-        {
-          "uid": "org.openmrs.module.calculation",
-          "version": "1.2"
-        },
-        {
-          "uid": "org.openmrs.module.chart-search-module",
-          "version": "2.1.0"
-        },
-        {
-          "uid": "org.openmrs.module.core-apps-module",
-          "version": "1.18.0"
-        },
-        {
-          "uid": "org.openmrs.module.data-exchange-module",
-          "version": "1.3.2"
-        },
-        {
-          "uid": "org.openmrs.module.emrapi",
-          "version": "1.23.0"
-        },
-        {
-          "uid": "org.openmrs.module.event",
-          "version": "2.6.0"
-        },
-        {
-          "uid": "org.openmrs.module.openmrs-fhir-module",
-          "version": "1.7.0"
-        },
-        {
-          "uid": "org.openmrs.module.form-entry-app-module",
-          "version": "1.4.2"
-        },
-        {
-          "uid": "org.openmrs.module.htmlformentry",
-          "version": "3.4.0"
-        },
-        {
-          "uid": "org.openmrs.module.htmlformentryui",
-          "version": "1.6.4"
-        },
-        {
-          "uid": "org.openmrs.module.htmlwidgets",
-          "version": "1.9.0"
-        },
-        {
-          "uid": "org.openmrs.module.idgen",
-          "version": "4.4.1"
-        },
-        {
-          "uid": "org.openmrs.module.metadatadeploy",
-          "version": "1.9.0"
-        },
-        {
-          "uid": "org.openmrs.module.metadatamapping",
-          "version": "1.3.3"
-        },
-        {
-          "uid": "org.openmrs.module.metadatasharing",
-          "version": "1.3.0"
-        },
-        {
-          "uid": "org.openmrs.module.providermanagement",
-          "version": "2.9.0"
-        },
-        {
-          "uid": "org.openmrs.module.reference-application-module",
-          "version": "2.7.0"
-        },
-        {
-          "uid": "org.openmrs.module.reference-demo-data-module",
-          "version": "1.4.3"
-        },
-        {
-          "uid": "org.openmrs.module.reference-metadata-module",
-          "version": "2.7.0"
-        },
-        {
-          "uid": "org.openmrs.module.registration-app-module",
-          "version": "1.10.0"
-        },
-        {
-          "uid": "org.openmrs.module.registration-core-module",
-          "version": "1.8.0"
-        },
-        {
-          "uid": "org.openmrs.module.reporting",
-          "version": "1.15.0"
-        },
-        {
-          "uid": "org.openmrs.module.reportingrest",
-          "version": "1.9.0"
-        },
-        {
-          "uid": "org.openmrs.module.reporting-ui-module",
-          "version": "1.5.0"
-        },
-        {
-          "uid": "org.openmrs.module.webservices-rest",
-          "version": "2.21.0"
-        },
-        {
-          "uid": "org.openmrs.module.serialization-xstream",
-          "version": "0.2.13"
-        },
-        {
-          "uid": "org.openmrs.module.uicommons",
-          "version": "2.5.1"
-        },
-        {
-          "uid": "org.openmrs.module.uilibrary",
-          "version": "2.0.6"
-        },
-        {
-          "uid": "org.openmrs.module.uiframework",
-          "version": "3.13.0"
-        },
-        {
-          "uid": "org.openmrs.module.reportingcompatibility",
-          "version": "2.0.4"
-        },
-        {
-          "uid": "org.openmrs.module.legacy-ui-module",
-          "version": "1.3.3"
-        },
-        {
-          "uid": "org.openmrs.module.open-web-apps-module",
-          "version": "1.8.1"
-        }
-
-      ]
-    }
-,
     {
       "uid": "refapp_2_6",
       "name": "RefApp 2.6",
