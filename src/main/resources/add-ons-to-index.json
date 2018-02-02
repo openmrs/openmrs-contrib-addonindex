@@ -43,6 +43,27 @@
       }
     },
     {
+    "uid": "org.openmrs.owa.addonmanager",
+    "type": "OWA",
+    "name": "Add On Manager",
+    "maintainers": [
+      {
+        "name": "Andela apprentices",
+        "url": "https://andela.com/"
+      },
+      {
+        "name": "OpenMRS",
+        "url": "https://github.com/openmrs"
+      }
+    ],
+    "backend": "org.openmrs.addonindex.backend.Bintray",
+    "bintrayPackageDetails": {
+      "owner": "openmrs",
+      "repo": "owa",
+      "package": "openmrs-owa-addonmanager"
+      }
+    },
+    {
     "uid": "org.openmrs.owa.sysadmin",
     "type": "OWA",
     "name": "System Administration OWA",
