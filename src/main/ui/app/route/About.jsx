@@ -22,23 +22,26 @@ export default class About extends Component {
                     <h3><b>How to add your module?</b></h3>
 
                     <p> Adding your module to Add Ons for indexing is as easy as creating a pull request!
-                        Before we do that, we need to ensure that your module has been hosted on one of the sites that Add Ons currently supports indexing from: <br/>
-                        a) Bintray <br/>
-                        b) modules.openmrs.org <br/>
-                    <br/>
-                        Once you have confirmed the above prerequisite, you may head over to the <a target="_blank"
-                           href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/PUBLISHING-AN-ADD-ON.md">Publishing an Add on document</a> on Github which contains a comprehensive list of steps.
+                        First you need to upload your module to Bintray, and then you may head over to the <a target="_blank"
+                                                                                                              href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/PUBLISHING-AN-ADD-ON.md">Publishing
+                                                                                                                                                                                                               an
+                                                                                                                                                                                                               Add
+                                                                                                                                                                                                               on
+                                                                                                                                                                                                               document</a>
+                        on Github which contains a comprehensive list of steps.
 		            <br/>
 		            <br/>
-                        Discussions on the working of this tool and/or proposal of new features may be done under the Add Ons project category on OpenMRS talk
-                    
+                        Discussions on the working of this tool and/or proposal of new features may be done on OpenMRS talk
+                        in the <a target="_blank" href="https://talk.openmrs.org/c/projects/add-on-index">projects:add-on-index</a>
+                        category.
                     </p>
 
                     <h3><b>About the OpenMRS Add Ons tool:</b></h3>
                     <ul>
                     <li><b>Contributing: </b> You may find the source code for Add Ons <a target="_blank"
-                           href="https://github.com/openmrs/openmrs-contrib-addonindex">here</a> , for more details you may also view the <a target="_blank"
-                           href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/CONTRIBUTING.md">CONTRIBUTING.md document</a>
+                                                                                          href="https://github.com/openmrs/openmrs-contrib-addonindex">here</a>,
+                                              for more details you may also view the <a target="_blank"
+                                                                                        href="https://github.com/openmrs/openmrs-contrib-addonindex/blob/master/CONTRIBUTING.md">CONTRIBUTING.md document</a>
                     </li>
                     <li>
                         <b>Discussion Forum: </b> The discussion forum for OpenMRS Add Ons is located <a target="_blank"
