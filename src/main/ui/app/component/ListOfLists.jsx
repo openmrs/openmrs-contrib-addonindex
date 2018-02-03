@@ -49,11 +49,6 @@ export default class ListOfLists extends Component {
                                 :
                          null
                         }
-                        <li className="About">
-                            <Link to={`/about`}>
-                                <strong>About</strong>
-                            </Link>
-                        </li>
                     </ul>
             )
         }

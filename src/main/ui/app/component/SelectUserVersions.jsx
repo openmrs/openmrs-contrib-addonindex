@@ -39,12 +39,15 @@ export default class SelectUserVersions extends Component {
             )
         }
 
-        return (<Select value={this.props.value}
-                        placeholder='Version'
-                        options={openmrsCoreVersionOptions}
-                        name="selected-state"
-                        onChange={selection => selection ? this.props.updateValue(selection.value): this.props.updateValue(null)}
-                        searchable="true"/>)
+        return (<div>
+            OpenMRS Platform version
+            <Select value={this.props.value}
+                    placeholder='to check compatibility'
+                    options={openmrsCoreVersionOptions}
+                    name="selected-state"
+                    onChange={selection => selection ? this.props.updateValue(selection.value): this.props.updateValue(null)}
+                    searchable="true"/>
+        </div>)
 
 
     }

@@ -8,7 +8,7 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component, Children} from "react";
+import {Component} from "react";
 import {Link} from "react-router";
 import ListOfLists from "../component/ListOfLists";
 import SelectUserVersions from "../component/SelectUserVersions";
@@ -33,21 +33,22 @@ export default class App extends Component {
         return (
                 <div className="container-fluid">
                     <header className="clearfix row vertical-align-center">
-                        <h1 className="col-sm-5">
+                        <h1 className="col-sm-4">
                             <a href="#/">
                                 <img className="logo logo1" src="/images/logo.png" alt="OpenMRS Add-Ons Logo"/>
                             </a>
                         </h1>
-                        <div className="col-sm-4">
+                        <div className="col-sm-5">
                             <ListOfLists/>
                         </div>
-                        <div className="col-sm-2">
-                            <h5><b>Your Platform Version:</b></h5>
-                        </div>
-                        <div className="col-sm-2">
+                        <h5 className="col-sm-3">
                             <SelectUserVersions value={this.state.openmrsCoreVersion} updateValue={this.setOpenmrsCoreVersion}/>
-                        </div>
+                            <br/>
+                        </h5>
                     </header>
+                    <div className="pull-right">
+                        <Link to={`/about`} activeClassName="hidden">About Add Ons</Link>
+                    </div>
                     {childrenWithProps}
                 </div>
         )
