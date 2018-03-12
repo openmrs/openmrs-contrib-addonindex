@@ -4798,6 +4798,31 @@
         }
 
       ]
+    },
+    {
+      "uid": "org.openmrs.module.openhmis-inventory",
+      "type": "OMOD",
+      "name": "OpenHMIS Inventory",
+      "maintainers": [
+        {
+          "name": "Wes Brown"
+        },
+        {
+          "name": "Andrew Moko"
+        },
+        {
+          "name": "Kevin Burnett"
+        },
+        {
+          "name": "Kelly Muhindi"
+        }
+       ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "OMOD",
+        "package": "openhmis.inventory"
+      }
     }
   ]
 }
