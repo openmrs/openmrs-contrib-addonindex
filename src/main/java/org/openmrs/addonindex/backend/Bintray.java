@@ -16,6 +16,7 @@ import java.time.OffsetDateTime;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
+import org.openmrs.addonindex.domain.BintrayDownloadCounts;
 import org.openmrs.addonindex.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +28,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class Bintray implements BackendHandler {
@@ -37,7 +38,9 @@ public class Bintray implements BackendHandler {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private RestTemplateBuilder restTemplateBuilder;
-	
+
+	private ObjectMapper mapper;
+
 	@Value("${bintray.username}")
 	private String bintrayUsername;
 	
@@ -45,8 +48,9 @@ public class Bintray implements BackendHandler {
 	private String bintrayApiKey;
 	
 	@Autowired
-	public Bintray(RestTemplateBuilder restTemplateBuilder) {
+	public Bintray(RestTemplateBuilder restTemplateBuilder, ObjectMapper mapper) {
 		this.restTemplateBuilder = restTemplateBuilder;
+		this.mapper = mapper;
 	}
 	
 	@Override
@@ -65,7 +69,36 @@ public class Bintray implements BackendHandler {
 			return handlePackageJson(addOnToIndex, json);
 		}
 	}
-	
+
+	@Override
+	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+		//We won't be checking for existing info as download counts is dynamic
+		// and has to be fetched each time
+		logger.info("Fetching Download Counts for " + toIndex.getUid());
+		BintrayDownloadCounts downloadCounts;
+		String json;
+		BintrayPackageDetails bintrayPackageDetails = toIndex.getBintrayPackageDetails();
+		String baseurl = "https://bintray.com/statistics/packageGeoStats?&pkgPath=/" + bintrayPackageDetails.getOwner()
+				+ "/" + bintrayPackageDetails.getRepo() + "/" + bintrayPackageDetails.getPackageName();
+		try {
+			json = restTemplateBuilder.build().getForObject(baseurl, String.class);
+			downloadCounts = mapper.readValue(json, BintrayDownloadCounts.class);
+			Integer totalDownloadCounts = 0;
+			for (Integer downloadCount : downloadCounts.getTotalDownloads().values()) {
+				try {
+					totalDownloadCounts += downloadCount;
+				}
+				catch (Exception e) {
+					logger.error("Error getting details for " + toIndex.getUid(), e);
+				}
+			}
+			infoAndVersions.setDownloadCounts(totalDownloadCounts);
+		}
+		catch (Exception ex) {
+			throw new RuntimeException("Download counts from " + baseurl + " could not be parsed", ex);
+		}
+	}
+
 	AddOnInfoAndVersions handlePackageJson(AddOnToIndex addOnToIndex, String packageJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);
 		info.setHostedUrl(hostedUrlFor(addOnToIndex));
@@ -98,7 +131,20 @@ public class Bintray implements BackendHandler {
 				}
 			}
 		}
+
+		String downloadCountUrl = downloadCountUrlFor(addOnToIndex);
+		JsonNode arr = restTemplateBuilder.build().getForObject(downloadCountUrl, JsonNode.class);
+		int totalDownloadCount = handleBintrayGeoStats(arr);
+		info.setDownloadCounts(totalDownloadCount);
 		return info;
+	}
+
+	private int handleBintrayGeoStats(JsonNode jsonNode) {
+		int totalDownloadCount = 0;
+		for (JsonNode countryDownloadCount : jsonNode.get("totalDownloads")) {
+			totalDownloadCount += Integer.parseInt(countryDownloadCount.toString());
+		}
+		return totalDownloadCount;
 	}
 	
 	private String downloadUriFor(AddOnToIndex addOnToIndex, String filePath) {
@@ -129,6 +175,14 @@ public class Bintray implements BackendHandler {
 	private String packageUrlFor(AddOnToIndex addOnToIndex) {
 		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
 		return String.format("https://bintray.com/api/v1/packages/%s/%s/%s",
+				details.getOwner(),
+				details.getRepo(),
+				details.getPackageName());
+	}
+
+	private String downloadCountUrlFor(AddOnToIndex addOnToIndex) {
+		BintrayPackageDetails details = addOnToIndex.getBintrayPackageDetails();
+		return String.format("https://bintray.com/statistics/packageGeoStats?&pkgPath=/%s/%s/%s",
 				details.getOwner(),
 				details.getRepo(),
 				details.getPackageName());

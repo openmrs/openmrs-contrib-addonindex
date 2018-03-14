@@ -30,5 +30,6 @@ public interface BackendHandler {
 	 * @throws Exception
 	 */
 	AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception;
+	void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception;
 	
 }

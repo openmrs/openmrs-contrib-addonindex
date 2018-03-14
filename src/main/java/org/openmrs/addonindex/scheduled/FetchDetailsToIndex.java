@@ -61,7 +61,7 @@ public class FetchDetailsToIndex {
 	private IndexingService indexingService;
 	
 	private RestTemplateBuilder restTemplateBuilder;
-	
+
 	private DocumentBuilderFactory documentBuilderFactory;
 
 	@Autowired
@@ -109,6 +109,7 @@ public class FetchDetailsToIndex {
 			}
 			
 			if (fetchExtraDetails) {
+				handler.fetchDownloadCounts(toIndex, infoAndVersions);
 				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
 			}
 

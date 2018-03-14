@@ -66,6 +66,11 @@ public class OpenmrsMavenRepo implements BackendHandler {
 		String xml = restTemplateBuilder.build().getForObject(url, String.class);
 		return handleIndexBrowserTreeViewResponse(addOnToIndex, xml);
 	}
+
+	@Override
+	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+
+	}
 	
 	AddOnInfoAndVersions handleIndexBrowserTreeViewResponse(AddOnToIndex addOnToIndex, String xml) throws Exception {
 		AddOnInfoAndVersions addOnInfoAndVersions = AddOnInfoAndVersions.from(addOnToIndex);

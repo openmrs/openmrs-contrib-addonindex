@@ -203,6 +203,10 @@ export default class Show extends Component {
                                     })}
                                     </h5></td>
                                 </tr>
+                                <tr>
+                                    <th>Total downloads</th>
+                                    <td>{addon.downloadCounts ? addon.downloadCounts : 0}</td>
+                                </tr>
                                 </tbody>
                             </Table>
                             </div>

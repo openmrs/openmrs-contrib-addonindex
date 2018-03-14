@@ -54,6 +54,8 @@ public class AddOnInfoAndVersions {
 	private String hostedUrl;
 	
 	private List<AddOnVersion> versions = new ArrayList<>();
+
+	private Integer downloadCounts;
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
@@ -175,6 +177,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setVersions(List<AddOnVersion> versions) {
 		this.versions = versions;
+	}
+
+	public Integer getDownloadCounts() {
+		return downloadCounts;
+	}
+
+	public void setDownloadCounts(Integer downloadCounts) {
+		this.downloadCounts = downloadCounts;
 	}
 	
 	public Optional<AddOnVersion> getVersion(Version version) {

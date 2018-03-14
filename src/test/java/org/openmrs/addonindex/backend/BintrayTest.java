@@ -11,6 +11,7 @@ import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import java.time.OffsetDateTime;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -27,7 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class BintrayTest {
-	
+
 	@Mock
 	private RestTemplateBuilder builder;
 	
@@ -58,7 +59,10 @@ public class BintrayTest {
 		addOnToIndex.setBackend(Bintray.class);
 		addOnToIndex.setBintrayPackageDetails(new BintrayPackageDetails("openmrs", "owa",
 				"openmrs-owa-conceptdictionary"));
-		
+
+		when(restTemplate.getForObject("https://bintray.com/statistics/packageGeoStats?&pkgPath=/openmrs/owa/openmrs-owa-conceptdictionary", JsonNode.class))
+				.thenReturn(new ObjectMapper().readValue(getFileAsString("bintray-download-counts.json"), JsonNode.class));
+
 		AddOnInfoAndVersions info = bintray.handlePackageJson(addOnToIndex, json);
 		assertThat(info.getName(), is("openmrs-owa-conceptdictionary"));
 		assertThat(info.getDescription(),
@@ -72,6 +76,7 @@ public class BintrayTest {
 				hasProperty("downloadUri",
 						is("https://dl.bintray.com/openmrs/owa/conceptdictionary-1.0.0.zip"))
 		)));
+		assertThat(info.getDownloadCounts(),is(55));
 	}
 	
 }
