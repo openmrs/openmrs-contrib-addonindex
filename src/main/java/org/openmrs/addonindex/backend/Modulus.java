@@ -57,11 +57,6 @@ public class Modulus implements BackendHandler {
 			return handleModuleJson(addOnToIndex, json);
 		}
 	}
-
-	@Override
-	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
-
-	}
 	
 	AddOnInfoAndVersions handleModuleJson(AddOnToIndex addOnToIndex, String moduleJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);

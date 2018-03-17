@@ -19,7 +19,8 @@ import java.util.Map;
 
 /**
  * Defines POJO for parse the Download counts of a module
- *
+ * example : {"result":"success","timestamp":1513206041782,"data":{"US":43,"MW":6,"TH":3,"KE":2,"NG":1},
+ * "totalIsPublic":true,"advanced":false,"totalDownloads":{"US":43,"MW":6,"TH":3,"KE":2,"NG":1}}
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BintrayDownloadCounts {

@@ -33,7 +33,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class Bintray implements BackendHandler {
+public class Bintray implements BackendHandler, SupportsDownloadCounts {
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -71,32 +71,24 @@ public class Bintray implements BackendHandler {
 	}
 
 	@Override
-	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+	public Integer fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
 		//We won't be checking for existing info as download counts is dynamic
 		// and has to be fetched each time
 		logger.info("Fetching Download Counts for " + toIndex.getUid());
 		BintrayDownloadCounts downloadCounts;
+		Integer totalDownloadCounts = 0;
 		String json;
-		BintrayPackageDetails bintrayPackageDetails = toIndex.getBintrayPackageDetails();
-		String baseurl = "https://bintray.com/statistics/packageGeoStats?&pkgPath=/" + bintrayPackageDetails.getOwner()
-				+ "/" + bintrayPackageDetails.getRepo() + "/" + bintrayPackageDetails.getPackageName();
+		String downloadStatsUrl = downloadCountUrlFor(toIndex);
 		try {
-			json = restTemplateBuilder.build().getForObject(baseurl, String.class);
+			json = restTemplateBuilder.build().getForObject(downloadStatsUrl, String.class);
 			downloadCounts = mapper.readValue(json, BintrayDownloadCounts.class);
-			Integer totalDownloadCounts = 0;
-			for (Integer downloadCount : downloadCounts.getTotalDownloads().values()) {
-				try {
-					totalDownloadCounts += downloadCount;
-				}
-				catch (Exception e) {
-					logger.error("Error getting details for " + toIndex.getUid(), e);
-				}
-			}
-			infoAndVersions.setDownloadCounts(totalDownloadCounts);
+			totalDownloadCounts = handleBintrayGeoStats(toIndex, downloadCounts);
+			infoAndVersions.setDownloadCountInLast30Days(totalDownloadCounts);
 		}
 		catch (Exception ex) {
-			throw new RuntimeException("Download counts from " + baseurl + " could not be parsed", ex);
+			logger.error("Error fetching details for" + toIndex.getUid(), ex);
 		}
+		return totalDownloadCounts;
 	}
 
 	AddOnInfoAndVersions handlePackageJson(AddOnToIndex addOnToIndex, String packageJson) throws IOException {
@@ -131,18 +123,18 @@ public class Bintray implements BackendHandler {
 				}
 			}
 		}
-
-		String downloadCountUrl = downloadCountUrlFor(addOnToIndex);
-		JsonNode arr = restTemplateBuilder.build().getForObject(downloadCountUrl, JsonNode.class);
-		int totalDownloadCount = handleBintrayGeoStats(arr);
-		info.setDownloadCounts(totalDownloadCount);
 		return info;
 	}
 
-	private int handleBintrayGeoStats(JsonNode jsonNode) {
+	private Integer handleBintrayGeoStats(AddOnToIndex toIndex, BintrayDownloadCounts downloadCounts) {
 		int totalDownloadCount = 0;
-		for (JsonNode countryDownloadCount : jsonNode.get("totalDownloads")) {
-			totalDownloadCount += Integer.parseInt(countryDownloadCount.toString());
+		for (Integer downloadCount : downloadCounts.getTotalDownloads().values()) {
+			try {
+				totalDownloadCount += downloadCount;
+			}
+			catch (Exception e) {
+				logger.error("Error getting details for " + toIndex.getUid(), e);
+			}
 		}
 		return totalDownloadCount;
 	}

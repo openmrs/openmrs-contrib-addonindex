@@ -55,7 +55,7 @@ public class AddOnInfoAndVersions {
 	
 	private List<AddOnVersion> versions = new ArrayList<>();
 
-	private Integer downloadCounts;
+	private Integer downloadCountInLast30Days;
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
 		AddOnInfoAndVersions ret = new AddOnInfoAndVersions();
@@ -179,12 +179,12 @@ public class AddOnInfoAndVersions {
 		this.versions = versions;
 	}
 
-	public Integer getDownloadCounts() {
-		return downloadCounts;
+	public Integer getDownloadCountInLast30Days() {
+		return downloadCountInLast30Days;
 	}
 
-	public void setDownloadCounts(Integer downloadCounts) {
-		this.downloadCounts = downloadCounts;
+	public void setDownloadCountInLast30Days(Integer downloadCountInLast30Days) {
+		this.downloadCountInLast30Days = downloadCountInLast30Days;
 	}
 	
 	public Optional<AddOnVersion> getVersion(Version version) {

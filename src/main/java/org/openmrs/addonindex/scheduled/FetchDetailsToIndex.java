@@ -27,6 +27,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.openmrs.addonindex.backend.BackendHandler;
+import org.openmrs.addonindex.backend.SupportsDownloadCounts;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnToIndex;
@@ -109,7 +110,9 @@ public class FetchDetailsToIndex {
 			}
 			
 			if (fetchExtraDetails) {
-				handler.fetchDownloadCounts(toIndex, infoAndVersions);
+				if (handler instanceof SupportsDownloadCounts) {
+					((SupportsDownloadCounts) handler).fetchDownloadCounts(toIndex, infoAndVersions);
+				}
 				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
 			}
 

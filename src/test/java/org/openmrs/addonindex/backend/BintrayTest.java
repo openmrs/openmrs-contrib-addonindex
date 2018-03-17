@@ -1,17 +1,7 @@
 package org.openmrs.addonindex.backend;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.openmrs.addonindex.TestUtil.getFileAsString;
-
-import java.time.OffsetDateTime;
-
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -24,8 +14,16 @@ import org.openmrs.addonindex.util.Version;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import java.time.OffsetDateTime;
+
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.when;
+import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 public class BintrayTest {
 
@@ -60,9 +58,6 @@ public class BintrayTest {
 		addOnToIndex.setBintrayPackageDetails(new BintrayPackageDetails("openmrs", "owa",
 				"openmrs-owa-conceptdictionary"));
 
-		when(restTemplate.getForObject("https://bintray.com/statistics/packageGeoStats?&pkgPath=/openmrs/owa/openmrs-owa-conceptdictionary", JsonNode.class))
-				.thenReturn(new ObjectMapper().readValue(getFileAsString("bintray-download-counts.json"), JsonNode.class));
-
 		AddOnInfoAndVersions info = bintray.handlePackageJson(addOnToIndex, json);
 		assertThat(info.getName(), is("openmrs-owa-conceptdictionary"));
 		assertThat(info.getDescription(),
@@ -76,7 +71,5 @@ public class BintrayTest {
 				hasProperty("downloadUri",
 						is("https://dl.bintray.com/openmrs/owa/conceptdictionary-1.0.0.zip"))
 		)));
-		assertThat(info.getDownloadCounts(),is(55));
 	}
-	
 }
