@@ -11,7 +11,7 @@ public interface SupportsDownloadCounts extends BackendHandler {
 
     /**
      * Implementations should query/fetch from their backend and get the number of downloads of a particular
-     * AddOn over the past 30 days
+     * AddOn
      *
      * @param toIndex
      * @param infoAndVersions

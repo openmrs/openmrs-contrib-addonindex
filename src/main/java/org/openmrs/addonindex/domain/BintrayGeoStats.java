@@ -23,7 +23,7 @@ import java.util.Map;
  * "totalIsPublic":true,"advanced":false,"totalDownloads":{"US":43,"MW":6,"TH":3,"KE":2,"NG":1}}
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BintrayDownloadCounts {
+public class BintrayGeoStats {
 
     @JsonProperty("totalDownloads")
     private Map<String, Integer> totalDownloads;

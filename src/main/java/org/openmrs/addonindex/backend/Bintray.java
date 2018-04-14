@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
-import org.openmrs.addonindex.domain.BintrayDownloadCounts;
+import org.openmrs.addonindex.domain.BintrayGeoStats;
 import org.openmrs.addonindex.util.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,13 +75,13 @@ public class Bintray implements BackendHandler, SupportsDownloadCounts {
 		//We won't be checking for existing info as download counts is dynamic
 		// and has to be fetched each time
 		logger.info("Fetching Download Counts for " + toIndex.getUid());
-		BintrayDownloadCounts downloadCounts;
+		BintrayGeoStats downloadCounts;
 		Integer totalDownloadCounts = 0;
 		String json;
 		String downloadStatsUrl = downloadCountUrlFor(toIndex);
 		try {
 			json = restTemplateBuilder.build().getForObject(downloadStatsUrl, String.class);
-			downloadCounts = mapper.readValue(json, BintrayDownloadCounts.class);
+			downloadCounts = mapper.readValue(json, BintrayGeoStats.class);
 			totalDownloadCounts = handleBintrayGeoStats(toIndex, downloadCounts);
 			infoAndVersions.setDownloadCountInLast30Days(totalDownloadCounts);
 		}
@@ -126,15 +126,10 @@ public class Bintray implements BackendHandler, SupportsDownloadCounts {
 		return info;
 	}
 
-	private Integer handleBintrayGeoStats(AddOnToIndex toIndex, BintrayDownloadCounts downloadCounts) {
+	private Integer handleBintrayGeoStats(AddOnToIndex toIndex, BintrayGeoStats downloadCounts) {
 		int totalDownloadCount = 0;
 		for (Integer downloadCount : downloadCounts.getTotalDownloads().values()) {
-			try {
-				totalDownloadCount += downloadCount;
-			}
-			catch (Exception e) {
-				logger.error("Error getting details for " + toIndex.getUid(), e);
-			}
+			totalDownloadCount += downloadCount;
 		}
 		return totalDownloadCount;
 	}
