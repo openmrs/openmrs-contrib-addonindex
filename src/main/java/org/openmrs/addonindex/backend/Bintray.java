@@ -71,7 +71,7 @@ public class Bintray implements BackendHandler, SupportsDownloadCounts {
 	}
 
 	@Override
-	public Integer fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
 		//We won't be checking for existing info as download counts is dynamic
 		// and has to be fetched each time
 		logger.info("Fetching Download Counts for " + toIndex.getUid());
@@ -88,7 +88,6 @@ public class Bintray implements BackendHandler, SupportsDownloadCounts {
 		catch (Exception ex) {
 			logger.error("Error fetching details for" + toIndex.getUid(), ex);
 		}
-		return totalDownloadCounts;
 	}
 
 	AddOnInfoAndVersions handlePackageJson(AddOnToIndex addOnToIndex, String packageJson) throws IOException {
