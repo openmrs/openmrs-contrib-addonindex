@@ -25,6 +25,9 @@
     "uid": "org.openmrs.owa.cohortbuilder",
     "type": "OWA",
     "name": "Cohort Builder OWA",
+       "tags": [
+        "Cohort"
+      ],
     "maintainers": [
       {
         "name": "Andela apprentices",
@@ -147,6 +150,9 @@
       "uid": "org.openmrs.module.addresshierarchy",
       "type": "OMOD",
       "name": "Address Hierarchy",
+       "tags": [
+        "address-entry" 
+      ],
       "maintainers": [
         {
           "name": "sprasanna"
@@ -173,7 +179,7 @@
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
       "tags": [
-        "pih-rwanda"
+        "pih-rwanda", "address-entry"
       ],
       "maintainers": [
         {
@@ -194,6 +200,9 @@
       "uid": "org.openmrs.module.appframework",
       "type": "OMOD",
       "name": "App Framework Module",
+       "tags": [
+        "ui-framework"
+      ],
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -315,6 +324,9 @@
       "uid": "org.openmrs.module.atlas",
       "type": "OMOD",
       "name": "Atlas Module",
+      "tags": [
+        "implementation"
+      ],
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -450,7 +462,7 @@
       "type": "OMOD",
       "name": "chirdlutil",
       "tags": [
-        "chica"
+        "chica", "utility-method"
       ],
       "maintainers": [
         {
@@ -469,7 +481,7 @@
       "type": "OMOD",
       "name": "chirdlutilbackports",
       "tags": [
-        "chica"
+        "chica", "utility-method"
       ],
       "maintainers": [
         {
@@ -542,6 +554,9 @@
       "uid": "org.openmrs.module.conceptmanagementapps",
       "type": "OMOD",
       "name": "Concept Management Apps Module",
+       "tags": [
+        "batch-operations", "tools", "app-management"
+      ],
       "maintainers": [
         {
           "name": "jenn"
@@ -581,6 +596,9 @@
       "uid": "org.openmrs.module.cpm",
       "type": "OMOD",
       "name": "Concept Proposal Module",
+       "tags": [
+       "batch-operations", "app-management"
+      ],
       "maintainers": [
         {
           "name": "Timothy McCarthy"
@@ -619,6 +637,9 @@
       "uid": "org.openmrs.module.custommessage",
       "type": "OMOD",
       "name": "Custom Message",
+      "tags": [
+        "user-defined", "Custom"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -658,7 +679,7 @@
       "type": "OMOD",
       "name": "Database Backup",
       "tags": [
-        "administration"
+        "administration", "Database"
       ],
       "maintainers": [
         {
@@ -689,7 +710,7 @@
       "type": "OMOD",
       "name": "Database Messages",
       "tags": [
-        "administration"
+        "administration", "Database"
       ],
       "maintainers": [
         {
@@ -1520,6 +1541,9 @@
       "uid": "org.openmrs.module.idcards",
       "type": "OMOD",
       "name": "Id Cards",
+      "tags": [
+        "Identity"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1540,6 +1564,9 @@
       "type": "OMOD",
       "name": "ID Generation",
       "icon": "id-card-o",
+      "tags": [
+        "Identity"
+      ],
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1642,7 +1669,7 @@
       "type": "OMOD",
       "name": "KenyaDQ",
       "tags": [
-        "kenya-emr"
+        "kenya-emr", "data-management"
       ],
       "maintainers": [
         {
@@ -1705,7 +1732,7 @@
       "type": "OMOD",
       "name": "KenyaUI",
       "tags": [
-        "kenya-emr"
+        "kenya-emr", "library"
       ],
       "maintainers": [
         {
@@ -1758,8 +1785,8 @@
       "uid": "org.openmrs.module.logicws",
       "type": "OMOD",
       "name": "Logic Web Service",
-      "tags": [
-        "logic"
+       "tags": [
+        "logic-service", "web-service"
       ],
       "icon": "superscript",
       "maintainers": [
@@ -2169,7 +2196,7 @@
       "type": "OMOD",
       "name": "ODA Mock Logic Web Service",
       "tags": [
-        "logic"
+        "logic", "web-service"
       ],
       "maintainers": [
         {
