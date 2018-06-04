@@ -105,26 +105,6 @@
       }
     },
     {
-    "uid": "org.openmrs.module.sync2",
-    "type": "OMOD",
-    "name": "Sync 2.0",
-    "tags": [
-        "sync"
-    ],
-    "maintainers": [
-      {
-        "name": "Tomasz Mueller",
-        "url": "https://github.com/tomaszmueller"
-      }
-    ],
-    "backend": "org.openmrs.addonindex.backend.Bintray",
-    "bintrayPackageDetails": {
-      "owner": "tomaszmueller",
-      "repo": "omod",
-      "package": "openmrs-module-sync2"
-      }
-    },
-    {
       "uid": "org.openmrs.module.accesslogging",
       "status": "DEPRECATED",
       "type": "OMOD",
@@ -3231,6 +3211,23 @@
         "owner": "openmrs",
         "repo": "omod",
         "package": "sync"
+      }
+    },
+    {
+    "uid": "org.openmrs.module.sync2",
+    "type": "OMOD",
+    "name": "Sync 2.0",
+    "maintainers": [
+      {
+        "name": "Tomasz Mueller",
+        "url": "https://github.com/tomaszmueller"
+      }
+    ],
+    "backend": "org.openmrs.addonindex.backend.Bintray",
+    "bintrayPackageDetails": {
+      "owner": "tomaszmueller",
+      "repo": "omod",
+      "package": "openmrs-module-sync2"
       }
     },
     {
