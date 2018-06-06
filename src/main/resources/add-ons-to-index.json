@@ -3214,6 +3214,23 @@
       }
     },
     {
+    "uid": "org.openmrs.module.sync2",
+    "type": "OMOD",
+    "name": "Sync 2.0",
+    "maintainers": [
+      {
+        "name": "Tomasz Mueller",
+        "url": "https://github.com/tomaszmueller"
+      }
+    ],
+    "backend": "org.openmrs.addonindex.backend.Bintray",
+    "bintrayPackageDetails": {
+      "owner": "openmrs",
+      "repo": "omod",
+      "package": "sync2"
+      }
+    },
+    {
       "uid": "org.openmrs.module.tribe",
       "type": "OMOD",
       "name": "Tribe",
