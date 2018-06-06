@@ -3225,9 +3225,9 @@
     ],
     "backend": "org.openmrs.addonindex.backend.Bintray",
     "bintrayPackageDetails": {
-      "owner": "tomaszmueller",
+      "owner": "openmrs",
       "repo": "omod",
-      "package": "openmrs-module-sync2"
+      "package": "sync2"
       }
     },
     {
