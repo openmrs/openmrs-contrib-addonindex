@@ -85,6 +85,23 @@
       }
     },
     {
+      "uid": "org.openmrs.owa.orderentryui",
+      "type": "OWA",
+      "name": "Order Entry UI OWA",
+      "maintainers": [
+        {
+          "name": "Andela apprentices",
+          "url": "https://andela.com/"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "owa",
+        "package": "openmrs-owa-orderentryui"
+      }
+    },
+    {
     "uid": "org.openmrs.owa.sysadmin",
     "type": "OWA",
     "name": "System Administration OWA",
