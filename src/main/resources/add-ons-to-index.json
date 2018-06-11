@@ -2307,6 +2307,22 @@
       }
     },
     {
+      "uid": "org.openmrs.module.orderentryui",
+      "type": "OMOD",
+      "name": "Order Entry UI",
+      "maintainers": [
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "orderentryui"
+      }
+    },
+    {
       "uid": "org.openmrs.module.orderextension",
       "type": "OMOD",
       "name": "Order Extension",
