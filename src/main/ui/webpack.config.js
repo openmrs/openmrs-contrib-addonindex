@@ -10,6 +10,7 @@
 
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = function (env) {
     const BUNDLE_FILENAME = env === "prod" ? "app/bundle.min.js" : "app/bundle.js";
@@ -46,6 +47,9 @@ module.exports = function (env) {
             new ExtractTextPlugin(CSS_FILENAME),
             new HtmlWebpackPlugin({
                 template: 'index.ejs'
+            }),
+            new webpack.DefinePlugin({
+                GA_ID: env === 'prod' ? JSON.stringify('UA-16695719-3') : undefined
             })
         ],
         resolve: {
