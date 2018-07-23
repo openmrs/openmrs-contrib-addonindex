@@ -1002,6 +1002,23 @@
         "package": "exportccd"
       }
     },
+     {
+      "uid": "org.openmrs.omod.facelist",
+      "type": "OMOD",
+      "name": "Face List Module",
+      "maintainers": [
+        {
+          "name": "Mutesasira Moses",
+          "url": "https://github.com/mozzy11"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "facelist"
+      }
+    },
     {
       "uid": "org.openmrs.module.facilitydata",
       "type": "OMOD",
@@ -2304,6 +2321,22 @@
         "owner": "openmrs",
         "repo": "omod",
         "package": "openhmis.commons"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.orderentryui",
+      "type": "OMOD",
+      "name": "Order Entry UI",
+      "maintainers": [
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "orderentryui"
       }
     },
     {
