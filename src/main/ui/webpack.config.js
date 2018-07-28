@@ -20,6 +20,7 @@ module.exports = function (env) {
         entry: './app/index.jsx',
         output: {
             filename: BUNDLE_FILENAME,
+            publicPath: '/',
             path: '../resources/static'
         },
         module: {

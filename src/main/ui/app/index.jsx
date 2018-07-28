@@ -10,7 +10,7 @@
 
 import React from "react";
 import {render} from "react-dom";
-import {Router, hashHistory} from "react-router";
+import {Router, browserHistory} from "react-router";
 import routes from "./routes";
 import ReactGA from 'react-ga';
 
@@ -27,6 +27,6 @@ function trackView() {
 }
 
 render(
-        <Router onUpdate={trackView} history={hashHistory} routes={routes}/>,
+        <Router onUpdate={trackView} history={browserHistory} routes={routes}/>,
         document.getElementById('root')
 );
