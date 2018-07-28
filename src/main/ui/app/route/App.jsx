@@ -34,7 +34,7 @@ export default class App extends Component {
                 <div className="container-fluid">
                     <header className="clearfix row vertical-align-center">
                         <h1 className="col-sm-4">
-                            <a href="#/">
+                            <a href="/">
                                 <img className="logo logo1" src="/images/logo.png" alt="OpenMRS Add-Ons Logo"/>
                             </a>
                         </h1>
