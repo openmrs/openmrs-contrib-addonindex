@@ -1775,6 +1775,28 @@
       }
     },
     {
+      "uid": "org.openmrs.module.locationbasedaccess",
+      "type": "OMOD",
+      "name": "Location Based Access Control",
+      "tags": [
+        "location", "accesscontrol"
+      ],
+      "maintainers": [
+        {
+          "name": "Daniel Kayiwa"
+        },
+        {
+          "name": "K.Suthagar"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "locationbasedaccess"
+      }
+    },
+    {
       "uid": "org.openmrs.module.logic",
       "type": "OMOD",
       "name": "Logic",
