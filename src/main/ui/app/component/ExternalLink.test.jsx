@@ -21,3 +21,11 @@ test('Link shows title when given', () => {
     const wrapper = shallow(<ExternalLink link={link}/>);
     expect(wrapper.matchesElement(<a target="_blank" href="www.google.com">Google</a>)).toBe(true);
 });
+
+test('Link shows href when no title given', () => {
+    const link = {
+        href: "www.google.com",
+    };
+    const wrapper = shallow(<ExternalLink link={link}/>);
+    expect(wrapper.matchesElement(<a target="_blank" href="www.google.com">www.google.com</a>)).toBe(true);
+});
