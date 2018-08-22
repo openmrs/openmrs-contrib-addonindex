@@ -27,6 +27,7 @@ import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.AddOnReference;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
+import org.openmrs.addonindex.domain.Link;
 import org.openmrs.addonindex.domain.Maintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -93,6 +94,23 @@ public class IndexingServiceTest {
 			for (Maintainer maintainer : addOn.getMaintainers()) {
 				assertThat(maintainer.getName(), notNullValue());
 				assertThat(maintainer.getName().length(), lessThan(100));
+			}
+		}
+	}
+	
+	@Test
+	public void testLinksHaveRelAndHrefAndOptionalTitle() throws Exception {
+		for (AddOnToIndex addOn : toIndex.getToIndex()) {
+			if (addOn.getLinks() != null) {
+				for (Link link : addOn.getLinks()) {
+					assertThat(link.getRel(), notNullValue());
+					assertThat(link.getRel().length(), lessThan(100));
+					assertThat(link.getHref(), notNullValue());
+					assertThat(link.getHref().length(), lessThan(300));
+					if (link.getTitle() != null) {
+						assertThat(link.getTitle().length(), lessThan(200));
+					}
+				}
 			}
 		}
 	}

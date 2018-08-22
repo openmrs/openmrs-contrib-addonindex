@@ -178,6 +178,17 @@
           "name": "machosry"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/x/shIz",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-addresshierarchy"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -4347,6 +4358,13 @@
       "maintainers": [
         {
           "name": "Darius Jazayeri"
+        }
+      ],
+      "links": [
+        {
+          "rel": "Journal Article",
+          "href": "https://www.jmir.org/2017/8/e294/",
+          "title": "JMIR 21.08.17: Development and Deployment of the OpenMRS-Ebola Electronic Health Record System for an Ebola Treatment Center in Sierra Leone"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",

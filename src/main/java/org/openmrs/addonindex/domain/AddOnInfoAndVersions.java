@@ -51,6 +51,8 @@ public class AddOnInfoAndVersions {
 	
 	private List<Maintainer> maintainers;
 	
+	private List<Link> links;
+	
 	private String hostedUrl;
 	
 	private List<AddOnVersion> versions = new ArrayList<>();
@@ -67,6 +69,7 @@ public class AddOnInfoAndVersions {
 		ret.setTags(toIndex.getTags());
 		ret.setType(toIndex.getType());
 		ret.setMaintainers(toIndex.getMaintainers());
+		ret.setLinks(toIndex.getLinks());
 		return ret;
 	}
 	
@@ -161,6 +164,14 @@ public class AddOnInfoAndVersions {
 	
 	public void setMaintainers(List<Maintainer> maintainers) {
 		this.maintainers = maintainers;
+	}
+	
+	public List<Link> getLinks() {
+		return links;
+	}
+	
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
 	
 	public String getHostedUrl() {

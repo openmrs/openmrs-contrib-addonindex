@@ -39,6 +39,8 @@ public class AddOnToIndex {
 	
 	private List<Maintainer> maintainers;
 	
+	private List<Link> links;
+	
 	private Class<? extends BackendHandler> backend;
 	
 	private MavenRepoDetails mavenRepoDetails;
@@ -109,6 +111,14 @@ public class AddOnToIndex {
 	
 	public void setMaintainers(List<Maintainer> maintainers) {
 		this.maintainers = maintainers;
+	}
+	
+	public List<Link> getLinks() {
+		return links;
+	}
+	
+	public void setLinks(List<Link> links) {
+		this.links = links;
 	}
 	
 	public Class<? extends BackendHandler> getBackend() {

@@ -13,6 +13,7 @@ import {Link} from "react-router";
 import fetch from "isomorphic-fetch";
 import {Button, Col, Glyphicon, Label, OverlayTrigger, Row, Table, Tooltip} from "react-bootstrap";
 import moment from "moment";
+import ExternalLink from "../component/ExternalLink";
 
 export default class Show extends Component {
 
@@ -67,6 +68,17 @@ export default class Show extends Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps.selectedVersion !== this.props.selectedVersion){
             this.getLatestSupportedVersion(nextProps.selectedVersion)
+        }
+    }
+
+    formatLinkRel(link) {
+        switch (link.rel) {
+            case 'source':
+                return 'Source Code';
+            case 'documentation':
+                return 'Documentation';
+            default:
+                return link.rel;
         }
     }
 
@@ -203,6 +215,12 @@ export default class Show extends Component {
                                     })}
                                     </h5></td>
                                 </tr>
+                                {addon.links ? addon.links.map(l =>
+                                                                       <tr>
+                                                                           <th>{this.formatLinkRel(l)}</th>
+                                                                           <td><h5><ExternalLink link={l}/></h5></td>
+                                                                       </tr>
+                                ) : null}
                                 <tr>
                                     <th>Downloads in the last 30 days</th>
                                     <td>{addon.downloadCountInLast30Days ? addon.downloadCountInLast30Days : "?"}</td>

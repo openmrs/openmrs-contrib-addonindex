@@ -22,6 +22,21 @@
       "tags": {
         "type": "keyword"
       },
+      "links": {
+        "type": "nested",
+        "properties": {
+          "rel": {
+            "type": "keyword"
+          },
+          "href": {
+            "type": "keyword",
+            "index": false
+          },
+          "title": {
+            "type": "text"
+          }
+        }
+      },
       "hostedUrl": {
         "type": "keyword",
         "index": false
