@@ -15,6 +15,7 @@ import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.AnalysisService;
+import org.openmrs.addonindex.service.ElasticSearchIndex;
 import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class TopDownloadedControllerIT {
 	
 	@MockBean
 	private AnalysisService analysisService;
+	
+	@MockBean
+	private ElasticSearchIndex elasticSearchIndex;
 	
 	@Autowired
 	private TopDownloadedController controller;
