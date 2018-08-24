@@ -13,7 +13,6 @@ package org.openmrs.addonindex.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +23,10 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
+import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,8 @@ public class ElasticSearchIndex implements Index {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private final int SEARCH_SIZE = 200;
+	
+	private final int TOP_DOWNLOADS_SIZE = 20;
 	
 	private JestClient client;
 	
@@ -188,4 +191,18 @@ public class ElasticSearchIndex implements Index {
 				.map(sr -> sr.source)
 				.collect(Collectors.toList());
 	}
+	
+	@Override
+	public List<AddOnInfoSummaryAndStats> getTopDownloaded() throws Exception {
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(TOP_DOWNLOADS_SIZE)
+				.sort("downloadCountInLast30Days", SortOrder.DESC)
+				.query(QueryBuilders.matchAllQuery()).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		return result.getHits(AddOnInfoAndVersions.class).stream()
+				.map(sr -> new AddOnInfoSummaryAndStats(sr.source))
+				.collect(Collectors.toList());
+	}
+	
 }

@@ -41,6 +41,7 @@
     "html-webpack-plugin": "^2.28.0",
     "jest": "^23.5.0",
     "jest-enzyme": "^6.0.3",
+    "jest-fetch-mock": "^1.6.5",
     "node-sass": "^4.5.0",
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^4.1.1",

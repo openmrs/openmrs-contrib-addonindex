@@ -8,10 +8,10 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
+import React from "react";
 import {Link} from "react-router";
 
-export default class ListOfLists extends Component {
+export default class ListOfLists extends React.Component {
 
     componentDidMount() {
         fetch('/api/v1/list')
@@ -19,29 +19,31 @@ export default class ListOfLists extends Component {
                     return response.json();
                 })
                 .then(json => {
+                    // include this special link before the ones mentioned in the addons-to-index file
+                    json.unshift({
+                                     name: "Top",
+                                     route: "/topDownloaded"
+                                 });
                     this.setState({lists: json});
                 });
     }
 
     render() {
         const LISTS_TO_SHOW = 3;
-        // show {list.description} in a tooltip
-        // consider showing ...{list.addOns.length} add-on(s)
         if (this.state && this.state.lists) {
             const toShow = this.state.lists.slice(0, LISTS_TO_SHOW);
             const anyMore = this.state.lists.length > LISTS_TO_SHOW;
-            const selectedUid = this.props ? this.props.selectedUid : null;
             return (
                     <ul className="nav nav-pills">
                         {toShow.map(list =>
-                                            <li className={list.uid === selectedUid ? "active" : ""}>
-                                                <Link to={`/list/${list.uid}`}>
+                                            <li key={list.route ? list.route : list.uid}>
+                                                <Link to={list.route ? list.route : `/list/${list.uid}`}>
                                                     <strong>{list.name}</strong>
                                                 </Link>
                                             </li>
                         )}
                         {anyMore ?
-                         <li>
+                         <li key="more">
                              <Link to="/lists">
                                  More Lists...
                              </Link>

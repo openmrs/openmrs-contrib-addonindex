@@ -19,6 +19,9 @@ Regardless of where your add-on is published, you must provide the following fie
   * you don't need to specify this if you're using Bintray, because we will read it from there
 * `maintainers`: One or more people or entities who maintain this add-on, with optional links
 
+You may optionally include:
+* `links`: external links, e.g. to your module's documentation and source code
+
 You will see examples of the format in the file itself.
 
 ### Bintray

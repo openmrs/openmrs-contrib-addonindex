@@ -16,11 +16,13 @@ import SearchPage from "./route/SearchPage";
 import AddOnLists from "./route/AddOnLists";
 import ShowList from "./route/ShowList";
 import IndexingStatus from "./route/IndexingStatus";
+import TopDownloaded from "./route/TopDownloaded";
 
 export default {
     path: '/',
     component: App,
     indexRoute: {component: Home},
+    // NOTE: every child route must be repeated in org.openmrs.addonindex.configuration.WebMvcConfiguration.addViewControllers
     childRoutes: [
         {path: 'about', component: About},
         {path: 'indexingStatus', component: IndexingStatus},
@@ -28,5 +30,6 @@ export default {
         {path: 'show/:uid', component: Show},
         {path: 'lists', component: AddOnLists},
         {path: 'list/:uid', component: ShowList},
+        {path: 'topDownloaded', component: TopDownloaded}
     ]
 }

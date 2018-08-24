@@ -11,9 +11,11 @@
 package org.openmrs.addonindex.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
+import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
 import org.openmrs.addonindex.domain.AddOnType;
 
 /**
@@ -32,4 +34,6 @@ public interface Index {
 	AddOnInfoAndVersions getByModulePackage(String modulePackage) throws Exception;
 	
 	AddOnInfoAndVersions getByUid(String uid) throws Exception;
+	
+	List<AddOnInfoSummaryAndStats> getTopDownloaded() throws Exception;
 }

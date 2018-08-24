@@ -26,6 +26,11 @@ scheduler:
     period: 14400000          # execute every 4 hours
     fetch_extra_details: true # get each addon version and inspect it for Required OpenMRS, etc
 
+  analysis:
+    count_top_downloads:
+      initial_delay: 10000  # wait 10 seconds to start
+      period: 1800000       # execute 30 minutes
+
 
 spring.elasticsearch.jest:
   uris: http://localhost:9200
