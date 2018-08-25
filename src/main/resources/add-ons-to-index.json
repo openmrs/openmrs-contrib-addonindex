@@ -56,6 +56,17 @@
           "url": "https://github.com/openmrs"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/System+Administration+OWA",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-sysadmin"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -111,12 +122,12 @@
       "maintainers": [
         {
           "name": "K.Suthagar",
-          "url": "https://github.com/suthagar23"
+          "url": "https://talk.openmrs.org/u/suthagar23"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
-        "owner": "suthagar23",
+        "owner": "openmrs",
         "repo": "owa",
         "package": "openmrs-owa-sysadmin"
       }
@@ -1789,15 +1800,29 @@
       "uid": "org.openmrs.module.locationbasedaccess",
       "type": "OMOD",
       "name": "Location Based Access Control",
+      "icon" : "location-arrow",
       "tags": [
         "location", "accesscontrol"
       ],
       "maintainers": [
         {
-          "name": "Daniel Kayiwa"
+          "name": "Daniel Kayiwa",
+          "url" : "https://talk.openmrs.org/u/dkayiwa"
         },
         {
-          "name": "K.Suthagar"
+          "name": "K.Suthagar",
+          "url" : "https://talk.openmrs.org/u/suthagar23"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Location+Based+Access+Control+-+Deployment+Steps",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-locationbasedaccess"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
