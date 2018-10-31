@@ -1190,11 +1190,7 @@
         {
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/Event+Module",
-<<<<<<< HEAD
           "title": "Event Module"
-=======
-          "title": "OpenMRS Wiki"
->>>>>>> 515193662898f9228142f136d42d9be2081937e7
         },
         {
           "rel": "source",
