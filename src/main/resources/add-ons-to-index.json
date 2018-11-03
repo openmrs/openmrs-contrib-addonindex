@@ -1,4 +1,5 @@
 {
+  
   "toIndex": [
     {
       "uid": "org.openmrs.owa.conceptdictionary",
@@ -33,6 +34,17 @@
         {
           "name": "OpenMRS",
           "url": "https://github.com/openmrs"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Cohort+Builder+Open+Web+App",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-cohortbuilder"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -88,6 +100,17 @@
           "url": "https://github.com/openmrs"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Addon+Manager+Open+Web+App",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-addonmanager/"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -103,6 +126,17 @@
         {
           "name": "Andela apprentices",
           "url": "https://andela.com/"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Order+Entry+UI",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-orderentry"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -123,6 +157,17 @@
         {
           "name": "K.Suthagar",
           "url": "https://talk.openmrs.org/u/suthagar23"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/System+Administration+OWA",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-sysadmin"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -248,6 +293,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/App+Framework+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-appframework"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -298,6 +354,17 @@
           "name": "Yonatan Grinberg"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Appointment+Scheduling+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-appointmentscheduling"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -322,6 +389,17 @@
         },
         {
           "name": "Darius Jazayeri"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/App+Framework+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-appui"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -375,6 +453,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Atlas+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-atlas"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -389,6 +478,17 @@
       "maintainers": [
         {
           "name": "Ben Wolfe"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Atom+Feed+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-atomfeed"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -437,6 +537,17 @@
           "name": "Ben Wolfe"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/BIRT+Report+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-birt"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -461,6 +572,17 @@
         },
         {
           "name": "Daniel Kayiwa"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Calculation+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-calculation"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -591,6 +713,17 @@
           "name": "jenn"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Concept+Management+Apps",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-conceptmanagementapps"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -613,6 +746,17 @@
         },
         {
           "name": "peichenauer"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Advanced+Concept+Management+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-conceptmanagement"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -653,6 +797,17 @@
           "name": "Saptarshi Purkayastha"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Custom+Branding+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-custombranding"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -675,6 +830,17 @@
           "name": "bmamlin"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Custom+Messages+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-custommessage"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -689,6 +855,17 @@
       "maintainers": [
         {
           "name": "Joaquin Blaya"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Dashboard+Frame",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-dashboardframe"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -720,6 +897,17 @@
         },
         {
           "name": "Daniel Kayiwa"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Database+Backup+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-databasebackup"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -802,6 +990,17 @@
           "name": "Daniel Kayiwa"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Data+Entry+Statistics",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-dataentrystatistics"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -829,6 +1028,17 @@
         },
         {
           "name": "Daniel Kayiwa"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Data+Integrity+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-dataintegrity"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -912,6 +1122,17 @@
           "name": "pushkar"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Drawing+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/ravipatipushkar/drawing"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -956,6 +1177,17 @@
           "name": "Daniel Kayiwa"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/EMR+API+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-emrapi"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -998,6 +1230,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Event+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-event"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1034,6 +1277,17 @@
           "url": "https://github.com/mozzy11"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/FACE+LIST+MODULE",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/mozzy11/openmrs-module-facelist"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1048,6 +1302,17 @@
       "maintainers": [
         {
           "name": "Mike Seaton"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Facility+Data+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-facilitydata"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1072,6 +1337,17 @@
           "name": "Ben Wolfe"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Feedback+Module+-+Detailed+Guide",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-feedback"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1091,6 +1367,17 @@
       "maintainers": [
         {
           "name": "tgreensweig"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/File+Browser+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/tgreensweig/openmrs-module-filebrowser"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1223,6 +1510,17 @@
           "name": "bmamlin"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/FormEntry+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-formentry"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1242,6 +1540,17 @@
       "maintainers": [
         {
           "name": "goutham"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/FormFilter+Module-Documentation",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-formfilter"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1343,6 +1652,17 @@
           "name": "bmamlin"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Groovy+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-groovy"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1357,6 +1677,17 @@
       "maintainers": [
         {
           "name": "rcuckovich"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Growth+Chart+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/IsantePlus/openmrs-module-isanteplus"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1384,6 +1715,17 @@
           "name": "downey"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/HL7Query+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-hl7query"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1409,6 +1751,17 @@
           "name": "mwalo"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Household+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-household"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1423,6 +1776,17 @@
       "maintainers": [
         {
           "name": "saimanohar"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Human+Resource+Module+Documentation",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-hr"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1457,6 +1821,17 @@
           "name": "ball"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/HTML+Form+Entry+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-htmlformentry"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1464,6 +1839,7 @@
         "package": "htmlformentry"
       }
     },
+    
     {
       "uid": "org.openmrs.module.htmlformentry19ext",
       "status": "DEPRECATED",
@@ -1508,6 +1884,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/HTML+Form+Entry+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-htmlformentryui"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1533,6 +1920,17 @@
         },
         {
           "name": "Dave Thomas"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/HtmlFormFlowsheet+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-htmlformflowsheet"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1561,6 +1959,17 @@
         },
         {
           "name": "Mark Goodrich"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/HTML+Widgets+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-htmlwidgets"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1601,6 +2010,17 @@
           "name": "Ben Wolfe"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/ID+Cards+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-idcards"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1624,6 +2044,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Idgen+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-idgen"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1644,6 +2075,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Infopath+to+HTML+Form+Converter",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/lucykur/infopath-converter"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1659,6 +2101,17 @@
       "maintainers": [
         {
           "name": "Keelhaul"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Inpatient+Care+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": ""
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1704,6 +2157,17 @@
           "name": "Rowan Seymour"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/JMX+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/rowanseymour/openmrs-module-jmx"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1721,6 +2185,17 @@
       "maintainers": [
         {
           "name": "Rowan Seymour"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/KenyaDQ",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/I-TECH/openmrs-module-kenyadq"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1743,6 +2218,17 @@
         },
         {
           "name": "Rowan Seymour"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/KenyaLab",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/I-TECH/openmrs-module-kenyalab"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1787,6 +2273,17 @@
         },
         {
           "name": "Rowan Seymour"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/KenyaUI+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/I-TECH/openmrs-module-kenyaui"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1857,6 +2354,17 @@
           "name": "bmamlin"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Logic+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/CHIRDL-Openmrs-Modules/logic"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1909,6 +2417,17 @@
           "name": "rseymour"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Log+Manager+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/rowanseymour/openmrs-module-logmanager"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1923,6 +2442,17 @@
       "maintainers": [
         {
           "name": "Mark Goodrich"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/MDR-TB+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-mdrtb"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1950,6 +2480,13 @@
           "name": "Dave Thomas"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/MDRTB+Patient+Chart+Widgets",
+          "title": "OpenMRS Wiki"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1964,6 +2501,13 @@
       "maintainers": [
         {
           "name": "Keelhaul"
+        }
+      ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Medical+Problem+Module",
+          "title": "OpenMRS Wiki"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -1985,6 +2529,17 @@
       "maintainers": [
         {
           "name": "jeremy"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Messaging+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-messaging"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -2013,6 +2568,17 @@
           "name": "Mark Goodrich"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Metadata+Deploy+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-metadatadeploy"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2033,6 +2599,17 @@
         },
         {
           "name": "Rafal Korytkowski"
+        }
+      ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Metadata+Mapping+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-metadatamapping"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -2092,6 +2669,13 @@
           "name": "Ben Wolfe"
         }
       ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Mirth+Messaging+Module",
+          "title": "OpenMRS Wiki"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2106,6 +2690,13 @@
       "maintainers": [
         {
           "name": "longaid"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Moca",
+          "title": "OpenMRS Wiki"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -2144,6 +2735,13 @@
           "name": "Ben Wolfe"
         }
       ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/MRNGen+Module",
+          "title": "OpenMRS Wiki"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2176,6 +2774,13 @@
           "name": "sophiez"
         }
       ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/My+Patients",
+          "title": "OpenMRS Wiki"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2203,6 +2808,17 @@
           "name": "Dave Thomas"
         }
       ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/NamePhonetics+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-namephonetics"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2226,6 +2842,17 @@
         },
         {
           "name": "suho"
+        }
+      ],
+       "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Notifiable+Condition+Detector+%28NCD%29+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/thomasshunter/openmrs-module-ncd"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -2271,6 +2898,13 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Obs+Group+Export+Module",
+          "title": "OpenMRS Wiki"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2294,6 +2928,13 @@
         },
         {
           "name": "kevjay"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/ODA+Mock+Logic+Web+Service",
+          "title": "OpenMRS Wiki"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
