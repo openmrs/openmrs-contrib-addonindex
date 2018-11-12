@@ -279,11 +279,10 @@
       "uid": "org.openmrs.module.appointmentscheduling",
       "type": "OMOD",
       "name": "Appointment Scheduling",
-      "icon": "calendar-times-o",
+      "icon": "calendar",
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -602,11 +601,10 @@
       "uid": "org.openmrs.module.conceptsearch",
       "type": "OMOD",
       "name": "Concept Search",
-      "icon": "search-plus",
+      "icon": "search",
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "maltef"
@@ -1083,11 +1081,10 @@
       "uid": "org.openmrs.module.filebrowser",
       "type": "OMOD",
       "name": "File Browser",
-      "icon": "folder-o",
+      "icon": "search",
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "tgreensweig"
@@ -1168,11 +1165,10 @@
       "uid": "org.openmrs.module.formdataexport",
       "type": "OMOD",
       "name": "Form Data Export",
-      "icon": "upload",
+      "icon": "share-square-o",
       "tags": [
         "form-entry"
       ],
-      "icon": "share-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1202,7 +1198,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Justin Miranda"
@@ -1238,7 +1233,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "filter",
       "maintainers": [
         {
           "name": "goutham"
@@ -1496,7 +1490,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1523,7 +1516,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Darius Jazayeri"
@@ -1672,11 +1664,10 @@
       "uid": "org.openmrs.module.jasperreport",
       "type": "OMOD",
       "name": "Jasper Report",
-      "icon": "file-text-o",
+      "icon": "bar-chart",
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -1977,11 +1968,10 @@
       "uid": "org.openmrs.module.messaging",
       "type": "OMOD",
       "name": "Messaging Module",
-      "icon": "envelope-o",
+      "icon": "comment-o",
       "tags": [
         "messaging"
       ],
-      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jeremy"
@@ -2046,11 +2036,10 @@
       "uid": "org.openmrs.module.metadatasharing",
       "type": "OMOD",
       "name": "Metadata Sharing",
-      "icon": "share-alt-square",
+      "icon": "share-alt",
       "tags": [
         "metadata"
       ],
-      "icon": "share-alt",
       "maintainers": [
         {
           "name": "bryq"
@@ -2076,11 +2065,10 @@
       "uid": "org.openmrs.module.mirthmessaging",
       "type": "OMOD",
       "name": "Mirth Messaging",
-      "icon": "envelope-o",
+      "icon": "comment-o",
       "tags": [
         "messaging"
       ],
-      "icon": "comment-o",
       "maintainers": [
         {
           "name": "jacobb"
@@ -2187,11 +2175,10 @@
       "uid": "org.openmrs.module.namephonetics",
       "type": "OMOD",
       "name": "Name Phonetics",
-      "icon": "file-audio-o",
+      "icon": "search",
       "tags": [
         "search", "pih-rwanda"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -2323,11 +2310,10 @@
       "uid": "org.openmrs.module.openhmis-backboneforms",
       "type": "OMOD",
       "name": "OpenHMIS Backbone Forms",
-      "icon": "book",
+      "icon": "code",
       "tags": [
         "form-entry"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -2474,7 +2460,6 @@
       "tags": [
         "data-management"
       ],
-      "icon": "link",
       "maintainers": [
         {
           "name": "Burke Mamlin"
@@ -2828,7 +2813,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -2864,7 +2848,6 @@
       "tags": [
         "reporting"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3076,11 +3059,10 @@
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Quartz Scheduler",
-      "icon": "tasks",
+      "icon": "calendar",
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
       "maintainers": [
         {
           "name": "djmlog103"
@@ -3191,11 +3173,10 @@
       "uid": "org.openmrs.module.smsmodule",
       "type": "OMOD",
       "name": "SMS Module",
-      "icon": "envelope-o",
+      "icon": "bell-o",
       "tags": [
         "messaging"
       ],
-      "icon": "bell-o",
       "maintainers": [
         {
           "name": "araza10"
@@ -3404,11 +3385,10 @@
       "uid": "org.openmrs.module.uiframework",
       "type": "OMOD",
       "name": "OpenMRS UI Framework",
-      "icon": "file-image-o",
+      "icon": "code",
       "tags": [
         "back-end"
       ],
-      "icon": "code",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -3458,7 +3438,6 @@
       "tags": [
         "data-management"
       ],
-      "icon": "bar-chart",
       "maintainers": [
         {
           "name": "rseymour"
@@ -3715,7 +3694,6 @@
       "tags": [
         "search"
       ],
-      "icon": "search",
       "maintainers": [
         {
           "name": "Daniel Kayiwa"
@@ -3774,7 +3752,6 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -4073,11 +4050,10 @@
       "uid": "org.openmrs.module.appointment-scheduling-ui-module",
       "type": "OMOD",
       "name": "Appointment Scheduling UI Module",
-      "icon": "calendar-o",
+      "icon": "desktop",
       "tags": [
         "scheduling"
       ],
-      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4101,7 +4077,6 @@
       "tags": [
         "registration"
       ],
-      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4125,7 +4100,6 @@
       "tags": [
         "registration"
       ],
-      "icon": "user-plus",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -4212,11 +4186,10 @@
       "uid": "org.openmrs.module.reporting-ui-module",
       "type": "OMOD",
       "name": "Reporting UI Module",
-      "icon": "bar-chart",
+      "icon": "desktop",
       "tags": [
         "reporting"
       ],
-      "icon": "desktop",
       "maintainers": [
         {
           "name": "Mark Goodrich"
