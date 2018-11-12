@@ -92,6 +92,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+			    	</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.spotify</groupId>
