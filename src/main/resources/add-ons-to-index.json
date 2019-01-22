@@ -544,6 +544,33 @@
       }
     },
     {
+      "uid": "org.openmrs.module.attachments",
+      "type": "OMOD",
+      "name": "Attachments Module",
+      "maintainers": [
+        {
+          "name": "Dimitri Renault"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/openmrs/openmrs-module-attachments/blob/master/README.md",
+          "title": "GitHub ReadMe"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-attachments"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "attachments"
+      }
+    },
+    {
       "uid": "org.openmrs.module.backports14x",
       "status": "DEPRECATED",
       "type": "OMOD",
@@ -6491,33 +6518,6 @@
         "owner": "openmrs",
         "repo": "omod",
         "package": "emrmonitor"
-      }
-    },
-    {
-      "uid": "org.openmrs.module.visit-documents-ui",
-      "type": "OMOD",
-      "name": "Visit Documents UI",
-      "maintainers": [
-        {
-          "name": "Dimitri Renault"
-        }
-      ],
-      "links": [
-        {
-          "rel": "documentation",
-          "href": "https://github.com/openmrs/openmrs-module-attachments/blob/master/README.md",
-          "title": "GitHub ReadMe"
-        },
-        {
-          "rel": "source",
-          "href": "https://github.com/openmrs/openmrs-module-attachments"
-        }
-      ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "visitdocumentsui"
       }
     }
   ],
