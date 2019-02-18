@@ -802,18 +802,13 @@
           "title": "Wiki Page"
         },
         {
-          "rel": "documentation",
-          "href": "https://wiki.openmrs.org/display/docs/Common+Lab+Module+Rest+API",
-          "title": "REST API"
-        },
-        {
           "rel": "source",
           "href": "https://github.com/openmrs/openmrs-module-commonlabtest"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
-        "owner": "seekme94",
+        "owner": "openmrs",
         "repo": "omod",
         "package": "commonlabtest"
       }
