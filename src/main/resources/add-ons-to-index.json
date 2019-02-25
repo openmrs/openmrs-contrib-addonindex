@@ -811,6 +811,36 @@
       }
     },
     {
+      "uid": "org.openmrs.module.commonlabtest",
+      "type": "OMOD",
+      "name": "Common Lab Test",
+      "maintainers": [
+        {
+          "name": "Owais Hussain"
+        },
+        {
+          "name": "Tahira Niazi"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Common+Lab+Module",
+          "title": "Wiki Page"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-commonlabtest"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "commonlabtest"
+      }
+    },
+    {
       "uid": "org.openmrs.module.comparelists",
       "status": "INACTIVE",
       "type": "OMOD",
