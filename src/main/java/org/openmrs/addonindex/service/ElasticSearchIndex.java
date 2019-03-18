@@ -19,9 +19,11 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -118,10 +120,10 @@ public class ElasticSearchIndex implements Index {
 			boolQB.should(QueryBuilders.prefixQuery("name", query).boost(4.0f));
 
 			//Query is subset of module name(Medium priority)
-			boolQB.should(QueryBuilders.matchQuery("name", query).boost(2.0f));
+			boolQB.should(QueryBuilders.matchQuery("name", query).operator(MatchQueryBuilder.Operator.AND).boost(2.0f));
 
 			//Description matches query either completely or partially(Low priority)
-			boolQB.should(QueryBuilders.matchQuery("description", query).boost(0.5f));
+			boolQB.should(QueryBuilders.matchQuery("description", query).operator(MatchQueryBuilder.Operator.AND).boost(0.5f));
 
 			//Allow for spelling mistake while searching for a particular module
 			boolQB.should(QueryBuilders.matchPhraseQuery("name", query).slop(2).fuzziness("AUTO"));
