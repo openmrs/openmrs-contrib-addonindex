@@ -4,6 +4,8 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 import java.util.Collection;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -17,10 +19,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import io.searchbox.client.JestClient;
 
-
+/**
+ * This test will write to your elasticsearch database
+ */
+@Ignore
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class ElasticSearchIndexLogicTest {
+public class ElasticSearchIndexManualSearchTest {
 
 
     @Autowired
