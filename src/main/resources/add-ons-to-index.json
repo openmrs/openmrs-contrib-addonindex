@@ -3048,6 +3048,33 @@
       }
     },
     {
+      "uid": "org.openmrs.module.muzimacore",
+      "type": "OMOD",
+      "name": "mUzima Core Module",
+      "maintainers": [
+        {
+          "name": "mUzima team"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.muzima.org",
+          "title": "mUzima Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/muzima/openmrs-module-muzimacore"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "mUzimaCore"
+      }
+    },
+    {
       "uid": "org.openmrs.module.myfirst",
       "type": "OMOD",
       "name": "My First Module",
