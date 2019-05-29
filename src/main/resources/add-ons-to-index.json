@@ -876,6 +876,17 @@
           "name": "jenn"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Advanced+Concept+Management+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-conceptmanagementapps"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -2901,6 +2912,17 @@
           "name": "Rafal Korytkowski"
         }
       ],
+      "links": [	
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Metadata+Mapping+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-metadatamapping"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -3203,6 +3225,17 @@
         },
         {
           "name": "Darius Jazayeri"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Neal+Reporting",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-reporting/tree/master/api/src/main/java/org/openmrs/module/reporting/data/encounter/definition"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -3572,6 +3605,13 @@
       "maintainers": [
         {
           "name": "harshadura"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Patient+Narratives+Module+-+Detailed+Guide",
+          "title": "OpenMRS Wiki"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -3970,6 +4010,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/RemoteFormEntry+Module",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://bintray.com/openmrs/omod/remoteformentry"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -5589,6 +5633,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/OpenMRS+Reference+Application+2.x+Implementer+Documentation",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-referenceapplication"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -5928,6 +5983,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/projects/OpenMRS-DHIS2+Integration+Module+-+User+Guide",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-dhisreport/tree/shr"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -6541,6 +6600,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/Notifiable+Condition+Detector+%28NCD%29+Module",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/thomasshunter/openmrs-module-ncd"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
