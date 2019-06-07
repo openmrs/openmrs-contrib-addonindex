@@ -4780,6 +4780,29 @@
       }
     },
     {
+      "uid": "org.openmrs.module.telemedicineconsult",
+      "type": "OMOD",
+      "name": "Telemedicine Consult",
+      "maintainers": [
+        {
+          "name": "Patrick Childers",
+          "url" : "https://talk.openmrs.org/u/atlcto"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/CKWC/openmrs-module-telemedicine-consult"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "ckwc",
+        "repo": "omod",
+        "package": "telemedicineconsult"
+      }
+    },
+    {
       "uid": "org.openmrs.module.tribe",
       "type": "OMOD",
       "name": "Tribe",
