@@ -25,16 +25,61 @@ class SearchBox extends Component {
                       });
     }
 
+    setSimpleStringQuery(simpleStringQuery) {
+        this.setState({
+            simpleStringQuery: simpleStringQuery
+        });
+    }
+
+    setAddonType(addonType) {
+        this.setState({
+            addonType: addonType
+        });
+    }
+
+    setTag(tag) {
+        this.setState({
+            tag: tag
+        });
+    }
+
+
+    parseQuery(){
+        if (this.state.query){
+            let advanceQuery = this.state.query;
+            let querySplit = advanceQuery.split(' ');
+            querySplit.forEach(m => {
+                if (m.includes(":")){
+                    let [key, value] = m.split(':');
+                    if (key === "type"){
+                        this.setAddonType(value);
+                    }
+                    else if (key === "tag") {
+                        this.setTag(value);
+                    }
+                }
+                else {
+                    this.setSimpleStringQuery(m);
+                }
+            })
+
+        }
+    }
+
     doSearch() {
-        if (this.state.type || this.state.query) {
+        if (this.state.query) {
+            this.parseQuery();
             let url = "/search?";
-            if (this.state.type) {
-                url += "type=" + this.state.type;
+
+            if (this.state.addonType) {
+                url += "type=" + this.state.addonType;
             }
-            if (this.state.query) {
-                url += "&q=" + this.state.query;
+
+            if (this.state.simpleStringQuery) {
+                url += "&q=" + this.state.simpleStringQuery;
             }
-	    if (this.state.tag) {
+
+            if (this.state.tag) {
                 url += "&tag=" + this.state.tag;
             }
 
@@ -42,22 +87,7 @@ class SearchBox extends Component {
         }
     }
 
-    formatType(type) {
-        if (type === "OMOD") {
-            return "Module (OMOD)";
-        }
-        else if (type === "OWA") {
-            return "Open Web App (OWA)";
-        }
-        else {
-            return "All Types";
-        }
-    }
-
     render() {
-        const title = (
-                <span>{this.formatType(this.state.type)}</span>
-        );
         return (
                 <div className="row pushdown">
                     <Form onSubmit={(evt) => {
