@@ -25,7 +25,7 @@ class SearchBox extends Component {
         })}
 
     setSimpleStringQuery(simpleStringQuery) {
-        if (simpleStringQuery !== "type" && simpleStringQuery !== tag){
+        if (simpleStringQuery !== "type" && simpleStringQuery !== "tag"){
             this.setState({
                 simpleStringQuery: simpleStringQuery
             });
