@@ -21,13 +21,15 @@ class SearchBox extends Component {
 
     setQuery(query) {
         this.setState({ query: query }, function() {
-            //this.parseQuery();
+            this.parseQuery();
         })}
 
     setSimpleStringQuery(simpleStringQuery) {
-        this.setState({
-            simpleStringQuery: simpleStringQuery
-        });
+        if (simpleStringQuery !== "type" && simpleStringQuery !== tag){
+            this.setState({
+                simpleStringQuery: simpleStringQuery
+            });
+        }
     }
 
     setAddonType(addonType) {
@@ -67,7 +69,7 @@ class SearchBox extends Component {
 
     doSearch() {
         if (this.state.query) {
-            this.parseQuery();
+            //this.parseQuery();
             let url = "/search?";
 
             if (this.state.addonType) {
