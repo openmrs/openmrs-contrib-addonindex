@@ -40,10 +40,11 @@ class SearchBox extends Component {
             advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
             //Removing all spaces to the left of search keys
             advancedQuery = advancedQuery.replace(new RegExp(":+\\s","g"),":");
-            let querySplit = advancedQuery.split(' ');
             let queryComponents = {};
             //Determining query type
             if(advancedQuery.includes(":")){
+                let querySplit = advancedQuery.split(' ');
+                let tempQuery = "";
                 querySplit.forEach(m => {
                     if (m.includes(":")){
                         let [key, value] = m.split(':');
@@ -51,11 +52,12 @@ class SearchBox extends Component {
                             queryComponents["type"] = value.toUpperCase();
                         }
                         else if (key === "tag") {
-                            queryComponents["tag"] = value;
+                            queryComponents["tag"] = value.toLowerCase();
                         }
                     }
                     else {
-                        queryComponents["query"] = m;
+                        tempQuery = tempQuery + m;
+                        queryComponents["query"] = tempQuery;
                     }
                 });
             }
