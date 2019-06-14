@@ -44,44 +44,53 @@ class SearchBox extends Component {
         });
     }
 
+    setSplitQuery(splitQuery) {
+        this.setState({
+            splitQuery: splitQuery
+        });
+    }
 
     parseQuery(){
         if (this.state.query){
             let advanceQuery = this.state.query;
             let querySplit = advanceQuery.split(' ');
+            let queryComponents = {};
             querySplit.forEach(m => {
                 if (m.includes(":")){
                     let [key, value] = m.split(':');
                     if (key === "type"){
-                        this.setAddonType(value);
+                        queryComponents["type"] = value.toUpperCase();
+                        //this.setAddonType(value);
                     }
                     else if (key === "tag") {
-                        this.setTag(value);
+                        queryComponents["tag"] = value;
+                        //this.setTag(value);
                     }
                 }
                 else {
-                    this.setSimpleStringQuery(m);
+                    queryComponents["query"] = m;
+                    //this.setSimpleStringQuery(m);
                 }
-            })
-
+            });
+            this.setSplitQuery(queryComponents);
         }
     }
 
     doSearch() {
-        if (this.state.query) {
+        if (this.state.splitQuery) {
             //this.parseQuery();
             let url = "/search?";
 
-            if (this.state.addonType) {
-                url += "type=" + this.state.addonType;
+            if (this.state.splitQuery.type) {
+                url += "type=" + this.state.splitQuery.type;
             }
 
-            if (this.state.simpleStringQuery) {
-                url += "&q=" + this.state.simpleStringQuery;
+            if (this.state.splitQuery.query) {
+                url += "&q=" + this.state.splitQuery.query;
             }
 
-            if (this.state.tag) {
-                url += "&tag=" + this.state.tag;
+            if (this.state.splitQuery.tag) {
+                url += "&tag=" + this.state.splitQuery.tag;
             }
 
             this.props.router.push(url);
