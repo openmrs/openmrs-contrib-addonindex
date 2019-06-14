@@ -20,73 +20,66 @@ class SearchBox extends Component {
     }
 
     setQuery(query) {
+        this.setState({ query: query }, function() {
+            this.parseQuery();
+        })}
+
+    setSimpleStringQuery(simpleStringQuery) {
         this.setState({
-                          query: query
-                      });
+            simpleStringQuery: simpleStringQuery
+        });
     }
 
-    // setSimpleStringQuery(simpleStringQuery) {
-    //     this.setState({
-    //         simpleStringQuery: simpleStringQuery
-    //     });
-    // }
-    //
-    // setAddonType(addonType) {
-    //     this.setState({
-    //         addonType: addonType
-    //     });
-    // }
-    //
-    // setTag(tag) {
-    //     this.setState({
-    //         tag: tag
-    //     });
-    // }
-
-
-    parseQuery(advancedQuery){
-        let querySplit = advancedQuery.split(' ');
-        let type,tag,simpleQuery;
-
-        querySplit.forEach(m => {
-            if (m.includes(":")){
-                let [key, value] = m.split(':');
-                if (key === "type"){
-                    type = value;
-                }
-                else if (key === "tag") {
-                    tag = value;
-                }
-            }
-            else {
-                simpleQuery = m;
-            }
+    setAddonType(addonType) {
+        this.setState({
+            addonType: addonType
         });
-        return {
-            type: this.type,
-            tag: this.tag,
-            simpleQuery: this.simpleQuery
-        };
+    }
+
+    setTag(tag) {
+        this.setState({
+            tag: tag
+        });
+    }
 
 
+    parseQuery(){
+        if (this.state.query){
+            let advanceQuery = this.state.query;
+            let querySplit = advanceQuery.split(' ');
+            querySplit.forEach(m => {
+                if (m.includes(":")){
+                    let [key, value] = m.split(':');
+                    if (key === "type"){
+                        this.setAddonType(value);
+                    }
+                    else if (key === "tag") {
+                        this.setTag(value);
+                    }
+                }
+                else {
+                    this.setSimpleStringQuery(m);
+                }
+            })
+
+        }
     }
 
     doSearch() {
         if (this.state.query) {
-            let advanceQuery = this.state.query;
-            let params = this.parseQuery(advanceQuery);
+            this.parseQuery();
             let url = "/search?";
 
-            if (params.type) {
-                url += "type=" + params.type;
+            if (this.state.addonType) {
+                url += "type=" + this.state.addonType;
             }
 
-            if (params.simpleQuery) {
+            if (this.state.simpleStringQuery) {
                 url += "&q=" + this.state.simpleStringQuery;
             }
 
-            if (params.tag) {
-                url += "&tag=" + params.tag;
+            if (this.state.tag) {
+                url += "&tag=" + this.state.tag;
             }
 
             this.props.router.push(url);
