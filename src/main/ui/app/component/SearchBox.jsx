@@ -35,27 +35,33 @@ class SearchBox extends Component {
             let advancedQuery = this.state.query;
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
-            advancedQuery = advancedQuery.replace(/\s+/g,' ').trim()
+            advancedQuery = advancedQuery.replace(/\s+/g,' ').trim();
             //Removing all spaces to the right of search keys
             advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
             //Removing all spaces to the left of search keys
             advancedQuery = advancedQuery.replace(new RegExp(":+\\s","g"),":");
             let querySplit = advancedQuery.split(' ');
             let queryComponents = {};
-            querySplit.forEach(m => {
-                if (m.includes(":")){
-                    let [key, value] = m.split(':');
-                    if (key === "type"){
-                        queryComponents["type"] = value.toUpperCase();
+            //Determining query type
+            if(advancedQuery.includes(":")){
+                querySplit.forEach(m => {
+                    if (m.includes(":")){
+                        let [key, value] = m.split(':');
+                        if (key === "type"){
+                            queryComponents["type"] = value.toUpperCase();
+                        }
+                        else if (key === "tag") {
+                            queryComponents["tag"] = value;
+                        }
                     }
-                    else if (key === "tag") {
-                        queryComponents["tag"] = value;
+                    else {
+                        queryComponents["query"] = m;
                     }
-                }
-                else {
-                    queryComponents["query"] = m;
-                }
-            });
+                });
+            }
+            else{
+                queryComponents["query"] = advancedQuery;
+            }
             this.setSplitQuery(queryComponents);
         }
     }
