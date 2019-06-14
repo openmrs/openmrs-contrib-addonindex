@@ -53,6 +53,13 @@ class SearchBox extends Component {
     parseQuery(){
         if (this.state.query){
             let advanceQuery = this.state.query;
+            //Basic Regex Matching to fix query inconsistencies
+            //Removing all extra spaces i.e. two or more
+            advanceQuery = advanceQuery.replace(/\s+/g,' ').trim()
+            //Removing all spaces to the right of search keys
+            advanceQuery = advanceQuery.replace(new RegExp("\\s+:","g"),":");
+            //Removing all spaces to the left of search keys
+            advanceQuery = advanceQuery.replace(new RegExp(":+\\s","g"),":");
             let querySplit = advanceQuery.split(' ');
             let queryComponents = {};
             querySplit.forEach(m => {
