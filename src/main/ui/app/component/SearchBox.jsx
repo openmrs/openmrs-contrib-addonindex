@@ -67,7 +67,7 @@ class SearchBox extends Component {
 
     doSearch() {
         if (this.state.query) {
-            this.parseQuery();
+            //this.parseQuery();
             let url = "/search?";
 
             if (this.state.addonType) {
