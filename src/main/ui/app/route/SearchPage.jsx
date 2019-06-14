@@ -77,13 +77,16 @@ export default class SearchPage extends Component {
     }
 
     render() {
+        let simpleQuery = this.props.location.query.q;
+        let moduleType = this.props.location.query.type;
+        let moduleTag = this.props.location.query.tag;
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
         }
         else {
             return (
                     <div>
-                        <SearchBox initialQuery={this.props.location.query.q}/>
+                        <SearchBox initialQuery={`type:${moduleType ? moduleType : "all"} query:${simpleQuery ? simpleQuery : ""} tag:${moduleTag ? moduleTag : ""}`}/>
 
                         {this.state.latestSearch ?
                          <div>Searching for {this.state.latestSearch}</div>
