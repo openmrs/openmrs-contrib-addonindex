@@ -36,10 +36,10 @@ class SearchBox extends Component {
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
             advancedQuery = advancedQuery.replace(/\s+/g,' ').trim();
-            //Removing all spaces to the right of search keys
-            advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
             //Removing all spaces to the left of search keys
-            advancedQuery = advancedQuery.replace(new RegExp(":+\\s","g"),":");
+            advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
+            //Removing all spaces to the right of search keys
+            advancedQuery = advancedQuery.replace(new RegExp(":\\s+","g"),":");
             let queryComponents = {};
             //Determining query type
             if(advancedQuery.includes(":")){
@@ -56,7 +56,7 @@ class SearchBox extends Component {
                         }
                     }
                     else {
-                        tempQuery = tempQuery + m;
+                        tempQuery = tempQuery + ' ' + m;
                         queryComponents["query"] = tempQuery;
                     }
                 });
