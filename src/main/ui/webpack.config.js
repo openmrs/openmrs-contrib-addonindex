@@ -8,44 +8,61 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
 
 module.exports = function (env) {
-    const BUNDLE_FILENAME = env === "prod" ? "app/bundle.min.js" : "app/bundle.js";
-    const CSS_FILENAME = env === "prod" ? "app/styles.min.css" : "app/styles.css";
 
     return {
         entry: './app/index.jsx',
         output: {
-            filename: BUNDLE_FILENAME,
+            filename:  env === 'prod' ? 'app/bundle.[contenthash].min.js': 'app/bundle.[contenthash].js',
             publicPath: '/',
-            path: '../resources/static'
+            path: path.resolve(__dirname, '../resources/static/')
         },
+        optimization: {
+            runtimeChunk: 'single',
+            splitChunks: {
+                cacheGroups: {
+                    vendor: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendors',
+                        chunks: 'all'
+                    }
+                }
+            }},
         module: {
             rules: [
                 {
                     test: /\.jsx?$/,
-                    exclude: 'node_modules',
+                    exclude: path.resolve(__dirname, 'node_modules'),
                     loader: "babel-loader",
                     options: {
-                        presets: ['es2015', 'react']
+                        presets: ['@babel/env', '@babel/preset-react']
                     }
                 },
                 {
                     test: /\.scss$/,
                     exclude: /node_modules/,
-                    use: ExtractTextPlugin.extract({
-                                                       loader: ["css-loader", "sass-loader"],
-                                                       fallbackLoader: "style-loader"
-                                                   })
-                    // use: ['style-loader', 'css-loader', 'sass-loader']
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader','sass-loader'
+                    ]
                 }
             ]
         },
         plugins: [
-            new ExtractTextPlugin(CSS_FILENAME),
+            new MiniCssExtractPlugin({
+                    filename: env === 'prod' ? 'app/styles.[contenthash].min.css': 'app/styles.[contenthash].css'
+                }),
+            new CleanWebpackPlugin({
+                    cleanOnceBeforeBuildPatterns: ['app/']
+            }
+            ),
+            new webpack.HashedModuleIdsPlugin(),
             new HtmlWebpackPlugin({
                 template: 'index.ejs'
             }),
