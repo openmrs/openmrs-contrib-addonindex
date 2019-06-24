@@ -41,7 +41,7 @@ module.exports = function (env) {
                     exclude: path.resolve(__dirname, 'node_modules'),
                     loader: "babel-loader",
                     options: {
-                        presets: ['@babel/env', '@babel/preset-react']
+                        presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 },
                 {
