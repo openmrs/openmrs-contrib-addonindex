@@ -20,44 +20,75 @@ class SearchBox extends Component {
     }
 
     setQuery(query) {
+        this.setState({ query: query }, function() {
+            this.parseQuery();
+        })}
+
+    setSplitQuery(splitQuery) {
         this.setState({
-                          query: query
-                      });
+            splitQuery: splitQuery
+        });
+    }
+
+    parseQuery(){
+        if (this.state.query){
+            let advancedQuery = this.state.query;
+            //Basic Regex Matching to fix query inconsistencies
+            //Removing all extra spaces i.e. two or more
+            advancedQuery = advancedQuery.replace(/\s+/g,' ').trim();
+            //Removing all spaces to the left of search keys
+            advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
+            //Removing all spaces to the right of search keys
+            advancedQuery = advancedQuery.replace(new RegExp(":\\s+","g"),":");
+            let queryComponents = {};
+            //Determining query type
+            if(advancedQuery.includes(":")){
+                let querySplit = advancedQuery.split(' ');
+                let tempQuery = "";
+                querySplit.forEach(m => {
+                    if (m.includes(":")){
+                        let [key, value] = m.split(':');
+                        if (key === "type"){
+                            queryComponents["type"] = value.toUpperCase();
+                        }
+                        else if (key === "tag") {
+                            queryComponents["tag"] = value.toLowerCase();
+                        }
+                    }
+                    else {
+                        tempQuery = tempQuery + ' ' + m;
+                        queryComponents["query"] = tempQuery;
+                    }
+                });
+            }
+            else{
+                queryComponents["query"] = advancedQuery;
+            }
+            this.setSplitQuery(queryComponents);
+        }
     }
 
     doSearch() {
-        if (this.state.type || this.state.query) {
+        if (this.state.splitQuery) {
             let url = "/search?";
-            if (this.state.type) {
-                url += "type=" + this.state.type;
+
+            if (this.state.splitQuery.type) {
+                url += "type=" + this.state.splitQuery.type;
             }
-            if (this.state.query) {
-                url += "&q=" + this.state.query;
+
+            if (this.state.splitQuery.query) {
+                url += "&q=" + this.state.splitQuery.query;
             }
-	    if (this.state.tag) {
-                url += "&tag=" + this.state.tag;
+
+            if (this.state.splitQuery.tag) {
+                url += "&tag=" + this.state.splitQuery.tag;
             }
 
             this.props.router.push(url);
         }
     }
 
-    formatType(type) {
-        if (type === "OMOD") {
-            return "Module (OMOD)";
-        }
-        else if (type === "OWA") {
-            return "Open Web App (OWA)";
-        }
-        else {
-            return "All Types";
-        }
-    }
-
     render() {
-        const title = (
-                <span>{this.formatType(this.state.type)}</span>
-        );
         return (
                 <div className="row pushdown">
                     <Form onSubmit={(evt) => {
