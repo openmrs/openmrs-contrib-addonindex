@@ -25,7 +25,8 @@
     "react-dom": "^15.4.2",
     "react-ga": "^2.4.1",
     "react-router": "^3.0.2",
-    "react-select": "1.x"
+    "react-select": "1.x",
+    "search-query-parser": "^1.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

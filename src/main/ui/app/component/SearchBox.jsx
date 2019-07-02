@@ -11,6 +11,7 @@
 import {Component} from "react";
 import {withRouter} from "react-router";
 import {Button, Col, Form, FormControl, InputGroup} from "react-bootstrap";
+import searchQuery from "search-query-parser";
 
 class SearchBox extends Component {
 
@@ -20,19 +21,14 @@ class SearchBox extends Component {
     }
 
     setQuery(query) {
-        this.setState({ query: query }, function() {
-            this.parseQuery();
-        })}
-
-    setSplitQuery(splitQuery) {
         this.setState({
-            splitQuery: splitQuery
+            query: query
         });
     }
 
-    parseQuery(){
-        if (this.state.query){
-            let advancedQuery = this.state.query;
+    doSearch() {
+        if (this.state.query) {
+            let advancedQuery = this.state.query.toLowerCase();
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
             advancedQuery = advancedQuery.replace(/\s+/g,' ').trim();
@@ -40,48 +36,35 @@ class SearchBox extends Component {
             advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
             //Removing all spaces to the right of search keys
             advancedQuery = advancedQuery.replace(new RegExp(":\\s+","g"),":");
-            let queryComponents = {};
-            //Determining query type
-            if(advancedQuery.includes(":")){
-                let querySplit = advancedQuery.split(' ');
-                let tempQuery = "";
-                querySplit.forEach(m => {
-                    if (m.includes(":")){
-                        let [key, value] = m.split(':');
-                        if (key === "type"){
-                            queryComponents["type"] = value.toUpperCase();
-                        }
-                        else if (key === "tag") {
-                            queryComponents["tag"] = value.toLowerCase();
-                        }
-                    }
-                    else {
-                        tempQuery = tempQuery + ' ' + m;
-                        queryComponents["query"] = tempQuery;
-                    }
-                });
-            }
-            else{
-                queryComponents["query"] = advancedQuery;
-            }
-            this.setSplitQuery(queryComponents);
-        }
-    }
-
-    doSearch() {
-        if (this.state.splitQuery) {
             let url = "/search?";
-
-            if (this.state.splitQuery.type) {
-                url += "type=" + this.state.splitQuery.type;
+            // Check if query is an advanced query. We want to use the Parser only if the query is advanced
+            if (advancedQuery.includes(":") || advancedQuery.includes("-")){
+                let options = {keywords: ['type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false};
+                let searchQueryObj = searchQuery.parse(advancedQuery, options);
+                Object.keys(searchQueryObj).forEach(function (key) {
+                    if (searchQueryObj[key]){
+                        if (key === "text" || key === "query") {
+                            url += "&q=" + searchQueryObj[key];
+                        }
+                        else if (key === "type"){
+                            url += "&type=" + searchQueryObj[key].toUpperCase();
+                        }
+                        else if (key === "exclude"){
+                            if (searchQueryObj[key].text){
+                                url += "&exclude=" + searchQueryObj[key].text;
+                            }
+                        }
+                        else if (key === "status"){
+                            url += "&status=" + searchQueryObj[key].toUpperCase();
+                        }
+                        else {
+                            url += "&" + key + "=" + searchQueryObj[key];
+                        }
+                    }
+                    });
             }
-
-            if (this.state.splitQuery.query) {
-                url += "&q=" + this.state.splitQuery.query;
-            }
-
-            if (this.state.splitQuery.tag) {
-                url += "&tag=" + this.state.splitQuery.tag;
+            else {
+                url += "&q=" + advancedQuery;
             }
 
             this.props.router.push(url);
