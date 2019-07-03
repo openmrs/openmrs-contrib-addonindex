@@ -24,10 +24,7 @@ import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
-import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
-import org.openmrs.addonindex.domain.AddOnInfoSummary;
-import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
-import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,8 +95,21 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws IOException {
+	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid,
+											   String name, String exclude, AddOnStatus status) throws IOException {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
+		if (name != null){
+			//Exact match on moduleID
+			boolQB.filter(QueryBuilders.matchQuery("name.raw", name));
+		}
+		if (uid != null){
+			//Exact match on moduleID
+			boolQB.filter(QueryBuilders.matchQuery("moduleId", uid));
+		}
+		if (status != null){
+			//Exact match on status
+			boolQB.filter(QueryBuilders.matchQuery("status", status));
+		}
 		if (type != null) {
 			//Exact match on type
 			boolQB.filter(QueryBuilders.matchQuery("type", type));
@@ -126,6 +136,11 @@ public class ElasticSearchIndex implements Index {
 			//Allow for spelling mistake while searching for a particular module
 			boolQB.should(QueryBuilders.matchPhraseQuery("name", query).slop(2).fuzziness("AUTO"));
 			boolQB.minimumNumberShouldMatch(1);
+		}
+
+		if (exclude != null){
+			boolQB.mustNot(QueryBuilders.multiMatchQuery(exclude , "name", "tags", "description",
+					"moduleId", "status", "_id", "type"));
 		}
 		
 		BoostingQueryBuilder boostingQB = QueryBuilders.boostingQuery();

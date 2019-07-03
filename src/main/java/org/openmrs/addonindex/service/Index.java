@@ -13,10 +13,7 @@ package org.openmrs.addonindex.service;
 import java.util.Collection;
 import java.util.List;
 
-import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
-import org.openmrs.addonindex.domain.AddOnInfoSummary;
-import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
-import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.*;
 
 /**
  * Interface for accessing the datastore where we have indexed information about add-ons and versions.
@@ -25,7 +22,8 @@ public interface Index {
 	
 	void index(AddOnInfoAndVersions infoAndVersions) throws Exception;
 	
-	Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws Exception;
+	Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid,
+										String name, String exclude, AddOnStatus status) throws Exception;
 	
 	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;
 	

@@ -59,7 +59,8 @@ public class AddOnControllerIT {
 		info.setDescription("For reporting");
 		info.addVersion(version);
 		
-		when(index.search(null, "report", null)).thenReturn(singletonList(new AddOnInfoSummary(info)));
+		when(index.search(null, "report", null, null,
+				null, null, null)).thenReturn(singletonList(new AddOnInfoSummary(info)));
 		when(index.getByModulePackage("org.openmrs.module.reporting-module")).thenReturn(info);
 		when(index.getByUid("reporting-module")).thenReturn(info);
 	}

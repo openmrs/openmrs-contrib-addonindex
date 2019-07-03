@@ -14,7 +14,12 @@
         "type": "keyword"
       },
       "name": {
-        "type": "text"
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type":  "keyword"
+          }
+        }
       },
       "description": {
         "type": "text"

@@ -12,10 +12,7 @@ package org.openmrs.addonindex.rest;
 
 import java.util.Collection;
 
-import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
-import org.openmrs.addonindex.domain.AddOnInfoSummary;
-import org.openmrs.addonindex.domain.AddOnType;
-import org.openmrs.addonindex.domain.AddOnVersion;
+import org.openmrs.addonindex.domain.*;
 import org.openmrs.addonindex.service.Index;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,9 +35,13 @@ public class AddOnController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
-	                                           @RequestParam(value = "q", required = false) String query, 
-						   @RequestParam(value = "tag", required = false) String tag) throws Exception {
-		return index.search(type, query, tag);
+	                                           @RequestParam(value = "q", required = false) String query,
+											   @RequestParam(value = "tag", required = false) String tag,
+											   @RequestParam(value = "moduleid", required = false) String uid,
+											   @RequestParam(value = "name", required = false) String name,
+											   @RequestParam(value = "exclude", required = false) String excludeText,
+								@RequestParam(value = "status", required = false) AddOnStatus status) throws Exception {
+		return index.search(type, query, tag, uid, name, excludeText, status);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")

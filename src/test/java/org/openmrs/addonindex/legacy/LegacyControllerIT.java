@@ -68,7 +68,8 @@ public class LegacyControllerIT {
 		
 		AddOnInfoSummary summary = new AddOnInfoSummary(full);
 		
-		given(elasticSearchIndex.search(AddOnType.OMOD, "appui", null))
+		given(elasticSearchIndex.search(AddOnType.OMOD, "appui", null,
+				null, null, null, null))
 				.willReturn(Collections.singleton(summary));
 		given(elasticSearchIndex.getByUid("org.openmrs.module.appui"))
 				.willReturn(full);
