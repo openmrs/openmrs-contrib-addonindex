@@ -10,10 +10,15 @@
 
 package org.openmrs.addonindex.service;
 
+import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
+import org.openmrs.addonindex.domain.AddOnInfoSummary;
+import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
+import org.openmrs.addonindex.domain.AddOnStatus;
+import org.openmrs.addonindex.domain.AddOnType;
+
 import java.util.Collection;
 import java.util.List;
 
-import org.openmrs.addonindex.domain.*;
 
 /**
  * Interface for accessing the datastore where we have indexed information about add-ons and versions.

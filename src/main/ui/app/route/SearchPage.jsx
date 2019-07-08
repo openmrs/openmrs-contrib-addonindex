@@ -39,7 +39,7 @@ export default class SearchPage extends Component {
         const moduleid = this.props.location.query.moduleid;
         const name = this.props.location.query.name;
         const status = this.props.location.query.status;
-
+        console.log(advancedQuery);
         const searchKey = `${type ? "type:" + type : ""} ${query ? "query:" + query : ""} ${tag ? "tag:" + tag : ""} ${exclude ? "-" + exclude : ""} ${name ? "name:" + name : ""} ${status ? "status:" + status : ""} ${moduleid ? "moduleId:" + moduleid : ""}`;
 
         if (this.state.latestSearch === searchKey) {

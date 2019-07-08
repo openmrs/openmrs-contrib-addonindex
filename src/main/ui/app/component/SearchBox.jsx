@@ -28,19 +28,19 @@ class SearchBox extends Component {
 
     doSearch() {
         if (this.state.query) {
-            let advancedQuery = this.state.query.toLowerCase();
+            let query = this.state.query.toLowerCase();
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
-            advancedQuery = advancedQuery.replace(/\s+/g,' ').trim();
+            query = query.replace(/\s+/g,' ').trim();
             //Removing all spaces to the left of search keys
-            advancedQuery = advancedQuery.replace(new RegExp("\\s+:","g"),":");
+            query = query.replace(new RegExp("\\s+:","g"),":");
             //Removing all spaces to the right of search keys
-            advancedQuery = advancedQuery.replace(new RegExp(":\\s+","g"),":");
+            query = query.replace(new RegExp(":\\s+","g"),":");
             let url = "/search?";
             // Check if query is an advanced query. We want to use the Parser only if the query is advanced
-            if (advancedQuery.includes(":") || advancedQuery.includes("-")){
+            if (query.includes(":") || query.includes("-")){
                 let options = {keywords: ['type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false};
-                let searchQueryObj = searchQuery.parse(advancedQuery, options);
+                let searchQueryObj = searchQuery.parse(query, options);
                 Object.keys(searchQueryObj).forEach(function (key) {
                     if (searchQueryObj[key]){
                         if (key === "text" || key === "query") {
@@ -64,7 +64,7 @@ class SearchBox extends Component {
                     });
             }
             else {
-                url += "&q=" + advancedQuery;
+                url += "&q=" + query;
             }
 
             this.props.router.push(url);
