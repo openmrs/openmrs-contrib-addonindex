@@ -29,6 +29,7 @@ class SearchBox extends Component {
     doSearch() {
         if (this.state.query) {
             let query = this.state.query.toLowerCase();
+            const options = {keywords: ['type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false};
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
             query = query.replace(/\s+/g,' ').trim();
@@ -38,8 +39,7 @@ class SearchBox extends Component {
             query = query.replace(new RegExp(":\\s+","g"),":");
             let url = "/search?";
             // Check if query is an advanced query. We want to use the Parser only if the query is advanced
-            if (query.includes(":") || query.includes("-")){
-                let options = {keywords: ['type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false};
+            if (query.includes(":") || query.includes("-")) {
                 let searchQueryObj = searchQuery.parse(query, options);
                 Object.keys(searchQueryObj).forEach(function (key) {
                     if (searchQueryObj[key]){

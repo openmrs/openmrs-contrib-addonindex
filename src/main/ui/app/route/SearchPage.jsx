@@ -31,16 +31,9 @@ export default class SearchPage extends Component {
     }
 
     doSearch() {
-        const advancedQuery = this.props.location.query;
-        const query = this.props.location.query.q;
-        const type = this.props.location.query.type;
-        const tag = this.props.location.query.tag;
-        const exclude = this.props.location.query.exclude;
-        const moduleid = this.props.location.query.moduleid;
-        const name = this.props.location.query.name;
-        const status = this.props.location.query.status;
-        console.log(advancedQuery);
-        const searchKey = `${type ? "type:" + type : ""} ${query ? "query:" + query : ""} ${tag ? "tag:" + tag : ""} ${exclude ? "-" + exclude : ""} ${name ? "name:" + name : ""} ${status ? "status:" + status : ""} ${moduleid ? "moduleId:" + moduleid : ""}`;
+        const query = this.props.location.query;
+
+        const searchKey = `${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""}`;
 
         if (this.state.latestSearch === searchKey) {
             return;
@@ -50,9 +43,9 @@ export default class SearchPage extends Component {
 
         let url = "/api/v1/addon?";
 
-        Object.keys(advancedQuery).forEach(function (key) {
-            if (advancedQuery[key]){
-                url += ("&" + key + "=" + advancedQuery[key]);
+        Object.keys(query).forEach(function (key) {
+            if (query[key]){
+                url += ("&" + key + "=" + query[key]);
             }
         });
 
@@ -81,13 +74,7 @@ export default class SearchPage extends Component {
     }
 
     render() {
-        let simpleQuery = this.props.location.query.q;
-        let moduleType = this.props.location.query.type;
-        let moduleTag = this.props.location.query.tag;
-        let moduleExclude = this.props.location.query.exclude;
-        let moduleid = this.props.location.query.moduleid;
-        let moduleName = this.props.location.query.name;
-        let moduleStatus = this.props.location.query.status;
+        let query = this.props.location.query;
 
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
@@ -95,7 +82,7 @@ export default class SearchPage extends Component {
         else {
             return (
                     <div>
-                        <SearchBox initialQuery={`${moduleType ? "type:" + moduleType : ""} ${simpleQuery ? "query:" + simpleQuery : ""} ${moduleTag ? "tag:" + moduleTag : ""} ${moduleExclude ? "-" + moduleExclude : ""} ${moduleName ? "name:" + moduleName : ""} ${moduleStatus ? "status:" + moduleStatus : ""} ${moduleid ? "moduleId:" + moduleid : ""}`}/>
+                        <SearchBox initialQuery={`${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""}`}/>
 
                         {this.state.latestSearch ?
                          <div>Searching for {this.state.latestSearch}</div>
