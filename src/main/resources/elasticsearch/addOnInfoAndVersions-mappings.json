@@ -14,13 +14,7 @@
         "type": "keyword"
       },
       "name": {
-        "type": "text",
-        "fields": {
-          "raw": {
-            "type":  "keyword",
-            "analyzer": "keyword"
-          }
-        }
+        "type": "keyword"
       },
       "description": {
         "type": "text"
