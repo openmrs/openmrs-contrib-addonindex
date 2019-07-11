@@ -17,7 +17,8 @@
         "type": "text",
         "fields": {
           "raw": {
-            "type":  "keyword"
+            "type":  "keyword",
+            "analyzer": "keyword"
           }
         }
       },
