@@ -14,7 +14,8 @@
         "type": "keyword"
       },
       "name": {
-        "type": "keyword"
+        "type": "keyword",
+        "index": true
       },
       "description": {
         "type": "text"
