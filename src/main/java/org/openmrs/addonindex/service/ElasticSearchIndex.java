@@ -106,7 +106,7 @@ public class ElasticSearchIndex implements Index {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (name != null) {
 			//Exact match on name
-			boolQB.filter(QueryBuilders.matchQuery("name", name));
+			boolQB.filter(QueryBuilders.matchQuery("name.raw", name));
 		}
 		if (uid != null) {
 			//Exact match on moduleID
