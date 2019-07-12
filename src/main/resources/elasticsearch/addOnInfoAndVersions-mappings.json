@@ -14,8 +14,13 @@
         "type": "keyword"
       },
       "name": {
-        "type": "keyword",
-        "index": true
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword",
+            "index": true
+          }
+        }
       },
       "description": {
         "type": "text"
