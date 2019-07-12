@@ -86,7 +86,7 @@ public class ElasticSearchIndex implements Index {
 		logger.info("Updating mappings on ES index");
 		handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
 				AddOnInfoAndVersions.ES_TYPE,
-				loadResource("elasticsearch/addOnInfoAndVersions-mappings.json"))
+				loadResource("/home/ubuntu/gsoc/openmrs-contrib-addonindex/src/main/resources/elasticsearch/addOnInfoAndVersions-mappings.json"))
 				.build()));
 	}
 	
