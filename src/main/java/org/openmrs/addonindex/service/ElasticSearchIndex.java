@@ -79,14 +79,14 @@ public class ElasticSearchIndex implements Index {
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(Settings.builder()
 					.loadFromPath(
-							Paths.get("elasticsearch/addOnInfoAndVersions-settings.json")
+							Paths.get("/home/ubuntu/gsoc/openmrs-contrib-addonindex/src/main/resources/elasticsearch/addOnInfoAndVersions-settings.json")
 					).build().getAsMap()).build()));
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
 		}
 		logger.info("Updating mappings on ES index");
 		handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
 				AddOnInfoAndVersions.ES_TYPE,
-				loadResource("/home/ubuntu/gsoc/openmrs-contrib-addonindex/src/main/resources/elasticsearch/addOnInfoAndVersions-mappings.json"))
+				loadResource("elasticsearch/addOnInfoAndVersions-mappings.json"))
 				.build()));
 	}
 	
