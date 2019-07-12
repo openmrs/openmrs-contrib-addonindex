@@ -13,17 +13,21 @@ package org.openmrs.addonindex.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.elasticsearch.common.settings.Settings;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -73,12 +77,17 @@ public class ElasticSearchIndex implements Index {
 		} else {
 			// need to create the index
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
+			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(Settings.builder()
+					.loadFromPath(
+							Paths.get("elasticsearch/addOnInfoAndVersions-settings.json")
+					).build().getAsMap()).build()));
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
 		}
 		logger.info("Updating mappings on ES index");
 		handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
 				AddOnInfoAndVersions.ES_TYPE,
-				loadResource("elasticsearch/addOnInfoAndVersions-mappings.json")).build()));
+				loadResource("elasticsearch/addOnInfoAndVersions-mappings.json"))
+				.build()));
 	}
 	
 	private String loadResource(String name) throws IOException {

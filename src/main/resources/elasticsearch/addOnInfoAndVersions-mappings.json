@@ -1,15 +1,5 @@
 {
   "add_on_info_and_versions": {
-    "settings": {
-      "analysis": {
-        "normalizer": {
-          "my_normalizer": {
-            "type": "custom",
-            "filter": ["lowercase"]
-          }
-        }
-      }
-    },
     "properties": {
       "moduleId": {
         "type": "keyword"
