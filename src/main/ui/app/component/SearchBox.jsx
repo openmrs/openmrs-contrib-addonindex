@@ -42,6 +42,7 @@ class SearchBox extends Component {
             if (query.includes(":") || query.includes("-")) {
                 let searchQueryObj = searchQuery.parse(query, options);
                 Object.keys(searchQueryObj).forEach(function (key) {
+                    console.log(key);
                     if (searchQueryObj[key]){
                         if (key === "text" || key === "query") {
                             url += "&q=" + searchQueryObj[key];
