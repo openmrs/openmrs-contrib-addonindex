@@ -103,7 +103,7 @@ public class LegacyController {
 			@RequestParam(value = "excludeModule", required = false) List<String> excludeModuleIds
 	) throws Exception {
 		Collection<AddOnInfoSummary> results = index.search(AddOnType.OMOD, query, null, null, null,
-				null, null);
+				null, null, null);
 		
 		LegacyFindModulesResponse response = new LegacyFindModulesResponse();
 		response.setsEcho(sEcho);

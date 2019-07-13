@@ -32,8 +32,7 @@ export default class SearchPage extends Component {
 
     doSearch() {
         const query = this.props.location.query;
-
-        const searchKey = `${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""}`;
+        const searchKey = `${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""} ${query.uid ? "uid:" + query.uid : ""}`;
 
         if (this.state.latestSearch === searchKey) {
             return;
@@ -82,7 +81,7 @@ export default class SearchPage extends Component {
         else {
             return (
                     <div>
-                        <SearchBox initialQuery={`${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""}`}/>
+                        <SearchBox initialQuery={`${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""} ${query.uid ? "uid:" + query.uid : ""}`}/>
 
                         {this.state.latestSearch ?
                          <div>Searching for {this.state.latestSearch}</div>

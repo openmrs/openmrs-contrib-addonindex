@@ -27,7 +27,7 @@ public interface Index {
 	
 	void index(AddOnInfoAndVersions infoAndVersions) throws Exception;
 	
-	Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid,
+	Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid, String moduleId,
 										String name, String exclude, AddOnStatus status) throws Exception;
 	
 	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;

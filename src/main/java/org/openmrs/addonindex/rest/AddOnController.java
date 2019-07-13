@@ -43,11 +43,12 @@ public class AddOnController {
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
 											   @RequestParam(value = "q", required = false) String query,
 											   @RequestParam(value = "tag", required = false) String tag,
-											   @RequestParam(value = "moduleid", required = false) String uid,
+											   @RequestParam(value = "uid", required = false) String uid,
+											   @RequestParam(value = "moduleid", required = false) String moduleId,
 											   @RequestParam(value = "name", required = false) String name,
 											   @RequestParam(value = "exclude", required = false) String excludeText,
 											   @RequestParam(value = "status", required = false) AddOnStatus status) throws Exception {
-		return index.search(type, query, tag, uid, name, excludeText, status);
+		return index.search(type, query, tag, uid, moduleId, name, excludeText, status);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")

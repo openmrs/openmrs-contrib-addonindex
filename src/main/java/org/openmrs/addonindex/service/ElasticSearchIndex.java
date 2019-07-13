@@ -13,8 +13,6 @@ package org.openmrs.addonindex.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,7 +103,7 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid,
+	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag, String uid, String moduleId,
 											   String name, String exclude, AddOnStatus status) throws IOException {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
 		if (name != null) {
@@ -113,8 +111,12 @@ public class ElasticSearchIndex implements Index {
 			boolQB.filter(QueryBuilders.matchQuery("name.raw", name));
 		}
 		if (uid != null) {
+			//Exact match on uid. This is different from moduleId
+			boolQB.filter(QueryBuilders.matchQuery("uid", uid));
+		}
+		if (moduleId != null) {
 			//Exact match on moduleID
-			boolQB.filter(QueryBuilders.matchQuery("moduleId", uid));
+			boolQB.filter(QueryBuilders.matchQuery("moduleId", moduleId));
 		}
 		if (status != null) {
 			//Exact match on status
