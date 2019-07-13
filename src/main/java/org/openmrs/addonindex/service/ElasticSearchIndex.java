@@ -77,10 +77,7 @@ public class ElasticSearchIndex implements Index {
 		} else {
 			// need to create the index
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
-			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(Settings.builder()
-					.loadFromPath(
-							Paths.get("/home/ubuntu/gsoc/openmrs-contrib-addonindex/src/main/resources/elasticsearch/addOnInfoAndVersions-settings.json")
-					).build().getAsMap()).build()));
+			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(loadResource("elasticsearch/addOnInfoAndVersions-settings.json")).build()));
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
 		}
 		logger.info("Updating mappings on ES index");
