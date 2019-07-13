@@ -75,7 +75,8 @@ public class ElasticSearchIndex implements Index {
 		} else {
 			// need to create the index
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
-			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
+			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(
+					loadResource("elasticsearch/addOnInfoAndVersions-settings.json")).build()));
 		}
 		logger.info("Updating mappings on ES index");
 		handleError(client.execute(new PutMapping.Builder(AddOnInfoAndVersions.ES_INDEX,
