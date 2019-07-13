@@ -21,13 +21,11 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
-import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.sort.SortOrder;
-import org.elasticsearch.common.settings.Settings;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -77,7 +75,6 @@ public class ElasticSearchIndex implements Index {
 		} else {
 			// need to create the index
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
-			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(loadResource("elasticsearch/addOnInfoAndVersions-settings.json")).build()));
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).build()));
 		}
 		logger.info("Updating mappings on ES index");
