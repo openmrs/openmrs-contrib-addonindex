@@ -1,7 +1,7 @@
 {
     "analysis": {
       "normalizer": {
-        "my_normalizer": {
+        "case_normalizer": {
           "type": "custom",
           "filter": ["lowercase"]
         }

@@ -18,8 +18,7 @@
         "fields": {
           "raw": {
             "type": "keyword",
-            "normalizer": "my_normalizer",
-            "index": true
+            "normalizer": "case_normalizer"
           }
         }
       },
