@@ -62,5 +62,11 @@ public class AddOnController {
 	    AddOnVersion addOnVersion = index.getByUid(uid).getLatestSupportedVersion(userCoreVersion);
             return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
 	}
-	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/recentreleases")
+	public Collection<AddOnInfoAndVersions> getRecentReleases(
+			@RequestParam(value = "resultsize", defaultValue = "10") int resultSize) throws Exception {
+		return index.getRecentReleases(resultSize);
+	}
+
 }

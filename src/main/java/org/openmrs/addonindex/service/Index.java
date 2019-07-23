@@ -34,6 +34,8 @@ public interface Index {
 	AddOnInfoAndVersions getByModulePackage(String modulePackage) throws Exception;
 	
 	AddOnInfoAndVersions getByUid(String uid) throws Exception;
+
+	Collection<AddOnInfoAndVersions> getRecentReleases(int resultSize) throws Exception;
 	
 	List<AddOnInfoSummaryAndStats> getTopDownloaded() throws Exception;
 }
