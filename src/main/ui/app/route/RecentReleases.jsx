@@ -38,16 +38,26 @@ export default class RecentReleases extends React.Component {
         else if (this.state && this.state.recentReleases) {
             return <div>
                 <h1>Latest releases</h1>
-
+                <div className="col-md-10 col-sm-10 col-xs-10">
+                    <h2>Module</h2>
+                </div>
+                <div className="col-md-1 col-sm-1 col-xs-1">
+                    <h2>Version</h2>
+                </div>
+                <div className="col-md-1 col-sm-1 col-xs-1">
+                    <h2>Release Date</h2>
+                </div>
                 {this.state.recentReleases.map(a => {
                     return (
                         <div className="row recently-released-item" key={a.uid}>
                             <div className="col-md-10 col-sm-10 col-xs-10">
                                 <AddOn key={a.uid} addon={a}/>
                             </div>
-                            <div className="col-md-2 col-sm-2 col-xs-2">
+                            <div className="col-md-1 col-sm-1 col-xs-1">
                                 <h3 className="text-center">{a.versions[0].version}</h3>
-                                <h3 className="text-center">{a.downloadCount}</h3>
+                            </div>
+                            <div className="col-md-1 col-sm-1 col-xs-1">
+                                <h3 className="text-center">{a.versions[0].releaseDatetime}</h3>
                             </div>
                         </div>
                     )
