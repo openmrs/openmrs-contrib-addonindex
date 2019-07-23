@@ -17,6 +17,7 @@ import AddOnLists from "./route/AddOnLists";
 import ShowList from "./route/ShowList";
 import IndexingStatus from "./route/IndexingStatus";
 import TopDownloaded from "./route/TopDownloaded";
+import RecentReleases from "./route/RecentReleases";
 
 export default {
     path: '/',

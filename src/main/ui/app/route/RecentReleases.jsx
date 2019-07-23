@@ -11,7 +11,7 @@
 import React from "react";
 import AddOn from "../component/AddOn";
 
-export default class TopDownloaded extends React.Component {
+export default class RecentReleases extends React.Component {
 
     componentDidMount() {
         fetch('/api/v1/addon/recentreleases')
