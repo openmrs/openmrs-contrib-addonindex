@@ -41,9 +41,9 @@ export default class RecentReleases extends React.Component {
 
                 {this.state.recentReleases.map(a => {
                     return (
-                        <div className="row recently-released-item" key={a.summary.uid}>
+                        <div className="row recently-released-item" key={a.uid}>
                             <div className="col-md-10 col-sm-10 col-xs-10">
-                                <AddOn key={a.summary.uid} addon={a.summary}/>
+                                <AddOn key={a.uid} addon={a}/>
                             </div>
                             <div className="col-md-2 col-sm-2 col-xs-2">
                                 <h3 className="text-center">{a.versions[0].version}</h3>
