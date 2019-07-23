@@ -48,16 +48,19 @@ export default class RecentReleases extends React.Component {
                     <h2>Release Date</h2>
                 </div>
                 {this.state.recentReleases.map(a => {
+                    let dateTime = new Date(a.versions[0].releaseDatetime);
+                    let date = dateTime.getDate();
+
                     return (
                         <div className="row recently-released-item" key={a.uid}>
-                            <div className="col-md-10 col-sm-10 col-xs-10">
+                            <div className="col-md-8 col-sm-8 col-xs-8">
                                 <AddOn key={a.uid} addon={a}/>
                             </div>
-                            <div className="col-md-1 col-sm-1 col-xs-1">
+                            <div className="col-md-2 col-sm-2 col-xs-2">
                                 <h3 className="text-center">{a.versions[0].version}</h3>
                             </div>
-                            <div className="col-md-1 col-sm-1 col-xs-1">
-                                <h3 className="text-center">{a.versions[0].releaseDatetime}</h3>
+                            <div className="col-md-2 col-sm-2 col-xs-2">
+                                <h3 className="text-center">{date}</h3>
                             </div>
                         </div>
                     )
