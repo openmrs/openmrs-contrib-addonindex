@@ -38,13 +38,15 @@ export default class RecentReleases extends React.Component {
         else if (this.state && this.state.recentReleases) {
             return <div>
                 <h1>Latest releases</h1>
-                <div className="col-md-2 col-sm-2 col-xs-2">
-                    <h3>Released Version</h3>
-                </div>
-                <div className="col-md-8 col-sm-8 col-xs-8">
-                </div>
-                <div className="col-md-2 col-sm-2 col-xs-2">
-                    <h3>Release Date</h3>
+                <div className="row">
+                    <div className="col-md-2 col-sm-2 col-xs-2">
+                        <h3>Released Version</h3>
+                    </div>
+                    <div className="col-md-8 col-sm-8 col-xs-8">
+                    </div>
+                    <div className="col-md-2 col-sm-2 col-xs-2">
+                        <h3>Release Date</h3>
+                    </div>
                 </div>
                 {this.state.recentReleases.map(a => {
                     let dateTime = new Date(a.versions[0].releaseDatetime);
