@@ -39,13 +39,13 @@ export default class RecentReleases extends React.Component {
             return <div>
                 <h1>Latest releases</h1>
                 <div className="row">
-                    <div className="col-md-1 col-sm-1 col-xs-1">
-                        <h3>Released Version</h3>
-                    </div>
                     <div className="col-md-10 col-sm-10 col-xs-10">
                     </div>
                     <div className="col-md-1 col-sm-1 col-xs-1">
-                        <h3>Release Date</h3>
+                        <h3>Version</h3>
+                    </div>
+                    <div className="col-md-1 col-sm-1 col-xs-1">
+                        <h3>Date</h3>
                     </div>
                 </div>
                 {this.state.recentReleases.map(a => {
@@ -54,11 +54,11 @@ export default class RecentReleases extends React.Component {
 
                     return (
                         <div className="row recently-released-item" key={a.uid}>
-                            <div className="col-md-1 col-sm-1 col-xs-1">
-                                <h3 className="text-center">{a.versions[0].version}</h3>
-                            </div>
                             <div className="col-md-10 col-sm-10 col-xs-10">
                                 <AddOn key={a.uid} addon={a}/>
+                            </div>
+                            <div className="col-md-1 col-sm-1 col-xs-1">
+                                <h3 className="text-center">{a.versions[0].version}</h3>
                             </div>
                             <div className="col-md-1 col-sm-1 col-xs-1">
                                 <h3 className="text-center">{date}</h3>
