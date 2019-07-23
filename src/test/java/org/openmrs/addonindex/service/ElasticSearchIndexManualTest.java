@@ -33,7 +33,7 @@ import io.searchbox.core.SearchResult;
 /**
  * This test will write to your live elasticsearch database
  */
-
+@Ignore
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class ElasticSearchIndexManualTest {

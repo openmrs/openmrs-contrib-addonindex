@@ -30,6 +30,7 @@ export default {
         {path: 'show/:uid', component: Show},
         {path: 'lists', component: AddOnLists},
         {path: 'list/:uid', component: ShowList},
-        {path: 'topDownloaded', component: TopDownloaded}
+        {path: 'topDownloaded', component: TopDownloaded},
+        {path: 'recentReleases', component: RecentReleases}
     ]
 }
