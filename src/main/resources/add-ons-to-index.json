@@ -571,39 +571,6 @@
       }
     },
     {
-      "uid": "org.openmrs.module.privilegehelper",
-      "type": "OMOD",
-      "name": "Privilege Helper Module",
-      "maintainers": [
-        {
-          "name": "Daniel Kayiwa"
-        },
-        {
-          "name": "Wyclif Luyima"
-        },
-        {
-          "name": "Ivo Ulrich"
-        }
-      ],
-      "links": [
-        {
-          "rel": "documentation",
-          "href": "https://wiki.openmrs.org/display/docs/Privilege+Helper+Module",
-          "title": "OpenMRS Wiki"
-        },
-        {
-          "rel": "source",
-          "href": "https://github.com/openmrs/openmrs-module-privilegehelper"
-        }
-      ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "privilegehelper"
-      }
-    },
-    {
       "uid": "org.openmrs.module.backports14x",
       "status": "DEPRECATED",
       "type": "OMOD",
