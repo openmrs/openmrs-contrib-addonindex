@@ -48,6 +48,7 @@ export default class SearchPage extends Component {
 
     doSearch() {
         const searchKey = this.props.location.query;
+        console.log(searchKey);
         let query = searchKey.toLowerCase();
         console.log(query);
         if (this.state.latestSearch === searchKey) {
