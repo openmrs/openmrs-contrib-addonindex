@@ -117,7 +117,7 @@ export default class SearchPage extends Component {
 
     render() {
         console.log("jhe");
-        let query = this.props.location.query;
+        let query = this.props.location.query.q;
 
         if (this.state && this.state.error) {
             return <div>{this.state.error}</div>
