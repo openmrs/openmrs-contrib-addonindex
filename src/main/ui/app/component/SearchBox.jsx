@@ -13,6 +13,10 @@ import {withRouter} from "react-router";
 import {Button, Col, Form, FormControl, InputGroup} from "react-bootstrap";
 import searchQuery from "search-query-parser";
 
+//Configuration for the Search Query Parser
+const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'],
+    tokenize:true ,offsets:false};
+
 class SearchBox extends Component {
 
     constructor(props) {
@@ -26,47 +30,43 @@ class SearchBox extends Component {
         });
     }
 
+    normalizeQuery(query) {
+        //Basic Regex Matching to fix query inconsistencies
+        //Removing all extra spaces i.e. two or more
+        query = query.replace(/\s+/g,' ').trim();
+        //Removing all spaces to the left of search keys
+        query = query.replace(new RegExp("\\s+:","g"),":");
+        //Removing all spaces to the right of search keys
+        query = query.replace(new RegExp(":\\s+","g"),":");
+        return query;
+    }
+
     doSearch() {
         if (this.state.query) {
             let query = this.state.query.toLowerCase();
-            const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'],
-                tokenize:true ,offsets:false};
-            //Basic Regex Matching to fix query inconsistencies
-            //Removing all extra spaces i.e. two or more
-            query = query.replace(/\s+/g,' ').trim();
-            //Removing all spaces to the left of search keys
-            query = query.replace(new RegExp("\\s+:","g"),":");
-            //Removing all spaces to the right of search keys
-            query = query.replace(new RegExp(":\\s+","g"),":");
+            query = this.normalizeQuery(query);
             let url = "/search?";
-            // Check if query is an advanced quer. We want to use the Parser only if the query is advanced
+            // Check if query is an advanced query. We want to use the Parser only if the query is advanced
             if (query.includes(":") || query.includes("-")) {
                 let searchQueryObj = searchQuery.parse(query, options);
-                console.log(searchQueryObj);
                 Object.keys(searchQueryObj).forEach(function (key) {
-                    console.log(key);
-                    console.log("hi");
-                    console.log(searchQueryObj[key]);
-                    if (searchQueryObj[key]){
+                    if (searchQueryObj[key]) {
                         if (key === "text" || key === "query") {
                             key === "text" ? url += "&q=" + searchQueryObj[key].join(" ") : url += "&q=" + searchQueryObj[key];
                         }
-                        else if (key === "type"){
-                            url += "&type=" + searchQueryObj[key].toUpperCase();
+                        else if (key === "type" || key === "status") {
+                            url += "&" + key + "=" + searchQueryObj[key].toUpperCase();
                         }
-                        else if (key === "exclude"){
-                            if (searchQueryObj[key].text){
+                        else if (key === "exclude") {
+                            if (searchQueryObj[key].text) {
                                 url += "&exclude=" + searchQueryObj[key].text;
                             }
-                        }
-                        else if (key === "status"){
-                            url += "&status=" + searchQueryObj[key].toUpperCase();
                         }
                         else {
                             url += "&" + key + "=" + searchQueryObj[key];
                         }
                     }
-                    });
+                });
             }
             else {
                 url += "&q=" + query;
