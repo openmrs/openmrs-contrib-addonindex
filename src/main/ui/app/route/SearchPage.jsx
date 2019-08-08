@@ -12,6 +12,11 @@ import {Component} from "react";
 import fetch from "isomorphic-fetch";
 import SearchBox from "../component/SearchBox";
 import AddOnList from "../component/AddOnList";
+import searchQuery from "search-query-parser";
+
+//Configuration for the Search Query Parser
+const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'],
+    tokenize:true ,offsets:false};
 
 export default class SearchPage extends Component {
 
@@ -30,10 +35,20 @@ export default class SearchPage extends Component {
         }
     }
 
-    doSearch() {
-        const query = this.props.location.query;
-        const searchKey = `${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""} ${query.uid ? "uid:" + query.uid : ""}`;
+    normalizeQuery(query) {
+        //Basic Regex Matching to fix query inconsistencies
+        //Removing all extra spaces i.e. two or more
+        query = query.replace(/\s+/g,' ').trim();
+        //Removing all spaces to the left of search keys
+        query = query.replace(new RegExp("\\s+:","g"),":");
+        //Removing all spaces to the right of search keys
+        query = query.replace(new RegExp(":\\s+","g"),":");
+        return query;
+    }
 
+    doSearch() {
+        const searchKey = this.props.location.query.toLowerCase();
+        let query = searchKey;
         if (this.state.latestSearch === searchKey) {
             return;
         }
@@ -42,11 +57,33 @@ export default class SearchPage extends Component {
 
         let url = "/api/v1/addon?";
 
-        Object.keys(query).forEach(function (key) {
-            if (query[key]){
-                url += ("&" + key + "=" + query[key]);
-            }
-        });
+        query = this.normalizeQuery(query);
+
+        // Check if query is an advanced query. We want to use the Parser only if the query is advanced
+        if (query.includes(":") || query.includes("-")) {
+            let searchQueryObj = searchQuery.parse(query, options);
+            Object.keys(searchQueryObj).forEach(function (key) {
+                if (searchQueryObj[key]) {
+                    if (key === "text" || key === "query") {
+                        key === "text" ? url += "&q=" + searchQueryObj[key].join(" ") : url += "&q=" + searchQueryObj[key];
+                    }
+                    else if (key === "type" || key === "status") {
+                        url += "&" + key + "=" + searchQueryObj[key].toUpperCase();
+                    }
+                    else if (key === "exclude") {
+                        if (searchQueryObj[key].text) {
+                            url += "&exclude=" + searchQueryObj[key].text;
+                        }
+                    }
+                    else {
+                        url += "&" + key + "=" + searchQueryObj[key];
+                    }
+                }
+            });
+        }
+        else {
+            url += "&q=" + query;
+        }
 
         fetch(url)
                 .then(response => {
@@ -81,7 +118,7 @@ export default class SearchPage extends Component {
         else {
             return (
                     <div>
-                        <SearchBox initialQuery={`${query.type ? "type:" + query.type : ""} ${query.q ? "query:" + query.q : ""} ${query.tag ? "tag:" + query.tag : ""} ${query.exclude ? "-" + query.exclude : ""} ${query.name ? "name:" + query.name : ""} ${query.status ? "status:" + query.status : ""} ${query.moduleid ? "moduleId:" + query.moduleid : ""} ${query.uid ? "uid:" + query.uid : ""}`}/>
+                        <SearchBox initialQuery={query}/>
 
                         {this.state.latestSearch ?
                          <div>Searching for {this.state.latestSearch}</div>
