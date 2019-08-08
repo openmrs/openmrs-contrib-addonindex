@@ -29,7 +29,8 @@ class SearchBox extends Component {
     doSearch() {
         if (this.state.query) {
             let query = this.state.query.toLowerCase();
-            const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false};
+            const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'], offsets: false,
+                tokenize: false};
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
             query = query.replace(/\s+/g,' ').trim();
