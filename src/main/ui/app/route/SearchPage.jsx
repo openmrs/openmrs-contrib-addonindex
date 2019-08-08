@@ -22,10 +22,12 @@ export default class SearchPage extends Component {
 
     constructor(props) {
         super(props);
+        console.log("Constructed!");
         this.state = {};
     }
 
     componentDidMount() {
+        console.log("Mount");
         this.doSearch();
     }
 
@@ -114,6 +116,7 @@ export default class SearchPage extends Component {
     }
 
     render() {
+        console.log("jhe");
         let query = this.props.location.query;
 
         if (this.state && this.state.error) {
