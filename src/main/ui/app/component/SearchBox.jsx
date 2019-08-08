@@ -49,10 +49,7 @@ class SearchBox extends Component {
                     console.log(searchQueryObj[key]);
                     if (searchQueryObj[key]){
                         if (key === "text" || key === "query") {
-                            url += "&q=" + searchQueryObj.key.join(" ");
-                        }
-                        else if (key === "query"){
-                            url += "&q=" + searchQueryObj[key];
+                            key === "text" ? url += "&q=" + searchQueryObj[key].join(" ") : url += "&q=" + searchQueryObj[key];
                         }
                         else if (key === "type"){
                             url += "&type=" + searchQueryObj[key].toUpperCase();
