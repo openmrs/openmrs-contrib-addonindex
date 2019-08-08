@@ -30,7 +30,7 @@ class SearchBox extends Component {
         if (this.state.query) {
             let query = this.state.query.toLowerCase();
             const options = {keywords: ['uid', 'type', 'tag', 'query', 'moduleid', 'status', 'name'],
-                tokenize: false};
+                tokenize:true ,offsets:false};
             //Basic Regex Matching to fix query inconsistencies
             //Removing all extra spaces i.e. two or more
             query = query.replace(/\s+/g,' ').trim();
@@ -39,7 +39,7 @@ class SearchBox extends Component {
             //Removing all spaces to the right of search keys
             query = query.replace(new RegExp(":\\s+","g"),":");
             let url = "/search?";
-            // Check if query is an advanced query. We want to use the Parser only if the query is advanced
+            // Check if query is an advanced quer. We want to use the Parser only if the query is advanced
             if (query.includes(":") || query.includes("-")) {
                 let searchQueryObj = searchQuery.parse(query, options);
                 console.log(searchQueryObj);
@@ -49,6 +49,9 @@ class SearchBox extends Component {
                     console.log(searchQueryObj[key]);
                     if (searchQueryObj[key]){
                         if (key === "text" || key === "query") {
+                            url += "&q=" + searchQueryObj.key.join(" ");
+                        }
+                        else if (key === "query"){
                             url += "&q=" + searchQueryObj[key];
                         }
                         else if (key === "type"){
