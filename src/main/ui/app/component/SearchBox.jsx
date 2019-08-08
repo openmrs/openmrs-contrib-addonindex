@@ -41,8 +41,11 @@ class SearchBox extends Component {
             // Check if query is an advanced query. We want to use the Parser only if the query is advanced
             if (query.includes(":") || query.includes("-")) {
                 let searchQueryObj = searchQuery.parse(query, options);
+                console.log(searchQueryObj);
                 Object.keys(searchQueryObj).forEach(function (key) {
                     console.log(key);
+                    console.log("hi");
+                    console.log(searchQueryObj[key]);
                     if (searchQueryObj[key]){
                         if (key === "text" || key === "query") {
                             url += "&q=" + searchQueryObj[key];
