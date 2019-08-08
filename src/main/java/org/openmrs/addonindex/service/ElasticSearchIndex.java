@@ -73,6 +73,8 @@ public class ElasticSearchIndex implements Index {
 		} else {
 			// need to create the index
 			logger.info("Creating new ES index: " + AddOnInfoAndVersions.ES_INDEX);
+			//By default, the keyword field is case sensitive which is not what we want
+			//In this settings file, we create a custom normalizer to make the keyword field case-insensitive
 			handleError(client.execute(new CreateIndex.Builder(AddOnInfoAndVersions.ES_INDEX).settings(
 					loadResource("elasticsearch/addOnInfoAndVersions-settings.json")).build()));
 		}

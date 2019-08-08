@@ -22,12 +22,10 @@ export default class SearchPage extends Component {
 
     constructor(props) {
         super(props);
-        console.log("Constructed!");
         this.state = {};
     }
 
     componentDidMount() {
-        console.log("Mount");
         this.doSearch();
     }
 
@@ -49,12 +47,8 @@ export default class SearchPage extends Component {
     }
 
     doSearch() {
-        console.log("Here!");
         const searchKey = this.props.location.query.q;
-        console.log(searchKey.toString());
-        console.log(searchKey);
         let query = searchKey.toLowerCase();
-        console.log(query);
         if (this.state.latestSearch === searchKey) {
             return;
         }
@@ -116,7 +110,6 @@ export default class SearchPage extends Component {
     }
 
     render() {
-        console.log("jhe");
         let query = this.props.location.query.q;
 
         if (this.state && this.state.error) {
