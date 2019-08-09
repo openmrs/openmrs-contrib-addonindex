@@ -114,7 +114,7 @@ public class ElasticSearchIndex implements Index {
 		}
 		if (uid != null) {
 			//Exact match on uid. This is different from moduleId
-			boolQB.filter(QueryBuilders.matchQuery("uid", uid));
+			boolQB.filter(QueryBuilders.matchQuery("uid.keyword", uid));
 		}
 		if (moduleId != null) {
 			//Exact match on moduleID
