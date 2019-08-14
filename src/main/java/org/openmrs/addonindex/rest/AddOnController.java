@@ -62,5 +62,5 @@ public class AddOnController {
 	    AddOnVersion addOnVersion = index.getByUid(uid).getLatestSupportedVersion(userCoreVersion);
             return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
 	}
-	
+
 }

@@ -17,6 +17,7 @@ import AddOnLists from "./route/AddOnLists";
 import ShowList from "./route/ShowList";
 import IndexingStatus from "./route/IndexingStatus";
 import TopDownloaded from "./route/TopDownloaded";
+import RecentReleases from "./route/RecentReleases";
 
 export default {
     path: '/',
@@ -30,6 +31,7 @@ export default {
         {path: 'show/:uid', component: Show},
         {path: 'lists', component: AddOnLists},
         {path: 'list/:uid', component: ShowList},
-        {path: 'topDownloaded', component: TopDownloaded}
+        {path: 'topDownloaded', component: TopDownloaded},
+        {path: 'recentReleases', component: RecentReleases}
     ]
 }

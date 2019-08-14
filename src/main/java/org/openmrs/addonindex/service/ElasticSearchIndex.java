@@ -23,6 +23,8 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.sort.SortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -51,7 +53,7 @@ public class ElasticSearchIndex implements Index {
 	
 	private final int SEARCH_SIZE = 200;
 	
-	private final int TOP_DOWNLOADS_SIZE = 20;
+	private final int DEFAULT_LIST_SIZE = 20;
 	
 	private JestClient client;
 	
@@ -191,11 +193,30 @@ public class ElasticSearchIndex implements Index {
 				.map(sr -> sr.source)
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<AddOnInfoAndVersions> getRecentReleases(Integer resultSize) throws IOException {
+		int listSize = resultSize == null ? resultSize : DEFAULT_LIST_SIZE;
+		SortBuilder sortByReleaseDateTime = SortBuilders.fieldSort("versions.releaseDatetime")
+				.order(SortOrder.DESC)
+				.setNestedPath("versions")
+				.sortMode("max");
+
+		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
+				.size(listSize)
+				.sort(sortByReleaseDateTime)
+				.query(QueryBuilders.matchAllQuery()).toString())
+				.addIndex(AddOnInfoAndVersions.ES_INDEX)
+				.build());
+		return result.getHits(AddOnInfoAndVersions.class).stream()
+				.map(sr -> sr.source)
+				.collect(Collectors.toList());
+	}
 	
 	@Override
 	public List<AddOnInfoSummaryAndStats> getTopDownloaded() throws Exception {
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
-				.size(TOP_DOWNLOADS_SIZE)
+				.size(DEFAULT_LIST_SIZE)
 				.sort("downloadCountInLast30Days", SortOrder.DESC)
 				.query(QueryBuilders.matchAllQuery()).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)

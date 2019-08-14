@@ -45,5 +45,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addViewController("/lists").setViewName("forward:/index.html");
 		registry.addViewController("/list/**").setViewName("forward:/index.html");
 		registry.addViewController("/topDownloaded").setViewName("forward:/index.html");
+		registry.addViewController("/recentReleases").setViewName("forward:/index.html");
 	}
 }

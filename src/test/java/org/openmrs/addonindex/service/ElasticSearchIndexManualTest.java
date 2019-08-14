@@ -5,6 +5,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import java.time.OffsetDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -106,6 +107,46 @@ public class ElasticSearchIndexManualTest {
 		assertNotNull(searchResult);
 		assertThat(searchResultNotFound, IsEmptyCollection.empty());
 		System.out.println("Module Package Name: "+searchResult.get(0).getModulePackage());
+	}
+
+	@Test
+	public void testRecentlyReleased() throws Exception {
+		AddOnVersion latestVersion = new AddOnVersion();
+		latestVersion.setVersion(new Version("1.0"));
+		latestVersion.setDownloadUri("http://www.google.com");
+		latestVersion.addLanguage("en");
+		latestVersion.setReleaseDatetime(OffsetDateTime.now());
+
+		AddOnInfoAndVersions a = new AddOnInfoAndVersions();
+		a.setUid("testing-module");
+		a.setModulePackage("testing-mod");
+		a.setModuleId("1");
+		a.setType(AddOnType.OMOD);
+		a.setName("Latest Module");
+		a.setDescription("This is a test");
+		a.addVersion(latestVersion);
+
+		OffsetDateTime dayLesser = OffsetDateTime.now().minusDays(1);
+		AddOnVersion olderVersion = new AddOnVersion();
+		olderVersion.setVersion(new Version("1.0"));
+		olderVersion.setDownloadUri("http://www.amazon.com");
+		olderVersion.addLanguage("en");
+		olderVersion.setReleaseDatetime(dayLesser);
+
+		AddOnInfoAndVersions b = new AddOnInfoAndVersions();
+		b.setUid("testing-module-old");
+		b.setModulePackage("testing-mod-old");
+		b.setModuleId("1");
+		b.setType(AddOnType.OMOD);
+		b.setName("Older Module");
+		b.setDescription("This is another test");
+		b.addVersion(olderVersion);
+
+		elasticSearchIndex.index(a);
+		elasticSearchIndex.index(b);
+		Collection<AddOnInfoAndVersions> top = elasticSearchIndex.getRecentReleases(1);
+		assertNotNull(top);
+		assertThat(top.iterator().next().getName(), is("Latest Module"));
 	}
 
 	@Test
