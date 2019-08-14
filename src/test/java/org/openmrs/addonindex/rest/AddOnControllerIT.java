@@ -126,25 +126,6 @@ public class AddOnControllerIT {
 	}
 
 	@Test
-	public void getLatestRelease() throws Exception {
-		ResponseEntity<String> entity = testRestTemplate.getForEntity(
-				"http://localhost:" + port + "/api/v1/addon/recentreleases?resultsize=1",
-				String.class);
-		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-		JSONAssert.assertEquals("[{uid:\"reporting-module\","
-						+ "name:\"Reporting Module\","
-						+ "description:\"For reporting\","
-						+ "versionCount:1,"
-						+ "latestVersion:\"1.0\","
-						+ "versions:[{"
-						+ "version:\"1.0\","
-						+ "releaseDatetime:\"2016-09-12T18:51:14.574Z\","
-						+ "downloadUri:\"http://www.google.com\""
-						+ "}]}]",
-				entity.getBody(), false);
-	}
-
-	@Test
 	public void getOne() throws Exception {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity(
 				"http://localhost:" + port + "/api/v1/addon/reporting-module",

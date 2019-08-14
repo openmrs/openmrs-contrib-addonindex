@@ -53,7 +53,7 @@ public class ElasticSearchIndex implements Index {
 	
 	private final int SEARCH_SIZE = 200;
 	
-	private final int TOP_DOWNLOADS_SIZE = 20;
+	private final int DEFAULT_LIST_SIZE = 20;
 	
 	private JestClient client;
 	
@@ -195,14 +195,15 @@ public class ElasticSearchIndex implements Index {
 	}
 
 	@Override
-	public Collection<AddOnInfoAndVersions> getRecentReleases(int resultSize) throws IOException {
+	public List<AddOnInfoAndVersions> getRecentReleases(Integer resultSize) throws IOException {
+		int listSize = resultSize == null ? resultSize : DEFAULT_LIST_SIZE;
 		SortBuilder sortByReleaseDateTime = SortBuilders.fieldSort("versions.releaseDatetime")
 				.order(SortOrder.DESC)
 				.setNestedPath("versions")
 				.sortMode("max");
 
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
-				.size(resultSize)
+				.size(listSize)
 				.sort(sortByReleaseDateTime)
 				.query(QueryBuilders.matchAllQuery()).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
@@ -215,7 +216,7 @@ public class ElasticSearchIndex implements Index {
 	@Override
 	public List<AddOnInfoSummaryAndStats> getTopDownloaded() throws Exception {
 		SearchResult result = client.execute(new Search.Builder(new SearchSourceBuilder()
-				.size(TOP_DOWNLOADS_SIZE)
+				.size(DEFAULT_LIST_SIZE)
 				.sort("downloadCountInLast30Days", SortOrder.DESC)
 				.query(QueryBuilders.matchAllQuery()).toString())
 				.addIndex(AddOnInfoAndVersions.ES_INDEX)
