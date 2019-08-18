@@ -195,8 +195,8 @@ public class ElasticSearchIndex implements Index {
 	}
 
 	@Override
-	public List<AddOnInfoAndVersions> getRecentReleases(Integer resultSize) throws IOException {
-		Integer listSize = ((resultSize == null) ? resultSize : DEFAULT_LIST_SIZE);
+	public List<AddOnInfoAndVersions> getRecentReleases(int resultSize) throws IOException {
+		int listSize = ((resultSize == 0) ? DEFAULT_LIST_SIZE : resultSize);
 		SortBuilder sortByReleaseDateTime = SortBuilders.fieldSort("versions.releaseDatetime")
 				.order(SortOrder.DESC)
 				.setNestedPath("versions")
