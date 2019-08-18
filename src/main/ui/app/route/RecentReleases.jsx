@@ -15,7 +15,7 @@ import AddOn from "../component/AddOn";
 export default class RecentReleases extends React.Component {
 
     componentDidMount() {
-        fetch('/api/v1/addon/recentreleases')
+        fetch('/api/v1/recentreleases')
             .then(response => {
                 if (response.status >= 400) {
                     throw new Error(response.statusText);
