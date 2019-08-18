@@ -9,7 +9,6 @@
  */
 
 import React from "react";
-import { format, subMonths } from 'date-fns'
 import AddOn from "../component/AddOn";
 
 export default class RecentReleases extends React.Component {

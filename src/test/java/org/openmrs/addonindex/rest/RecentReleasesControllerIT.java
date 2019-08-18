@@ -1,6 +1,5 @@
 package org.openmrs.addonindex.rest;
 
-import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -13,11 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
-import org.openmrs.addonindex.domain.AddOnInfoSummary;
-import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
 import org.openmrs.addonindex.domain.AddOnVersion;
-import org.openmrs.addonindex.service.AnalysisService;
-import org.openmrs.addonindex.service.ElasticSearchIndex;
 import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -61,13 +56,16 @@ public class RecentReleasesControllerIT {
         info.setDescription("For reporting");
         info.addVersion(version);
 
-        when(index.getRecentReleases(1)).thenReturn(singletonList(info));
+        List<AddOnInfoAndVersions> recent = new ArrayList<>();
+        recent.add(info);
+
+        when(index.getRecentReleases(1)).thenReturn(recent);
     }
 
     @Test
     public void getLatestRelease() throws Exception {
         ResponseEntity<String> entity = testRestTemplate.getForEntity(
-                "http://localhost:" + port + "/api/v1/addon/recentReleases?resultSize=1",
+                "http://localhost:" + port + "/api/v1/recentreleases?&resultSize=1",
                 String.class);
         assertThat(entity.getStatusCode(), is(HttpStatus.OK));
         JSONAssert.assertEquals("[{uid:\"reporting-module\","
