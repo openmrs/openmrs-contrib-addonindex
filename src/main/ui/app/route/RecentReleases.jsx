@@ -9,7 +9,7 @@
  */
 
 import React from "react";
-import { format } from 'date-fns'
+import { format, subMonths } from 'date-fns'
 import AddOn from "../component/AddOn";
 
 export default class RecentReleases extends React.Component {
@@ -40,7 +40,7 @@ export default class RecentReleases extends React.Component {
             return <div>
                 <h1>Latest releases</h1>
                 {this.state.recentReleases.map(a => {
-                    let dateTime = new Date(a.versions[0].releaseDatetime);
+                    let dateTime = subMonths(new Date(a.versions[0].releaseDatetime), 1);
                     let date = dateTime.getMonth() + "/" + dateTime.getDate() + "/" + dateTime.getFullYear().toString().substr(-2);
                     console.log(format(dateTime, 'MM-DD-YY'));
                     return (
