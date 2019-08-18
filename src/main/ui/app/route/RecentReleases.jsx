@@ -42,7 +42,7 @@ export default class RecentReleases extends React.Component {
                 {this.state.recentReleases.map(a => {
                     let dateTime = new Date(a.versions[0].releaseDatetime);
                     let date = dateTime.getMonth() + "/" + dateTime.getDate() + "/" + dateTime.getFullYear().toString().substr(-2);
-                    console.log(format(a.versions[0].releaseDatetime, 'M-D-YY'));
+                    console.log(format(a.versions[0].releaseDatetime, 'MMM-D-YY'));
                     return (
                         <div className="row recently-released-item" key={a.uid}>
                             <div className="col-md-1 col-sm-1 col-xs-1">
