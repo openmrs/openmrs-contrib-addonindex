@@ -22,8 +22,8 @@ public class RecentReleasesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/v1/recentreleases")
-    public List<AddOnInfoAndVersions> getRecentReleases(
-            @RequestParam(value = "resultSize", required = false) int resultSize) throws Exception {
+    public List<AddOnInfoAndVersions> getRecentReleases(@RequestParam(
+            value = "resultSize", required = false) Integer resultSize) throws Exception {
         return index.getRecentReleases(resultSize);
     }
 }
