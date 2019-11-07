@@ -132,6 +132,7 @@
       "uid": "org.openmrs.owa.orderentryui",
       "type": "OWA",
       "name": "Order Entry UI OWA",
+      "status": "DEPRECATED",
       "maintainers": [
         {
           "name": "Andela apprentices",
