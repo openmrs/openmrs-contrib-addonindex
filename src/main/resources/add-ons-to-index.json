@@ -157,6 +157,34 @@
       }
     },
     {
+      "uid": "org.openmrs.owa.orderentry",
+      "type": "OWA",
+      "name": "Order Entry OWA",
+      "maintainers": [
+        {
+          "name": "OpenMRS community",
+          "url": "https://www.openmrs.org/"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Order+Entry+UI",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-orderentry"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "owa",
+        "package": "openmrs-owa-orderentry"
+      }
+    },
+    {
       "uid": "org.openmrs.owa.sysadmin",
       "type": "OWA",
       "name": "System Administration OWA",
@@ -2912,7 +2940,7 @@
           "name": "Rafal Korytkowski"
         }
       ],
-      "links": [	
+      "links": [
         {
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/Metadata+Mapping+Module",
