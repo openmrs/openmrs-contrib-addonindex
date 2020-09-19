@@ -6076,6 +6076,33 @@
       }
     },
     {
+      "uid": "org.openmrs.module.openmrs-fhir2-module",
+      "type": "OMOD",
+      "name": "OpenMRS FHIR2 Module",
+      "maintainers": [
+        {
+          "name": "FHIR Squad"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/OpenMRS+FHIR+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-fhir2"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "fhir2"
+      }
+    },
+    {
       "uid": "org.openmrs.module.open-concept-lab",
       "type": "OMOD",
       "name": "Open Concept Lab",
