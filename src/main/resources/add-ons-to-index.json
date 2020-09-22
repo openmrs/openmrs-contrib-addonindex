@@ -1559,6 +1559,39 @@
       }
     },
     {
+      "uid":"org.openmrs.module.spa",
+      "type":"OMOD",
+      "name":"Single Page Application",
+      "maintainers":[
+        {
+          "name":"Daniel Kayiwa"
+        },
+        {
+          "name":"Burke Mamlin"
+        },
+        {
+          "name":"Brandon Istenes"
+        }
+      ],
+      "links":[
+        {
+          "rel":"documentation",
+          "href":"https://wiki.openmrs.org/display/projects/Frontend+Implementer+Documentation",
+          "title":"OpenMRS Wiki"
+        },
+        {
+          "rel":  "source",
+          "href": "https://github.com/openmrs/openmrs-module-spa"
+        }
+      ],
+      "backend":"org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails":{
+        "owner":"openmrs",
+        "repo":"omod",
+        "package":"spa"
+      }
+    },
+    {
       "uid": "org.openmrs.module.facilitydata",
       "type": "OMOD",
       "name": "Facility Data",
