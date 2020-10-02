@@ -4,6 +4,7 @@
       "uid": "org.openmrs.owa.conceptdictionary",
       "type": "OWA",
       "name": "Concept Dictionary OWA",
+      "icon": "book-open",
       "maintainers": [
         {
           "name": "Rafal Korytkowski",
@@ -68,6 +69,7 @@
       "uid": "org.openmrs.owa.obsadmin",
       "type": "OWA",
       "name": "Observations Administration",
+      "icon": "diagnoses",
       "maintainers": [
         {
           "name": "Andela apprentices",
@@ -100,6 +102,7 @@
       "uid": "org.openmrs.owa.addonmanager",
       "type": "OWA",
       "name": "Add On Manager",
+      "icon": "cart-arrow-down",
       "maintainers": [
         {
           "name": "Andela apprentices",
@@ -189,6 +192,7 @@
       "uid": "org.openmrs.owa.sysadmin",
       "type": "OWA",
       "name": "System Administration OWA",
+      "icon": "user-shield",
       "tags": [
         "administration"
       ],
@@ -277,6 +281,7 @@
       "uid": "org.openmrs.module.addresshierarchy",
       "type": "OMOD",
       "name": "Address Hierarchy",
+      "icon": "sitemap",
       "maintainers": [
         {
           "name": "sprasanna"
@@ -313,6 +318,7 @@
       "uid": "org.openmrs.module.addresshierarchyrwanda",
       "type": "OMOD",
       "name": "Address Hierarchy Rwanda",
+      "icon": "sitemap",
       "tags": [
         "pih-rwanda"
       ],
@@ -549,6 +555,7 @@
       "uid": "org.openmrs.module.atomfeed",
       "type": "OMOD",
       "name": "Atom Feed Module",
+      "icon": "atom",
       "maintainers": [
         {
           "name": "Ben Wolfe"
@@ -576,6 +583,7 @@
       "uid": "org.openmrs.module.attachments",
       "type": "OMOD",
       "name": "Attachments Module",
+      "icon": "paperclip",
       "maintainers": [
         {
           "name": "Dimitri Renault"
@@ -813,6 +821,7 @@
       "uid": "org.openmrs.module.clinicalsummary",
       "type": "OMOD",
       "name": "Clinical Summary",
+      "icon": "clinic-medical",
       "maintainers": [
         {
           "name": "nyoman"
@@ -843,6 +852,7 @@
       "uid": "org.openmrs.module.commonlabtest",
       "type": "OMOD",
       "name": "Common Lab Test",
+      "icon": "flask",
       "maintainers": [
         {
           "name": "Owais Hussain"
@@ -1021,6 +1031,7 @@
       "uid": "org.openmrs.module.custommessage",
       "type": "OMOD",
       "name": "Custom Message",
+      "icon": "comment-alt",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -1081,6 +1092,7 @@
       "uid": "org.openmrs.module.databasebackup",
       "type": "OMOD",
       "name": "Database Backup",
+      "icon": "database",
       "tags": [
         "administration"
       ],
@@ -1123,6 +1135,7 @@
       "uid": "org.openmrs.module.databasemessages",
       "type": "OMOD",
       "name": "Database Messages",
+      "icon": "database",
       "tags": [
         "administration"
       ],
@@ -1268,6 +1281,7 @@
       "uid": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
+      "icon": "link",
       "tags": [
         "interoperability"
       ],
@@ -1358,6 +1372,7 @@
       "uid": "org.openmrs.module.drawing",
       "type": "OMOD",
       "name": "Drawing",
+      "icon": "pencil-ruler",
       "tags": [
         "image-handling"
       ],
@@ -1451,6 +1466,7 @@
       "uid": "org.openmrs.module.ermodule",
       "type": "OMOD",
       "name": "ER Module",
+      "icon": "first-aid",
       "maintainers": [
         {
           "name": "A.Medhat"
@@ -1534,6 +1550,7 @@
       "uid": "org.openmrs.omod.facelist",
       "type": "OMOD",
       "name": "Face List Module",
+      "icon": "users",
       "maintainers": [
         {
           "name": "Mutesasira Moses",
@@ -1904,6 +1921,7 @@
       "uid": "org.openmrs.module.gmapsimageviewer",
       "type": "OMOD",
       "name": "Google Maps Image Viewer",
+      "icon": "map",
       "tags": [
         "image-handling"
       ],
@@ -1976,6 +1994,7 @@
       "uid": "org.openmrs.module.growthchart",
       "type": "OMOD",
       "name": "Growth Chart",
+      "icon": "chart-line",
       "maintainers": [
         {
           "name": "rcuckovich"
@@ -2319,6 +2338,7 @@
       "uid": "org.openmrs.module.idcards",
       "type": "OMOD",
       "name": "Id Cards",
+      "icon": "id-card",
       "maintainers": [
         {
           "name": "Mike Seaton"
@@ -3395,6 +3415,7 @@
       "uid": "org.openmrs.module.openhmis-cashier",
       "type": "OMOD",
       "name": "OpenHMIS Cashier Module",
+      "icon": "cash-register",
       "maintainers": [
         {
           "name": "Wesley Brown"
@@ -3885,6 +3906,7 @@
       "uid": "org.openmrs.module.randomization",
       "type": "OMOD",
       "name": "Randomization",
+      "icon": "random",
       "maintainers": [
         {
           "name": "tmdugan"
@@ -3941,6 +3963,7 @@
       "uid": "org.openmrs.module.registration",
       "type": "OMOD",
       "name": "Registration",
+      "icon": "user-plus",
       "tags": [
         "registration"
       ],
@@ -4527,6 +4550,7 @@
       "uid": "org.openmrs.module.simplelabentry",
       "type": "OMOD",
       "name": "Simple Lab Entry",
+      "icon": "flask",
       "maintainers": [
         {
           "name": "achi"
@@ -4566,6 +4590,7 @@
       "uid": "org.openmrs.module.smartcontainer",
       "type": "OMOD",
       "name": "SMART Container",
+      "icon": "box-open",
       "maintainers": [
         {
           "name": "Wyclif Luyima"
@@ -4784,6 +4809,7 @@
     "uid": "org.openmrs.module.sync2",
     "type": "OMOD",
     "name": "Sync 2.0",
+      "icon": "sync",
     "maintainers": [
       {
         "name": "Tomasz Mueller",
@@ -5338,6 +5364,7 @@
       "uid": "org.openmrs.module.system-performance-and-utilization-module",
       "type": "OMOD",
       "name": "System Performance and Utilization Module",
+      "icon": "cogs",
       "maintainers": [
         {
           "name": "Milinda Rukshan"
@@ -5738,6 +5765,7 @@
       "uid": "org.openmrs.module.printer-module",
       "type": "OMOD",
       "name": "Printer Module",
+      "icon": "print",
       "maintainers": [
         {
           "name": "Mark Goodrich"
@@ -5793,6 +5821,7 @@
       "uid": "org.openmrs.module.media-viewer-module",
       "type": "OMOD",
       "name": "Media Viewer Module",
+      "icon": "photo-video",
       "tags": [
         "image-handling"
       ],
@@ -6255,6 +6284,7 @@
       "uid": "org.openmrs.module.admin-ui-module",
       "type": "OMOD",
       "name": "Admin UI Module",
+      "icon": "user-cog",
       "tags": [
         "administration"
       ],
