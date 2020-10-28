@@ -1287,7 +1287,7 @@
         },
         {
           "rel": "source",
-          "href": "https://github.com/jembi/openmrs-module-dhisconnector"
+          "href": "https://github.com/openmrs/openmrs-module-dhisconnector"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
