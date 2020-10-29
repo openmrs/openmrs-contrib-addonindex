@@ -1294,7 +1294,7 @@
       "bintrayPackageDetails": {
         "owner": "openmrs",
         "repo": "omod",
-        "package": "dhismodule"
+        "package": "dhisconnector"
       }
     },
     {
