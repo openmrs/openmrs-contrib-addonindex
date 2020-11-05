@@ -1268,6 +1268,7 @@
       "uid": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
+      "description": "This module posts aggregate data from OpenMRS to DHIS2, and gives implementers a User Interface for an easier-to-set-up OMRS to DHIS2 pipeline, that doesn’t need manual code fixes every time there’s a change to reporting indicators. Includes a Mapping Tool UI, the ability to automatically send data to DHIS2 right away or on a schedule, and to map exports so that you can re-use your mapping work across sites.",
       "tags": [
         "interoperability"
       ],
