@@ -6856,6 +6856,10 @@
           "version": "2.10.0"
         },
         {
+          "uid": "org.openmrs.module.appui",
+          "version": "1.12.0"
+        },
+        {
           "uid": "org.openmrs.module.reference-application-module",
           "version": "2.10.0"
         },
@@ -6898,6 +6902,10 @@
         {
           "uid": "org.openmrs.module.uicommons",
           "version": "2.12.0"
+        },
+         {
+          "uid": "org.openmrs.owa.sysadmin",
+          "version": "1.2"
         },
         {
           "uid": "org.openmrs.module.uiframework",
