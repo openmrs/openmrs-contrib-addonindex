@@ -6896,10 +6896,6 @@
           "version": "0.2.14"
         },
         {
-          "uid": "org.openmrs.owa.sysadmin",
-          "version": "1.2"
-        },
-        {
           "uid": "org.openmrs.module.uicommons",
           "version": "2.12.0"
         },
