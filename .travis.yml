@@ -6,8 +6,10 @@ matrix:
         - cd src/main/ui
         - npm install -g npm@latest
         - npm install
+      install: true   
       script:
         - npm run build:dev
+        - travis_wait 30 ./travis_script.sh
 
     - language: java
       jdk: openjdk8
