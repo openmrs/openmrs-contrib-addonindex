@@ -2,14 +2,19 @@ matrix:
   include:
     - language: node_js
       node_js: 8
+      services:
+        - Docker
       before_script:
         - cd src/main/ui
         - npm install -g npm@latest
         - npm install
+        cache:
+             directories:
+             - node_modules
       install: true   
       script:
         - npm run build:dev
-        - travis_wait 30 ./travis_script.sh
+        - travis_wait 30
 
     - language: java
       jdk: openjdk8
