@@ -1,16 +1,15 @@
 package org.openmrs.addonindex.rest;
 
 import static java.util.Collections.singletonList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 import java.net.URI;
 import java.time.OffsetDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnVersion;
@@ -18,39 +17,34 @@ import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AddOnControllerIT {
-	
+
 	@LocalServerPort
 	private int port;
-	
+
 	@MockBean
 	private Index index;
-	
-	@Autowired
-	private AddOnController controller;
-	
+
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-	
-	@Before
+
+	@BeforeEach
 	public void setUp() throws Exception {
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version("1.0"));
 		version.setReleaseDatetime(OffsetDateTime.parse("2016-09-12T18:51:14.574Z"));
 		version.setDownloadUri("http://www.google.com");
-		
+
 		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
 		info.setUid("reporting-module");
 		info.setModuleId("1");
@@ -58,17 +52,17 @@ public class AddOnControllerIT {
 		info.setName("Reporting Module");
 		info.setDescription("For reporting");
 		info.addVersion(version);
-		
+
 		when(index.search(null, "report", null)).thenReturn(singletonList(new AddOnInfoSummary(info)));
 		when(index.getByModulePackage("org.openmrs.module.reporting-module")).thenReturn(info);
 		when(index.getByUid("reporting-module")).thenReturn(info);
 	}
-	
+
 	@Test
 	public void testSearch() throws Exception {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?q=report",
 				String.class);
-		
+
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
 		JSONAssert.assertEquals("[{uid:\"reporting-module\","
 						+ "name:\"Reporting Module\","
@@ -77,20 +71,20 @@ public class AddOnControllerIT {
 						+ "latestVersion:\"1.0\"}]",
 				entity.getBody(), false);
 	}
-	
+
 	@Test
-	public void testCors() throws Exception {
-		String origin = "http://openmrs.org/news";
+	public void testCors() {
 		ResponseEntity<String> entity = testRestTemplate.exchange(RequestEntity.get(
 				uri("http://localhost:" + port + "/api/v1/addon?q=report"))
-				.header(HttpHeaders.ORIGIN, origin).build(), String.class);
-		
-		assertThat(entity.getHeaders().getAccessControlAllowOrigin(), is(origin));
+				.header(HttpHeaders.ORIGIN, "http://openmrs.org/news").build(), String.class);
+
+		assertThat(entity.getHeaders().getAccessControlAllowOrigin(), is("*"));
 	}
-	
+
 	@Test
-	public void getByModulePackage() throws Exception{
-		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?&modulePackage=org.openmrs.module.reporting-module",
+	public void getByModulePackage() throws Exception {
+		ResponseEntity<String> entity = testRestTemplate.getForEntity(
+				"http://localhost:" + port + "/api/v1/addon?&modulePackage=org.openmrs.module.reporting-module",
 				String.class);
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
 		JSONAssert.assertEquals("{uid:\"reporting-module\","
@@ -109,7 +103,7 @@ public class AddOnControllerIT {
 	}
 
 	@Test
-	public void getByModulePackageNotFound() throws Exception {
+	public void getByModulePackageNotFound() {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity(
 				"http://localhost:" + port + "/api/v1/addon?&modulePackage=fake-module",
 				String.class);
@@ -117,13 +111,13 @@ public class AddOnControllerIT {
 	}
 
 	@Test
-	public void getOneNotFound() throws Exception {
+	public void getOneNotFound() {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity(
 				"http://localhost:" + port + "/api/v1/addon/fake-module",
 				String.class);
 		assertThat(entity.getStatusCode(), is(HttpStatus.NOT_FOUND));
 	}
-	
+
 	@Test
 	public void getOne() throws Exception {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity(
@@ -142,7 +136,7 @@ public class AddOnControllerIT {
 						+ "}]}",
 				entity.getBody(), false);
 	}
-	
+
 	private URI uri(String path) {
 		return testRestTemplate.getRestTemplate().getUriTemplateHandler().expand(path);
 	}

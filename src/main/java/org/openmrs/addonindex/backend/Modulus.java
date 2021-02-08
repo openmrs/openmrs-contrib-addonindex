@@ -13,36 +13,36 @@ package org.openmrs.addonindex.backend;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.util.Version;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 /**
  * Indexes files from the (soon-to-be-legacy) modules.openmrs.org
  */
 @Component
+@Slf4j
 public class Modulus implements BackendHandler {
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	private RestTemplateBuilder restTemplateBuilder;
+
+	private final RestTemplateBuilder restTemplateBuilder;
+
+	private final ObjectMapper objectMapper;
 	
 	@Autowired
-	public Modulus(RestTemplateBuilder restTemplateBuilder) {
+	public Modulus(RestTemplateBuilder restTemplateBuilder, ObjectMapper objectMapper) {
 		this.restTemplateBuilder = restTemplateBuilder;
+		this.objectMapper = objectMapper;
 	}
 	
 	@Override
@@ -50,7 +50,7 @@ public class Modulus implements BackendHandler {
 		String moduleUrl = moduleUrlFor(addOnToIndex);
 		ResponseEntity<String> entity = restTemplateBuilder.build().getForEntity(moduleUrl, String.class);
 		if (!entity.getStatusCode().is2xxSuccessful()) {
-			logger.warn("Problem fetching " + moduleUrl + " -> " + entity.getStatusCode() + " " + entity.getBody());
+			log.warn("Problem fetching {} -> {} {}", moduleUrl, entity.getStatusCode(), entity.getBody());
 			return null;
 		} else {
 			String json = entity.getBody();
@@ -61,27 +61,30 @@ public class Modulus implements BackendHandler {
 	AddOnInfoAndVersions handleModuleJson(AddOnToIndex addOnToIndex, String moduleJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);
 		info.setHostedUrl(hostedUrlFor(addOnToIndex));
-		ObjectMapper objectMapper = new ObjectMapper();
+
 		ObjectNode obj = objectMapper.readValue(moduleJson, ObjectNode.class);
 		
-		if (StringUtils.isEmpty(info.getName())) {
+		if (!StringUtils.hasText(info.getName())) {
 			info.setName(obj.get("name").asText());
 		}
-		if (StringUtils.isEmpty(info.getDescription())) {
+		if (!StringUtils.hasText(info.getDescription())) {
 			info.setDescription(obj.get("description").asText());
 		}
 		
 		ArrayNode releases = restTemplateBuilder.build().getForObject(releasesUrlFor(addOnToIndex), ArrayNode.class);
-		for (JsonNode releaseNode : releases) {
-			if (releaseNode.path("moduleVersion").isNull()) {
-				logger.debug("Invalid release in modulus for " + addOnToIndex.getUid());
-				continue;
+		if (releases != null) {
+			for (JsonNode releaseNode : releases) {
+				if (releaseNode.path("moduleVersion").isNull()) {
+					log.debug("Invalid release in modulus for {}", addOnToIndex.getUid());
+					continue;
+				}
+
+				AddOnVersion version = new AddOnVersion();
+				version.setVersion(new Version(releaseNode.path("moduleVersion").asText()));
+				version.setReleaseDatetime(OffsetDateTime.parse(releaseNode.path("dateCreated").asText()));
+				version.setDownloadUri(releaseNode.path("downloadURL").asText());
+				info.addVersion(version);
 			}
-			AddOnVersion version = new AddOnVersion();
-			version.setVersion(new Version(releaseNode.path("moduleVersion").asText()));
-			version.setReleaseDatetime(OffsetDateTime.parse(releaseNode.path("dateCreated").asText()));
-			version.setDownloadUri(releaseNode.path("downloadURL").asText());
-			info.addVersion(version);
 		}
 		
 		return info;
@@ -100,5 +103,4 @@ public class Modulus implements BackendHandler {
 		return String.format("https://modules.openmrs.org/modulus/api/modules/%s/releases?max=1000",
 				addOnToIndex.getModulusDetails().getId());
 	}
-	
 }

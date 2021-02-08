@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexingStatusController {
 	
-	private IndexingService service;
+	private final IndexingService service;
 	
 	@Autowired
 	public IndexingStatusController(IndexingService service) {
@@ -30,7 +30,7 @@ public class IndexingStatusController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/indexingstatus")
-	public Map<String, Object> checkStatus() throws Exception {
+	public Map<String, Object> checkStatus() {
 		Map<String, Object> ret = new LinkedHashMap<>();
 		ret.put("toIndex", service.getAllToIndex());
 		ret.put("statuses", service.getIndexingStatus().getStatuses());

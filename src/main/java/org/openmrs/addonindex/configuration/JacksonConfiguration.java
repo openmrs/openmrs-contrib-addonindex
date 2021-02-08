@@ -10,6 +10,10 @@
 
 package org.openmrs.addonindex.configuration;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import org.openmrs.addonindex.configuration.jackson.SpringHttpClientErrorExceptionMixin;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.context.annotation.Bean;
@@ -17,11 +21,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.client.HttpClientErrorException;
-
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
 @Configuration
 @JsonComponent

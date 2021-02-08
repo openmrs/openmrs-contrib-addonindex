@@ -1,11 +1,15 @@
 package org.openmrs.addonindex.scheduled;
 
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.openmrs.addonindex.domain.artifactory.ArtifactoryFolderInfoChild;
+import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.artifactory.ArtifactoryFolderInfo;
-import org.openmrs.addonindex.service.artifactory.VersionsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.openmrs.addonindex.domain.artifactory.ArtifactoryFolderInfoChild;
+import org.openmrs.addonindex.service.VersionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,14 +17,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 @Component
+@Slf4j
 public class FetchCoreVersionsList {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private static final String[] STRINGS_TO_EXCLUDE = {"alpha", "beta", "RC", "SNAPSHOT"};
 
@@ -28,20 +27,20 @@ public class FetchCoreVersionsList {
     private String url;
 
     @Value("${core_version_list.strategy}")
-    private FetchCoreVersionsList.Strategy strategy = FetchCoreVersionsList.Strategy.FETCH;
+    private final FetchCoreVersionsList.Strategy strategy = FetchCoreVersionsList.Strategy.FETCH;
 
-    private RestTemplateBuilder restTemplateBuilder;
+    private final RestTemplateBuilder restTemplateBuilder;
 
-    private ObjectMapper mapper;
+    private final ObjectMapper objectMapper;
 
-    private VersionsService versionsService;
+    private final VersionsService versionsService;
 
     @Autowired
     public FetchCoreVersionsList(RestTemplateBuilder restTemplateBuilder,
-                                 ObjectMapper mapper,
+                                 ObjectMapper objectMapper,
                                  VersionsService versionsService) {
         this.restTemplateBuilder = restTemplateBuilder;
-        this.mapper = mapper;
+        this.objectMapper = objectMapper;
         this.versionsService = versionsService;
     }
 
@@ -49,26 +48,29 @@ public class FetchCoreVersionsList {
             initialDelayString = "${scheduler.fetch_core_versions_list.initial_delay}",
             fixedDelayString = "${scheduler.fetch_core_versions_list.period}")
     public void fetchCoreVersionsList() throws Exception {
-        logger.info("Fetching list of OpenMRS-Core versions to index");
+        log.info("Fetching list of OpenMRS-Core versions to index");
 
         String json;
         if (strategy == Strategy.LOCAL) {
-            logger.debug("LOCAL strategy");
+            log.debug("LOCAL strategy");
             json = StreamUtils.copyToString(getClass().getClassLoader().getResourceAsStream("openmrs-core-versions.json"),
                     Charset.defaultCharset());
         } else {
-            logger.debug("FETCH strategy: " + url);
+            log.debug("FETCH strategy: " + url);
             json = restTemplateBuilder.build().getForObject(url, String.class);
         }
+
         ArtifactoryFolderInfo versionlist;
         try {
-            versionlist = mapper.readValue(json, ArtifactoryFolderInfo.class);
+            versionlist = objectMapper.readValue(json, ArtifactoryFolderInfo.class);
         } catch (Exception ex) {
             throw new IllegalStateException("File downloaded from " + url + " could not be parsed", ex);
         }
-        if (logger.isInfoEnabled()) {
-            logger.info("There are " + versionlist.getChildren().size() + " openmrs-core versions");
+
+        if (log.isInfoEnabled()) {
+            log.info("There are {} openmrs-core versions", versionlist.getChildren().size());
         }
+
         if (versionlist.size() > 0) {
             List<String> versions = new ArrayList<>();
             List<ArtifactoryFolderInfoChild> allversions = versionlist.getChildren();
@@ -79,7 +81,7 @@ public class FetchCoreVersionsList {
             }
             versionsService.setVersions(versions);
         } else {
-            logger.warn("File downloaded from " + url + " does not list any Core Versions to index. Keeping our current list");
+            log.warn("File downloaded from {} does not list any Core Versions to index. Keeping our current list", url);
         }
     }
 
@@ -90,6 +92,4 @@ public class FetchCoreVersionsList {
     public enum Strategy {
         FETCH, LOCAL
     }
-
-
 }

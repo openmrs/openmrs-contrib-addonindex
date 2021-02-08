@@ -1,17 +1,16 @@
 package org.openmrs.addonindex;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
+import java.util.Collections;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -27,9 +26,7 @@ import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class IndexingServiceIT {
 	
@@ -40,11 +37,11 @@ public class IndexingServiceIT {
 	private IndexingService indexingService;
 	
 	@Test
-	public void testBackendHandlersAreRegistered() throws Exception {
+	public void testBackendHandlersAreRegistered() {
 		AddOnToIndex toIndex = new AddOnToIndex();
 		toIndex.setBackend(OpenmrsMavenRepo.class);
 		BackendHandler handler = indexingService.getHandlerFor(toIndex);
-		assertNotNull(handler);
+		assertThat(handler, notNullValue());
 		assertThat(handler, instanceOf(OpenmrsMavenRepo.class));
 	}
 	
@@ -57,7 +54,7 @@ public class IndexingServiceIT {
 		list.setUid("uid");
 		list.setName("Name");
 		list.setDescription("Description");
-		list.setAddOns(Arrays.asList(reference));
+		list.setAddOns(Collections.singletonList(reference));
 		
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version("2.0"));
@@ -81,5 +78,4 @@ public class IndexingServiceIT {
 		assertThat(materialized.getAddOns().get(0).getDetails().getUid(), is(info.getUid()));
 		assertThat(materialized.getAddOns().get(0).getDetails().getLatestVersion(), is(version.getVersion()));
 	}
-	
 }

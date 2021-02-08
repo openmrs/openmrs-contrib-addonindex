@@ -10,20 +10,19 @@
 
 package org.openmrs.addonindex.backend;
 
-import java.io.StringReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
+import java.io.StringReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.util.Version;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
@@ -42,16 +41,15 @@ import org.xml.sax.InputSource;
  * many of our releases to Bintray or Github Releases.
  */
 @Component
+@Slf4j
 public class OpenmrsMavenRepo implements BackendHandler {
 	
-	private final String BASE_URL = "http://mavenrepo.openmrs.org/nexus/";
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	private RestTemplateBuilder restTemplateBuilder;
-	
-	private final Pattern renamePattern = Pattern.compile("(.+)-omod-([0-9.]+).jar");
-	
+	private static final String BASE_URL = "http://mavenrepo.openmrs.org/nexus/";
+
+	private static final Pattern RENAME_PATTERN = Pattern.compile("(.+)-omod-([0-9.]+).jar");
+
+	private final RestTemplateBuilder restTemplateBuilder;
+
 	@Autowired
 	public OpenmrsMavenRepo(RestTemplateBuilder restTemplateBuilder) {
 		this.restTemplateBuilder = restTemplateBuilder;
@@ -62,7 +60,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 		String url = BASE_URL + "service/local/repositories/modules/index_content/"
 				+ "?groupIdHint=" + addOnToIndex.getMavenRepoDetails().getGroupId()
 				+ "&artifactIdHint=" + addOnToIndex.getMavenRepoDetails().getArtifactId();
-		logger.info("Getting info from " + url);
+		log.info("Getting info from {}", url);
 		String xml = restTemplateBuilder.build().getForObject(url, String.class);
 		return handleIndexBrowserTreeViewResponse(addOnToIndex, xml);
 	}
@@ -83,7 +81,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 			String nodeName = node.getElementsByTagName("nodeName").item(0).getTextContent();
 			// typically this will be like "appui-omod-1.6.jar"
 			String renameTo = null;
-			Matcher matcher = renamePattern.matcher(nodeName);
+			Matcher matcher = RENAME_PATTERN.matcher(nodeName);
 			if (matcher.matches()) {
 				renameTo = matcher.group(1) + "-" + matcher.group(2) + ".omod";
 			}
@@ -98,5 +96,4 @@ public class OpenmrsMavenRepo implements BackendHandler {
 		
 		return addOnInfoAndVersions;
 	}
-	
 }
