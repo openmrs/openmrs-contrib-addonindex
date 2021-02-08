@@ -31,6 +31,6 @@ scheduler:
       initial_delay: 10000  # wait 10 seconds to start
       period: 1800000       # execute 30 minutes
 
+elasticsearch:
+  url: http://localhost:9200
 
-spring.elasticsearch.jest:
-  uris: http://localhost:9200

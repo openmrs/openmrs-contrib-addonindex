@@ -13,9 +13,12 @@ package org.openmrs.addonindex.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+
 /**
  * The result of fetching actual details of the addons in an {@link AddOnList}
  */
+@Data
 public class MaterializedAddOnList {
 	
 	private String uid;
@@ -36,36 +39,5 @@ public class MaterializedAddOnList {
 	public void add(MaterializedReference materializedReference) {
 		addOns.add(materializedReference);
 	}
-	
-	public String getUid() {
-		return uid;
-	}
-	
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public List<MaterializedReference> getAddOns() {
-		return addOns;
-	}
-	
-	public void setAddOns(List<MaterializedReference> addOns) {
-		this.addOns = addOns;
-	}
+
 }

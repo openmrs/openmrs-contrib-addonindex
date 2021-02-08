@@ -1,11 +1,11 @@
 package org.openmrs.addonindex.backend;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.TestUtil;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
@@ -47,5 +47,4 @@ public class OpenmrsMavenRepoTest {
 						+ "-omod/1.7/appui-omod-1.7.jar"));
 		assertThat(versions.get(0).getRenameTo(), is("appui-1.7.omod"));
 	}
-	
 }

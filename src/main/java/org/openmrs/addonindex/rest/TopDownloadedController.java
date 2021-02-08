@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TopDownloadedController {
 	
-	private AnalysisService analysisService;
+	private final AnalysisService analysisService;
 	
 	@Autowired
 	public TopDownloadedController(AnalysisService analysisService) {

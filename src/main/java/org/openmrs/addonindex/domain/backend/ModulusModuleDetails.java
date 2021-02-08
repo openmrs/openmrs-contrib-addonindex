@@ -8,29 +8,15 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.domain;
+package org.openmrs.addonindex.domain.backend;
 
-import java.util.List;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-/**
- * Represents a list of add-ons, e.g. "Recommended Add-Ons" or "Included in RefApp 2.5"
- */
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
-public class AddOnList {
-
-	@EqualsAndHashCode.Include
-	private String uid;
+@AllArgsConstructor
+public class ModulusModuleDetails {
 	
-	private String name;
-	
-	private String description;
-	
-	private List<AddOnReference> addOns;
+	private String id;
 
 }

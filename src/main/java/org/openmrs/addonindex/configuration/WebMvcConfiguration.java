@@ -12,18 +12,11 @@ package org.openmrs.addonindex.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
-	
-	@Override
-	public void configurePathMatch(PathMatchConfigurer configurer) {
-		// Fix handling of /api/v1/addon/org.openmrs.module.appui (otherwise appui is treated as a file extension)
-		configurer.setUseRegisteredSuffixPatternMatch(true);
-	}
+public class WebMvcConfiguration implements WebMvcConfigurer {
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
@@ -37,7 +30,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 		// Our ReactJS app is served from the root path, and we want to support using the HTML5 history API for routing
 		// and support deep links. But we also want to support REST controllers, e.g. at /api/**. We can't figure out a
 		// way to do a wildcard-except-for-api, so instead we map each individual route from the JS app here:
-		super.addViewControllers(registry);
 		registry.addViewController("/about").setViewName("forward:/index.html");
 		registry.addViewController("/indexingStatus").setViewName("forward:/index.html");
 		registry.addViewController("/search").setViewName("forward:/index.html");

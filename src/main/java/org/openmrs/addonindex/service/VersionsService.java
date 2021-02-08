@@ -8,12 +8,12 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.service.artifactory;
-
-import org.openmrs.addonindex.domain.artifactory.VersionList;
-import org.springframework.stereotype.Service;
+package org.openmrs.addonindex.service;
 
 import java.util.Collection;
+
+import org.openmrs.addonindex.domain.VersionList;
+import org.springframework.stereotype.Service;
 
 @Service
 public class VersionsService {

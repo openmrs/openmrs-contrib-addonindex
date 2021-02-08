@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -26,22 +27,19 @@ import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.domain.IndexingStatus;
 import org.openmrs.addonindex.domain.MaterializedAddOnList;
 import org.openmrs.addonindex.domain.MaterializedReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class IndexingService {
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	private Index repository;
-	
+
+	private final Index repository;
+
+	private final IndexingStatus indexingStatus = new IndexingStatus();
+
 	private AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
-	
-	private IndexingStatus indexingStatus = new IndexingStatus();
-	
+
 	private Map<Class<? extends BackendHandler>, BackendHandler> handlers;
 	
 	@Autowired
@@ -92,7 +90,7 @@ public class IndexingService {
 		for (AddOnReference reference : list.getAddOns()) {
 			AddOnInfoAndVersions info = repository.getByUid(reference.getUid());
 			if (info == null) {
-				logger.warn("Could not find addon " + reference.getUid() + " in index");
+				log.warn("Could not find addon {} in index", reference.getUid());
 				continue;
 			}
 			AddOnInfoSummary summary = new AddOnInfoSummary(info);
@@ -102,11 +100,11 @@ public class IndexingService {
 			
 			if (reference.getVersion() != null) {
 				Optional<AddOnVersion> addOnVersion = info.getVersion(reference.getVersion());
-				if (!addOnVersion.isPresent()) {
-					logger.warn(String.format("List %s refers to %s version %s but this version is not indexed",
+				if (addOnVersion.isEmpty()) {
+					log.warn("List {} refers to {} version {} but this version is not indexed",
 							list.getUid(),
 							reference.getUid(),
-							reference.getVersion()));
+							reference.getVersion());
 					continue;
 				}
 				materializedReference.setAddOnVersion(addOnVersion.get());

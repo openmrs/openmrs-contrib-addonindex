@@ -8,28 +8,27 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.domain.artifactory;
-
-import org.openmrs.addonindex.util.Version;
+package org.openmrs.addonindex.domain;
 
 import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.openmrs.addonindex.util.Version;
+
+@EqualsAndHashCode
 public class VersionList {
 
-    private SortedSet<Version> versions;
+    @Getter
+    private final SortedSet<Version> versions;
 
-    public VersionList(Collection<String> coreversions) {
+    public VersionList(Collection<String> versions) {
         this.versions = new TreeSet<>();
-        for (String candidateVersion : coreversions) {
+        for (String candidateVersion : versions) {
             this.versions.add(new Version(candidateVersion));
         }
     }
-
-    public SortedSet<Version> getVersions() {
-        return versions;
-    }
-
 
 }

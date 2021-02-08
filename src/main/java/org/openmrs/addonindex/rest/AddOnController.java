@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AddOnController {
 	
-	private Index index;
+	private final Index index;
 	
 	@Autowired
 	public AddOnController(Index index) {
@@ -59,8 +59,13 @@ public class AddOnController {
     public ResponseEntity<AddOnVersion> getLatestVersion(
             @RequestParam(value = "coreversion", required = false) String userCoreVersion,
             @PathVariable String uid) throws Exception {
-	    AddOnVersion addOnVersion = index.getByUid(uid).getLatestSupportedVersion(userCoreVersion);
-            return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
+	    AddOnInfoAndVersions addOn = index.getByUid(uid);
+	    if (addOn != null) {
+		    AddOnVersion addOnVersion = addOn.getLatestSupportedVersion(userCoreVersion);
+		    return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
+	    }
+
+	    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 }

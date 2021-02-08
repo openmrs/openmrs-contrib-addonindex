@@ -16,21 +16,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
 import org.openmrs.addonindex.util.Version;
-
-import io.searchbox.annotations.JestId;
 
 /**
  * Details about an OpenMRS add-on and its available versions
  */
+@Data
+@NoArgsConstructor
 public class AddOnInfoAndVersions {
 	
 	public final static String ES_INDEX = "add_on_info_and_versions";
-	
-	public final static String ES_TYPE = "add_on_info_and_versions";
-	
-	@JestId
+
 	private String uid;
 
 	private String modulePackage;
@@ -85,123 +84,12 @@ public class AddOnInfoAndVersions {
 	public Version getLatestVersion() {
 		return versions == null || versions.size() == 0 ? null : versions.get(0).getVersion();
 	}
-	
-	public String getUid() {
-		return uid;
-	}
-	
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
 
-	public String getModulePackage() {
-		return modulePackage;
-	}
-
-	public void setModulePackage(String modulePackage) {
-		this.modulePackage = modulePackage;
-	}
-
-	public String getModuleId() {
-		return moduleId;
-	}
-
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
-	}
-
-	public AddOnStatus getStatus() {
-		return status;
-	}
-	
-	public void setStatus(AddOnStatus status) {
-		this.status = status;
-	}
-	
-	public AddOnType getType() {
-		return type;
-	}
-	
-	public void setType(AddOnType type) {
-		this.type = type;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public String getIcon() {
-		return icon;
-	}
-	
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-	
-	public List<String> getTags() {
-		return tags;
-	}
-	
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-	
-	public List<Maintainer> getMaintainers() {
-		return maintainers;
-	}
-	
-	public void setMaintainers(List<Maintainer> maintainers) {
-		this.maintainers = maintainers;
-	}
-	
-	public List<Link> getLinks() {
-		return links;
-	}
-	
-	public void setLinks(List<Link> links) {
-		this.links = links;
-	}
-	
-	public String getHostedUrl() {
-		return hostedUrl;
-	}
-	
-	public void setHostedUrl(String hostedUrl) {
-		this.hostedUrl = hostedUrl;
-	}
-	
-	public List<AddOnVersion> getVersions() {
-		return versions;
-	}
-	
-	public void setVersions(List<AddOnVersion> versions) {
-		this.versions = versions;
-	}
-
-	public Integer getDownloadCountInLast30Days() {
-		return downloadCountInLast30Days;
-	}
-
-	public void setDownloadCountInLast30Days(Integer downloadCountInLast30Days) {
-		this.downloadCountInLast30Days = downloadCountInLast30Days;
-	}
-	
 	public Optional<AddOnVersion> getVersion(Version version) {
 		if (versions == null) {
-			return null;
+			return Optional.empty();
 		}
+
 		return versions.stream().filter(v -> v.getVersion().equals(version)).findFirst();
 	}
 	
@@ -209,13 +97,15 @@ public class AddOnInfoAndVersions {
 		if (!Pattern.matches("[^\\s]*", tag)) {
 			throw new IllegalArgumentException("Tag cannot contain whitespace:" + tag);
 		}
+
 		if (tags == null) {
 			tags = new ArrayList<>();
 		}
+
 		tags.add(tag);
 	}
 
-    public AddOnVersion getLatestSupportedVersion(String userCoreVersion) throws Exception {
+    public AddOnVersion getLatestSupportedVersion(String userCoreVersion) {
         if (userCoreVersion != null) {
             for (AddOnVersion addOnVersion : getVersions()) {
                 if (OpenmrsVersionCompareUtil.matchRequiredVersions(userCoreVersion, addOnVersion.getRequireOpenmrsVersion())) {

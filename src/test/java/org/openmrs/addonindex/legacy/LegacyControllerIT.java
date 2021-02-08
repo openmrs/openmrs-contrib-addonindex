@@ -1,17 +1,17 @@
 package org.openmrs.addonindex.legacy;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
 import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.TestUtil;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -27,9 +27,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class LegacyControllerIT {
 	
@@ -42,7 +40,7 @@ public class LegacyControllerIT {
 	@Autowired
 	private LegacyController controller;
 	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		Maintainer darius = new Maintainer();
 		
@@ -98,8 +96,8 @@ public class LegacyControllerIT {
 	public void testFindModulesWithCallback() throws Exception {
 		String callback = "jQuery17106625551879598879_1512456844335";
 		String response = controller.findModules(callback, "appui", 0, 0, 123, null, null);
-		assertTrue(response.startsWith(callback + "("));
-		assertTrue(response.endsWith(")"));
+		assertThat(response, startsWith(callback + "("));
+		assertThat(response, endsWith(")"));
 		String json = response.substring(response.indexOf("(") + 1, response.lastIndexOf(")"));
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules.json");
@@ -116,7 +114,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testFindModulesExcludeModule() throws Exception {
-		String json = controller.findModules(null, "appui", 0, 0, 123, "1.9.3", Arrays.asList("appui"));
+		String json = controller.findModules(null, "appui", 0, 0, 123, "1.9.3", Collections.singletonList("appui"));
 		
 		String expectedJson = TestUtil.getFileAsString("legacy-findModules-exclude.json");
 		JSONAssert.assertEquals(expectedJson, json, false);
@@ -131,7 +129,7 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testOldDownloadRdf() throws Exception {
-		assertEquals(controller.checkUpdate("appui"),
-				controller.oldestLegacyGetUpdateRdf("appui"));
+		assertThat(controller.checkUpdate("appui"),
+				equalTo(controller.oldestLegacyGetUpdateRdf("appui")));
 	}
 }

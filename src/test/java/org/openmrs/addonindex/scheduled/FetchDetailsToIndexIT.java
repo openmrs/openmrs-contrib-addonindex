@@ -4,22 +4,21 @@ import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.never;
+import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.openmrs.addonindex.backend.MavenRepoDetails;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.domain.IndexingStatus;
+import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
 import org.openmrs.addonindex.service.ElasticSearchIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.openmrs.addonindex.util.Version;
@@ -28,11 +27,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.io.Resource;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class FetchDetailsToIndexIT {
 	
 	@MockBean
@@ -59,12 +56,9 @@ public class FetchDetailsToIndexIT {
 	private AddOnToIndex toIndex;
 	
 	public static final String DOWNLOAD_URI = "http://www.google.com";
-	
-	private AddOnInfoAndVersions infoAndVersions;
-	
-	@Before
+
+	@BeforeEach
 	public void setUp() throws Exception {
-		
 		toIndex = new AddOnToIndex();
 		toIndex.setUid("appui-omod");
 		toIndex.setType(AddOnType.OMOD);
@@ -74,8 +68,8 @@ public class FetchDetailsToIndexIT {
 		AddOnVersion v = new AddOnVersion();
 		v.setVersion(new Version("1.0"));
 		v.setDownloadUri(DOWNLOAD_URI);
-		
-		infoAndVersions = new AddOnInfoAndVersions();
+
+		AddOnInfoAndVersions infoAndVersions = new AddOnInfoAndVersions();
 		infoAndVersions.addVersion(v);
 		
 		given(indexingService.getHandlerFor(toIndex))
@@ -89,7 +83,7 @@ public class FetchDetailsToIndexIT {
 	}
 	
 	@Test
-	public void testRecordingStatus() throws Exception {
+	public void testRecordingStatus() {
 		task.getDetailsAndIndex(toIndex);
 		
 		InOrder inOrder = Mockito.inOrder(status);
@@ -102,16 +96,15 @@ public class FetchDetailsToIndexIT {
 	}
 	
 	@Test
-	public void testGettingExtraDetailsByDefault() throws Exception {
+	public void testGettingExtraDetailsByDefault() {
 		task.getDetailsAndIndex(toIndex);
 		then(restTemplate).should().getForObject(DOWNLOAD_URI, Resource.class);
 	}
 	
 	@Test
-	public void testNotGettingExtraDetailsWhenConfigured() throws Exception {
+	public void testNotGettingExtraDetailsWhenConfigured() {
 		task.setFetchExtraDetails(false);
 		task.getDetailsAndIndex(toIndex);
 		then(restTemplate).should(never()).getForObject(DOWNLOAD_URI, Resource.class);
 	}
-	
 }

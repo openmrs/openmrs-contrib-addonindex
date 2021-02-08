@@ -3,11 +3,10 @@ package org.openmrs.addonindex;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.springframework.util.StreamUtils;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestUtil {
 	

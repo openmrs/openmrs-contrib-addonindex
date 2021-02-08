@@ -1,27 +1,20 @@
 package org.openmrs.addonindex.domain;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-
-@RunWith(SpringRunner.class)
 @JsonTest
 public class AddOnInfoAndVersionsTest {
 	
 	@Autowired
-	private ObjectMapper mapper;
-	
-	@Autowired
-	private JacksonTester<AddOnInfoAndVersions> json;
+	private ObjectMapper objectMapper;
 
 	@Test
 	public void testSerialization() throws Exception {
@@ -33,15 +26,15 @@ public class AddOnInfoAndVersionsTest {
 		info.setDescription("Write code, save lives");
 		info.addVersion(version);
 		
-		String json = mapper.writeValueAsString(info);
-		AddOnInfoAndVersions parsed = mapper.readValue(json, AddOnInfoAndVersions.class);
+		String json = objectMapper.writeValueAsString(info);
+		AddOnInfoAndVersions parsed = objectMapper.readValue(json, AddOnInfoAndVersions.class);
 		assertThat(parsed.getName(), is("OpenMRS"));
 		assertThat(parsed.getDescription(), is("Write code, save lives"));
 		assertThat(parsed.getVersions().size(), is(1));
 		assertThat(parsed.getVersions().get(0).getVersion().toString(), is("1.0"));
 	}
 
-    @Test(expected=NullPointerException.class)
+	@Test
     public void testGetLatestMatchedVersion() throws Exception {
         AddOnInfoAndVersions info = new AddOnInfoAndVersions();
         info.setName("OpenMRS");
@@ -60,10 +53,8 @@ public class AddOnInfoAndVersionsTest {
         info.addVersion(earlierVersion);
 
         assertThat(info.getLatestSupportedVersion("2.1.0").getVersion().toString(), is("2.0"));
-
         assertThat(info.getLatestSupportedVersion("2.0.0").getVersion().toString(), is("1.0"));
-
-        assertNull(info.getLatestSupportedVersion("1.6.3").getVersion().toString());
+        assertThat(info.getLatestSupportedVersion("1.6.3"), nullValue());
     }
 
 	@Test
@@ -89,5 +80,4 @@ public class AddOnInfoAndVersionsTest {
         assertThat(info.getModuleId(), is("1"));
         assertThat(info.getModulePackage(), is("org.openmrs.module.openmrs"));
     }
-	
 }

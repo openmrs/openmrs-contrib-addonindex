@@ -1,46 +1,47 @@
 package org.openmrs.addonindex.backend;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import java.time.OffsetDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.util.Version;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
+@JsonTest
 public class BintrayTest {
 
-	@Mock
+	@MockBean
 	private RestTemplateBuilder builder;
 
-	@Mock
+	@MockBean
 	private RestTemplate restTemplate;
 
-	@InjectMocks
 	private Bintray bintray;
 
-	@Before
-	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		when(builder.basicAuthorization(anyString(), anyString())).thenReturn(builder);
+	@BeforeEach
+	public void setUp() {
+		bintray = new Bintray(builder, new ObjectMapper());
+		MockitoAnnotations.openMocks(this);
+		when(builder.basicAuthentication(any(), any())).thenReturn(builder);
 		when(builder.build()).thenReturn(restTemplate);
 	}
 

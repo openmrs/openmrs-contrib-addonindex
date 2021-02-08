@@ -10,9 +10,9 @@
 
 package org.openmrs.addonindex.rest;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Optional;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnVersion;
@@ -36,9 +36,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RenamingFileProxyController {
 	
-	private RestTemplateBuilder restTemplateBuilder;
+	private final RestTemplateBuilder restTemplateBuilder;
 	
-	private Index index;
+	private final Index index;
 	
 	@Autowired
 	public RenamingFileProxyController(RestTemplateBuilder restTemplateBuilder, Index index) {
@@ -56,20 +56,25 @@ public class RenamingFileProxyController {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
+
 		Optional<AddOnVersion> addOnVersion = addOn.getVersion(new Version(version));
-		if (!addOnVersion.isPresent()) {
+		if (addOnVersion.isEmpty()) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
+
 		if (addOnVersion.get().getRenameTo() == null ||
 				!addOnVersion.get().getDownloadUri().startsWith("http://mavenrepo.openmrs.org/nexus/")) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
+
 		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.get().getDownloadUri(), Resource.class);
 		
 		response.setHeader("Content-Disposition", "inline;filename=" + addOnVersion.get().getRenameTo());
-		StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
+		if (resource != null) {
+			StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
+		}
 	}
 	
 }

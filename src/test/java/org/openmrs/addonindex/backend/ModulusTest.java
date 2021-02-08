@@ -1,29 +1,28 @@
 package org.openmrs.addonindex.backend;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import java.time.OffsetDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.backend.ModulusModuleDetails;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class ModulusTest {
 	
@@ -32,13 +31,13 @@ public class ModulusTest {
 	
 	@Mock
 	private RestTemplate restTemplate;
-	
-	@InjectMocks
+
 	private Modulus modulus;
 	
-	@Before
-	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.openMocks(this);
+		modulus = new Modulus(restTemplateBuilder, new ObjectMapper());
 		when(restTemplateBuilder.build()).thenReturn(restTemplate);
 	}
 	
@@ -75,5 +74,4 @@ public class ModulusTest {
 						is("https://modules.openmrs.org/modulus/api/releases/5/download/addresshierarchy-1.0.omod"))
 		)));
 	}
-	
 }
