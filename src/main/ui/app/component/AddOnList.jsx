@@ -8,44 +8,25 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import AddOn from "./AddOn";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { AddOn } from "./AddOn";
 
-export default class AddOnList extends Component {
+export const AddOnList = ({ addOns, heading }) => {
+  if (!!!addOns) {
+    return <></>;
+  }
 
-    render() {
-        if (!this.props.addons) {
-            return (
-                    <section>
-                        <p class="lead textdec">Loading</p>
-                    </section>
-            )
-        }
-        else if (this.props.addons.length === 0) {
-            return (
-                    <section>
-                        <p class="lead textdec">No Results</p>
-                    </section>
-            )
-        }
-        else {
-            return (
-                    <div>
-                        {this.props.heading ?
-                         <h4>{this.props.heading}</h4>
-                                :
-                         null
-                        }
-                        <div className="row">
-                            {this.props.addons.map(addon =>
-                                                           <div className="col-md-12 col-sm-12 col-xs-12">
-                                                               <AddOn key={addon.uid} addon={addon}/>
-                                                           </div>
-                            )}
-                        </div>
-                    </div>
-            )
-        }
-    }
-}
-
+  return (
+    <>
+      {heading ? <h4>{heading}</h4> : null}
+      <Row>
+        {addOns.map((addOn) => (
+          <Col key={addOn.uid} xs={12}>
+            <AddOn addOn={addOn} />
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
+};

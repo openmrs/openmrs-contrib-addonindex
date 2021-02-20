@@ -8,55 +8,28 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import SearchBox from "../component/SearchBox";
-import AddOnList from "../component/AddOnList";
-import NamedList from "../component/NamedList";
+import React, { useMemo } from "react";
+import { NamedList, SearchBox } from "../component";
+import { useQuery } from "react-query";
+import { myFetch } from "../utils";
 
-export default class Home extends Component {
+export const Home = () => {
+  const defaultListQuery = useQuery(["defaultList"], () =>
+    myFetch("/api/v1/list/DEFAULT")
+  );
 
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+  const defaultList = useMemo(() => defaultListQuery.data, [
+    defaultListQuery.data,
+  ]);
 
-    componentDidMount() {
-        fetch('/api/v1/list/DEFAULT')
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    this.setState({defaultList: json});
-                })
-    }
-
-    renderDefaultList() {
-        if (this.state.defaultList) {
-            return <NamedList list={this.state.defaultList}/>
-        }
-        else {
-            return <div>Loading...</div>
-        }
-    }
-
-    render() {
-        return (
-                <div>
-                    <SearchBox
-                            onStartSearch={(key) => this.handleStartSearch(key)}
-                            onSearchResults={(key, results) => this.handleSearchResults(key, results)}
-                    />
-
-                    {this.state.latestSearch ?
-                     <div>Searching for {this.state.latestSearch}</div>
-                            :
-                     this.state.searchResults ?
-                     <AddOnList addons={this.state.searchResults} heading={`${this.state.searchResults.length} result(s)`}/>
-                             :
-                     this.renderDefaultList()
-                    }
-                </div>
-        )
-    }
-
-}
+  return (
+    <>
+      <SearchBox />
+      {defaultListQuery.isLoading ? (
+        <>Loading...</>
+      ) : (
+        <NamedList list={defaultList} />
+      )}
+    </>
+  );
+};

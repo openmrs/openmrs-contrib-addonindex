@@ -8,14 +8,11 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-
-export const ExternalLink = ({ link, children }) => {
-  const myLink = typeof link === "string" ? { href: link } : link;
-  const title = myLink.title ? myLink.title : myLink.href;
-  return (
-    <a target="_blank" href={myLink.href} rel={myLink.rel}>
-      {children ? children : title}
-    </a>
-  );
-};
+export { About } from "./About";
+export { AddOnLists } from "./AddOnLists";
+export { Home } from "./Home";
+export { IndexingStatus } from "./IndexingStatus";
+export { SearchPage } from "./SearchPage";
+export { Show } from "./Show";
+export { ShowList } from "./ShowList";
+export { TopDownloaded } from "./TopDownloaded";

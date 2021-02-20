@@ -98,12 +98,7 @@ This application is bandwidth-heavy on its first run (e.g. it downloads all OMOD
     scheduler:
       fetch_details_to_index:
         fetch_extra_details: false
- 
- ### Dev Notes
- 
- If you add any new routes to the JS application you must ensure that they are listed in the `addViewControllers` method in 
- [WebMvcConfiguration.java](src/main/java/org/openmrs/addonindex/configuration/WebMvcConfiguration.java). (See the comment in that file for why.)
- 
+
 ## Docker Packaging
 
 In order to deploy this to OpenMRS staging infrastructure, we package this application as a docker container and publish it 

@@ -8,14 +8,16 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-
-export const ExternalLink = ({ link, children }) => {
-  const myLink = typeof link === "string" ? { href: link } : link;
-  const title = myLink.title ? myLink.title : myLink.href;
-  return (
-    <a target="_blank" href={myLink.href} rel={myLink.rel}>
-      {children ? children : title}
-    </a>
-  );
+/*
+ * handleParam() - small utility to add a parameter to a URLSearchParams object where the value might be a single value
+ * or an array of values. This is useful when combined with the useSearchParams hook.
+ */
+export const handleParam = (name, value, searchParams) => {
+  if (value) {
+    if (Array.isArray(value)) {
+      value.forEach((v) => searchParams.append(name, v));
+    } else {
+      searchParams.append(name, value);
+    }
+  }
 };
