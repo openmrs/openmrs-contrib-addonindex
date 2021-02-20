@@ -8,55 +8,74 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-import {Link} from "react-router";
+import React, { useMemo } from "react";
+import { Nav } from "react-bootstrap";
+import { useQuery } from "react-query";
+import { myFetch } from "../utils";
+import { Link } from "react-router-dom";
+import { useLocation, useRouteMatch } from "react-router";
 
-export default class ListOfLists extends React.Component {
+const LISTS_TO_SHOW = 3;
 
-    componentDidMount() {
-        fetch('/api/v1/list')
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    // include this special link before the ones mentioned in the addons-to-index file
-                    json.unshift({
-                                     name: "Top",
-                                     route: "/topDownloaded"
-                                 });
-                    this.setState({lists: json});
-                });
+export const ListOfLists = () => {
+  const location = useLocation();
+  const match = useRouteMatch(location.pathname);
+
+  const listQuery = useQuery(["lists"], () => myFetch("/api/v1/list"));
+
+  const lists = useMemo(() => {
+    if (!listQuery.data || !Array.isArray(listQuery.data)) {
+      return [];
     }
 
-    render() {
-        const LISTS_TO_SHOW = 3;
-        if (this.state && this.state.lists) {
-            const toShow = this.state.lists.slice(0, LISTS_TO_SHOW);
-            const anyMore = this.state.lists.length > LISTS_TO_SHOW;
-            return (
-                    <ul className="nav nav-pills">
-                        {toShow.map(list =>
-                                            <li key={list.route ? list.route : list.uid}>
-                                                <Link to={list.route ? list.route : `/list/${list.uid}`}>
-                                                    <strong>{list.name}</strong>
-                                                </Link>
-                                            </li>
-                        )}
-                        {anyMore ?
-                         <li key="more">
-                             <Link to="/lists">
-                                 More Lists...
-                             </Link>
-                         </li>
-                                :
-                         null
-                        }
-                    </ul>
-            )
-        }
-        else {
-            return null;
-        }
-    }
+    const lists = listQuery.data;
+    lists.unshift({
+      uid: "top",
+      name: "Top",
+      route: "/topDownloaded",
+    });
 
-}
+    return lists;
+  }, [listQuery.data]);
+  const toShow = useMemo(() => lists.slice(0, LISTS_TO_SHOW), [lists]);
+  const anyMore = useMemo(() => lists.length > LISTS_TO_SHOW, [lists]);
+
+  if (listQuery.isLoading) {
+    return <></>;
+  }
+
+  if (listQuery.isError) {
+    return <></>;
+  }
+
+  if (lists.length === 0) {
+    return <></>;
+  }
+
+  return (
+    <Nav variant="pills">
+      {toShow.map((list) => {
+        const listRoute = list.route ? list.route : `/list/${list.uid}`;
+        return (
+          <Nav.Item key={listRoute}>
+            <Link
+              className={
+                "nav-link" + (match.path === listRoute ? " active" : "")
+              }
+              to={listRoute}
+            >
+              <strong>{list.name}</strong>
+            </Link>
+          </Nav.Item>
+        );
+      })}
+      {anyMore ? (
+        <Nav.Item>
+          <Link className="nav-link" to="/lists">
+            More Collections...
+          </Link>
+        </Nav.Item>
+      ) : null}
+    </Nav>
+  );
+};

@@ -8,47 +8,64 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import Select from 'react-select';
+import React, { useContext, useMemo } from "react";
+import Select from "react-select";
+import { useQuery } from "react-query";
+import { CoreVersionContext } from "../App";
+import { myFetch } from "../utils";
 
-export default class SelectUserVersions extends Component {
+export const SelectUserVersions = ({ updateValue = () => null }) => {
+  const selectedValue = useContext(CoreVersionContext);
+  const versionQuery = useQuery(["coreversions"], () =>
+    myFetch("/api/v1/coreversions")
+  );
 
-    constructor() {
-        super();
-        this.state = {};
+  const versions = useMemo(() => {
+    if (!!!versionQuery.data) {
+      return null;
     }
 
-    componentDidMount() {
-        fetch('/api/v1/coreversions')
-            .then(response => {
-                return response.json();
-            })
-            .then(json => {
-                this.setState({coreversions: json});
-            });
-    }
+    return versionQuery.data.reverse().map((v) => ({
+      value: v,
+      label: v,
+    }));
+  }, [versionQuery.data]);
 
-    render() {
-        let openmrsCoreVersionOptions = [];
-        if (this.state.coreversions) {
-            this.state.coreversions.slice(0).reverse().forEach(versions =>
-                openmrsCoreVersionOptions.push({
-                    value: versions,
-                    label: versions
-                })
-            )
-        }
-
-        return (<div>
-            OpenMRS Platform version
-            <Select value={this.props.value}
-                    placeholder='to check compatibility'
-                    options={openmrsCoreVersionOptions}
-                    name="selected-state"
-                    onChange={selection => selection ? this.props.updateValue(selection.value): this.props.updateValue(null)}
-                    searchable="true"/>
-        </div>)
-
-
-    }
-}
+  return (
+    <>
+      OpenMRS Platform version
+      {versionQuery.isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        !versionQuery.isError && (
+          <Select
+            styles={{
+              menu: (provided) => ({
+                ...provided,
+                zIndex: 500,
+              }),
+            }}
+            theme={(theme) => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: "#337ab7",
+                primary75: "#337ab775",
+                primary50: "#337ab750",
+                primary25: "#337ab725",
+              },
+            })}
+            value={
+              selectedValue && { value: selectedValue, label: selectedValue }
+            }
+            placeholder="to check compatibility"
+            options={versions}
+            name="selected-state"
+            onChange={(newValue) => updateValue(newValue?.value)}
+            isSearchable="true"
+          />
+        )
+      )}
+    </>
+  );
+};

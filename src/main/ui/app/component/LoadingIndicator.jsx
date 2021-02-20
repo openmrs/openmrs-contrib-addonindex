@@ -7,15 +7,3 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-
-import React from "react";
-
-export const ExternalLink = ({ link, children }) => {
-  const myLink = typeof link === "string" ? { href: link } : link;
-  const title = myLink.title ? myLink.title : myLink.href;
-  return (
-    <a target="_blank" href={myLink.href} rel={myLink.rel}>
-      {children ? children : title}
-    </a>
-  );
-};

@@ -403,7 +403,7 @@
       "uid": "org.openmrs.module.appointmentscheduling",
       "type": "OMOD",
       "name": "Appointment Scheduling",
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "tags": [
         "scheduling"
       ],
@@ -1191,7 +1191,7 @@
       "uid": "org.openmrs.module.dataentrystatistics",
       "type": "OMOD",
       "name": "Data Entry Statistics",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "data-management"
       ],
@@ -1362,7 +1362,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "pushkar"
@@ -1776,7 +1776,7 @@
       "uid": "org.openmrs.module.formentry",
       "type": "OMOD",
       "name": "Form Entry",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -1908,7 +1908,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "TorLye"
@@ -2439,7 +2439,7 @@
       "uid": "org.openmrs.module.jasperreport",
       "type": "OMOD",
       "name": "Jasper Report",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4026,7 +4026,7 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "maintainers": [
         {
           "name": "jeremy"
@@ -4057,7 +4057,7 @@
       "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4100,7 +4100,7 @@
       "uid": "org.openmrs.module.reportingcompatibility",
       "type": "OMOD",
       "name": "Reporting Compatibility",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4146,7 +4146,7 @@
       "uid": "org.openmrs.module.reportingrest",
       "type": "OMOD",
       "name": "reportingrest",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4429,7 +4429,7 @@
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Quartz Scheduler",
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "tags": [
         "scheduling"
       ],
@@ -4890,7 +4890,7 @@
       "uid": "org.openmrs.module.uicommons",
       "type": "OMOD",
       "name": "UI Commons Module",
-      "icon": "picture-o",
+      "icon": "image-o",
       "tags": [
         "back-end"
       ],
@@ -4998,7 +4998,7 @@
       "uid": "org.openmrs.module.usagestatistics",
       "type": "OMOD",
       "name": "Usage Statistics",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "data-management"
       ],
@@ -5120,7 +5120,7 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "maintainers": [
         {
           "name": "vistorr05"
@@ -5275,7 +5275,7 @@
       "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -5457,7 +5457,7 @@
       "uid": "org.openmrs.module.form-entry-app-module",
       "type": "OMOD",
       "name": "Form Entry App Module",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -5797,7 +5797,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "wolf schnab"
@@ -6623,7 +6623,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "Bell Eapen"

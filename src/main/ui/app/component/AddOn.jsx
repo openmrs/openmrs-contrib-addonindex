@@ -8,45 +8,58 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import {Link} from "react-router";
-import {Label, Media} from "react-bootstrap";
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { Badge, Media } from "react-bootstrap";
+import { LegacyFaIcon } from "./LegacyFaIcon";
 
-export default class AddOn extends Component {
+const addOnItemStyle = { marginRight: "1rem", width: "3.7rem" };
 
-    render() {
-        const addon = this.props.addon;
-        const link = this.props.version ? `/show/${addon.uid}?highlightVersion=${this.props.version}` : `/show/${addon.uid}`;
+const Title = ({ addOn }) => {
+  const status = addOn?.status?.toUpperCase();
+  const hasBadge = status === "DEPRECATED" || status === "INACTIVE";
+  const variant = hasBadge
+    ? status === "DEPRECATED"
+      ? "danger"
+      : "warning"
+    : null;
 
-        const title = (
-                <div>
-                    {addon.name}
-                    &nbsp;
-                    {addon.status === "DEPRECATED" ?
-                     <Label bsStyle="danger">{addon.status}</Label>
-                            :
-                     addon.status === "INACTIVE" ?
-                     <Label bsStyle="warning">{addon.status}</Label>
-                             :
-                     null
-                    }
-                    <div className="pull-right">{addon.type}</div>
-                </div>
-        );
+  return (
+    <h5>
+      {addOn?.name}&nbsp;
+      {hasBadge && <Badge variant={variant} />}
+      <div className="float-right">{addOn?.type}</div>
+    </h5>
+  );
+};
 
-        return (
-                <Link to={link}>
-                    <Media className="addon">
-                        <Media.Left>
-                            <i className={`fa fa-3x fa-fw fa-${addon.icon}`}></i>
-                        </Media.Left>
-                        <Media.Body>
-                            <Media.Heading>{title}</Media.Heading>
-                            <p>{addon.description}</p>
-                        </Media.Body>
-                    </Media>
-                </Link>
-        )
-    }
+export const AddOn = ({ addOn, version }) => {
+  const link = useMemo(
+    () =>
+      addOn?.uid
+        ? version
+          ? `/show/${addOn.uid}?highlightVersion=${version}`
+          : `/show/${addOn.uid}`
+        : "",
+    [addOn, version]
+  );
 
-}
+  return (
+    <Link to={link}>
+      <Media className="addon">
+        {addOn && (
+          <LegacyFaIcon
+            icon={addOn.icon}
+            style={addOnItemStyle}
+            size={"3x"}
+            ifNotFound={<span style={{ ...addOnItemStyle, height: "3rem" }} />}
+          />
+        )}
+        <Media.Body>
+          <Title addOn={addOn} />
+          <p>{addOn?.description}</p>
+        </Media.Body>
+      </Media>
+    </Link>
+  );
+};

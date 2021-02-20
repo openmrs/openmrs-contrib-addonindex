@@ -1,56 +1,73 @@
 {
   "name": "openmrs-contrib-addonindex-ui",
-  "version": "1.0.0",
   "description": "UI for the OpenMRS Add-On Index",
+  "private": true,
   "main": "index.js",
   "scripts": {
+    "build:watch": "webpack --env=dev --config webpack.config.js --mode development --watch",
     "build:dev": "webpack --env=dev --config webpack.config.js --mode development",
     "build:prod": "webpack --env=prod --config webpack.config.js --mode production",
-    "test": "jest"
+    "lint": "eslint --ext js,jsx",
+    "prettier": "prettier app/**/* --write",
+    "test": "jest --passWithNoTests"
   },
   "engines": {
-    "node": "^5.3.0"
+    "node": "^10.23.2"
   },
   "keywords": [
     "OpenMRS"
   ],
-  "author": "djazayeri",
+  "author": "OpenMRS, Inc",
   "license": "MPL-2.0",
+  "browserslist": [
+    "extends browserslist-config-openmrs"
+  ],
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
-    "moment": "^2.19.3",
-    "moment-timezone": "^0.5.11",
-    "react": "^15.4.2",
-    "react-bootstrap": "^0.30.7",
-    "react-dom": "^15.4.2",
-    "react-ga": "^2.4.1",
-    "react-router": "^3.0.2",
-    "react-select": "1.x"
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "bootstrap": "^4.6.0",
+    "dayjs": "^1.10.4",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.5.0",
+    "react-dom": "^17.0.1",
+    "react-ga": "^3.3.0",
+    "react-query": "^3.9.8",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-select": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-stage-2": "^7.0.0",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-react": "^7.12.13",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/react-hooks": "^5.0.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "browserslist-config-openmrs": "^1.0.1",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.0.0",
-    "enzyme": "^3.4.4",
-    "enzyme-adapter-react-15": "^1.0.6",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^24.8.0",
-    "jest-enzyme": "^6.0.3",
-    "jest-fetch-mock": "^1.6.5",
-    "mini-css-extract-plugin": "^0.7.0",
-    "node-sass": "^4.13.1",
-    "react-test-renderer": "^15.5.4",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.34.0",
-    "webpack-cli": "^3.3.4"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>setupTests.js"
+    "css-loader": "^5.0.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "html-webpack-plugin": "^5.2.0",
+    "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
+    "mini-css-extract-plugin": "^1.3.8",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "react-test-renderer": "^17.0.1",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "source-map-loader": "^2.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.23.0",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

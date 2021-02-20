@@ -8,14 +8,13 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-
-export const ExternalLink = ({ link, children }) => {
-  const myLink = typeof link === "string" ? { href: link } : link;
-  const title = myLink.title ? myLink.title : myLink.href;
-  return (
-    <a target="_blank" href={myLink.href} rel={myLink.rel}>
-      {children ? children : title}
-    </a>
-  );
+// simple wrapper for `fetch` that throws on error and returns the json response
+// useful to integrate `fetch` with the react-query library
+export const myFetch = async (url, options = {}) => {
+  const response = await fetch(url, options);
+  if (!response.ok) throw response;
+  if (response.status === 204) {
+    return null;
+  }
+  return await response.json();
 };

@@ -8,288 +8,372 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import {Link} from "react-router";
-import fetch from "isomorphic-fetch";
-import {Button, Col, Glyphicon, Label, OverlayTrigger, Row, Table, Tooltip} from "react-bootstrap";
-import moment from "moment";
-import ExternalLink from "../component/ExternalLink";
+import React, { useContext, useMemo } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import {
+  Badge,
+  Button,
+  Col,
+  OverlayTrigger,
+  Row,
+  Table,
+  Tooltip,
+} from "react-bootstrap";
+import { useQuery } from "react-query";
+import ReactGA from "react-ga";
 
-export default class Show extends Component {
+import dayjs from "dayjs/esm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
-    componentDidMount() {
-        fetch('/api/v1/addon/' + this.props.params.uid)
-                .then(response => {
-                    if (response.status >= 400) {
-                        throw new Error(response.statusText);
-                    }
-                    else {
-                        return response.json();
-                    }
-                })
-                .then(addon => {
-                    this.setState({addon: addon});
-                })
-                .catch(err => {
-                    this.setState({error: err});
+import { CoreVersionContext } from "../App";
+import { useSearchParams } from "../hooks";
+import { ExternalLink, LegacyFaIcon } from "../component";
+import { myFetch } from "../utils";
 
+const DownloadButton = ({ uid, version, children, ...props }) => {
+  return (
+    <Button
+      onClick={
+        GA_ID
+          ? () => {
+              ReactGA.event({
+                category: "User",
+                action: "DownloadAddOn",
+                label: uid,
+              });
+
+              version &&
+                ReactGA.event({
+                  category: "User",
+                  action: "DownloadAddOnVersion",
+                  label: `${uid}:${version}`,
                 });
+            }
+          : null
+      }
+      {...props}
+    >
+      {children}
+    </Button>
+  );
+};
 
-        this.getLatestSupportedVersion(this.props.selectedVersion)
+const formatLinkHeader = (link) => {
+  switch (link.rel) {
+    case "source":
+      return "Source Code";
+    case "documentation":
+      return "Documentation";
+    default:
+      return link.rel;
+  }
+};
+
+const formatDateTime = (dt) => {
+  if (!!!dt) {
+    return (
+      <>
+        <br />
+        <br />
+      </>
+    );
+  }
+
+  const m = dayjs(dt);
+
+  if (!!!m) {
+    return (
+      <>
+        <br />
+        <br />
+      </>
+    );
+  }
+
+  return (
+    <>
+      {m.fromNow()}
+      <br />
+      {m.format("ll")}
+    </>
+  );
+};
+const formatRequiredModules = (version) => {
+  const requirements = [];
+
+  if (version.requireModules) {
+    version.requireModules.forEach((m) => {
+      requirements.push(
+        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`
+      );
+    });
+  }
+
+  return requirements.join(", ");
+};
+
+export const Show = () => {
+  const { uid } = useParams();
+  const { highlightVersion } = useSearchParams();
+  const coreVersion = useContext(CoreVersionContext);
+
+  const addOnResult = useQuery(
+    ["addOn", uid],
+    () => myFetch(`/api/v1/addon/${uid}`),
+    { enabled: !!uid }
+  );
+
+  const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
+
+  const latestVersionResult = useQuery(
+    ["addOnLatestVersion", coreVersion],
+    () =>
+      myFetch(
+        `/api/v1/addon/${uid}/latestVersion` +
+          (coreVersion ? `?coreversion=${coreVersion}` : "")
+      ),
+    { enabled: !!uid }
+  );
+
+  const latestVersion = useMemo(() => latestVersionResult.data, [
+    latestVersionResult.data,
+  ]);
+
+  const tag = useMemo(() => {
+    if (!!!addOn) {
+      return null;
     }
 
-    getLatestSupportedVersion(openmrsCoreVersion){
-        let url = '/api/v1/addon/' + this.props.params.uid + '/latestVersion';
-        if (openmrsCoreVersion) {
-            url += '?&coreversion=' + openmrsCoreVersion;
-        }
-        fetch(url)
-            .then(response => {
-                if (response.status >= 400) {
-                    throw new Error(response.statusText);
-                }
-                //Handles case when no compatible module version is found
-                else if (response.status === 204){
-                    return null;
-                }
-                else {
-                    return response.json();
-                }
-            })
-            .then(version => {
-                this.setState({latestVersion: version});
-            })
-            .catch(err => {
-                this.setState({error: err});
-                console.log(this.state.error);
-            })
+    let variant = "primary";
+    switch (addOn.status) {
+      case "ACTIVE":
+        variant = "success";
+        break;
+      case "INACTIVE":
+        variant = "warning";
+        break;
+      case "DEPRECATED":
+        variant = "danger";
+        break;
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.selectedVersion !== this.props.selectedVersion){
-            this.getLatestSupportedVersion(nextProps.selectedVersion)
-        }
+    return (
+      <>
+        <Badge variant={variant}>{status}</Badge>
+        {addOn.tags
+          ? addOn.tags.map((t) => (
+              <Badge
+                key={t}
+                variant={"secondary"}
+                as={"a"}
+                href={`/search?&tag=${t}`}
+              >
+                {t}
+              </Badge>
+            ))
+          : null}
+      </>
+    );
+  }, [addOn]);
+
+  const hostedAtRow = useMemo(() => {
+    if (!addOn || !addOn.hostedUrl) {
+      return null;
     }
 
-    formatLinkRel(link) {
-        switch (link.rel) {
-            case 'source':
-                return 'Source Code';
-            case 'documentation':
-                return 'Documentation';
-            default:
-                return link.rel;
-        }
-    }
+    const hosted = addOn.hostedUrl.includes("bintray.com") ? (
+      <ExternalLink link={{ title: "Bintray", href: addOn.hostedUrl }} />
+    ) : (
+      <ExternalLink link={{ href: addOn.hostedUrl }} />
+    );
 
-    formatRequiredModules(version) {
-        let requirements = [];
-        if (version.requireModules) {
-            version.requireModules.forEach(m => {
-                requirements.push(`${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`)
-            })
-        }
-        return requirements.join(", ");
-    }
+    return (
+      <tr>
+        <th>Hosted at</th>
+        <td>{hosted}</td>
+      </tr>
+    );
+  }, [addOn]);
 
-    formatDateTime(dt) {
-        const m = moment(dt);
-        return <span>
-            {m.fromNow()}
-            <br/>
-            {m.format("ll")}
+  const version = useMemo(() => {
+    if (latestVersion && addOn && addOn.versions) {
+      if (latestVersion.version === addOn.versions[0].version) {
+        return (
+          <span>
+            Download <FontAwesomeIcon icon={faDownload} />
+            <br />
+            <small>Latest Version: {latestVersion.version}</small>
+          </span>
+        );
+      } else {
+        return (
+          <span>
+            Download <FontAwesomeIcon icon={faDownload} />
+            <br />
+            <small>Supported Version: {latestVersion.version}</small>
+          </span>
+        );
+      }
+    } else {
+      return (
+        <span>
+          No module version supports
+          <br />
+          <small>OpenMRS Core {coreVersion}</small>
         </span>
+      );
     }
+  }, [latestVersion, addOn]);
 
-    formatTags(addon) {
-        let statusClass = "default";
-        let status = addon.status;
-        switch (addon.status) {
-            case 'ACTIVE':
-                statusClass = "success";
-                break;
-            case 'INACTIVE':
-                statusClass = "warning";
-                break;
-            case 'DEPRECATED':
-                statusClass = "danger";
-                break;
-            default:
-                // if we want to display a placeholder here when status is unspecified, uncomment the next line:
-                // status = "Unknown Activity";
-                break;
-        }
-        return <div>
-            <Label bsStyle={statusClass}>{status}</Label>
-            {addon.tags ?
-             addon.tags.map(t =>
-                 <Link to={`/search?&tag=${t}`}><Label bsStyle="default">{t}</Label></Link>
-             ) :
-             null
-            }
-        </div>
+  const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
+
+  if (addOnResult.isLoading) {
+    return <></>;
+  }
+
+  if (addOnResult.isError) {
+    if (addOnResult.error.status === 404) {
+      return (
+        <>
+          Sorry! We couldn't find the module "{uid}".
+          <br />
+          <Link to={"/"}>Go back to home screen</Link>
+        </>
+      );
+    } else {
+      return <></>;
     }
+  }
 
-    render() {
-        if (this.state && this.state.error) {
-            return <div>{this.state.error}</div>
-        }
-        else if (this.state && this.state.addon) {
-            const addon = this.state.addon;
-            const highlightVersion = this.props.location.query.highlightVersion;
-            const requirementmeaning = (
-                    <Tooltip id="tooltip"><strong>Minimum version of the OpenMRS Platform required.</strong></Tooltip>
-            );
-            let version = "";
-            if (this.state.latestVersion){
-                if (this.state.latestVersion.version === addon.versions[0].version){
-                    version = <span>Download<br/>
-                        <small>Latest Version: {this.state.latestVersion.version}</small></span>;
-                }
-                else {
-                    version = <span>Download<br/>
-                        <small>Supported Version: {this.state.latestVersion.version}</small></span>;
-                }
-            }
-            else {
-                version = <span>No module version supports<br/>
-                        <small>OpenMRS Core {this.props.selectedVersion}</small></span>;
-            }
-
-            let versionDownloadUri = this.state.latestVersion ? this.state.latestVersion.downloadUri : null;
-            let hostedSection = "";
-            let hosted = "";
-            if (addon.hostedUrl) {
-                if (addon.hostedUrl.includes("bintray.com")) {
-                    hosted = <a target="_blank" href={addon.hostedUrl}>Bintray</a>
-                }
-                else {
-                    hosted = <a target="_blank" href={addon.hostedUrl}>{addon.hostedUrl}</a>
-                }
-                hostedSection = (<tr>
-                    <th>Hosted at</th>
-                    <td><h5>{hosted}</h5></td>
-                </tr>);
-            }
-
-            return (
-
-                    <div>
-                        <Row>
-                            <Col sm={1} md={1} className="hidden-xs">
-                                <i className={`fa fa-4x fa-${addon.icon ? addon.icon : 'file-o'} shiftdown`}></i>
-                            </Col>
-                            <Col sm={11} md={11} className="delete-left-padding">
-                                <h2>{addon.name}</h2>
-                                <h4 className="lead">{addon.description}</h4>
-                                { this.formatTags(addon) }
-                            </Col>
-                        </Row>
-                        <div className="col-md-12 col-sm-12 col-xs-12 left-margin">
-                            <div className="col-md-9 col-sm-9 col-xs-9">
-                            <Table condensed>
-                                <colgroup>
-                                    <col className="col-md-2"/>
-                                    <col className="col-md-10"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th>Type</th>
-                                    <td><h5>{addon.type}</h5></td>
-                                </tr>
-                                {hostedSection}
-                                <tr>
-                                    <th>Maintained by</th>
-                                    <td><h5>{addon.maintainers.map(m => {
-                                        if (m.url) {
-                                            return (
-                                                    <a href={m.url}>
-                                                        <span className="maintainer">{m.name}</span>
-                                                    </a>
-                                            )
-                                        } else {
-                                            return (
-                                                    <span className="maintainer">{m.name}</span>
-                                            )
-                                        }
-                                    })}
-                                    </h5></td>
-                                </tr>
-                                {addon.links ? addon.links.map(l =>
-                                                                       <tr>
-                                                                           <th>{this.formatLinkRel(l)}</th>
-                                                                           <td><h5><ExternalLink link={l}/></h5></td>
-                                                                       </tr>
-                                ) : null}
-                                <tr>
-                                    <th>Downloads in the last 30 days</th>
-                                    <td>{addon.downloadCountInLast30Days ? addon.downloadCountInLast30Days : "?"}</td>
-                                </tr>
-                                </tbody>
-                            </Table>
-                            </div>
-                            <div className="col-md-3 col-sm-3 col-xs-3">
-                                <a href={versionDownloadUri}>
-                                    <Button className="primary" bsStyle={versionDownloadUri ? "primary" : "default"} bsSize="large"
-                                            disabled={versionDownloadUri === null}>
-                                        {version}
-                                    </Button>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <Table condensed hover>
-                                <thead>
-                                <tr>
-                                    <th className="col-md-1 col-sm-1 col-xs-1">Version</th>
-                                    <th className="col-md-2 col-sm-2 col-xs-2">Release Date</th>
-                                    <th className="col-md-3 col-sm-3 col-xs-3">Platform Requirement<OverlayTrigger
-                                            placement="right" overlay={requirementmeaning}>
-                                        <Glyphicon glyph="glyphicon glyphicon-question-sign"/>
-                                    </OverlayTrigger></th>
-                                    <th className="col-md-5 col-sm-5 col-xs-5">Other requirements</th>
-                                    <th className="col-md-1 col-sm-1 col-xs-1">Download</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {addon.versions.map(v => {
-                                    let className = v.version === highlightVersion ? "highlight" : "";
-                                    return (
-                                            <tr className={className}>
-                                                <td>
-                                                    {v.version}
-                                                </td>
-                                                <td>
-                                                    {this.formatDateTime(v.releaseDatetime)}
-                                                </td>
-                                                <td>
-                                                    {v.requireOpenmrsVersion}
-                                                </td>
-                                                <td>
-                                                    {this.formatRequiredModules(v)}
-                                                </td>
-                                                <td>
-                                                    <Button bsSize="small"
-                                                            href={v.renameTo ? `/api/v1/addon/${addon.uid}/${v.version}/download` : v.downloadUri}>
-                                                        <i className="fa fa-download"></i>
-                                                        Download
-                                                    </Button>
-                                                </td>
-                                            </tr>
-                                    )
-                                })}
-
-                                </tbody>
-                            </Table>
-
-                        </div>
-                    </div>
-
-            )
-        }
-        else {
-            return <div>Loading...</div>
-        }
-    }
-
-}
+  return (
+    <>
+      <Row style={{ marginBottom: `1rem` }} sm={12}>
+        <Col sm={1} className="hidden-xs">
+          <LegacyFaIcon icon={addOn.icon} size={"3x"} />
+        </Col>
+        <Col sm={11}>
+          <h2>{addOn.name}</h2>
+          <h4 className="lead">{addOn.description}</h4>
+          <div>{tag}</div>
+        </Col>
+      </Row>
+      <Row xs={12}>
+        <Col xs={9}>
+          <Table variant="condensed">
+            <colgroup>
+              <col className="col-2" />
+              <col className="col-10" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th>Type</th>
+                <td>{addOn.type}</td>
+              </tr>
+              {hostedAtRow}
+              <tr>
+                <th>Maintained by</th>
+                <td>
+                  <>
+                    {addOn?.maintainers?.map((m) =>
+                      m.url ? (
+                        <ExternalLink key={m.name} link={{ href: m.url }}>
+                          <span className="maintainer">{m.name}</span>
+                        </ExternalLink>
+                      ) : (
+                        <span key={m.name} className="maintainer">
+                          {m.name}
+                        </span>
+                      )
+                    )}
+                  </>
+                </td>
+              </tr>
+              {addOn?.links?.map((l) => (
+                <tr key={l.rel}>
+                  <th>{formatLinkHeader(l)}</th>
+                  <td>
+                    <ExternalLink link={l} />
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <th>Downloads in the last 30 days</th>
+                <td>{addOn?.downloadCountInLast30Days || "?"}</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Col>
+        <Col xs={3}>
+          <DownloadButton
+            uid={addOn.uid}
+            version={latestVersion?.version}
+            variant="primary"
+            size="lg"
+            disabled={versionDownloadUri === null}
+            href={versionDownloadUri}
+          >
+            {version}
+          </DownloadButton>
+        </Col>
+      </Row>
+      <>
+        <Table variant="condensed" hover>
+          <thead>
+            <tr>
+              <th className="col-1">Version</th>
+              <th className="col-2">Release Date</th>
+              <th className="col-3">
+                Platform Requirement&nbsp;
+                <OverlayTrigger
+                  placement="right"
+                  overlay={
+                    <Tooltip id="tooltip">
+                      <strong>
+                        Minimum version of the OpenMRS Platform required.
+                      </strong>
+                    </Tooltip>
+                  }
+                >
+                  <LegacyFaIcon icon={faQuestionCircle} />
+                </OverlayTrigger>
+              </th>
+              <th className="col-5">Other requirements</th>
+              <th className="col-1">Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            {addOn?.versions?.map((v) => {
+              const className =
+                v.version === highlightVersion ? "highlight" : null;
+              return (
+                <tr key={v.version} className={className}>
+                  <td>{v.version}</td>
+                  <td>{formatDateTime(v.releaseDatetime)}</td>
+                  <td>{v.requireOpenmrsVersion}</td>
+                  <td>{formatRequiredModules(v)}</td>
+                  <td>
+                    <DownloadButton
+                      variant="outline-primary"
+                      size="sm"
+                      href={
+                        v.renameTo
+                          ? `/api/v1/addon/${addOn.uid}/${v.version}/download`
+                          : v.downloadUri
+                      }
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                      Download
+                    </DownloadButton>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </>
+    </>
+  );
+};

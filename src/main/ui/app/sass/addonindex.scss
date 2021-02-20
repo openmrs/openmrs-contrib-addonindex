@@ -8,17 +8,28 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
+$theme-colors: (
+  "primary": #337ab7,
+);
+
+$link-color: #275c8a;
+
+@import "~bootstrap/scss/bootstrap.scss";
 @import url(//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700);
+
+html {
+  font-size: 14px;
+}
 
 .logo1 {
   float: left;
 
-  height: 39px;
-  width: 284px;
+  height: 2.785rem;
+  width: 20.2857rem;
 }
 
 .logotext {
-  margin-top: 30px;
+  margin-top: 2.15rem;
 }
 
 .vertical-align-center {
@@ -27,18 +38,17 @@
 }
 
 .ma {
-  margin-left: 20px;
-  font-size: 35px;
+  margin-left: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .f {
-  margin: 10px 0px 10px 30px;
+  margin: 10px 0 10px 30px;
 }
 
 .buttonfix {
   top: 30px;
   float: right;
-
 }
 
 .maintable {
@@ -46,20 +56,12 @@
 }
 
 .title-type {
-
   margin-right: 5%;
   margin-bottom: 5px;
-
 }
 
 .title-name {
-
   margin-bottom: 5px;
-
-}
-
-.pushdown {
-  margin-top: 10px;
 }
 
 .push-right {
@@ -73,21 +75,20 @@
 
 body {
   color: #363463;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
 }
 
-a,
-a:link {
-  color: #275c8a;
-}
-
-header h1 sup {
-  -webkit-font-smoothing: antialiased;
+header {
+  height: 6.214rem;
 }
 
 .p {
   margin-left: 2%;
   margin-top: 3%;
+}
+
+.table {
+  color: #363463;
 }
 
 tr {
@@ -105,23 +106,30 @@ a:hover {
 }
 
 footer {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   color: #555555;
   text-align: center;
-  margin-top: 3em;
+  margin-top: 3rem;
 }
 
-a:hover, a:visited, a:link, a:active {
+a:hover,
+a:visited,
+a:link,
+a:active {
   text-decoration: none;
 }
 
+.badge {
+  padding: 0.2rem 0.6rem 0.3rem;
+}
+
 .list-group-item {
-  padding-bottom: 0px;
-  padding-top: 0px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 .left-margin {
-  padding-left: 0px;
+  padding-left: 0;
   margin-bottom: 2%;
   margin-top: 1%;
 }
@@ -132,26 +140,6 @@ a:hover, a:visited, a:link, a:active {
 
 .table td {
   width: auto !important;
-}
-
-.list-grp {
-  padding: 0;
-}
-
-.spacing {
-  margin-right: 5px;
-}
-
-.delete-left-padding{
- padding-left: 0;
-}
-
-.shiftdown{
- margin-top: 30%; 
-}
-
-.panel-group {
-  margin: 0;
 }
 
 .highlight {
@@ -165,5 +153,9 @@ a:hover, a:visited, a:link, a:active {
 }
 
 .maintainer {
-  padding-right: 1em;
+  padding-right: 1rem;
+}
+
+.hidden {
+  display: none;
 }
