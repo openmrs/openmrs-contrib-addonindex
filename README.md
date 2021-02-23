@@ -48,7 +48,7 @@ CI does `npm run build:prod` which minimizes js/css.
 You need to be running ElasticSearch to run this application. To run this using Docker, do:
 
 	> mkdir esdata
-    > docker run --name es-addons -p 9200:9200 -p 9300:9300 -v "esdata:/usr/share/elasticsearch/data" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    > docker run --name es-addons -p 9200:9200 -p 9300:9300 -v "${PWD}/esdata:/usr/share/elasticsearch/data" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.11.0
 
 If you aren't running ElasticSearch on `http://localhost:9200` then you'll need to set `spring.elasticsearch.jest.uris` in
  your custom application config. (See below for how to set this configuration.) 
