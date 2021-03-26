@@ -133,11 +133,11 @@ public class ElasticSearchIndex implements Index {
 		//Decrease ranking of those modules which are "Deprecated" or "Inactive"
 		BoostingQueryBuilder boostingQB = QueryBuilders.boostingQuery(
 				boolQB, QueryBuilders.termsQuery("status", "DEPRECATED", "INACTIVE"))
-				.negativeBoost(2.0f);
+				.negativeBoost(0.001f);
 
 		SearchResponse response = client.search(
 				Requests.searchRequest(AddOnInfoAndVersions.ES_INDEX)
-						.source(SearchSourceBuilder.searchSource().query(boostingQB)), RequestOptions.DEFAULT);
+						.source(SearchSourceBuilder.searchSource().size(SEARCH_SIZE).query(boostingQB)), RequestOptions.DEFAULT);
 
 		return Arrays.stream(response.getHits().getHits())
 				.filter(SearchHit::hasSource)
@@ -148,7 +148,7 @@ public class ElasticSearchIndex implements Index {
 	@Override
 	public Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws IOException {
 		SearchResponse response = client.search(new SearchRequest(AddOnInfoAndVersions.ES_INDEX)
-						.source(new SearchSourceBuilder().query(QueryBuilders.matchQuery("type", type))),
+						.source(new SearchSourceBuilder().size(SEARCH_SIZE).query(QueryBuilders.matchQuery("type", type))),
 				RequestOptions.DEFAULT);
 
 		return Arrays.stream(response.getHits().getHits())
