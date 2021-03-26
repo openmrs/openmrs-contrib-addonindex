@@ -323,10 +323,10 @@ export const Show = () => {
         <Table variant="condensed" hover>
           <thead>
             <tr>
-              <th className="col-1">Version</th>
-              <th className="col-2">Release Date</th>
-              <th className="col-3">
-                Platform Requirement&nbsp;
+              <th>Version</th>
+              <th>Release Date</th>
+              <th>
+                Platform Requirements&nbsp;
                 <OverlayTrigger
                   placement="right"
                   overlay={
@@ -340,8 +340,8 @@ export const Show = () => {
                   <LegacyFaIcon icon={faQuestionCircle} />
                 </OverlayTrigger>
               </th>
-              <th className="col-5">Other requirements</th>
-              <th className="col-1">Download</th>
+              <th>Other requirements</th>
+              <th>Download</th>
             </tr>
           </thead>
           <tbody>
