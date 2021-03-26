@@ -162,7 +162,7 @@ export const Show = () => {
 
     return (
       <>
-        <Badge variant={variant}>{status}</Badge>
+        <Badge variant={variant}>{addOn.status}</Badge>&nbsp;
         {addOn.tags
           ? addOn.tags.map((t) => (
               <Badge
@@ -263,10 +263,6 @@ export const Show = () => {
       <Row xs={12}>
         <Col xs={9}>
           <Table variant="condensed">
-            <colgroup>
-              <col className="col-2" />
-              <col className="col-10" />
-            </colgroup>
             <tbody>
               <tr>
                 <th>Type</th>

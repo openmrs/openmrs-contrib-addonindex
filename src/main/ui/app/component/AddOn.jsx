@@ -27,7 +27,7 @@ const Title = ({ addOn }) => {
   return (
     <h5>
       {addOn?.name}&nbsp;
-      {hasBadge && <Badge variant={variant} />}
+      {hasBadge && <Badge variant={variant}>{status}</Badge>}
       <div className="float-right">{addOn?.type}</div>
     </h5>
   );
