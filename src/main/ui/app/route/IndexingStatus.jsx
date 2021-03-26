@@ -8,30 +8,42 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Badge, Col, Row } from "react-bootstrap";
 
+// 10 seconds
+const LIVE_REFETCH_INTERVAL = 10 * 1000;
+// 5 minutes
+const LONG_REFETCH_INTERVAL = 5 * 60 * 1000;
+
 export const IndexingStatus = () => {
+  const [refetchInterval, setRefetchInterval] = useState(LIVE_REFETCH_INTERVAL);
+
   const indexingStatusQuery = useQuery(
     ["indexingStatus"],
     () => myFetch("/api/v1/indexingstatus"),
-    { refetchOnWindowFocus: "always" }
+    {
+      refetchOnWindowFocus: "always",
+      refetchInterval: refetchInterval,
+    }
   );
 
   const status = useMemo(() => indexingStatusQuery.data, [
     indexingStatusQuery.data,
   ]);
+
   const [okay, error, pending] = useMemo(() => {
     if (!!!status?.statuses) {
       return [null, null, null];
     }
 
     let [okay, error, pending] = [0, 0, 0];
-    Object.values(status.statuses).forEach((status) => {
-      if (status) {
-        if (status.error) {
+    Object.values(status.toIndex?.toIndex).forEach((addOn) => {
+      const addOnStatus = status.statuses[addOn.uid];
+      if (addOnStatus) {
+        if (addOnStatus.error) {
           error += 1;
         } else {
           okay += 1;
@@ -43,6 +55,18 @@ export const IndexingStatus = () => {
 
     return [okay, error, pending];
   }, [status]);
+
+  useEffect(() => {
+    if (pending === 0) {
+      if (refetchInterval === LIVE_REFETCH_INTERVAL) {
+        setRefetchInterval(LONG_REFETCH_INTERVAL);
+      }
+    } else {
+      if (refetchInterval === LONG_REFETCH_INTERVAL) {
+        setRefetchInterval(LIVE_REFETCH_INTERVAL);
+      }
+    }
+  }, [pending, refetchInterval]);
 
   if (indexingStatusQuery.isLoading) {
     return <>Loading...</>;
@@ -63,21 +87,21 @@ export const IndexingStatus = () => {
         {okay ? <Badge variant="success">Okay: {okay}</Badge> : null}
       </h3>
       <hr />
-      {status?.toIndex?.toIndex?.map((i) => (
-        <Fragment key={i.uid}>
+      {status?.toIndex?.toIndex?.map((addOn) => (
+        <Fragment key={addOn.uid}>
           <Row xs={2}>
             <Col>
-              <strong>{i.uid}</strong>
+              <strong>{addOn.uid}</strong>
               <br />
               <br />
-              {status.statuses[i.uid] && status.statuses[i.uid].error ? (
+              {status.statuses[addOn.uid]?.error ? (
                 <Badge variant="danger">Error</Badge>
               ) : (
                 <Badge variant="success">Okay</Badge>
               )}
             </Col>
             <Col>
-              <pre>{JSON.stringify(status?.statuses[i.uid], null, 2)}</pre>
+              <pre>{JSON.stringify(status?.statuses[addOn.uid], null, 2)}</pre>
             </Col>
           </Row>
           <hr width="100%" />
