@@ -10,28 +10,18 @@
 
 package org.openmrs.addonindex.domain.artifactory;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * @see ArtifactoryFolderInfo
  */
-
+@Data
+@AllArgsConstructor
 public class ArtifactoryFolderInfoChild {
-    private String uri;
-    private boolean folder;
 
-    public String getUri() {
-        return uri;
-    }
+	private String uri;
 
-    public void setUri(String input) {
-        this.uri = input;
-    }
-
-    public boolean getFolder() {
-        return folder;
-    }
-
-    public void setFolder(boolean input) {
-        this.folder = input;
-    }
+	private boolean folder;
 
 }

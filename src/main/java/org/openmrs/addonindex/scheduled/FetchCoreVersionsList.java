@@ -56,7 +56,7 @@ public class FetchCoreVersionsList {
             json = StreamUtils.copyToString(getClass().getClassLoader().getResourceAsStream("openmrs-core-versions.json"),
                     Charset.defaultCharset());
         } else {
-            log.debug("FETCH strategy: " + url);
+            log.debug("FETCH strategy: {}", url);
             json = restTemplateBuilder.build().getForObject(url, String.class);
         }
 
@@ -73,8 +73,8 @@ public class FetchCoreVersionsList {
 
         if (versionlist.size() > 0) {
             List<String> versions = new ArrayList<>();
-            List<ArtifactoryFolderInfoChild> allversions = versionlist.getChildren();
-            for (ArtifactoryFolderInfoChild candidateVersion : allversions) {
+            List<ArtifactoryFolderInfoChild> allVersions = versionlist.getChildren();
+            for (ArtifactoryFolderInfoChild candidateVersion : allVersions) {
                 if (candidateVersion.getFolder() && !stringContainsItemFromList(candidateVersion.getUri(), STRINGS_TO_EXCLUDE)) {
                     versions.add(candidateVersion.getUri().replaceAll("/", ""));
                 }
