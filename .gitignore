@@ -4,9 +4,7 @@
 target
 config
 src/main/ui/node_modules
+src/main/ui/node
 src/main/resources/static/index.html
-src/main/resources/static/app/bundle.js
-src/main/resources/static/app/bundle.min.js
-src/main/resources/static/app/styles.css
-src/main/resources/static/app/styles.min.css
+src/main/resources/static/app/*
 esdata/

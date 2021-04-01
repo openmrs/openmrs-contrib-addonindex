@@ -8,53 +8,34 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import {Link} from "react-router";
-import fetch from "isomorphic-fetch";
-import NamedList from "../component/NamedList";
+import React, { useMemo } from "react";
+import { useParams } from "react-router";
+import { useQuery } from "react-query";
+import { NamedList } from "../component";
+import { myFetch } from "../utils";
 
-export default class ShowList extends Component {
+export const ShowList = () => {
+  const { uid } = useParams();
 
-    updateList() {
-        this.setState({list: null});
-        return fetch('/api/v1/list/' + this.props.params.uid)
-                .then(response => {
-                    if (response.status >= 400) {
-                        throw new Error(response.statusText);
-                    }
-                    else {
-                        return response.json();
-                    }
-                })
-                .then(list => {
-                    this.setState({list: list});
-                })
-                .catch(err => {
-                    this.setState({error: err});
-                })
+  const listQuery = useQuery(["list", uid], () =>
+    myFetch(`/api/v1/list/${uid}`)
+  );
+  const list = useMemo(() => {
+    if (!!!listQuery.data) {
+      return null;
     }
 
-    componentDidMount() {
-        this.updateList();
-    }
+    return listQuery.data;
+  }, [listQuery]);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.params.uid !== prevProps.params.uid) {
-            this.updateList();
-        }
-    }
+  if (listQuery.isError) {
+    // TODO is this the right thing to do?
+    return <>{listQuery.error.toString()}</>;
+  }
 
-    render() {
-        if (this.state && this.state.error) {
-            return <div>{this.state.error}</div>
-        }
-        else if (this.state && this.state.list) {
-            const list = this.state.list;
-            return <NamedList list={list}/>
-        }
-        else {
-            return <div>Loading...</div>
-        }
-    }
+  if (listQuery.isLoading || !!!list) {
+    return <>Loading...</>;
+  }
 
-}
+  return <NamedList list={list} />;
+};

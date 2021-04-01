@@ -132,6 +132,7 @@
       "uid": "org.openmrs.owa.orderentryui",
       "type": "OWA",
       "name": "Order Entry UI OWA",
+      "status": "DEPRECATED",
       "maintainers": [
         {
           "name": "Andela apprentices",
@@ -154,6 +155,34 @@
         "owner": "openmrs",
         "repo": "owa",
         "package": "openmrs-owa-orderentryui"
+      }
+    },
+    {
+      "uid": "org.openmrs.owa.orderentry",
+      "type": "OWA",
+      "name": "Order Entry OWA",
+      "maintainers": [
+        {
+          "name": "OpenMRS community",
+          "url": "https://www.openmrs.org/"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Order+Entry+UI",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-owa-orderentry"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "owa",
+        "package": "openmrs-owa-orderentry"
       }
     },
     {
@@ -374,7 +403,7 @@
       "uid": "org.openmrs.module.appointmentscheduling",
       "type": "OMOD",
       "name": "Appointment Scheduling",
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "tags": [
         "scheduling"
       ],
@@ -876,6 +905,17 @@
           "name": "jenn"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Advanced+Concept+Management+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-conceptmanagementapps"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -1151,7 +1191,7 @@
       "uid": "org.openmrs.module.dataentrystatistics",
       "type": "OMOD",
       "name": "Data Entry Statistics",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "data-management"
       ],
@@ -1228,6 +1268,7 @@
       "uid": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
+      "description": "This module posts aggregate data from OpenMRS to DHIS2, and gives implementers a User Interface for an easier-to-set-up OMRS to DHIS2 pipeline, that doesn’t need manual code fixes every time there’s a change to reporting indicators. Includes a Mapping Tool UI, the ability to automatically send data to DHIS2 right away or on a schedule, and to map exports so that you can re-use your mapping work across sites.",
       "tags": [
         "interoperability"
       ],
@@ -1247,14 +1288,14 @@
         },
         {
           "rel": "source",
-          "href": "https://github.com/jembi/openmrs-module-dhisconnector"
+          "href": "https://github.com/openmrs/openmrs-module-dhisconnector"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
         "repo": "omod",
-        "package": "dhismodule"
+        "package": "dhisconnector"
       }
     },
     {
@@ -1321,7 +1362,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "pushkar"
@@ -1735,7 +1776,7 @@
       "uid": "org.openmrs.module.formentry",
       "type": "OMOD",
       "name": "Form Entry",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -1867,7 +1908,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "TorLye"
@@ -2398,7 +2439,7 @@
       "uid": "org.openmrs.module.jasperreport",
       "type": "OMOD",
       "name": "Jasper Report",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -2901,6 +2942,17 @@
           "name": "Rafal Korytkowski"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Metadata+Mapping+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-metadatamapping"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -3203,6 +3255,17 @@
         },
         {
           "name": "Darius Jazayeri"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Neal+Reporting",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-reporting/tree/master/api/src/main/java/org/openmrs/module/reporting/data/encounter/definition"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -3572,6 +3635,13 @@
       "maintainers": [
         {
           "name": "harshadura"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Patient+Narratives+Module+-+Detailed+Guide",
+          "title": "OpenMRS Wiki"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -3956,7 +4026,7 @@
       "tags": [
         "form-entry"
       ],
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "maintainers": [
         {
           "name": "jeremy"
@@ -3970,6 +4040,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/RemoteFormEntry+Module",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://bintray.com/openmrs/omod/remoteformentry"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -3983,7 +4057,7 @@
       "uid": "org.openmrs.module.reporting",
       "type": "OMOD",
       "name": "Reporting",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4026,7 +4100,7 @@
       "uid": "org.openmrs.module.reportingcompatibility",
       "type": "OMOD",
       "name": "Reporting Compatibility",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4072,7 +4146,7 @@
       "uid": "org.openmrs.module.reportingrest",
       "type": "OMOD",
       "name": "reportingrest",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "reporting"
       ],
@@ -4355,7 +4429,7 @@
       "status": "INACTIVE",
       "type": "OMOD",
       "name": "Quartz Scheduler",
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "tags": [
         "scheduling"
       ],
@@ -4736,6 +4810,29 @@
       }
     },
     {
+      "uid": "org.openmrs.module.telemedicineconsult",
+      "type": "OMOD",
+      "name": "Telemedicine Consult",
+      "maintainers": [
+        {
+          "name": "Patrick Childers",
+          "url" : "https://talk.openmrs.org/u/atlcto"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/CKWC/openmrs-module-telemedicine-consult"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "ckwc",
+        "repo": "omod",
+        "package": "telemedicineconsult"
+      }
+    },
+    {
       "uid": "org.openmrs.module.tribe",
       "type": "OMOD",
       "name": "Tribe",
@@ -4793,7 +4890,7 @@
       "uid": "org.openmrs.module.uicommons",
       "type": "OMOD",
       "name": "UI Commons Module",
-      "icon": "picture-o",
+      "icon": "image-o",
       "tags": [
         "back-end"
       ],
@@ -4901,7 +4998,7 @@
       "uid": "org.openmrs.module.usagestatistics",
       "type": "OMOD",
       "name": "Usage Statistics",
-      "icon": "bar-chart",
+      "icon": "chart-bar-o",
       "tags": [
         "data-management"
       ],
@@ -5023,7 +5120,7 @@
       "tags": [
         "scheduling"
       ],
-      "icon": "calendar",
+      "icon": "calendar-alt-o",
       "maintainers": [
         {
           "name": "vistorr05"
@@ -5178,7 +5275,7 @@
       "uid": "org.openmrs.module.xforms",
       "type": "OMOD",
       "name": "XForms",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -5360,7 +5457,7 @@
       "uid": "org.openmrs.module.form-entry-app-module",
       "type": "OMOD",
       "name": "Form Entry App Module",
-      "icon": "pencil-square-o",
+      "icon": "edit",
       "tags": [
         "form-entry"
       ],
@@ -5589,6 +5686,17 @@
           "name": "Darius Jazayeri"
         }
       ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/OpenMRS+Reference+Application+2.x+Implementer+Documentation",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-referenceapplication"
+        }
+      ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
       "bintrayPackageDetails": {
         "owner": "openmrs",
@@ -5689,7 +5797,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "wolf schnab"
@@ -5928,6 +6036,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/projects/OpenMRS-DHIS2+Integration+Module+-+User+Guide",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-dhisreport/tree/shr"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -5962,6 +6074,33 @@
         "owner": "openmrs",
         "repo": "omod",
         "package": "fhir"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.openmrs-fhir2-module",
+      "type": "OMOD",
+      "name": "OpenMRS FHIR2 Module",
+      "maintainers": [
+        {
+          "name": "FHIR Squad"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/OpenMRS+FHIR+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-fhir2"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Bintray",
+      "bintrayPackageDetails": {
+        "owner": "openmrs",
+        "repo": "omod",
+        "package": "fhir2"
       }
     },
     {
@@ -6484,7 +6623,7 @@
       "tags": [
         "image-handling"
       ],
-      "icon": "picture-o",
+      "icon": "image-o",
       "maintainers": [
         {
           "name": "Bell Eapen"
@@ -6541,6 +6680,10 @@
           "rel": "documentation",
           "href": "https://wiki.openmrs.org/display/docs/Notifiable+Condition+Detector+%28NCD%29+Module",
           "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/thomasshunter/openmrs-module-ncd"
         }
       ],
       "backend": "org.openmrs.addonindex.backend.Bintray",
@@ -6604,6 +6747,523 @@
         },
         {
           "uid": "org.openmrs.module.registration-core-module"
+        }
+      ]
+    },
+    {
+      "uid": "refapp_2.11",
+      "name": "RefApp 2.11",
+      "description": "Included in Reference Application 2.11",
+      "addOns": [
+        {
+          "uid": "org.openmrs.module.addresshierarchy",
+          "version": "2.14.2"
+        },
+        {
+          "uid": "org.openmrs.module.admin-ui-module",
+          "version": "1.4.0"
+        },
+        {
+          "uid": "org.openmrs.module.allergy-ui-module",
+          "version": "1.8.3"
+        },
+        {
+          "uid": "org.openmrs.module.appframework",
+          "version": "2.16.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointmentscheduling",
+          "version": "1.13.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointment-scheduling-ui-module",
+          "version": "1.9.0"
+        },
+        {
+          "uid": "org.openmrs.module.atlas",
+          "version": "2.2.4"
+        },
+        {
+          "uid": "org.openmrs.module.attachments",
+          "version": "2.4.0"
+        },
+        {
+          "uid": "org.openmrs.module.calculation",
+          "version": "1.2.1"
+        },
+        {
+          "uid": "org.openmrs.module.core-apps-module",
+          "version": "1.31.0"
+        },
+        {
+          "uid": "org.openmrs.module.data-exchange-module",
+          "version": "1.3.6"
+        },
+        {
+          "uid": "org.openmrs.module.emrapi",
+          "version": "1.30.0"
+        },
+        {
+          "uid": "org.openmrs.module.event",
+          "version": "2.8.0"
+        },
+        {
+          "uid": "org.openmrs.module.openmrs-fhir2-module",
+          "version": "1.1.0"
+        },
+        {
+          "uid": "org.openmrs.module.form-entry-app-module",
+          "version": "1.4.2"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentry",
+          "version": "3.12.0"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentryui",
+          "version": "1.11.2"
+        },
+        {
+          "uid": "org.openmrs.module.htmlwidgets",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.idgen",
+          "version": "4.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.legacy-ui-module",
+          "version": "1.8.0"
+        },
+        {
+          "uid": "org.openmrs.module.metadatadeploy",
+          "version": "1.12.1"
+        },
+        {
+          "uid": "org.openmrs.module.metadatamapping",
+          "version": "1.3.5"
+        },
+        {
+          "uid": "org.openmrs.module.metadatasharing",
+          "version": "1.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.open-web-apps-module",
+          "version": "1.12.0"
+        },
+        {
+          "uid": "org.openmrs.module.providermanagement",
+          "version": "2.12.0"
+        },
+        {
+          "uid": "org.openmrs.module.appui",
+          "version": "1.13.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-application-module",
+          "version": "2.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-demo-data-module",
+          "version": "1.4.6"
+        },
+        {
+          "uid": "org.openmrs.module.reference-metadata-module",
+          "version": "2.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.registration-app-module",
+          "version": "1.20.0"
+        },
+        {
+          "uid": "org.openmrs.module.registration-core-module",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting",
+          "version": "1.21.0"
+        },
+        {
+          "uid": "org.openmrs.module.reportingcompatibility",
+          "version": "2.0.7"
+        },
+        {
+          "uid": "org.openmrs.module.reportingrest",
+          "version": "1.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting-ui-module",
+          "version": "1.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.serialization-xstream",
+          "version": "0.2.14"
+        },
+        {
+          "uid": "org.openmrs.module.uicommons",
+          "version": "2.15.0"
+        },
+         {
+          "uid": "org.openmrs.owa.sysadmin",
+          "version": "1.2"
+        },
+        {
+          "uid": "org.openmrs.module.uiframework",
+          "version": "3.19.0"
+        },
+        {
+          "uid": "org.openmrs.module.uilibrary",
+          "version": "2.0.6"
+        },
+        {
+          "uid": "org.openmrs.module.webservices-rest",
+          "version": "2.29.0"
+        }
+      ]
+    },
+    {
+      "uid": "refapp_2.10",
+      "name": "RefApp 2.10",
+      "description": "Included in Reference Application 2.10",
+      "addOns": [
+        {
+          "uid": "org.openmrs.module.addresshierarchy",
+          "version": "2.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.admin-ui-module",
+          "version": "1.3.0"
+        },
+        {
+          "uid": "org.openmrs.module.allergy-ui-module",
+          "version": "1.8.2"
+        },
+        {
+          "uid": "org.openmrs.module.appframework",
+          "version": "2.14.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointmentscheduling",
+          "version": "1.12.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointment-scheduling-ui-module",
+          "version": "1.9.0"
+        },
+        {
+          "uid": "org.openmrs.module.atlas",
+          "version": "2.2"
+        },
+        {
+          "uid": "org.openmrs.module.attachments",
+          "version": "2.2.0"
+        },
+        {
+          "uid": "org.openmrs.module.calculation",
+          "version": "1.2"
+        },
+        {
+          "uid": "org.openmrs.module.core-apps-module",
+          "version": "1.28.0"
+        },
+        {
+          "uid": "org.openmrs.module.data-exchange-module",
+          "version": "1.3.4"
+        },
+        {
+          "uid": "org.openmrs.module.emrapi",
+          "version": "1.28.0"
+        },
+        {
+          "uid": "org.openmrs.module.event",
+          "version": "2.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.openmrs-fhir-module",
+          "version": "1.20.0"
+        },
+        {
+          "uid": "org.openmrs.module.form-entry-app-module",
+          "version": "1.4.2"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentry",
+          "version": "3.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentryui",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.htmlwidgets",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.idgen",
+          "version": "4.5.0"
+        },
+        {
+          "uid": "org.openmrs.module.legacy-ui-module",
+          "version": "1.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.metadatadeploy",
+          "version": "1.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.metadatamapping",
+          "version": "1.3.4"
+        },
+        {
+          "uid": "org.openmrs.module.metadatasharing",
+          "version": "1.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.open-web-apps-module",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.providermanagement",
+          "version": "2.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.appui",
+          "version": "1.12.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-application-module",
+          "version": "2.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-demo-data-module",
+          "version": "1.4.5"
+        },
+        {
+          "uid": "org.openmrs.module.reference-metadata-module",
+          "version": "2.10.2"
+        },
+        {
+          "uid": "org.openmrs.module.registration-app-module",
+          "version": "1.16.0"
+        },
+        {
+          "uid": "org.openmrs.module.registration-core-module",
+          "version": "1.9.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting",
+          "version": "1.20.0"
+        },
+        {
+          "uid": "org.openmrs.module.reportingcompatibility",
+          "version": "2.0.6"
+        },
+        {
+          "uid": "org.openmrs.module.reportingrest",
+          "version": "1.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting-ui-module",
+          "version": "1.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.serialization-xstream",
+          "version": "0.2.14"
+        },
+        {
+          "uid": "org.openmrs.module.uicommons",
+          "version": "2.12.0"
+        },
+         {
+          "uid": "org.openmrs.owa.sysadmin",
+          "version": "1.2"
+        },
+        {
+          "uid": "org.openmrs.module.uiframework",
+          "version": "3.17.0"
+        },
+        {
+          "uid": "org.openmrs.module.uilibrary",
+          "version": "2.0.6"
+        },
+        {
+          "uid": "org.openmrs.module.webservices-rest",
+          "version": "2.28.0"
+        }
+      ]
+    },
+    {
+      "uid": "refapp_2_9",
+      "name": "RefApp 2.9",
+      "description": "Included in Reference Application 2.9",
+      "addOns": [
+        {
+          "uid": "org.openmrs.module.addresshierarchy",
+          "version": "2.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.admin-ui-module",
+          "version": "1.2.4"
+        },
+        {
+          "uid": "org.openmrs.module.allergy-ui-module",
+          "version": "1.8.1"
+        },
+        {
+          "uid": "org.openmrs.module.appframework",
+          "version": "2.13.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointmentscheduling",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.appointment-scheduling-ui-module",
+          "version": "1.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.atlas",
+          "version": "2.2"
+        },
+        {
+          "uid": "org.openmrs.module.attachments",
+          "version": "2.1.0"
+        },
+        {
+          "uid": "org.openmrs.module.calculation",
+          "version": "1.2"
+        },
+        {
+          "uid": "org.openmrs.module.chart-search-module",
+          "version": "2.1.0"
+        },
+        {
+          "uid": "org.openmrs.module.core-apps-module",
+          "version": "1.21.0"
+        },
+        {
+          "uid": "org.openmrs.module.data-exchange-module",
+          "version": "1.3.3"
+        },
+        {
+          "uid": "org.openmrs.module.emrapi",
+          "version": "1.27.0"
+        },
+        {
+          "uid": "org.openmrs.module.event",
+          "version": "2.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.openmrs-fhir-module",
+          "version": "1.18.0"
+        },
+        {
+          "uid": "org.openmrs.module.form-entry-app-module",
+          "version": "1.4.2"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentry",
+          "version": "3.8.0"
+        },
+        {
+          "uid": "org.openmrs.module.htmlformentryui",
+          "version": "1.7.0"
+        },
+        {
+          "uid": "org.openmrs.module.htmlwidgets",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.idgen",
+          "version": "4.5.0"
+        },
+        {
+          "uid": "org.openmrs.module.legacy-ui-module",
+          "version": "1.5.0"
+        },
+        {
+          "uid": "org.openmrs.module.metadatadeploy",
+          "version": "1.11.0"
+        },
+        {
+          "uid": "org.openmrs.module.metadatamapping",
+          "version": "1.3.4"
+        },
+        {
+          "uid": "org.openmrs.module.metadatasharing",
+          "version": "1.5.0"
+        },
+        {
+          "uid": "org.openmrs.module.namephonetics",
+          "version": "1.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.open-web-apps-module",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.providermanagement",
+          "version": "2.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-application-module",
+          "version": "2.9.0"
+        },
+        {
+          "uid": "org.openmrs.module.reference-demo-data-module",
+          "version": "1.4.4"
+        },
+        {
+          "uid": "org.openmrs.module.reference-metadata-module",
+          "version": "2.9.0"
+        },
+        {
+          "uid": "org.openmrs.module.registration-app-module",
+          "version": "1.13.0"
+        },
+        {
+          "uid": "org.openmrs.module.registration-core-module",
+          "version": "1.8.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting",
+          "version": "1.17.0"
+        },
+        {
+          "uid": "org.openmrs.module.reportingcompatibility",
+          "version": "2.0.6"
+        },
+        {
+          "uid": "org.openmrs.module.reportingrest",
+          "version": "1.10.0"
+        },
+        {
+          "uid": "org.openmrs.module.reporting-ui-module",
+          "version": "1.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.serialization-xstream",
+          "version": "0.2.14"
+        },
+        {
+          "uid": "org.openmrs.owa.sysadmin",
+          "version": "1.2"
+        },
+        {
+          "uid": "org.openmrs.module.uicommons",
+          "version": "2.6.0"
+        },
+        {
+          "uid": "org.openmrs.module.uiframework",
+          "version": "3.15.0"
+        },
+        {
+          "uid": "org.openmrs.module.uilibrary",
+          "version": "2.0.6"
+        },
+        {
+          "uid": "org.openmrs.module.webservices-rest",
+          "version": "2.24.0"
         }
       ]
     },

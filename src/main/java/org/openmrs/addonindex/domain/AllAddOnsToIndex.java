@@ -14,31 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Represents the complete list of add-ons that we want to index the versions of.
  * The source of this data is a static file on github (which module authors update via pull requests).
  */
+@Data
+@NoArgsConstructor
 public class AllAddOnsToIndex {
 	
 	private List<AddOnToIndex> toIndex = new ArrayList<>();
 	
 	private List<AddOnList> lists = new ArrayList<>();
-	
-	public List<AddOnToIndex> getToIndex() {
-		return toIndex;
-	}
-	
-	public void setToIndex(List<AddOnToIndex> toIndex) {
-		this.toIndex = toIndex;
-	}
-	
-	public List<AddOnList> getLists() {
-		return lists;
-	}
-	
-	public void setLists(List<AddOnList> lists) {
-		this.lists = lists;
-	}
 	
 	public int size() {
 		return toIndex == null ? 0 : toIndex.size();

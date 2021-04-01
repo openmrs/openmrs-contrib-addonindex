@@ -8,22 +8,21 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.rest.artifactory;
+package org.openmrs.addonindex.rest;
 
-import org.openmrs.addonindex.service.artifactory.VersionsService;
+import java.util.SortedSet;
+
+import org.openmrs.addonindex.service.VersionsService;
 import org.openmrs.addonindex.util.Version;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.SortedSet;
-
 @RestController
 public class CoreVersionsController {
 
-    private VersionsService versionsService;
+    private final VersionsService versionsService;
 
     @Autowired
     public CoreVersionsController(VersionsService versionsService) {
@@ -31,7 +30,7 @@ public class CoreVersionsController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "api/v1/coreversions")
-    public SortedSet<Version> coreversions() throws Exception {
+    public SortedSet<Version> coreversions() {
         return versionsService.getVersions().getVersions();
     }
 }

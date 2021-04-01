@@ -16,10 +16,10 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.NumberUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * Includes methods copied verbatim from OpenMRS's ModuleUtil class
@@ -80,7 +80,7 @@ public class OpenmrsVersionCompareUtil {
 	 */
 	public static boolean matchRequiredVersions(String version, String versionRange) {
 		// There is a null check so no risk in keeping the literal on the right side
-		if (StringUtils.isNotEmpty(versionRange)) {
+		if (StringUtils.hasText(versionRange)) {
 			String[] ranges = versionRange.split(",");
 			for (String range : ranges) {
 				// need to externalize this string
@@ -107,9 +107,9 @@ public class OpenmrsVersionCompareUtil {
 					// only preserve part of the string that match the following format:
 					// - xx.yy.*
 					// - xx.yy.zz*
-					lowerBound = StringUtils.remove(lowerBound, lowerBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
+					lowerBound = StringUtils.delete(lowerBound, lowerBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
 							""));
-					upperBound = StringUtils.remove(upperBound, upperBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
+					upperBound = StringUtils.delete(upperBound, upperBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
 							""));
 					
 					// if the lower contains "*" then change it to zero
@@ -178,8 +178,8 @@ public class OpenmrsVersionCompareUtil {
 				return 0;
 			}
 			
-			List<String> versions = new Vector<String>();
-			List<String> values = new Vector<String>();
+			List<String> versions = new Vector<>();
+			List<String> values = new Vector<>();
 			String separator = "-";
 			
 			// strip off any qualifier e.g. "-SNAPSHOT"
@@ -207,8 +207,19 @@ public class OpenmrsVersionCompareUtil {
 			for (int x = 0; x < versions.size(); x++) {
 				String verNum = versions.get(x).trim();
 				String valNum = values.get(x).trim();
-				Long ver = NumberUtils.toLong(verNum, 0);
-				Long val = NumberUtils.toLong(valNum, 0);
+				Long ver;
+				try {
+					ver = NumberUtils.parseNumber(verNum, Long.class);
+				} catch (NumberFormatException e) {
+					ver = 0L;
+				}
+
+				Long val;
+				try {
+					val = NumberUtils.parseNumber(valNum, Long.class);
+				} catch (NumberFormatException e) {
+					val = 0L;
+				}
 				
 				int ret = ver.compareTo(val);
 				if (ret != 0) {

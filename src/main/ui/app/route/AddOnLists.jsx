@@ -8,48 +8,47 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import {Link} from "react-router";
-import fetch from "isomorphic-fetch";
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
+import { ListGroup, ListGroupItem, Row } from "react-bootstrap";
+import { useQuery } from "react-query";
+import { myFetch } from "../utils";
 
-export default class AddOnLists extends Component {
+export const AddOnLists = () => {
+  const listQuery = useQuery(["collections"], () => myFetch("/api/v1/list"));
 
-    componentDidMount() {
-        fetch('/api/v1/list')
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    this.setState({lists: json});
-                })
-    }
+  const lists = useMemo(() => (!!!listQuery.data ? null : listQuery.data), [
+    listQuery,
+  ]);
 
-    render() {
-        if (this.state && this.state.lists) {
-            return (
-                    <div>
+  if (listQuery.isError) {
+    return <></>;
+  }
 
-                        <h3>Lists</h3>
-                        <ul className="list-group">
-                            {this.state.lists.map(list =>
-                                                          <li className="list-group-item">
-                                                              <Link to={`/list/${list.uid}`}>
-                                                                  <h3>
-                                                                      {list.name}
-                                                                      <small className="push-right">
-                                                                          {list.description}
-                                                                      </small>
-                                                                  </h3>
-                                                              </Link>
-                                                          </li>
-                            )}
-                        </ul>
-                    </div>
-            )
-        }
-        else {
-            return <div>Loading...</div>
-        }
-    }
+  if (listQuery.isLoading) {
+    return <>Loading...</>;
+  }
 
-}
+  return (
+    <>
+      <h3>Collections of Add Ons</h3>
+      <ListGroup>
+        {lists?.map((list) => (
+          <ListGroupItem key={list.uid} style={{ paddingTop: "0.5rem" }}>
+            <Link to={`/list/${list.uid}`}>
+              <Row>
+                <h3 className="col-2 col-sm-3">{list.name}</h3>
+                <h5
+                  className="col-10 col-sm-9"
+                  style={{ paddingTop: "0.3rem", color: "#777" }}
+                >
+                  {list.description ? list.description : ""}
+                </h5>
+              </Row>
+            </Link>
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+    </>
+  );
+};

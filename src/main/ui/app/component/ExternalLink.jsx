@@ -10,10 +10,12 @@
 
 import React from "react";
 
-export default class ExternalLink extends React.Component {
-
-    render() {
-        let title = this.props.link.title ? this.props.link.title : this.props.link.href;
-        return <a target="_blank" href={this.props.link.href}>{title}</a>
-    }
-}
+export const ExternalLink = ({ link, children }) => {
+  const myLink = typeof link === "string" ? { href: link } : link;
+  const title = myLink.title ? myLink.title : myLink.href;
+  return (
+    <a target="_blank" href={myLink.href} rel={myLink.rel}>
+      {children ? children : title}
+    </a>
+  );
+};

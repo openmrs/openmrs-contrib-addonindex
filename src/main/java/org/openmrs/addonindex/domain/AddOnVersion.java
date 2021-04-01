@@ -14,13 +14,20 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.openmrs.addonindex.util.Version;
 
 /**
  * Details about a single version, for use inside {@link AddOnInfoAndVersions}
  */
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@NoArgsConstructor
 public class AddOnVersion implements Comparable<AddOnVersion> {
-	
+
+	@EqualsAndHashCode.Include
 	private Version version;
 	
 	private OffsetDateTime releaseDatetime;
@@ -31,49 +38,15 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	private String requireOpenmrsVersion;
 
+	@EqualsAndHashCode.Include
     private String modulePackage;
 
+	@EqualsAndHashCode.Include
     private String moduleId;
 
     private List<ModuleRequirement> requireModules;
 	
 	private List<String> supportedLanguages;
-	
-	public Version getVersion() {
-		return version;
-	}
-	
-	public void setVersion(Version version) {
-		this.version = version;
-	}
-	
-	public OffsetDateTime getReleaseDatetime() {
-		return releaseDatetime;
-	}
-	
-	public void setReleaseDatetime(OffsetDateTime releaseDatetime) {
-		this.releaseDatetime = releaseDatetime;
-	}
-	
-	public String getDownloadUri() {
-		return downloadUri;
-	}
-	
-	public void setDownloadUri(String downloadUri) {
-		this.downloadUri = downloadUri;
-	}
-	
-	public String getRenameTo() {
-		return renameTo;
-	}
-	
-	public void setRenameTo(String renameTo) {
-		this.renameTo = renameTo;
-	}
-	
-	public String getRequireOpenmrsVersion() {
-		return requireOpenmrsVersion;
-	}
 	
 	public void setRequireOpenmrsVersion(String requireOpenmrsVersion) {
 		// hack to clean out a particular illegal value
@@ -83,38 +56,6 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 		this.requireOpenmrsVersion = requireOpenmrsVersion;
 	}
 
-    public String getModulePackage() {
-        return modulePackage;
-    }
-
-    public void setModulePackage(String modulePackage) {
-        this.modulePackage = modulePackage;
-    }
-
-    public String getModuleId() {
-        return moduleId;
-    }
-
-    public void setModuleId(String moduleId) {
-        this.moduleId = moduleId;
-    }
-
-	public List<ModuleRequirement> getRequireModules() {
-		return requireModules;
-	}
-	
-	public void setRequireModules(List<ModuleRequirement> requireModules) {
-		this.requireModules = requireModules;
-	}
-	
-	public List<String> getSupportedLanguages() {
-		return supportedLanguages;
-	}
-	
-	public void setSupportedLanguages(List<String> supportedLanguages) {
-		this.supportedLanguages = supportedLanguages;
-	}
-	
 	@Override
 	public int compareTo(AddOnVersion other) {
 		if (other == null) {

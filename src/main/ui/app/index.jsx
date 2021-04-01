@@ -1,4 +1,4 @@
-/*
+/*!
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -9,24 +9,53 @@
  */
 
 import React from "react";
-import {render} from "react-dom";
-import {Router, browserHistory} from "react-router";
-import routes from "./routes";
-import ReactGA from 'react-ga';
+import { render } from "react-dom";
+import { Redirect, Route, Switch } from "react-router";
+import { BrowserRouter as Router } from "react-router-dom";
+import {
+  About,
+  AddOnLists,
+  Home,
+  IndexingStatus,
+  SearchPage,
+  Show,
+  ShowList,
+  TopDownloaded,
+} from "./route";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import dayjs from "dayjs/esm/index";
+import relativeTime from "dayjs/esm/plugin/relativeTime";
+import localizedFormat from "dayjs/esm/plugin/localizedFormat";
 import "./sass/addonindex.scss";
+import App from "./App";
 
-if (GA_ID) {
-    ReactGA.initialize(GA_ID);
-}
+// setup fontawesome
+library.add(fas, far);
 
-function trackView() {
-    if (GA_ID) {
-        ReactGA.pageview(window.location.pathname + window.location.search);
-    }
-}
+// setup dayjs
+dayjs.extend(relativeTime);
+dayjs.extend(localizedFormat);
 
 render(
-        <Router onUpdate={trackView} history={browserHistory} routes={routes}/>,
-        document.getElementById('root')
+  <Router>
+    <App>
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/indexingStatus" component={IndexingStatus} />
+        <Route path="/search" component={SearchPage} />
+        <Route path="/show/:uid" component={Show} />
+        <Route path="/show" render={() => <Redirect to={"/"} />} />
+        <Route path="/lists" component={AddOnLists} />
+        <Route path="/list/:uid" component={ShowList} />
+        <Route path="/list" render={() => <Redirect to={"/lists"} />} />
+        <Route path="/topDownloaded" component={TopDownloaded} />
+        <Route exact path="/" component={Home} />
+        <Route render={() => <Redirect to={"/"} />} />
+      </Switch>
+    </App>
+  </Router>,
+  document.getElementById("root")
 );

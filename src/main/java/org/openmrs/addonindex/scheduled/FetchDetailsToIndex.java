@@ -10,6 +10,12 @@
 
 package org.openmrs.addonindex.scheduled;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,12 +26,7 @@ import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
+import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.SupportsDownloadCounts;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -36,8 +37,6 @@ import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.domain.IndexingStatus;
 import org.openmrs.addonindex.service.IndexingService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -55,15 +54,14 @@ import org.xml.sax.InputSource;
  * For each of the Add-Ons we're supposed to index, uses its backend handler to fetch details and available versions
  */
 @Component
+@Slf4j
 public class FetchDetailsToIndex {
-	
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	private IndexingService indexingService;
-	
-	private RestTemplateBuilder restTemplateBuilder;
 
-	private DocumentBuilderFactory documentBuilderFactory;
+	private final IndexingService indexingService;
+	
+	private final RestTemplateBuilder restTemplateBuilder;
+
+	private final DocumentBuilderFactory documentBuilderFactory;
 
 	@Autowired
 	public FetchDetailsToIndex(IndexingService indexingService,
@@ -82,16 +80,13 @@ public class FetchDetailsToIndex {
 			fixedDelayString = "${scheduler.fetch_details_to_index.period}")
 	public void run() {
 		AllAddOnsToIndex allToIndex = indexingService.getAllToIndex();
-		logger.info("Fetching details for " + allToIndex.size() + " add-ons");
+		log.info("Fetching details for {} add-ons", allToIndex.size());
 		for (AddOnToIndex toIndex : allToIndex.getToIndex()) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Running scheduled index for " + toIndex.getUid());
-			}
+			log.debug("Running scheduled index for {}", toIndex.getUid());
 			try {
 				getDetailsAndIndex(toIndex);
-			}
-			catch (Exception e) {
-				logger.error("Error getting details for " + toIndex.getUid(), e);
+			} catch (Exception e) {
+				log.error("Error getting details for {}", toIndex.getUid(), e);
 			}
 		}
 	}
@@ -100,13 +95,13 @@ public class FetchDetailsToIndex {
 		this.fetchExtraDetails = fetchExtraDetails;
 	}
 	
-	void getDetailsAndIndex(AddOnToIndex toIndex) throws Exception {
+	void getDetailsAndIndex(AddOnToIndex toIndex) {
 		indexingService.getIndexingStatus().setStatus(toIndex, IndexingStatus.Status.indexingNow());
 		try {
 			BackendHandler handler = indexingService.getHandlerFor(toIndex);
 			AddOnInfoAndVersions infoAndVersions = handler.getInfoAndVersionsFor(toIndex);
-			if (logger.isDebugEnabled()) {
-				logger.debug(toIndex.getUid() + " has " + infoAndVersions.getVersions().size() + " versions");
+			if (log.isDebugEnabled()) {
+				log.debug("{} has {} versions", toIndex.getUid(), infoAndVersions.getVersions().size());
 			}
 			
 			if (fetchExtraDetails) {
@@ -122,7 +117,7 @@ public class FetchDetailsToIndex {
 					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
 		}
 		catch (Exception ex) {
-			logger.error("Error indexing " + toIndex.getUid(), ex);
+			log.error("Error indexing {}", toIndex.getUid(), ex);
 			indexingService.getIndexingStatus().setStatus(toIndex, IndexingStatus.Status.error(ex));
 		}
 	}
@@ -138,16 +133,15 @@ public class FetchDetailsToIndex {
 						existingVersion.get().getDownloadUri().equals(version.getDownloadUri()) &&
 						(version.getReleaseDatetime() == null ||
 								 version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
-					if (logger.isDebugEnabled()) {
-						logger.debug("Using existing data for " + toIndex.getUid() + " version " + version.getVersion());
-					}
+
+					log.debug("Using existing data for {} versions {}", toIndex.getUid(), version.getVersion());
 					iter.set(existingVersion.get());
 					continue;
 				}
 			}
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
-					logger.info("Fetching OMOD for " + toIndex.getUid() + " " + version.getVersion());
+					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
 					String configXml = fetchConfigXml(toIndex, version);
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
@@ -157,26 +151,28 @@ public class FetchDetailsToIndex {
 				}
 			}
 			catch (Exception ex) {
-				logger.warn("Error fetching/parsing details of " + toIndex.getUid() + ":" + version.getVersion(), ex);
+				log.warn("Error fetching/parsing details of {}:{}", toIndex.getUid(), version.getVersion(), ex);
 				// don't fail here, keep going
 			}
 		}
 	}
 	
 	String fetchConfigXml(AddOnToIndex addOnToIndex, AddOnVersion addOnVersion) throws IOException {
-		logger.info("fetching config.xml from " + addOnVersion.getDownloadUri());
+		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
 		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.getDownloadUri(), Resource.class);
-		try (
-				InputStream inputStream = resource.getInputStream();
-				ZipInputStream zis = new ZipInputStream(new BufferedInputStream(inputStream))
-		) {
-			ZipEntry entry;
-			while ((entry = zis.getNextEntry()) != null) {
-				if (entry.getName().equals("config.xml")) {
-					return StreamUtils.copyToString(zis, Charset.defaultCharset());
+		if (resource != null) {
+			try (InputStream inputStream = resource.getInputStream();
+			     ZipInputStream zis = new ZipInputStream(new BufferedInputStream(inputStream))
+			) {
+				ZipEntry entry;
+				while ((entry = zis.getNextEntry()) != null) {
+					if (entry.getName().equals("config.xml")) {
+						return StreamUtils.copyToString(zis, Charset.defaultCharset());
+					}
 				}
 			}
 		}
+
 		return null;
 	}
 	

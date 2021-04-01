@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ListController {
 	
-	private IndexingService indexingService;
+	private final IndexingService indexingService;
 	
 	@Autowired
 	public ListController(IndexingService indexingService) {
@@ -46,7 +46,7 @@ public class ListController {
 			}
 			list = indexingService.getAllToIndex().getLists().get(0);
 		} else {
-			list = indexingService.getAllToIndex().getListByUid(uid).get();
+			list = indexingService.getAllToIndex().getListByUid(uid).orElseGet(AddOnList::new);
 		}
 		return indexingService.materialize(list);
 	}

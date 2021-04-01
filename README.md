@@ -48,14 +48,14 @@ CI does `npm run build:prod` which minimizes js/css.
 You need to be running ElasticSearch to run this application. To run this using Docker, do:
 
 	> mkdir esdata
-    > docker run --name es-addons -v "$PWD/esdata":/usr/share/elasticsearch/data -d -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms1g -Xmx1g" elasticsearch:5.1
+    > docker run --name es-addons -p 9200:9200 -p 9300:9300 -v "${PWD}/esdata:/usr/share/elasticsearch/data" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.11.0
 
 If you aren't running ElasticSearch on `http://localhost:9200` then you'll need to set `spring.elasticsearch.jest.uris` in
  your custom application config. (See below for how to set this configuration.) 
 
 ### Building and running the server
 
-You must have Java 8.
+You must have Java 11.
 
 IntelliJ IDEA has nice support for Spring Boot: you can create a Run Configuration for the Application class. 
 
@@ -73,11 +73,11 @@ We include `spring-boot-devtools` in this project, so any changes on the classpa
 running application, and it is restarted if necessary. (In IntelliJ you would trigger this with the Build Project 
 command, which is Command-F9 on OSX.)
 
-Thus the workflow of doing front-end development is:
+Thus, the workflow of doing front-end development is:
   
 1. (First, run the application in IntelliJ)
 1. Make changes to the javascript code
-1. `(in src/main/ui) npm run build:dev` (set up an IDE Run Configuration for this)
+1. (in `src/main/ui`) `npm run build:dev` (set up an IDE Run Configuration for this)
 1. In IntelliJ, `Build Project`
 1. Refresh your browser window
 
@@ -98,18 +98,13 @@ This application is bandwidth-heavy on its first run (e.g. it downloads all OMOD
     scheduler:
       fetch_details_to_index:
         fetch_extra_details: false
- 
- ### Dev Notes
- 
- If you add any new routes to the JS application you must ensure that they are listed in the `addViewControllers` method in 
- [WebMvcConfiguration.java](src/main/java/configuration/WebMvcConfiguration.java). (See the comment in that file for why.)
- 
+
 ## Docker Packaging
 
 In order to deploy this to OpenMRS staging infrastructure, we package this application as a docker container and publish it 
-to  dockerhub as `openmrs/addonindex`. You would do this manually as
+to [dockerhub](https://hub.docker.com/) as `openmrs/addonindex`. You would do this manually as
 
-    mvn package docker:build
+    mvn package spring-build:build-image
     
 but CI builds it automatically, so you don't need to do this.
 

@@ -1,4 +1,13 @@
 # default application settings (can be overridden according to Spring Boot docs)
+server:
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
 
 core_version_list: # where to fetch list of OpenMRS core versions
   url: https://openmrs.jfrog.io/openmrs/api/storage/public/org/openmrs/api/openmrs-api/
@@ -31,6 +40,5 @@ scheduler:
       initial_delay: 10000  # wait 10 seconds to start
       period: 1800000       # execute 30 minutes
 
-
-spring.elasticsearch.jest:
-  uris: http://localhost:9200
+elasticsearch:
+  url: http://localhost:9200

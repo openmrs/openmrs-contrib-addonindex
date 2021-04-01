@@ -8,88 +8,105 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
+import { useQuery } from "react-query";
+import { myFetch } from "../utils";
+import { Badge, Col, Row } from "react-bootstrap";
 
-export default class IndexingStatus extends Component {
+// 10 seconds
+const LIVE_REFETCH_INTERVAL = 10 * 1000;
+// 5 minutes
+const LONG_REFETCH_INTERVAL = 5 * 60 * 1000;
 
-    componentDidMount() {
-        fetch('/api/v1/indexingstatus')
-                .then(response => {
-                    return response.json();
-                })
-                .then(status => {
-                    this.setState({status: status});
-                })
+export const IndexingStatus = () => {
+  const [refetchInterval, setRefetchInterval] = useState(LIVE_REFETCH_INTERVAL);
+
+  const indexingStatusQuery = useQuery(
+    ["indexingStatus"],
+    () => myFetch("/api/v1/indexingstatus"),
+    {
+      refetchOnWindowFocus: "always",
+      refetchInterval: refetchInterval,
+    }
+  );
+
+  const status = useMemo(() => indexingStatusQuery.data, [
+    indexingStatusQuery.data,
+  ]);
+
+  const [okay, error, pending] = useMemo(() => {
+    if (!!!status?.statuses) {
+      return [null, null, null];
     }
 
-    render() {
-        if (this.state && this.state.status) {
-            let okay = 0;
-            let error = 0;
-            let pending = 0;
-            this.state.status.toIndex.toIndex.forEach(i => {
-                const stat = this.state.status.statuses[i.uid];
-                if (stat) {
-                    if (stat.error) {
-                        error += 1;
-                    }
-                    else {
-                        okay += 1;
-                    }
-                }
-                else {
-                    pending += 1;
-                }
+    let [okay, error, pending] = [0, 0, 0];
+    Object.values(status.toIndex?.toIndex).forEach((addOn) => {
+      const addOnStatus = status.statuses[addOn.uid];
+      if (addOnStatus) {
+        if (addOnStatus.error) {
+          error += 1;
+        } else {
+          okay += 1;
+        }
+      } else {
+        pending += 1;
+      }
+    });
 
-            });
-            return (
-                    <div>
-                        <h3>
-                            Indexing Status
-                            &nbsp;
-                            {error ?
-                             <span className="label label-danger">Error: {error}</span>
-                                    :
-                             null
-                            }
-                            &nbsp;
-                            {pending ?
-                             <span className="label label-info">Pending: {pending}</span>
-                                    :
-                             null
-                            }
-                            &nbsp;
-                            {okay ?
-                             <span className="label label-success">Okay: {okay}</span>
-                                    :
-                             null
-                            }
-                        </h3>
-                        <hr/>
-                        <table>
-                            { this.state.status.toIndex.toIndex.map(i =>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    {i.uid}
-                                                                                    <br/>
-                                                                                    {this.state.status.statuses[i.uid] && this.state.status.statuses[i.uid].error ?
-                                                                                     <span className="label label-danger">Error</span>
-                                                                                            :
-                                                                                     <span className="label label-success">Okay</span>
-                                                                                    }
-                                                                                </td>
-                                                    <td>
-                                                        <pre>{JSON.stringify(this.state.status.statuses[i.uid], null, 2)}</pre>
-                                                    </td>
-                                                                            </tr>
-                            )}
-                        </table>
-                    </div>
-            )
-        }
-        else {
-            return <div>Loading...</div>
-        }
+    return [okay, error, pending];
+  }, [status]);
+
+  useEffect(() => {
+    if (pending === 0) {
+      if (refetchInterval === LIVE_REFETCH_INTERVAL) {
+        setRefetchInterval(LONG_REFETCH_INTERVAL);
+      }
+    } else {
+      if (refetchInterval === LONG_REFETCH_INTERVAL) {
+        setRefetchInterval(LIVE_REFETCH_INTERVAL);
+      }
     }
+  }, [pending, refetchInterval]);
 
-}
+  if (indexingStatusQuery.isLoading) {
+    return <>Loading...</>;
+  }
+
+  if (indexingStatusQuery.isError) {
+    return <></>;
+  }
+
+  return (
+    <>
+      <h3>
+        Indexing Status &nbsp;
+        {error ? <Badge variant="danger">Error: {error}</Badge> : null}
+        &nbsp;
+        {pending ? <Badge variant="info">Pending: {pending}</Badge> : null}
+        &nbsp;
+        {okay ? <Badge variant="success">Okay: {okay}</Badge> : null}
+      </h3>
+      <hr />
+      {status?.toIndex?.toIndex?.map((addOn) => (
+        <Fragment key={addOn.uid}>
+          <Row xs={2}>
+            <Col>
+              <strong>{addOn.uid}</strong>
+              <br />
+              <br />
+              {status.statuses[addOn.uid]?.error ? (
+                <Badge variant="danger">Error</Badge>
+              ) : (
+                <Badge variant="success">Okay</Badge>
+              )}
+            </Col>
+            <Col>
+              <pre>{JSON.stringify(status?.statuses[addOn.uid], null, 2)}</pre>
+            </Col>
+          </Row>
+          <hr width="100%" />
+        </Fragment>
+      ))}
+    </>
+  );
+};

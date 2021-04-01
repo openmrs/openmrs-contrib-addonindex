@@ -1,25 +1,24 @@
 package org.openmrs.addonindex;
 
+import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.matchesPattern;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Pattern;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.backend.Bintray;
 import org.openmrs.addonindex.backend.Modulus;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
@@ -31,51 +30,45 @@ import org.openmrs.addonindex.domain.Link;
 import org.openmrs.addonindex.domain.Maintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * The idea is that the add-ons-to-index.json file represents all the modules we want to index, and the application will
  * periodically refresh it from github. Further, we expect module authors to submit pull requests modifying that file
  * in order to add their own modules for indexing. This class will test for various scenarios to ensure the file remains
  * well-formed, consistent, and doesn't violate any constraints. (CI should report if any PRs violate these tests.)
- *
- * @throws Exception
  */
-@RunWith(SpringRunner.class)
 @JsonTest
 public class IndexingServiceTest {
 	
 	@Autowired
-	private ObjectMapper mapper;
+	private ObjectMapper objectMapper;
 	
 	private AllAddOnsToIndex toIndex;
 	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		InputStream resourceStream = getClass().getClassLoader().getResourceAsStream("add-ons-to-index.json");
-		toIndex = mapper.readValue(resourceStream, AllAddOnsToIndex.class);
+		toIndex = objectMapper.readValue(resourceStream, AllAddOnsToIndex.class);
 	}
 	
 	@Test
-	public void testParseable() throws Exception {
+	public void testParseable() {
 		assertThat(toIndex.size(), not(0));
 		assertThat(toIndex.getToIndex().get(0).getName(), notNullValue());
 	}
 	
 	@Test
-	public void testUidPresentAndUnique() throws Exception {
+	public void testUidPresentAndUnique() {
 		Set<String> already = new HashSet<>();
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
-			assertNotNull("UID is required", addOn.getUid());
-			assertFalse("UID is not unique:" + addOn.getUid(), already.contains(addOn.getUid()));
+			assertThat("UID is required", addOn.getUid(), notNullValue());
+			assertThat("UID is not unique:" + addOn.getUid(), already, not(hasItem(addOn.getUid())));
 			already.add(addOn.getUid());
 		}
 	}
 	
 	@Test
-	public void testNamesAndDescriptionPresentAndNotTooLong() throws Exception {
+	public void testNamesAndDescriptionPresentAndNotTooLong() {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getName(), notNullValue());
 			assertThat(addOn.getName().length(), lessThan(100));
@@ -87,7 +80,7 @@ public class IndexingServiceTest {
 	}
 	
 	@Test
-	public void testMaintainersPresentAndNamesNotTooLong() throws Exception {
+	public void testMaintainersPresentAndNamesNotTooLong() {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getMaintainers(), notNullValue());
 			assertThat("maintainers for " + addOn.getUid(), addOn.getMaintainers().size(), greaterThan(0));
@@ -99,7 +92,7 @@ public class IndexingServiceTest {
 	}
 	
 	@Test
-	public void testLinksHaveRelAndHrefAndOptionalTitle() throws Exception {
+	public void testLinksHaveRelAndHrefAndOptionalTitle() {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			if (addOn.getLinks() != null) {
 				for (Link link : addOn.getLinks()) {
@@ -116,10 +109,11 @@ public class IndexingServiceTest {
 	}
 	
 	@Test
-	public void testModuleBackendDetails() throws Exception {
+	public void testModuleBackendDetails() {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getBackend(), notNullValue());
 		}
+
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			if (addOn.getBackend().equals(Modulus.class)) {
 				assertThat(addOn.getModulusDetails().getId(), notNullValue());
@@ -137,7 +131,7 @@ public class IndexingServiceTest {
 	}
 	
 	@Test
-	public void testListsHaveNames() throws Exception {
+	public void testListsHaveNames() {
 		for (AddOnList list : toIndex.getLists()) {
 			assertThat(list.getName(), notNullValue());
 			assertThat(list.getAddOns(), hasSize(greaterThan(0)));
@@ -145,23 +139,23 @@ public class IndexingServiceTest {
 	}
 	
 	@Test
-	public void testListsReferToAddOnsThatWeAreIndexing() throws Exception {
+	public void testListsReferToAddOnsThatWeAreIndexing() {
 		for (AddOnList list : toIndex.getLists()) {
 			for (AddOnReference reference : list.getAddOns()) {
-				assertTrue(reference.getUid() + " does not refer to an indexed add-on",
-						toIndex.getAddOnByUid(reference.getUid()).isPresent());
+				assertThat(reference.getUid() + " does not refer to an indexed add-on",
+						toIndex.getAddOnByUid(reference.getUid()), optionalWithValue());
 			}
 		}
 	}
 	
 	@Test
-	public void testTagsHaveNoWhitespace() throws Exception {
+	public void testTagsHaveNoWhitespace() {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			if (addOn.getTags() != null) {
 				for (String tag : addOn.getTags()) {
-					assertThat(tag, not(isEmptyOrNullString()));
-					assertTrue("Tag should not have whitespace: \"" + tag + "\" (" + addOn.getUid() + ")",
-							Pattern.matches("[^\\s]*", tag));
+					assertThat(tag, not(emptyOrNullString()));
+					assertThat("Tag should not have whitespace: \"" + tag + "\" (" + addOn.getUid() + ")",
+							tag, matchesPattern("[^\\s]*"));
 				}
 			}
 		}

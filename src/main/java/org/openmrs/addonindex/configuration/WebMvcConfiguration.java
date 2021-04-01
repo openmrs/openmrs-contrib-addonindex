@@ -11,39 +11,67 @@
 package org.openmrs.addonindex.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
-public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
-	
-	@Override
-	public void configurePathMatch(PathMatchConfigurer configurer) {
-		// Fix handling of /api/v1/addon/org.openmrs.module.appui (otherwise appui is treated as a file extension)
-		configurer.setUseRegisteredSuffixPatternMatch(true);
-	}
-	
+public class WebMvcConfiguration implements WebMvcConfigurer {
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		// It's okay to make cross-origin requests to our API. For example we specifically expect that the OpenMRS OWA for
-		// managing modules will do this.
-		registry.addMapping("/**");
+		// I don't suppose there's too much of a risk to enabling CORS for everywhere, but here we restrict things to
+		// the known API paths. Of course, Spring's @CrossOrigin annotation could be used to enable CORS for URLs that
+		// don't match these patterns
+
+		registry
+				.addMapping("/api/**")
+				.allowedMethods(RequestMethod.GET.name())
+				.maxAge(1800L);
+
+		registry
+				.addMapping("/{path:^modul(?:us|es)$}/**")
+				.allowedMethods(RequestMethod.GET.name())
+				.maxAge(1800L);
 	}
-	
+
 	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		// Our ReactJS app is served from the root path, and we want to support using the HTML5 history API for routing
-		// and support deep links. But we also want to support REST controllers, e.g. at /api/**. We can't figure out a
-		// way to do a wildcard-except-for-api, so instead we map each individual route from the JS app here:
-		super.addViewControllers(registry);
-		registry.addViewController("/about").setViewName("forward:/index.html");
-		registry.addViewController("/indexingStatus").setViewName("forward:/index.html");
-		registry.addViewController("/search").setViewName("forward:/index.html");
-		registry.addViewController("/show/**").setViewName("forward:/index.html");
-		registry.addViewController("/lists").setViewName("forward:/index.html");
-		registry.addViewController("/list/**").setViewName("forward:/index.html");
-		registry.addViewController("/topDownloaded").setViewName("forward:/index.html");
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// This is a little verbose, but it allows us to serve static content correctly and not need to manually map
+		// every app URL in two places. Basically, everything is treated as either:
+		//  1. A request for a known API (whether legacy or the REST API)
+		//  2. A request for a static resource from a known location
+		//  3. A request that should be resolved to the default SPA page.
+
+		registry
+				.addResourceHandler("/app/**")
+				.setCachePeriod(Integer.MAX_VALUE)
+				.addResourceLocations("classpath:/static/app/");
+
+		registry
+				.addResourceHandler("/images/**")
+				.setCachePeriod(0)
+				.addResourceLocations("classpath:/static/images/");
+
+		registry
+				.addResourceHandler("/favicon.ico")
+				.setCachePeriod(0)
+				.addResourceLocations("classpath:/static/");
+
+		registry
+				.addResourceHandler("/", "/**")
+				.setCachePeriod(0)
+				.addResourceLocations("classpath:/static/index.html")
+				.resourceChain(true)
+				.addResolver(new PathResourceResolver() {
+
+					@Override
+					protected Resource getResource(String resourcePath, Resource location) {
+						return location.exists() && location.isReadable() ? location : null;
+					}
+				});
 	}
 }

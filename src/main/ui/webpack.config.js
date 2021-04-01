@@ -7,59 +7,84 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+const { resolve } = require("path");
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = function (env) {
-    const BUNDLE_FILENAME = env === "prod" ? "app/bundle.min.js" : "app/bundle.js";
-    const CSS_FILENAME = env === "prod" ? "app/styles.min.css" : "app/styles.css";
-
-    return {
-        entry: './app/index.jsx',
-        output: {
-            filename: BUNDLE_FILENAME,
-            publicPath: '/',
-            path: '../resources/static'
+  return {
+    entry: "./app/index.jsx",
+    output: {
+      filename: env.prod
+        ? "app/bundle.[contenthash].min.js"
+        : "app/bundle.[contenthash].js",
+      publicPath: "/",
+      path: resolve(__dirname, "../../../target/classes/static"),
+    },
+    optimization: {
+      runtimeChunk: "single",
+      splitChunks: {
+        chunks: "all",
+      },
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: resolve(__dirname, "node_modules"),
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
         },
-        module: {
-            rules: [
-                {
-                    test: /\.jsx?$/,
-                    exclude: 'node_modules',
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['es2015', 'react']
-                    }
-                },
-                {
-                    test: /\.scss$/,
-                    exclude: /node_modules/,
-                    use: ExtractTextPlugin.extract({
-                                                       loader: ["css-loader", "sass-loader"],
-                                                       fallbackLoader: "style-loader"
-                                                   })
-                    // use: ['style-loader', 'css-loader', 'sass-loader']
-                }
-            ]
+        {
+          test: /\.js$/,
+          enforce: "pre",
+          use: ["source-map-loader"],
         },
-        plugins: [
-            new ExtractTextPlugin(CSS_FILENAME),
-            new HtmlWebpackPlugin({
-                template: 'index.ejs'
-            }),
-            new webpack.DefinePlugin({
-                GA_ID: env === 'prod' ? JSON.stringify('UA-16695719-3') : undefined
-            })
-        ],
-        resolve: {
-            extensions: ['.js', '.json', '.jsx']
+        {
+          test: /\.scss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                sourceMap: env.prod,
+              },
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                sourceMap: env.prod,
+              },
+            },
+          ],
         },
-        externals: { // JS libraries that we link from a CDN in index.ejs
-            'react': 'React',
-            'react-dom': 'ReactDOM',
-            'react-router': 'ReactRouter'
-        }
-    }
-}
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename:
+          env === "prod"
+            ? "app/styles.[contenthash].min.css"
+            : "app/styles.[contenthash].css",
+      }),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ["app/"],
+      }),
+      new webpack.ids.HashedModuleIdsPlugin(),
+      new HtmlWebpackPlugin({
+        template: resolve(__dirname, "index.ejs"),
+      }),
+      new webpack.DefinePlugin({
+        GA_ID: env.prod ? JSON.stringify("UA-16695719-3") : undefined,
+      }),
+    ],
+    resolve: {
+      extensions: [".js", ".json", ".jsx"],
+    },
+  };
+};

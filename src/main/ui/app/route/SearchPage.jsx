@@ -8,95 +8,39 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import {Component} from "react";
-import fetch from "isomorphic-fetch";
-import SearchBox from "../component/SearchBox";
-import AddOnList from "../component/AddOnList";
+import React, { useMemo } from "react";
+import { useSearchParams } from "../hooks";
+import { useQuery } from "react-query";
+import { handleParam, myFetch } from "../utils";
+import { AddOnList, SearchBox } from "../component";
 
-export default class SearchPage extends Component {
+export const SearchPage = () => {
+  const { type, q, tag } = useSearchParams();
 
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+  const searchQuery = useQuery(["search", type, q, tag], () => {
+    const searchParams = new URLSearchParams();
+    handleParam("type", type, searchParams);
+    handleParam("q", q, searchParams);
+    handleParam("tag", tag, searchParams);
 
-    componentDidMount() {
-        this.doSearch();
-    }
+    return myFetch(`/api/v1/addon?${searchParams.toString()}`);
+  });
 
-    componentDidUpdate(prevProps) {
-        if (this.props.location.query !== prevProps.location.query) {
-            this.doSearch();
-        }
-    }
+  const searchResults = useMemo(() => searchQuery.data, [searchQuery.data]);
 
-    doSearch() {
-        const query = this.props.location.query.q;
-        const type = this.props.location.query.type;
-	const tag = this.props.location.query.tag;
-	const searchKey = `type:${type ? type : "all"} query:${query ? query : ""} tag:${tag ? tag : ""}`;
-
-        if (this.state.latestSearch === searchKey) {
-            return;
-        }
-
-        this.handleStartSearch(searchKey);
-
-        let url = "/api/v1/addon?";
-        if (type) {
-            url += "type=" + type;
-        }
-        if (query) {
-			url += "&q=" + query;
-		}
-		if (tag) {
-			url += "&tag=" + tag;
-		}
-        fetch(url)
-                .then(response => {
-                    return response.json();
-                })
-                .then(json => {
-                    this.handleSearchResults(searchKey, json);
-                });
-    }
-
-    handleStartSearch(searchKey) {
-        this.setState({
-                          latestSearch: searchKey
-                      });
-    }
-
-    handleSearchResults(searchKey, searchResults) {
-        if (this.state.latestSearch === searchKey) {
-            this.setState({
-                              latestSearch: null,
-                              searchResults: searchResults
-                          });
-        }
-    }
-
-    render() {
-        if (this.state && this.state.error) {
-            return <div>{this.state.error}</div>
-        }
-        else {
-            return (
-                    <div>
-                        <SearchBox initialQuery={this.props.location.query.q}/>
-
-                        {this.state.latestSearch ?
-                         <div>Searching for {this.state.latestSearch}</div>
-                                :
-                         this.state.searchResults ?
-                         <AddOnList addons={this.state.searchResults}
-                                    heading={`${this.state.searchResults.length} result(s)`}/>
-                                 :
-                         <div>No results</div>
-                        }
-                    </div>
-            )
-        }
-    }
-
-}
+  return (
+    <>
+      <SearchBox />
+      {searchResults ? (
+        <AddOnList
+          addOns={searchResults}
+          heading={`${searchResults.length} result(s)`}
+        />
+      ) : searchQuery.isLoading ? (
+        <>Searching for {q}...</>
+      ) : (
+        <>No results</>
+      )}
+    </>
+  );
+};

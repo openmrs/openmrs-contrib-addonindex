@@ -20,7 +20,6 @@ public interface SupportsDownloadCounts extends BackendHandler {
      * @param toIndex
      * @param infoAndVersions
      * @return
-     * @throws Exception
      */
-    void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception;
+    void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions);
 }

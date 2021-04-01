@@ -1,23 +1,21 @@
 package org.openmrs.addonindex.backend;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
+import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * This test makes an HTTP call to the OpenMRS maven repo. Unignore this if you want to do manual troubleshooting.
+ * This test makes an HTTP call to the OpenMRS maven repo. Enable this if you want to do manual troubleshooting.
  */
-@Ignore
-@RunWith(SpringRunner.class)
+@Disabled
 @SpringBootTest
 public class OpenmrsMavenRepoManualTest {
 	

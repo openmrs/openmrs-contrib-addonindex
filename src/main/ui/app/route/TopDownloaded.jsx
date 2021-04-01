@@ -8,52 +8,50 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-import AddOn from "../component/AddOn";
+import React, { useMemo } from "react";
+import { AddOn } from "../component";
+import { useQuery } from "react-query";
+import { myFetch } from "../utils";
+import { Col, Row } from "react-bootstrap";
 
-export default class TopDownloaded extends React.Component {
+export const TopDownloaded = () => {
+  const downloadQuery = useQuery(["topdownloaded"], () =>
+    myFetch("/api/v1/topdownloaded")
+  );
 
-    componentDidMount() {
-        fetch('/api/v1/topdownloaded')
-                .then(response => {
-                    if (response.status >= 400) {
-                        throw new Error(response.statusText);
-                    }
-                    else {
-                        return response.json();
-                    }
-                })
-                .then(list => {
-                    this.setState({topDownloaded: list});
-                })
-                .catch(err => {
-                    this.setState({error: err});
-                });
-    }
+  const topDownloaded = useMemo(() => downloadQuery.data, [downloadQuery]);
 
-    render() {
-        if (this.state && this.state.error) {
-            return <div>{this.state.error}</div>
-        }
-        else if (this.state && this.state.topDownloaded) {
-            return <div>
-                <h1>Most Downloaded in the last 30 days</h1>
-                {this.state.topDownloaded.map(a => {
-                    return (
-                            <div className="row most-downloaded-item" key={a.summary.uid}>
-                                <div className="col-md-1 col-sm-1 col-xs-1">
-                                    <h3 className="text-center">{a.downloadCount}</h3>
-                                </div>
-                                <div className="col-md-11 col-sm-11 col-xs-11">
-                                    <AddOn key={a.summary.uid} addon={a.summary}/>
-                                </div>
-                            </div>
-                    )
-                })}
-            </div>
-        }
-        else {
-            return <div>Loading...</div>
-        }
-    }
-}
+  if (downloadQuery.isError) {
+    return <>{downloadQuery.error.toString()}</>;
+  }
+
+  if (downloadQuery.isLoading) {
+    // TODO
+    return <>Loading...</>;
+  }
+
+  return (
+    <>
+      <h1>Most Downloaded in the last 30 days</h1>
+      {downloadQuery.isLoading && (
+        <Row>
+          <Col className="offset-1">
+            <>Loading...</>
+          </Col>
+        </Row>
+      )}
+      {topDownloaded?.map((a) => {
+        return (
+          <Row key={a.summary.uid}>
+            <Col xs={1}>
+              <h4 style={{ marginTop: "1.4rem" }}>{a.downloadCount}</h4>
+            </Col>
+            <Col xs={11}>
+              <AddOn addOn={a.summary} />
+            </Col>
+          </Row>
+        );
+      })}
+    </>
+  );
+};

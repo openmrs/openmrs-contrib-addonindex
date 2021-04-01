@@ -1,90 +1,91 @@
 {
-  "add_on_info_and_versions": {
-    "properties": {
-      "moduleId": {
-        "type": "keyword"
-      },
-      "modulePackage": {
-        "type": "keyword"
-      },
-      "type": {
-        "type": "keyword"
-      },
-      "status": {
-        "type": "keyword"
-      },
-      "name": {
-        "type": "text"
-      },
-      "description": {
-        "type": "text"
-      },
-      "tags": {
-        "type": "keyword"
-      },
-      "links": {
-        "type": "nested",
-        "properties": {
-          "rel": {
-            "type": "keyword"
-          },
-          "href": {
-            "type": "keyword",
-            "index": false
-          },
-          "title": {
-            "type": "text"
-          }
-        }
-      },
-      "hostedUrl": {
-        "type": "keyword",
-        "index": false
-      },
-      "versions": {
-        "type": "nested",
-        "properties": {
-          "moduleId": {
-            "type": "keyword"
-          },
-          "modulePackage": {
-            "type": "keyword"
-          },
-          "version": {
-            "type": "keyword"
-          },
-          "releaseDatetime": {
-            "type": "date"
-          },
-          "downloadUri": {
-            "type": "keyword",
-            "index": false
-          },
-          "renameTo": {
-            "type": "keyword",
-            "index": false
-          },
-          "requireOpenmrsVersion": {
-            "type": "text",
-            "index": false
-          },
-          "requireModules": {
-            "type": "nested",
-            "properties": {
-              "module": {
-                "type": "text"
-              },
-              "version": {
-                "type": "text",
-                "index": false
-              }
-            }
-          },
-          "supportedLanguages": {
-            "type": "keyword"
-          }
+  "properties": {
+    "moduleId": {
+      "type": "keyword"
+    },
+    "modulePackage": {
+      "type": "keyword"
+    },
+    "type": {
+      "type": "keyword"
+    },
+    "status": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tags": {
+      "type": "keyword"
+    },
+    "links": {
+      "type": "nested",
+      "properties": {
+        "rel": {
+          "type": "keyword"
+        },
+        "href": {
+          "type": "keyword",
+          "index": false
+        },
+        "title": {
+          "type": "text"
         }
       }
+    },
+    "hostedUrl": {
+      "type": "keyword",
+      "index": false
+    },
+    "versions": {
+      "type": "nested",
+      "properties": {
+        "moduleId": {
+          "type": "keyword"
+        },
+        "modulePackage": {
+          "type": "keyword"
+        },
+        "version": {
+          "type": "keyword"
+        },
+        "releaseDatetime": {
+          "type": "date"
+        },
+        "downloadUri": {
+          "type": "keyword",
+          "index": false
+        },
+        "renameTo": {
+          "type": "keyword",
+          "index": false
+        },
+        "requireOpenmrsVersion": {
+          "type": "text",
+          "index": false
+        },
+        "requireModules": {
+          "type": "nested",
+          "properties": {
+            "module": {
+              "type": "text"
+            },
+            "version": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
+        "supportedLanguages": {
+          "type": "keyword"
+        }
+      }
+    },
+    "downloadCountInLast30Days": {
+      "type": "unsigned_long"
     }
   }
 }

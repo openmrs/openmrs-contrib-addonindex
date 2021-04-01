@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnType;
@@ -29,22 +30,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 /**
  * Supports legacy functionality required by the OpenMRS Module API and Legacy UI
  */
 @Controller
 public class LegacyController {
 	
-	@Autowired
-	private Index index;
+	private final Index index;
 	
-	@Autowired
-	private IndexingService indexingService;
+	private final IndexingService indexingService;
 	
+	private final ObjectMapper objectMapper;
+
 	@Autowired
-	private ObjectMapper objectMapper;
+	public LegacyController(Index index, IndexingService indexingService, ObjectMapper objectMapper) {
+		this.index = index;
+		this.indexingService = indexingService;
+		this.objectMapper = objectMapper;
+	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/modulus/feeds/{moduleId}/update.rdf",
 			produces = { "application/rdf+xml", "application/xml", "text/xml; charset=utf-8" })
@@ -54,16 +57,19 @@ public class LegacyController {
 		if (info == null) {
 			throw new NullPointerException(); // should map to a 404
 		}
+
 		StringBuilder sb = new StringBuilder();
-		sb.append("<updates configVersion=\"1.1\" moduleId=\"" + moduleId + "\">\n");
+		sb.append("<updates configVersion=\"1.1\" moduleId=\"").append(moduleId).append("\">\n");
 		for (AddOnVersion version : info.getVersions()) {
-			sb.append("<update>\n");
-			sb.append("<currentVersion>" + version.getVersion() + "</currentVersion>\n");
-			sb.append("<requireOpenMRSVersion>" + version.getRequireOpenmrsVersion() + "</requireOpenMRSVersion>\n");
-			sb.append("<downloadURL>" + version.getDownloadUri() + "</downloadURL>\n");
-			sb.append("</update>\n");
+			sb.append("<update>\n")
+				.append("<currentVersion>").append(version.getVersion()).append("</currentVersion>\n")
+				.append("<requireOpenMRSVersion>").append(version.getRequireOpenmrsVersion())
+					.append("</requireOpenMRSVersion>\n")
+				.append("<downloadURL>").append(version.getDownloadUri()).append("</downloadURL>\n")
+				.append("</update>\n");
 		}
 		sb.append("</updates>");
+
 		return sb.toString();
 	}
 	
@@ -118,7 +124,7 @@ public class LegacyController {
 					.filter(i ->
 							OpenmrsVersionCompareUtil.matchRequiredVersions(openmrsVersion, i.getRequireOpenmrsVersion()))
 					.findFirst();
-			if (!firstMatch.isPresent()) {
+			if (firstMatch.isEmpty()) {
 				// no version of this module is suitable for the specified OpenMRS version
 				continue;
 			}
@@ -155,5 +161,4 @@ public class LegacyController {
 				candidate.getUid();
 		return excludeModuleIds.contains(lookFor);
 	}
-	
 }
