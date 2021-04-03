@@ -309,7 +309,11 @@ export const Show = () => {
             variant="primary"
             size="lg"
             disabled={versionDownloadUri === null}
-            href={versionDownloadUri}
+            href={
+              latestVersion.renameTo
+                ? `/api/v1/addon/${addOn.uid}/${latestVersion.version}/download`
+                : latestVersion.downloadUri
+            }
           >
             {version}
           </DownloadButton>

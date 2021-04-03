@@ -1,0 +1,23 @@
+{
+  "repo": "modules",
+  "path": "/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0.jar",
+  "created": "2020-10-01T21:13:09.787Z",
+  "createdBy": "ci",
+  "lastModified": "2020-10-01T21:13:07.733Z",
+  "modifiedBy": "ci",
+  "lastUpdated": "2020-10-01T21:13:09.788Z",
+  "downloadUri": "https://openmrs.jfrog.io/artifactory/modules/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0.jar",
+  "mimeType": "application/java-archive",
+  "size": "56638632",
+  "checksums": {
+    "sha1": "fcb14ae42834f08bfa3c650dd10b9b6817f41d74",
+    "md5": "9a6229c53a18102777ae1ed733c160e9",
+    "sha256": "3c9ea89574176134495f8c2a6a4866f1842340d41d49243be2149682a46a5db1"
+  },
+  "originalChecksums": {
+    "sha1": "fcb14ae42834f08bfa3c650dd10b9b6817f41d74",
+    "md5": "9a6229c53a18102777ae1ed733c160e9",
+    "sha256": "3c9ea89574176134495f8c2a6a4866f1842340d41d49243be2149682a46a5db1"
+  },
+  "uri": "https://openmrs.jfrog.io/artifactory/api/storage/modules/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0.jar"
+}

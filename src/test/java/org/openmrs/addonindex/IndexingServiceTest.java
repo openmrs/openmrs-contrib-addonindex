@@ -19,6 +19,7 @@ import java.util.Set;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openmrs.addonindex.backend.Artifactory;
 import org.openmrs.addonindex.backend.Bintray;
 import org.openmrs.addonindex.backend.Modulus;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
@@ -121,6 +122,9 @@ public class IndexingServiceTest {
 				assertThat(addOn.getBintrayPackageDetails().getOwner(), notNullValue());
 				assertThat(addOn.getBintrayPackageDetails().getRepo(), notNullValue());
 				assertThat(addOn.getBintrayPackageDetails().getPackageName(), notNullValue());
+			} else if (addOn.getBackend().equals(Artifactory.class)) {
+				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
+				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
 			} else if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
 				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());

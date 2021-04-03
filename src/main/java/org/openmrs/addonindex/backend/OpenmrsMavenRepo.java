@@ -44,7 +44,7 @@ import org.xml.sax.InputSource;
 @Slf4j
 public class OpenmrsMavenRepo implements BackendHandler {
 	
-	private static final String BASE_URL = "http://mavenrepo.openmrs.org/nexus/";
+	public static final String NEXUS_URL = "http://mavenrepo.openmrs.org/nexus/";
 
 	private static final Pattern RENAME_PATTERN = Pattern.compile("(.+)-omod-([0-9.]+).jar");
 
@@ -57,7 +57,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 	
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {
-		String url = BASE_URL + "service/local/repositories/modules/index_content/"
+		String url = NEXUS_URL + "service/local/repositories/modules/index_content/"
 				+ "?groupIdHint=" + addOnToIndex.getMavenRepoDetails().getGroupId()
 				+ "&artifactIdHint=" + addOnToIndex.getMavenRepoDetails().getArtifactId();
 		log.info("Getting info from {}", url);
@@ -88,7 +88,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 			
 			AddOnVersion addOnVersion = new AddOnVersion();
 			addOnVersion.setVersion(new Version(version));
-			addOnVersion.setDownloadUri(BASE_URL + "service/local/repositories/modules/content" + path);
+			addOnVersion.setDownloadUri(NEXUS_URL + "service/local/repositories/modules/content" + path);
 			addOnVersion.setRenameTo(renameTo);
 			
 			addOnInfoAndVersions.addVersion(addOnVersion);

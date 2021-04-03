@@ -23,8 +23,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootTest
 public class FetchCoreVersionsListIT {
 
-	private static final String[] STRINGS_TO_EXCLUDE = { "alpha", "beta", "RC", "SNAPSHOT" };
-
 	@MockBean
 	@SuppressWarnings("unused")
 	private Index index;
@@ -49,8 +47,7 @@ public class FetchCoreVersionsListIT {
 	@Test
 	public void testCoreVersionsJsonHandle() throws Exception {
 		when(restTemplate.getForObject("https://openmrs.jfrog.io/openmrs/api/storage/public/org/openmrs/api/openmrs-api/",
-				String.class))
-				.thenReturn(getFileAsString("core-versions.json"));
+				String.class)).thenReturn(getFileAsString("core-versions.json"));
 
 		fetchCoreVersionsList.fetchCoreVersionsList();
 

@@ -1,0 +1,13 @@
+{
+  "results": [
+    {
+      "uri": "https://openmrs.jfrog.io/artifactory/api/storage/modules/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0-tests.jar"
+    },
+    {
+      "uri": "https://openmrs.jfrog.io/artifactory/api/storage/modules/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0.jar"
+    },
+    {
+      "uri": "https://openmrs.jfrog.io/artifactory/api/storage/modules/org/openmrs/module/fhir2-omod/1.0.0/fhir2-omod-1.0.0.pom"
+    }
+  ]
+}

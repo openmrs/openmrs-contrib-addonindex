@@ -31,6 +31,7 @@ public class OpenmrsMavenRepoManualTest {
 		toIndex.setMavenRepoDetails(new MavenRepoDetails("org.openmrs.module", "appui-omod"));
 		
 		AddOnInfoAndVersions versionsFor = backend.getInfoAndVersionsFor(toIndex);
+
 		System.out.println(versionsFor.getName());
 		System.out.println(versionsFor.getVersions().get(0).getDownloadUri());
 		assertThat(versionsFor.getName(), is("App UI Module"));

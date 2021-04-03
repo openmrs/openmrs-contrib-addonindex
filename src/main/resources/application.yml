@@ -21,6 +21,9 @@ bintray:
   username:  # override in your local config (you should belong to OpenMRS or Bintray will rate limit you)
   api_key:  # override in your local config
 
+artifactory:
+  api_key: # override in your local config
+
 scheduler:
   fetch_core_versions_list:     # for each add-on we want to index, fetch its details
     initial_delay: 5000      # wait 5 seconds to start

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Optional;
 
+import org.openmrs.addonindex.backend.Artifactory;
+import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.Index;
@@ -64,7 +66,8 @@ public class RenamingFileProxyController {
 		}
 
 		if (addOnVersion.get().getRenameTo() == null ||
-				!addOnVersion.get().getDownloadUri().startsWith("http://mavenrepo.openmrs.org/nexus/")) {
+				!(addOnVersion.get().getDownloadUri().startsWith(Artifactory.ARTIFACTORY_URL) ||
+					addOnVersion.get().getDownloadUri().startsWith(OpenmrsMavenRepo.NEXUS_URL))) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return;
 		}
