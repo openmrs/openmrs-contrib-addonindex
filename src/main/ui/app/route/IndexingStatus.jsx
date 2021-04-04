@@ -13,8 +13,9 @@ import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Badge, Col, Row } from "react-bootstrap";
 
-// 10 seconds
-const LIVE_REFETCH_INTERVAL = 10 * 1000;
+// 1 second
+const LIVE_REFETCH_INTERVAL = 1000;
+
 // 5 minutes
 const LONG_REFETCH_INTERVAL = 5 * 60 * 1000;
 
