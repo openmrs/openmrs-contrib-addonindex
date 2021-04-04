@@ -14,7 +14,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-module.exports = function (env) {
+module.exports = (env) => {
   return {
     entry: "./app/index.jsx",
     output: {
@@ -36,9 +36,6 @@ module.exports = function (env) {
           test: /\.jsx?$/,
           exclude: resolve(__dirname, "node_modules"),
           loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
         },
         {
           test: /\.js$/,
@@ -52,13 +49,13 @@ module.exports = function (env) {
             {
               loader: "css-loader",
               options: {
-                sourceMap: env.prod,
+                sourceMap: !env.prod,
               },
             },
             {
               loader: "sass-loader",
               options: {
-                sourceMap: env.prod,
+                sourceMap: !env.prod,
               },
             },
           ],

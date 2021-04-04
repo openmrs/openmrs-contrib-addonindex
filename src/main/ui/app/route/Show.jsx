@@ -226,7 +226,7 @@ export const Show = () => {
         </span>
       );
     }
-  }, [latestVersion, addOn]);
+  }, [latestVersion, coreVersion, addOn]);
 
   const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
 

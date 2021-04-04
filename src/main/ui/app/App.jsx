@@ -27,15 +27,20 @@ const queryClient = new QueryClient({
 });
 
 const Analytics = ({ children }) => {
-  if (GA_ID) {
-    const location = useLocation();
-    useEffect(() => ReactGA.initialize(GA_ID), []);
-    useEffect(() => {
+  const location = useLocation();
+  useEffect(() => {
+    if (GA_ID) {
+      ReactGA.initialize(GA_ID);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (GA_ID) {
       const fullLocation = location.pathname + location.search;
       ReactGA.set({ page: fullLocation });
       ReactGA.pageview(fullLocation);
-    }, [location.pathname, location.search]);
-  }
+    }
+  }, [location.pathname, location.search]);
 
   return <>{children}</>;
 };
