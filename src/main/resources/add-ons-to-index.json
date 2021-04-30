@@ -25,11 +25,10 @@
           "href": "https://github.com/rkorytkowski/openmrs-owa-conceptdictionary"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-conceptdictionary"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "conceptdictionary"
       }
     },
     {
@@ -57,11 +56,10 @@
           "href": "https://github.com/openmrs/openmrs-module-cohortbuilder"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-cohortbuilder"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "cohortbuilder"
       }
     },
     {
@@ -89,11 +87,10 @@
           "href": "https://github.com/openmrs/openmrs-owa-obsadmin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-obsadmin"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "obsadmin"
       }
     },
     {
@@ -121,11 +118,10 @@
           "href": "https://github.com/openmrs/openmrs-owa-addonmanager"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-addonmanager"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "addonmanager"
       }
     },
     {
@@ -150,11 +146,10 @@
           "href": "https://github.com/openmrs/openmrs-module-orderentryui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-orderentryui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "orderentryui"
       }
     },
     {
@@ -178,11 +173,10 @@
           "href": "https://github.com/openmrs/openmrs-owa-orderentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-orderentry"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "orderentry"
       }
     },
     {
@@ -209,11 +203,10 @@
           "href": "https://github.com/openmrs/openmrs-owa-sysadmin"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "owa",
-        "package": "openmrs-owa-sysadmin"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.owa",
+        "artifactId": "sysadmin"
       }
     },
     {
@@ -239,11 +232,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "accesslogging"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "accesslogging"
       }
     },
     {
@@ -266,11 +258,10 @@
           "href": "https://bitbucket.org/ehs/addgutteritem"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "addgutteritem"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "addgutteritem"
       }
     },
     {
@@ -302,11 +293,10 @@
           "href": "https://github.com/openmrs/openmrs-module-addresshierarchy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "addresshierarchy"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "addresshierarchy"
       }
     },
     {
@@ -335,11 +325,10 @@
           "href": "https://github.com/openmrs/openmrs-module-addresshierarchy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "addresshierarchyrwanda"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "addresshierarchyrwanda"
       }
     },
     {
@@ -372,11 +361,10 @@
           "href": "https://github.com/openmrs/openmrs-module-appframework"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "appframework"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "appframework"
       }
     },
     {
@@ -392,11 +380,10 @@
           "name": "gakyves"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "appointment"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "appointment"
       }
     },
     {
@@ -432,11 +419,10 @@
           "href": "https://github.com/openmrs/openmrs-module-appointmentscheduling"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "appointmentscheduling"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "appointmentscheduling"
       }
     },
     {
@@ -469,11 +455,10 @@
           "href": "https://github.com/openmrs/openmrs-module-appui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "appui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "appui"
       }
     },
     {
@@ -498,11 +483,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "atd"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "atd"
       }
     },
     {
@@ -538,11 +522,10 @@
           "href": "https://github.com/openmrs/openmrs-module-atlas"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "atlas"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "atlas"
       }
     },
     {
@@ -565,11 +548,10 @@
           "href": "https://github.com/openmrs/openmrs-module-atomfeed"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "atomfeed"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "atomfeed"
       }
     },
     {
@@ -592,11 +574,10 @@
           "href": "https://github.com/openmrs/openmrs-module-attachments"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "attachments"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "attachments"
       }
     },
     {
@@ -625,11 +606,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "backports14x"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "backports14x"
       }
     },
     {
@@ -656,11 +636,10 @@
           "href": "https://github.com/openmrs/openmrs-module-birt"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "birt"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "birt"
       }
     },
     {
@@ -693,11 +672,10 @@
           "href": "https://github.com/openmrs/openmrs-module-calculation"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "calculation"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "calculation"
       }
     },
     {
@@ -719,11 +697,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "chica"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "chica"
       }
     },
     {
@@ -749,11 +726,10 @@
           "href": "https://github.com/CHIRDL-Openmrs-Modules/chirdlutil"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "chirdlutil"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "chirdlutil"
       }
     },
     {
@@ -779,11 +755,10 @@
           "href": "https://github.com/CHIRDL-Openmrs-Modules/chirdlutilbackports"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "chirdlutilbackports"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "chirdlutilbackports"
       }
     },
     {
@@ -802,11 +777,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "cleaningvoided"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "cleaningvoided"
       }
     },
     {
@@ -832,11 +806,10 @@
           "href": "https://github.com/AMPATH/openmrs-module-clinicalsummary"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "clinicalsummary"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "clinicalsummary"
       }
     },
     {
@@ -862,11 +835,10 @@
           "href": "https://github.com/openmrs/openmrs-module-commonlabtest"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "commonlabtest"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "commonlabtest"
       }
     },
     {
@@ -889,11 +861,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "comparelists"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "comparelists"
       }
     },
     {
@@ -916,11 +887,10 @@
           "href": "https://github.com/openmrs/openmrs-module-conceptmanagementapps"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "conceptmanagementapps"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "conceptmanagementapps"
       }
     },
     {
@@ -950,11 +920,10 @@
           "href": "https://github.com/openmrs/openmrs-module-conceptmanagementapps"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "conceptsearch"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "conceptsearch"
       }
     },
     {
@@ -983,11 +952,10 @@
           "href": "https://github.com/OpenMRS-Australia/openmrs-cpm"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "cpm"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "cpm"
       }
     },
     {
@@ -1010,11 +978,10 @@
           "href": "https://github.com/openmrs/openmrs-module-custombranding"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "custombranding"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "custombranding"
       }
     },
     {
@@ -1043,11 +1010,10 @@
           "href": "https://github.com/openmrs/openmrs-module-custommessage"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "custommessage"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "custommessage"
       }
     },
     {
@@ -1070,11 +1036,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dashboardframe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dashboardframe"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dashboardframe"
       }
     },
     {
@@ -1112,11 +1077,10 @@
           "href": "https://github.com/openmrs/openmrs-module-databasebackup"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "databasebackup"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "databasebackup"
       }
     },
     {
@@ -1144,11 +1108,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "databasemessages"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "databasemessages"
       }
     },
     {
@@ -1180,11 +1143,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "datadeletion"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "datadeletion"
       }
     },
     {
@@ -1217,11 +1179,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dataentrystatistics"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dataentrystatistics"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dataentrystatistics"
       }
     },
     {
@@ -1257,18 +1218,17 @@
           "href": "https://github.com/openmrs/openmrs-module-dataintegrity"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dataintegrity"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dataintegrity"
       }
     },
     {
       "uid": "org.openmrs.module.dhismodule",
       "type": "OMOD",
       "name": "DHIS Connector",
-      "description": "This module posts aggregate data from OpenMRS to DHIS2, and gives implementers a User Interface for an easier-to-set-up OMRS to DHIS2 pipeline, that doesn’t need manual code fixes every time there’s a change to reporting indicators. Includes a Mapping Tool UI, the ability to automatically send data to DHIS2 right away or on a schedule, and to map exports so that you can re-use your mapping work across sites.",
+      "description": "This module posts aggregate data from OpenMRS to DHIS2, and gives implementers a User Interface for an easier-to-set-up OMRS to DHIS2 pipeline, that doesn\u2019t need manual code fixes every time there\u2019s a change to reporting indicators. Includes a Mapping Tool UI, the ability to automatically send data to DHIS2 right away or on a schedule, and to map exports so that you can re-use your mapping work across sites.",
       "tags": [
         "interoperability"
       ],
@@ -1291,11 +1251,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dhisconnector"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dhisconnector"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dhisconnector"
       }
     },
     {
@@ -1318,11 +1277,10 @@
           "href": "https://github.com/chrispecoraro/openmrs-module-diabetes-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "diabetesmanagement"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "diabetesmanagement"
       }
     },
     {
@@ -1348,11 +1306,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "doubleentryreconciliation"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "doubleentryreconciliation"
       }
     },
     {
@@ -1379,11 +1336,10 @@
           "href": "https://github.com/ravipatipushkar/drawing"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "drawing"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "drawing"
       }
     },
     {
@@ -1405,11 +1361,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dss"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dss"
       }
     },
     {
@@ -1441,11 +1396,10 @@
           "href": "https://github.com/openmrs/openmrs-module-emrapi"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "emrapi"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "emrapi"
       }
     },
     {
@@ -1457,11 +1411,10 @@
           "name": "A.Medhat"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "ermodule"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ermodule"
       }
     },
     {
@@ -1494,11 +1447,10 @@
           "href": "https://github.com/openmrs/openmrs-module-event"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "event"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "event"
       }
     },
     {
@@ -1524,14 +1476,13 @@
           "href": "https://github.com/SEDISH/exportccd"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "exportccd"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "exportccd"
       }
     },
-     {
+    {
       "uid": "org.openmrs.omod.facelist",
       "type": "OMOD",
       "name": "Face List Module",
@@ -1579,11 +1530,10 @@
           "href": "https://github.com/openmrs/openmrs-module-facilitydata"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "facilitydata"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "facilitydata"
       }
     },
     {
@@ -1612,11 +1562,10 @@
           "href": "https://github.com/openmrs/openmrs-module-feedback"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "feedback"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "feedback"
       }
     },
     {
@@ -1643,11 +1592,10 @@
           "href": "https://github.com/tgreensweig/openmrs-module-filebrowser"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "filebrowser"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "filebrowser"
       }
     },
     {
@@ -1692,11 +1640,10 @@
           "href": "https://github.com/Bahmni/openmrs-module-flowsheet"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "flowsheet"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "flowsheet"
       }
     },
     {
@@ -1725,11 +1672,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "form2program"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "form2program"
       }
     },
     {
@@ -1765,11 +1711,10 @@
           "href": "https://github.com/jembi/openmrs-module-formdataexport"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "formdataexport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "formdataexport"
       }
     },
     {
@@ -1811,11 +1756,10 @@
           "href": "https://github.com/openmrs/openmrs-module-formentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "formentry"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "formentry"
       }
     },
     {
@@ -1842,11 +1786,10 @@
           "href": "https://github.com/openmrs/openmrs-module-formfilter"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "formfilter"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "formfilter"
       }
     },
     {
@@ -1878,11 +1821,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "formimportexport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "formimportexport"
       }
     },
     {
@@ -1894,11 +1836,10 @@
           "name": "Pascal"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "globalpropertyeditor"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "globalpropertyeditor"
       }
     },
     {
@@ -1927,11 +1868,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "gmapsimageviewer"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "gmapsimageviewer"
       }
     },
     {
@@ -1966,11 +1906,10 @@
           "href": "https://github.com/openmrs/openmrs-module-groovy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "groovy"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "groovy"
       }
     },
     {
@@ -1993,11 +1932,10 @@
           "href": "https://github.com/nathanleiby/growthchart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "growthchart"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "growthchart"
       }
     },
     {
@@ -2029,11 +1967,10 @@
           "href": "https://github.com/openmrs/openmrs-module-hl7query"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "hl7query"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "hl7query"
       }
     },
     {
@@ -2065,11 +2002,10 @@
           "href": "https://github.com/openmrs/openmrs-module-household"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "household"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "household"
       }
     },
     {
@@ -2092,11 +2028,10 @@
           "href": "https://github.com/openmrs/openmrs-module-hr"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "hr"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "hr"
       }
     },
     {
@@ -2135,11 +2070,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlformentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "htmlformentry"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "htmlformentry"
       }
     },
     {
@@ -2170,11 +2104,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlformentry19ext"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "htmlformentry19ext"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "htmlformentry19ext"
       }
     },
     {
@@ -2207,11 +2140,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlformentryui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "htmlformentryui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "htmlformentryui"
       }
     },
     {
@@ -2244,11 +2176,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlformflowsheet"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "htmlformflowsheet"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "htmlformflowsheet"
       }
     },
     {
@@ -2283,11 +2214,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlwidgets"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "htmlwidgets"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "htmlwidgets"
       }
     },
     {
@@ -2309,11 +2239,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "i2b2export"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "i2b2export"
       }
     },
     {
@@ -2339,11 +2268,10 @@
           "href": "https://github.com/openmrs/openmrs-module-idcards"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "idcards"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "idcards"
       }
     },
     {
@@ -2373,11 +2301,10 @@
           "href": "https://github.com/openmrs/openmrs-module-idgen"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "idgen"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "idgen"
       }
     },
     {
@@ -2404,11 +2331,10 @@
           "href": "https://github.com/lucykur/infopath-converter"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "infopathconverter"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "infopathconverter"
       }
     },
     {
@@ -2428,11 +2354,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "inpatientcare"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "inpatientcare"
       }
     },
     {
@@ -2465,11 +2390,10 @@
           "href": "https://github.com/OpenHMIS/openmrs-module-jasperreports"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "jasperreport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "jasperreport"
       }
     },
     {
@@ -2492,11 +2416,10 @@
           "href": "https://github.com/rowanseymour/openmrs-module-jmx"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "jmx"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "jmx"
       }
     },
     {
@@ -2522,11 +2445,10 @@
           "href": "https://github.com/I-TECH/openmrs-module-kenyadq"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "kenyadq"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "kenyadq"
       }
     },
     {
@@ -2555,11 +2477,10 @@
           "href": "https://github.com/I-TECH/openmrs-module-kenyalab"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "kenyalab"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "kenyalab"
       }
     },
     {
@@ -2567,7 +2488,8 @@
       "type": "OMOD",
       "name": "Kenya Metadata Tools",
       "tags": [
-        "metadata", "kenya-emr"
+        "metadata",
+        "kenya-emr"
       ],
       "maintainers": [
         {
@@ -2588,11 +2510,10 @@
           "href": "https://github.com/I-TECH/openmrs-module-kenyametadatatools"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "kenyametadatatools"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "kenyametadatatools"
       }
     },
     {
@@ -2621,29 +2542,29 @@
           "href": "https://github.com/I-TECH/openmrs-module-kenyaui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "kenyaui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "kenyaui"
       }
     },
     {
       "uid": "org.openmrs.module.locationbasedaccess",
       "type": "OMOD",
       "name": "Location Based Access Control",
-      "icon" : "location-arrow",
+      "icon": "location-arrow",
       "tags": [
-        "location", "accesscontrol"
+        "location",
+        "accesscontrol"
       ],
       "maintainers": [
         {
           "name": "Daniel Kayiwa",
-          "url" : "https://talk.openmrs.org/u/dkayiwa"
+          "url": "https://talk.openmrs.org/u/dkayiwa"
         },
         {
           "name": "K.Suthagar",
-          "url" : "https://talk.openmrs.org/u/suthagar23"
+          "url": "https://talk.openmrs.org/u/suthagar23"
         }
       ],
       "links": [
@@ -2657,11 +2578,10 @@
           "href": "https://github.com/openmrs/openmrs-module-locationbasedaccess"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "locationbasedaccess"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "locationbasedaccess"
       }
     },
     {
@@ -2700,11 +2620,10 @@
           "href": "https://github.com/CHIRDL-Openmrs-Modules/logic"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "logic"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "logic"
       }
     },
     {
@@ -2736,11 +2655,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "logicws"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "logicws"
       }
     },
     {
@@ -2770,11 +2688,10 @@
           "href": "https://github.com/rowanseymour/openmrs-module-logmanager"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "logmanager"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "logmanager"
       }
     },
     {
@@ -2797,11 +2714,10 @@
           "href": "https://github.com/openmrs/openmrs-module-mdrtb"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mdrtb"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mdrtb"
       }
     },
     {
@@ -2829,11 +2745,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mdrtbpatientchartwidgets"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mdrtbpatientchartwidgets"
       }
     },
     {
@@ -2852,11 +2767,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "medicalproblem"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "medicalproblem"
       }
     },
     {
@@ -2883,11 +2797,10 @@
           "href": "https://github.com/openmrs/openmrs-module-messaging"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "messaging"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "messaging"
       }
     },
     {
@@ -2920,11 +2833,10 @@
           "href": "https://github.com/openmrs/openmrs-module-metadatadeploy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "metadatadeploy"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "metadatadeploy"
       }
     },
     {
@@ -2953,11 +2865,10 @@
           "href": "https://github.com/openmrs/openmrs-module-metadatamapping"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "metadatamapping"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "metadatamapping"
       }
     },
     {
@@ -2993,11 +2904,10 @@
           "href": "https://github.com/openmrs/openmrs-module-metadatamapping"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "metadatasharing"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "metadatasharing"
       }
     },
     {
@@ -3026,11 +2936,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mirthmessaging"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mirthmessaging"
       }
     },
     {
@@ -3049,11 +2958,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "moca"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "moca"
       }
     },
     {
@@ -3066,11 +2974,10 @@
           "name": "Darius Jazayeri"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "moduledistro"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "moduledistro"
       }
     },
     {
@@ -3092,11 +2999,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mrngen"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mrngen"
       }
     },
     {
@@ -3119,11 +3025,10 @@
           "href": "https://github.com/muzima/openmrs-module-muzimacore"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mUzimaCore"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mUzimaCore"
       }
     },
     {
@@ -3135,11 +3040,10 @@
           "name": "mshana"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "myfirst"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "myfirst"
       }
     },
     {
@@ -3158,11 +3062,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mypatients"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mypatients"
       }
     },
     {
@@ -3171,7 +3074,8 @@
       "name": "Name Phonetics",
       "icon": "search",
       "tags": [
-        "search", "pih-rwanda"
+        "search",
+        "pih-rwanda"
       ],
       "maintainers": [
         {
@@ -3195,11 +3099,10 @@
           "href": "https://github.com/openmrs/openmrs-module-namephonetics"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "namephonetics"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "namephonetics"
       }
     },
     {
@@ -3231,11 +3134,10 @@
           "href": "https://github.com/thomasshunter/openmrs-module-ncd"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "ncd"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ncd"
       }
     },
     {
@@ -3268,11 +3170,10 @@
           "href": "https://github.com/openmrs/openmrs-module-reporting/tree/master/api/src/main/java/org/openmrs/module/reporting/data/encounter/definition"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "nealreporting"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "nealreporting"
       }
     },
     {
@@ -3292,11 +3193,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "obsgroupexport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "obsgroupexport"
       }
     },
     {
@@ -3324,11 +3224,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "odamocklogicws"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "odamocklogicws"
       }
     },
     {
@@ -3351,11 +3250,10 @@
           "href": "https://github.com/openmrs/openmrs-module-omodreloader"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "omodreloader"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "omodreloader"
       }
     },
     {
@@ -3385,11 +3283,10 @@
           "href": "https://github.com/OpenHMIS/openmrs-module-openhmis.backboneforms"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "openhmis.backboneforms"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openhmis.backboneforms"
       }
     },
     {
@@ -3415,11 +3312,10 @@
           "href": "https://github.com/OpenHMIS/openmrs-module-openhmis.cashier"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "openhmis.cashier"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openhmis.cashier"
       }
     },
     {
@@ -3445,11 +3341,10 @@
           "href": "https://github.com/OpenHMIS/openmrs-module-openhmis.commons"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "openhmis.commons"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openhmis.commons"
       }
     },
     {
@@ -3472,11 +3367,10 @@
           "href": "https://github.com/openmrs/openmrs-module-orderentryui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "orderentryui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "orderentryui"
       }
     },
     {
@@ -3499,11 +3393,10 @@
           "href": "https://github.com/openmrs/openmrs-module-orderextension"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "orderextension"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "orderextension"
       }
     },
     {
@@ -3523,11 +3416,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientchartwidgets"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientchartwidgets"
       }
     },
     {
@@ -3550,11 +3442,10 @@
           "href": "https://github.com/openmrs/openmrs-module-patientflags"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientflags"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientflags"
       }
     },
     {
@@ -3581,11 +3472,10 @@
           "href": "https://github.com/openmrs/openmrs-module-patientimage"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientimage"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientimage"
       }
     },
     {
@@ -3621,11 +3511,10 @@
           "href": "https://github.com/openmrs/openmrs-module-patientmatching"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientmatching"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientmatching"
       }
     },
     {
@@ -3644,11 +3533,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientnarratives"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientnarratives"
       }
     },
     {
@@ -3687,11 +3575,10 @@
           "href": "https://github.com/openmrs/openmrs-module-patientsummary"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "patientsummary"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "patientsummary"
       }
     },
     {
@@ -3711,11 +3598,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "pihlesothotbupload"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "pihlesothotbupload"
       }
     },
     {
@@ -3734,11 +3620,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "pixpdq"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "pixpdq"
       }
     },
     {
@@ -3762,11 +3647,10 @@
           "href": "https://github.com/openmrs/openmrs-module-printer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "printing"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "printing"
       }
     },
     {
@@ -3789,11 +3673,10 @@
           "href": "https://github.com/openmrs/openmrs-module-privilegehelper"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "privilegehelper"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "privilegehelper"
       }
     },
     {
@@ -3820,11 +3703,10 @@
           "href": "https://github.com/openmrs/openmrs-module-programlocation"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "programlocation"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "programlocation"
       }
     },
     {
@@ -3844,11 +3726,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "programoverview"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "programoverview"
       }
     },
     {
@@ -3875,11 +3756,10 @@
           "href": "https://github.com/openmrs/openmrs-module-providermanagement"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "providermanagement"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "providermanagement"
       }
     },
     {
@@ -3898,11 +3778,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "randomization"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "randomization"
       }
     },
     {
@@ -3931,11 +3810,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "register"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "register"
       }
     },
     {
@@ -3958,11 +3836,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "registration"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "registration"
       }
     },
     {
@@ -3988,11 +3865,10 @@
           "href": "https://github.com/openmrs/openmrs-module-releasetestinghelper"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "releasetestinghelper"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "releasetestinghelper"
       }
     },
     {
@@ -4012,11 +3888,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "remarksmodule"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "remarksmodule"
       }
     },
     {
@@ -4046,11 +3921,10 @@
           "href": "https://bintray.com/openmrs/omod/remoteformentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "remoteformentry"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "remoteformentry"
       }
     },
     {
@@ -4089,11 +3963,10 @@
           "href": "https://github.com/openmrs/openmrs-module-reporting"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "reporting"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "reporting"
       }
     },
     {
@@ -4135,11 +4008,10 @@
           "href": "https://github.com/openmrs/openmrs-module-reportingcompatibility"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "reportingcompatibility"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "reportingcompatibility"
       }
     },
     {
@@ -4181,11 +4053,10 @@
           "href": "https://github.com/openmrs/openmrs-module-reportingrest"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "reportingrest"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "reportingrest"
       }
     },
     {
@@ -4211,11 +4082,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "reporttemplate"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "reporttemplate"
       }
     },
     {
@@ -4235,11 +4105,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "requestaccount"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "requestaccount"
       }
     },
     {
@@ -4271,11 +4140,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "researchencounters"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "researchencounters"
       }
     },
     {
@@ -4297,11 +4165,10 @@
           "name": "bwolfe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "restmodule"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "restmodule"
       }
     },
     {
@@ -4331,11 +4198,10 @@
           "href": "https://github.com/ehasalud/openmrs-module-restrictbyrole"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "restrictbyrole"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "restrictbyrole"
       }
     },
     {
@@ -4361,11 +4227,10 @@
           "href": "https://github.com/CHIRDL-Openmrs-Modules/rgccd"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "rgccd"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "rgccd"
       }
     },
     {
@@ -4388,11 +4253,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "rolebasedhomepage"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "rolebasedhomepage"
       }
     },
     {
@@ -4417,11 +4281,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "rwandaprimarycare"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "rwandaprimarycare"
       }
     },
     {
@@ -4448,11 +4311,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "schedulerquartz"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "schedulerquartz"
       }
     },
     {
@@ -4481,11 +4343,10 @@
           "href": "https://github.com/openmrs/openmrs-module-sdmxhdintegration"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "sdmxhdintegration"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "sdmxhdintegration"
       }
     },
     {
@@ -4517,11 +4378,10 @@
           "href": "https://github.com/openmrs/openmrs-module-serialization.xstream"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "serialization.xstream"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "serialization.xstream"
       }
     },
     {
@@ -4556,11 +4416,10 @@
           "href": "https://github.com/openmrs/openmrs-module-simplelabentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "simplelabentry"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "simplelabentry"
       }
     },
     {
@@ -4583,11 +4442,10 @@
           "href": "https://github.com/openmrs/openmrs-module-smartcontainer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "smartcontainer"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "smartcontainer"
       }
     },
     {
@@ -4614,11 +4472,10 @@
           "href": "https://github.com/araza10/openmrs-module-SMSModule"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "smsmodule"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "smsmodule"
       }
     },
     {
@@ -4644,11 +4501,10 @@
           "href": "https://github.com/CHIRDL-Openmrs-Modules/sockethl7listener"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "sockethl7listener"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "sockethl7listener"
       }
     },
     {
@@ -4677,11 +4533,10 @@
           "href": "https://github.com/openmrs/openmrs-module-spreadsheetimport"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "spreadsheetimport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "spreadsheetimport"
       }
     },
     {
@@ -4706,11 +4561,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "spreadsheetupload"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "spreadsheetupload"
       }
     },
     {
@@ -4729,11 +4583,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "stateprocessing"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "stateprocessing"
       }
     },
     {
@@ -4774,39 +4627,37 @@
           "href": "https://github.com/openmrs/openmrs-module-sync"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "sync"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "sync"
       }
     },
     {
-    "uid": "org.openmrs.module.sync2",
-    "type": "OMOD",
-    "name": "Sync 2.0",
-    "maintainers": [
-      {
-        "name": "Tomasz Mueller",
-        "url": "https://github.com/tomaszmueller"
-      }
-    ],
-    "links": [
-      {
-        "rel": "documentation",
-        "href": "https://github.com/openmrs/openmrs-module-sync2/blob/master/README.md",
-        "title": "GitHub ReadMe"
-      },
-      {
-        "rel": "source",
-        "href": "https://github.com/openmrs/openmrs-module-sync2"
-      }
-    ],
-    "backend": "org.openmrs.addonindex.backend.Bintray",
-    "bintrayPackageDetails": {
-      "owner": "openmrs",
-      "repo": "omod",
-      "package": "sync2"
+      "uid": "org.openmrs.module.sync2",
+      "type": "OMOD",
+      "name": "Sync 2.0",
+      "maintainers": [
+        {
+          "name": "Tomasz Mueller",
+          "url": "https://github.com/tomaszmueller"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/openmrs/openmrs-module-sync2/blob/master/README.md",
+          "title": "GitHub ReadMe"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-sync2"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "sync2"
       }
     },
     {
@@ -4816,7 +4667,7 @@
       "maintainers": [
         {
           "name": "Patrick Childers",
-          "url" : "https://talk.openmrs.org/u/atlcto"
+          "url": "https://talk.openmrs.org/u/atlcto"
         }
       ],
       "links": [
@@ -4825,11 +4676,10 @@
           "href": "https://github.com/CKWC/openmrs-module-telemedicine-consult"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "ckwc",
-        "repo": "omod",
-        "package": "telemedicineconsult"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "telemedicineconsult"
       }
     },
     {
@@ -4855,11 +4705,10 @@
           "href": "https://github.com/openmrs/openmrs-module-tribe"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "tribe"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "tribe"
       }
     },
     {
@@ -4879,11 +4728,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "ui.springmvc"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ui.springmvc"
       }
     },
     {
@@ -4916,11 +4764,10 @@
           "href": "https://github.com/openmrs/openmrs-module-uicommons"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "uicommons"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "uicommons"
       }
     },
     {
@@ -4953,11 +4800,10 @@
           "href": "https://github.com/openmrs/openmrs-module-uiframework"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "uiframework"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "uiframework"
       }
     },
     {
@@ -4987,11 +4833,10 @@
           "href": "https://github.com/openmrs/openmrs-module-uilibrary"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "uilibrary"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "uilibrary"
       }
     },
     {
@@ -5024,11 +4869,10 @@
           "href": "https://github.com/openmrs/openmrs-module-usagestatistics"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "usagestatistics"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "usagestatistics"
       }
     },
     {
@@ -5051,11 +4895,10 @@
           "href": "https://github.com/openmrs/openmrs-module-validation"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "validation"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "validation"
       }
     },
     {
@@ -5081,11 +4924,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "versionedfileupload"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "versionedfileupload"
       }
     },
     {
@@ -5105,11 +4947,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "visitmanagement"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "visitmanagement"
       }
     },
     {
@@ -5139,11 +4980,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "visitscheduler"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "visitscheduler"
       }
     },
     {
@@ -5163,11 +5003,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "webservices.jaxws"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "webservices.jaxws"
       }
     },
     {
@@ -5190,11 +5029,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "webservices.jaxws.api"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "webservices.jaxws.api"
       }
     },
     {
@@ -5233,11 +5071,10 @@
           "href": "https://github.com/openmrs/openmrs-module-webservices.rest"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "webservices.rest"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "webservices.rest"
       }
     },
     {
@@ -5264,11 +5101,10 @@
           "href": "https://github.com/openmrs/openmrs-module-webservices.rest19ext"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "webservices.rest19ext"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "webservices.rest19ext"
       }
     },
     {
@@ -5301,11 +5137,10 @@
           "href": "https://github.com/openmrs/openmrs-module-xforms"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "xforms"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "xforms"
       }
     },
     {
@@ -5328,11 +5163,10 @@
           "href": "https://github.com/openmrs/openmrs-module-upgradehelperoneten"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "upgradehelperoneten"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "upgradehelperoneten"
       }
     },
     {
@@ -5355,11 +5189,10 @@
           "href": "https://github.com/openmrs/openmrs-module-systemmetrics"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "systemperformanceandutilization"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "systemperformanceandutilization"
       }
     },
     {
@@ -5389,11 +5222,10 @@
           "href": "https://github.com/openmrs/openmrs-module-chartsearch"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "chartsearch"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "chartsearch"
       }
     },
     {
@@ -5416,11 +5248,10 @@
           "href": "https://github.com/openmrs/openmrs-module-mysqletl"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mysqletl"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mysqletl"
       }
     },
     {
@@ -5446,11 +5277,10 @@
           "href": "https://github.com/OpenHMIS/openmrs-module-openhmis.inventory"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "openhmis.inventory"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openhmis.inventory"
       }
     },
     {
@@ -5483,11 +5313,10 @@
           "href": "https://github.com/openmrs/openmrs-module-htmlformentry"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "formentryapp"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "formentryapp"
       }
     },
     {
@@ -5513,11 +5342,10 @@
           "href": "https://github.com/openmrs/openmrs-module-allergyui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "allergyui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "allergyui"
       }
     },
     {
@@ -5547,11 +5375,10 @@
           "href": "https://github.com/openmrs/openmrs-module-allergyapi"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "allergyapi"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "allergyapi"
       }
     },
     {
@@ -5560,7 +5387,8 @@
       "name": "Reference Metadata Module",
       "icon": "database",
       "tags": [
-        "metadata", "reference-application"
+        "metadata",
+        "reference-application"
       ],
       "maintainers": [
         {
@@ -5584,11 +5412,10 @@
           "href": "https://github.com/openmrs/openmrs-module-referencemetadata"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "referencemetadata"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "referencemetadata"
       }
     },
     {
@@ -5624,11 +5451,10 @@
           "href": "https://github.com/openmrs/openmrs-module-coreapps"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "coreapps"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "coreapps"
       }
     },
     {
@@ -5637,7 +5463,8 @@
       "name": "Reference Demo Data Module",
       "icon": "laptop",
       "tags": [
-        "demo", "reference-application"
+        "demo",
+        "reference-application"
       ],
       "maintainers": [
         {
@@ -5664,11 +5491,10 @@
           "href": "https://github.com/openmrs/openmrs-module-referencedemodata"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "referencedemodata"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "referencedemodata"
       }
     },
     {
@@ -5697,11 +5523,10 @@
           "href": "https://github.com/openmrs/openmrs-module-referenceapplication"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "referenceapplication"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "referenceapplication"
       }
     },
     {
@@ -5710,7 +5535,8 @@
       "name": "Complex Data To DB Module",
       "icon": "database",
       "tags": [
-        "data-management", "administration"
+        "data-management",
+        "administration"
       ],
       "maintainers": [
         {
@@ -5728,11 +5554,10 @@
           "href": "https://github.com/openmrs/openmrs-module-referenceapplication"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "complexdatatodb"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "complexdatatodb"
       }
     },
     {
@@ -5755,11 +5580,10 @@
           "href": "https://github.com/openmrs/openmrs-module-printer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "printer"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "printer"
       }
     },
     {
@@ -5783,11 +5607,10 @@
           "href": "https://github.com/openmrs/openmrs-module-rest"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "restmodule"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "restmodule"
       }
     },
     {
@@ -5810,11 +5633,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "mediaviewer"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "mediaviewer"
       }
     },
     {
@@ -5833,11 +5655,10 @@
           "title": "OpenMRS Wiki"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "moca"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "moca"
       }
     },
     {
@@ -5864,11 +5685,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dataexchange"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dataexchange"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dataexchange"
       }
     },
     {
@@ -5883,11 +5703,10 @@
           "name": "Timothy McCarthy"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "conceptreview"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "conceptreview"
       }
     },
     {
@@ -5917,11 +5736,10 @@
           "href": "https://github.com/openmrs/openmrs-module-appointmentschedulingui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "appointmentschedulingui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "appointmentschedulingui"
       }
     },
     {
@@ -5951,11 +5769,10 @@
           "href": "https://github.com/openmrs/openmrs-module-registrationcore"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "registrationcore"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "registrationcore"
       }
     },
     {
@@ -5985,11 +5802,10 @@
           "href": "https://github.com/openmrs/openmrs-module-registrationapp"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "registrationapp"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "registrationapp"
       }
     },
     {
@@ -6012,11 +5828,10 @@
           "href": "https://github.com/hispindia/his-bloodbank"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "bloodbank"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "bloodbank"
       }
     },
     {
@@ -6024,7 +5839,9 @@
       "type": "OMOD",
       "name": "DHIS2 Reporting Module",
       "tags": [
-        "reporting", "dhis2", "interoperability"
+        "reporting",
+        "dhis2",
+        "interoperability"
       ],
       "maintainers": [
         {
@@ -6042,11 +5859,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dhisreport/tree/shr"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dhisreport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dhisreport"
       }
     },
     {
@@ -6069,11 +5885,10 @@
           "href": "https://github.com/openmrs/openmrs-module-fhir"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "fhir"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "fhir"
       }
     },
     {
@@ -6096,11 +5911,10 @@
           "href": "https://github.com/openmrs/openmrs-module-fhir2"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "fhir2"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "fhir2"
       }
     },
     {
@@ -6123,11 +5937,10 @@
           "href": "https://github.com/openmrs/openmrs-module-openconceptlab"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "openconceptlab"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openconceptlab"
       }
     },
     {
@@ -6160,11 +5973,10 @@
           "href": "https://github.com/openmrs/openmrs-module-reportingui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "reportingui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "reportingui"
       }
     },
     {
@@ -6187,11 +5999,10 @@
           "href": "https://github.com/eshlefest/openmrs_nlp"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "visitnotesanalysis"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "visitnotesanalysis"
       }
     },
     {
@@ -6218,11 +6029,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dataimporttool"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dataimporttool"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dataimporttool"
       }
     },
     {
@@ -6245,15 +6055,14 @@
           "href": "https://github.com/openmrs/openmrs-module-allergyui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "allergyui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "allergyui"
       }
     },
     {
-      "uid": "org.openmrs.module.admin-ui-module",
+      "uid": "org.openmrs.module.adminui",
       "type": "OMOD",
       "name": "Admin UI Module",
       "tags": [
@@ -6287,11 +6096,10 @@
           "href": "https://github.com/openmrs/openmrs-module-adminui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "adminui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "adminui"
       }
     },
     {
@@ -6314,11 +6122,10 @@
           "href": "https://github.com/iupui-soic/openmrs-module-casauth"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "casauthentication"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "casauthentication"
       }
     },
     {
@@ -6347,11 +6154,10 @@
           "href": "https://github.com/openmrs/openmrs-module-owa"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "owa"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "owa"
       }
     },
     {
@@ -6377,11 +6183,10 @@
           "href": "https://github.com/openmrs/openmrs-module-omodexport"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "omodexport"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "omodexport"
       }
     },
     {
@@ -6410,15 +6215,14 @@
           "href": "https://github.com/openmrs/openmrs-module-ebolaexample"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "ebolaexample"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ebolaexample"
       }
     },
     {
-      "uid": "org.openmrs.module.legacy-ui-module",
+      "uid": "org.openmrs.module.legacyui",
       "type": "OMOD",
       "name": "Legacy UI Module",
       "maintainers": [
@@ -6443,11 +6247,10 @@
           "href": "https://github.com/openmrs/openmrs-module-legacyui"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "legacyui"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "legacyui"
       }
     },
     {
@@ -6473,11 +6276,10 @@
           "href": "https://github.com/openmrs/openmrs-module-radiology"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "radiologyapp"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "radiologyapp"
       }
     },
     {
@@ -6490,11 +6292,10 @@
           "name": "Mark Goodrich"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "paperrecord"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "paperrecord"
       }
     },
     {
@@ -6517,11 +6318,10 @@
           "href": "https://github.com/openmrs/openmrs-module-dispensing"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "dispensing"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "dispensing"
       }
     },
     {
@@ -6548,11 +6348,10 @@
           "href": "https://github.com/dkayiwa/openmrs-module-xreports"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "xreports"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "xreports"
       }
     },
     {
@@ -6579,11 +6378,10 @@
           "href": "https://github.com/openmrs/openmrs-module-auditlog"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "auditlog"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "auditlog"
       }
     },
     {
@@ -6609,11 +6407,10 @@
           "href": "https://github.com/dermatologist/openmrs-module-skinhelpdesk"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "skinhelpdesk"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "skinhelpdesk"
       }
     },
     {
@@ -6629,11 +6426,10 @@
           "name": "Bell Eapen"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "clinicalimages"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "clinicalimages"
       }
     },
     {
@@ -6656,11 +6452,10 @@
           "href": "https://github.com/NuchangeInformatics/openmrs-module-nuform"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "nuform"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "nuform"
       }
     },
     {
@@ -6686,11 +6481,10 @@
           "href": "https://github.com/thomasshunter/openmrs-module-ncd"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "ncd"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ncd"
       }
     },
     {
@@ -6713,11 +6507,10 @@
           "href": "https://github.com/PIH/openmrs-module-emrmonitor"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Bintray",
-      "bintrayPackageDetails": {
-        "owner": "openmrs",
-        "repo": "omod",
-        "package": "emrmonitor"
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "emrmonitor"
       }
     }
   ],
@@ -6740,10 +6533,10 @@
           "uid": "org.openmrs.module.reporting"
         },
         {
-          "uid": "org.openmrs.module.admin-ui-module"
+          "uid": "org.openmrs.module.adminui"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module"
+          "uid": "org.openmrs.module.legacyui"
         },
         {
           "uid": "org.openmrs.module.registration-core-module"
@@ -6760,7 +6553,7 @@
           "version": "2.14.2"
         },
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.4.0"
         },
         {
@@ -6832,7 +6625,7 @@
           "version": "4.6.0"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.8.0"
         },
         {
@@ -6903,7 +6696,7 @@
           "uid": "org.openmrs.module.uicommons",
           "version": "2.15.0"
         },
-         {
+        {
           "uid": "org.openmrs.owa.sysadmin",
           "version": "1.2"
         },
@@ -6931,7 +6724,7 @@
           "version": "2.11.0"
         },
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.3.0"
         },
         {
@@ -7003,7 +6796,7 @@
           "version": "4.5.0"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.6.0"
         },
         {
@@ -7074,7 +6867,7 @@
           "uid": "org.openmrs.module.uicommons",
           "version": "2.12.0"
         },
-         {
+        {
           "uid": "org.openmrs.owa.sysadmin",
           "version": "1.2"
         },
@@ -7102,7 +6895,7 @@
           "version": "2.11.0"
         },
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.2.4"
         },
         {
@@ -7178,7 +6971,7 @@
           "version": "4.5.0"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.5.0"
         },
         {
@@ -7277,7 +7070,7 @@
           "version": "2.11.0"
         },
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.2.3"
         },
         {
@@ -7353,7 +7146,7 @@
           "version": "4.5.0"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.4.0"
         },
         {
@@ -7452,7 +7245,7 @@
       "description": "Included in Reference Application 2.7",
       "addOns": [
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.2.2"
         },
         {
@@ -7600,7 +7393,7 @@
           "version": "2.0.4"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.3.3"
         },
         {
@@ -7615,7 +7408,7 @@
       "description": "Included in Reference Application 2.6",
       "addOns": [
         {
-          "uid": "org.openmrs.module.admin-ui-module",
+          "uid": "org.openmrs.module.adminui",
           "version": "1.2.2"
         },
         {
@@ -7763,7 +7556,7 @@
           "version": "2.0.2"
         },
         {
-          "uid": "org.openmrs.module.legacy-ui-module",
+          "uid": "org.openmrs.module.legacyui",
           "version": "1.3.1"
         },
         {

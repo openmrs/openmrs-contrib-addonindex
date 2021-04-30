@@ -52,7 +52,7 @@ public class Artifactory implements BackendHandler {
 			.compile("(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
 
 	private static final Pattern OWA_RELEASED_VERSION = Pattern
-			.compile("(?<name>.+)-(?<verison>[0-9.]+)\\.(?i:zip)");
+			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:zip)");
 
 	private final RestTemplate restTemplate;
 
