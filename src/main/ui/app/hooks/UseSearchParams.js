@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useLocation } from "react-router";
 
-// straight-forward hook to track the current URL parameters
+// Hook to grab the current URL parameters
 export const useSearchParams = () => {
   const location = useLocation();
   return useMemo(() => {
@@ -20,5 +20,6 @@ export const useSearchParams = () => {
     }
 
     return result;
-  }, [location.search]);
+    // eslint-disable-next-line  react-hooks/exhaustive-deps
+  }, [location.pathname, location.search]);
 };

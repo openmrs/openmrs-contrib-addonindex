@@ -10,7 +10,7 @@
 
 import React from "react";
 import { render } from "react-dom";
-import { Redirect, Route, Switch } from "react-router";
+import { Redirect, Route, Switch, useLocation } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   About,
@@ -39,23 +39,42 @@ library.add(fas, far);
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
 
+// This is a bit of a hack to try to support legacy URLs
+// from the previous version of the AddonIndex which used
+// the HashRouter instead of BrowserRouter
+const HashRedirect = ({ children }) => {
+  const location = useLocation();
+
+  return (
+    <>
+      {!!!location.search && location.hash?.startsWith("#/") ? (
+        <Redirect to={location.hash.replace("#", "")} push />
+      ) : (
+        children
+      )}
+    </>
+  );
+};
+
 render(
   <Router>
-    <App>
-      <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/indexingStatus" component={IndexingStatus} />
-        <Route path="/search" component={SearchPage} />
-        <Route path="/show/:uid" component={Show} />
-        <Route path="/show" render={() => <Redirect to={"/"} />} />
-        <Route path="/lists" component={AddOnLists} />
-        <Route path="/list/:uid" component={ShowList} />
-        <Route path="/list" render={() => <Redirect to={"/lists"} />} />
-        <Route path="/topDownloaded" component={TopDownloaded} />
-        <Route exact path="/" component={Home} />
-        <Route render={() => <Redirect to={"/"} />} />
-      </Switch>
-    </App>
+    <HashRedirect>
+      <App>
+        <Switch>
+          <Route path="/about" component={About} />
+          <Route path="/indexingStatus" component={IndexingStatus} />
+          <Route path="/search" component={SearchPage} />
+          <Route path="/show/:uid" component={Show} />
+          <Route path="/show" render={() => <Redirect to={"/"} />} />
+          <Route path="/lists" component={AddOnLists} />
+          <Route path="/list/:uid" component={ShowList} />
+          <Route path="/list" render={() => <Redirect to={"/lists"} />} />
+          <Route path="/topDownloaded" component={TopDownloaded} />
+          <Route exact path="/" component={Home} />
+          <Redirect to={"/"} push />
+        </Switch>
+      </App>
+    </HashRedirect>
   </Router>,
   document.getElementById("root")
 );
