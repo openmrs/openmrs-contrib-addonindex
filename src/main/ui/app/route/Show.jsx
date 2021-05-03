@@ -8,7 +8,7 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import {
@@ -138,9 +138,13 @@ export const Show = () => {
     { enabled: !!uid }
   );
 
-  const latestVersion = useMemo(() => latestVersionResult.data, [
-    latestVersionResult.data,
-  ]);
+  const [latestVersion, setLatestVersion] = useState(latestVersionResult.data);
+
+  useEffect(() => {
+    if (latestVersionResult.data) {
+      setLatestVersion(latestVersionResult.data);
+    }
+  }, [latestVersionResult.data]);
 
   const tag = useMemo(() => {
     if (!!!addOn) {
