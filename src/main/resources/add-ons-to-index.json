@@ -5192,7 +5192,7 @@
       "backend": "org.openmrs.addonindex.backend.Artifactory",
       "mavenRepoDetails": {
         "groupId": "org.openmrs.module",
-        "artifactId": "systemperformanceandutilization"
+        "artifactId": "systemmetrics"
       }
     },
     {
