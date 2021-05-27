@@ -1,18 +1,21 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useLocation } from "react-router";
 
 // Hook to grab the current URL parameters
-export const useSearchParams = () => {
+export function useSearchParams<
+  Params extends { [k in keyof Params]?: string | string[] }
+>(): Params {
   const location = useLocation();
   return useMemo(() => {
     const urlParams = new URLSearchParams(location.search);
-    const result = {};
+    const result: Params = {} as Params;
     for (const [key, value] of urlParams) {
       if (key in result) {
-        if (Array.isArray(result[key])) {
-          result[key].push(value);
+        const record = result[key];
+        if (record instanceof Array) {
+          record.push(value);
         } else {
-          result[key] = [result[key], value];
+          result[key] = [record, value];
         }
       } else {
         result[key] = value;
@@ -22,4 +25,4 @@ export const useSearchParams = () => {
     return result;
     // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, [location.pathname, location.search]);
-};
+}

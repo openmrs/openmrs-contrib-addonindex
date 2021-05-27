@@ -14,17 +14,20 @@ import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocation, useRouteMatch } from "react-router";
+import { AddOnCollection } from "../types";
 
 const LISTS_TO_SHOW = 3;
 
-export const ListOfLists = () => {
+export const ListOfLists: React.FC = () => {
   const location = useLocation();
   const match = useRouteMatch(location.pathname);
 
-  const listQuery = useQuery(["lists"], () => myFetch("/api/v1/list"));
+  const listQuery = useQuery<AddOnCollection[] | null>(["lists"], () =>
+    myFetch<AddOnCollection[]>("/api/v1/list")
+  );
 
   const lists = useMemo(() => {
-    if (!listQuery.data || !Array.isArray(listQuery.data)) {
+    if (!listQuery.data || !(listQuery.data instanceof Array)) {
       return [];
     }
 
@@ -41,15 +44,25 @@ export const ListOfLists = () => {
   const anyMore = useMemo(() => lists.length > LISTS_TO_SHOW, [lists]);
 
   if (listQuery.isLoading) {
-    return <></>;
+    return <Nav variant="pills" />;
   }
 
   if (listQuery.isError) {
-    return <></>;
+    return (
+      <Nav variant="pills">
+        Sorry! We couldn't load the list of collections Please{" "}
+        <a href="/">go back to the main screen.</a>
+      </Nav>
+    );
   }
 
   if (lists.length === 0) {
-    return <></>;
+    return (
+      <Nav variant="pills">
+        Sorry! We don't seem to have any collections! Please{" "}
+        <a href="/">go back to the main screen.</a>
+      </Nav>
+    );
   }
 
   return (

@@ -13,13 +13,17 @@ import { Link } from "react-router-dom";
 import { ListGroup, ListGroupItem, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { myFetch } from "../utils";
+import { AddOnCollection } from "../types";
 
-export const AddOnLists = () => {
-  const listQuery = useQuery(["collections"], () => myFetch("/api/v1/list"));
+export const AddOnLists: React.FC = () => {
+  const listQuery = useQuery<AddOnCollection[]>(["collections"], () =>
+    myFetch<AddOnCollection[]>("/api/v1/list")
+  );
 
-  const lists = useMemo(() => (!!!listQuery.data ? null : listQuery.data), [
-    listQuery,
-  ]);
+  const lists = useMemo(
+    () => (!listQuery.data ? null : listQuery.data),
+    [listQuery]
+  );
 
   if (listQuery.isError) {
     return <></>;

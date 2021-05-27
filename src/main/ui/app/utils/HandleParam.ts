@@ -12,9 +12,13 @@
  * handleParam() - small utility to add a parameter to a URLSearchParams object where the value might be a single value
  * or an array of values. This is useful when combined with the useSearchParams hook.
  */
-export const handleParam = (name, value, searchParams) => {
+export const handleParam = (
+  name: string,
+  value: string | string[],
+  searchParams: URLSearchParams
+): void => {
   if (value) {
-    if (Array.isArray(value)) {
+    if (value instanceof Array) {
       value.forEach((v) => searchParams.append(name, v));
     } else {
       searchParams.append(name, value);

@@ -9,9 +9,15 @@
  */
 
 import React from "react";
+import { Link } from "../types";
 
-export const ExternalLink = ({ link, children }) => {
-  const myLink = typeof link === "string" ? { href: link } : link;
+interface Props {
+  link: string | Link;
+}
+
+export const ExternalLink: React.FC<Props> = ({ link, children }) => {
+  const myLink =
+    typeof link === "string" ? ({ href: link } as Link) : (link as Link);
   const title = myLink.title ? myLink.title : myLink.href;
   return (
     <a target="_blank" href={myLink.href} rel={myLink.rel}>

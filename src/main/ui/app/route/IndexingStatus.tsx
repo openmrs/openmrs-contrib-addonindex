@@ -12,6 +12,14 @@ import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Badge, Col, Row } from "react-bootstrap";
+import { IAddOn } from "../types";
+
+interface IIndexingStatus {
+  statuses: { [key: string]: { error?: unknown } };
+  toIndex: {
+    toIndex: IAddOn[];
+  };
+}
 
 // 1 second
 const LIVE_REFETCH_INTERVAL = 1000;
@@ -19,24 +27,25 @@ const LIVE_REFETCH_INTERVAL = 1000;
 // 5 minutes
 const LONG_REFETCH_INTERVAL = 5 * 60 * 1000;
 
-export const IndexingStatus = () => {
+export const IndexingStatus: React.FC = () => {
   const [refetchInterval, setRefetchInterval] = useState(LIVE_REFETCH_INTERVAL);
 
-  const indexingStatusQuery = useQuery(
+  const indexingStatusQuery = useQuery<IIndexingStatus>(
     ["indexingStatus"],
-    () => myFetch("/api/v1/indexingstatus"),
+    () => myFetch<IIndexingStatus>("/api/v1/indexingstatus"),
     {
       refetchOnWindowFocus: "always",
       refetchInterval: refetchInterval,
     }
   );
 
-  const status = useMemo(() => indexingStatusQuery.data, [
-    indexingStatusQuery.data,
-  ]);
+  const status = useMemo(
+    () => indexingStatusQuery.data,
+    [indexingStatusQuery.data]
+  );
 
   const [okay, error, pending] = useMemo(() => {
-    if (!!!status?.statuses) {
+    if (!status?.statuses) {
       return [null, null, null];
     }
 
@@ -105,7 +114,7 @@ export const IndexingStatus = () => {
               <pre>{JSON.stringify(status?.statuses[addOn.uid], null, 2)}</pre>
             </Col>
           </Row>
-          <hr width="100%" />
+          <hr style={{ width: "100%" }} />
         </Fragment>
       ))}
     </>

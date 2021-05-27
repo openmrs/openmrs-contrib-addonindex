@@ -13,15 +13,17 @@ import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import { NamedList } from "../component";
 import { myFetch } from "../utils";
+import { AddOnCollection } from "../types";
 
-export const ShowList = () => {
-  const { uid } = useParams();
+export const ShowList: React.FC = () => {
+  const { uid } = useParams<{ uid: string }>();
 
-  const listQuery = useQuery(["list", uid], () =>
-    myFetch(`/api/v1/list/${uid}`)
+  const listQuery = useQuery<AddOnCollection>(["list", uid], () =>
+    myFetch<AddOnCollection>(`/api/v1/list/${uid}`)
   );
+
   const list = useMemo(() => {
-    if (!!!listQuery.data) {
+    if (!listQuery.data) {
       return null;
     }
 
@@ -33,7 +35,7 @@ export const ShowList = () => {
     return <>{listQuery.error.toString()}</>;
   }
 
-  if (listQuery.isLoading || !!!list) {
+  if (listQuery.isLoading || !list) {
     return <>Loading...</>;
   }
 

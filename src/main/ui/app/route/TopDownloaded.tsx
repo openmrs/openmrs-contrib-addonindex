@@ -13,10 +13,16 @@ import { AddOn } from "../component";
 import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Col, Row } from "react-bootstrap";
+import { IAddOn } from "../types";
 
-export const TopDownloaded = () => {
-  const downloadQuery = useQuery(["topdownloaded"], () =>
-    myFetch("/api/v1/topdownloaded")
+interface ITopDownloaded {
+  summary: IAddOn;
+  downloadCount: number;
+}
+
+export const TopDownloaded: React.FC = () => {
+  const downloadQuery = useQuery<ITopDownloaded[]>(["topdownloaded"], () =>
+    myFetch<ITopDownloaded[]>("/api/v1/topdownloaded")
   );
 
   const topDownloaded = useMemo(() => downloadQuery.data, [downloadQuery]);

@@ -16,7 +16,7 @@ const webpack = require("webpack");
 
 module.exports = (env) => {
   return {
-    entry: "./app/index.jsx",
+    entry: "./app/index.tsx",
     output: {
       filename: env.prod
         ? "app/bundle.[contenthash].min.js"
@@ -33,12 +33,12 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(?:j|t)sx?$/,
           exclude: resolve(__dirname, "node_modules"),
           loader: "babel-loader",
         },
         {
-          test: /\.js$/,
+          test: /\.(j|t)sx?$/,
           enforce: "pre",
           use: ["source-map-loader"],
         },
@@ -74,14 +74,14 @@ module.exports = (env) => {
       }),
       new webpack.ids.HashedModuleIdsPlugin(),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, "index.ejs"),
+        template: resolve(__dirname, "index.html"),
       }),
       new webpack.DefinePlugin({
         GA_ID: env.prod ? JSON.stringify("UA-16695719-3") : undefined,
       }),
     ],
     resolve: {
-      extensions: [".js", ".json", ".jsx"],
+      extensions: [".ts", ".json", ".tsx", ".js", ".jsx", ".d.ts"],
     },
   };
 };

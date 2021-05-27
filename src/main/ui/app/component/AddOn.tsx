@@ -12,10 +12,16 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Media } from "react-bootstrap";
 import { LegacyFaIcon } from "./LegacyFaIcon";
+import { IAddOn } from "../types";
+
+interface Props {
+  addOn: IAddOn;
+  version?: string;
+}
 
 const addOnItemStyle = { marginRight: "1rem", width: "3.7rem" };
 
-const Title = ({ addOn }) => {
+const Title: React.FC<{ addOn: IAddOn }> = ({ addOn }) => {
   const status = addOn?.status?.toUpperCase();
   const hasBadge = status === "DEPRECATED" || status === "INACTIVE";
   const variant = hasBadge
@@ -33,7 +39,7 @@ const Title = ({ addOn }) => {
   );
 };
 
-export const AddOn = ({ addOn, version }) => {
+export const AddOn: React.FC<Props> = ({ addOn, version }) => {
   const link = useMemo(
     () =>
       addOn?.uid

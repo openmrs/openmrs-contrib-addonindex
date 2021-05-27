@@ -10,7 +10,10 @@
 
 // simple wrapper for `fetch` that throws on error and returns the json response
 // useful to integrate `fetch` with the react-query library
-export const myFetch = async (url, options = {}) => {
+export const myFetch = async <T>(
+  url: RequestInfo,
+  options: RequestInit = {}
+): Promise<T | null> => {
   const response = await fetch(url, options);
   if (!response.ok) throw response;
   if (response.status === 204) {

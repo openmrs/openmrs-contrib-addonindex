@@ -16,9 +16,14 @@ import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export const SearchBox = () => {
+export const SearchBox: React.FC = () => {
   const history = useHistory();
-  const { type, q, tag } = useSearchParams();
+  const { type, q, tag } =
+    useSearchParams<{
+      type: string | string[];
+      q: string | string[];
+      tag: string | string[];
+    }>();
   const [query, setQuery] = useState(q);
 
   return (

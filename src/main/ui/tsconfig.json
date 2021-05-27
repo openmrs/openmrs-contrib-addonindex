@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "downlevelIteration": true,
+    "lib": [
+      "dom",
+      "dom.iterable"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
+  }
+}

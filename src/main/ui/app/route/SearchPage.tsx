@@ -13,17 +13,23 @@ import { useSearchParams } from "../hooks";
 import { useQuery } from "react-query";
 import { handleParam, myFetch } from "../utils";
 import { AddOnList, SearchBox } from "../component";
+import { IAddOn } from "../types";
 
-export const SearchPage = () => {
-  const { type, q, tag } = useSearchParams();
+export const SearchPage: React.FC = () => {
+  const { type, q, tag } =
+    useSearchParams<{
+      type: string | string[];
+      q: string | string[];
+      tag: string | string[];
+    }>();
 
-  const searchQuery = useQuery(["search", type, q, tag], () => {
+  const searchQuery = useQuery<IAddOn[]>(["search", type, q, tag], () => {
     const searchParams = new URLSearchParams();
     handleParam("type", type, searchParams);
     handleParam("q", q, searchParams);
     handleParam("tag", tag, searchParams);
 
-    return myFetch(`/api/v1/addon?${searchParams.toString()}`);
+    return myFetch<IAddOn[]>(`/api/v1/addon?${searchParams.toString()}`);
   });
 
   const searchResults = useMemo(() => searchQuery.data, [searchQuery.data]);

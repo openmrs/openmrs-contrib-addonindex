@@ -14,14 +14,25 @@ import { useQuery } from "react-query";
 import { CoreVersionContext } from "../App";
 import { myFetch } from "../utils";
 
-export const SelectUserVersions = ({ updateValue = () => null }) => {
-  const selectedValue = useContext(CoreVersionContext);
-  const versionQuery = useQuery(["coreversions"], () =>
-    myFetch("/api/v1/coreversions")
+interface Props {
+  updateValue: (string) => void;
+}
+
+interface Version {
+  value: string;
+  label: string;
+}
+
+export const SelectUserVersions: React.FC<Props> = ({
+  updateValue = () => null,
+}) => {
+  const selectedValue = useContext<string | undefined>(CoreVersionContext);
+  const versionQuery = useQuery<string[]>(["coreversions"], () =>
+    myFetch<string[]>("/api/v1/coreversions")
   );
 
-  const versions = useMemo(() => {
-    if (!!!versionQuery.data) {
+  const versions: Version[] = useMemo(() => {
+    if (!versionQuery.data) {
       return null;
     }
 
@@ -56,13 +67,15 @@ export const SelectUserVersions = ({ updateValue = () => null }) => {
               },
             })}
             value={
-              selectedValue && { value: selectedValue, label: selectedValue }
+              selectedValue
+                ? { value: selectedValue, label: selectedValue }
+                : null
             }
             placeholder="to check compatibility"
             options={versions}
             name="selected-state"
-            onChange={(newValue) => updateValue(newValue?.value)}
-            isSearchable="true"
+            onChange={(newValue: Version) => updateValue(newValue?.value)}
+            isSearchable={true}
           />
         )
       )}

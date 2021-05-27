@@ -47,7 +47,7 @@ const HashRedirect = ({ children }) => {
 
   return (
     <>
-      {!!!location.search && location.hash?.startsWith("#/") ? (
+      {!location.search && location.hash?.startsWith("#/") ? (
         <Redirect to={location.hash.replace("#", "")} push />
       ) : (
         children

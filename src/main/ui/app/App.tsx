@@ -15,18 +15,21 @@ import { useLocation } from "react-router";
 import ReactGA from "react-ga";
 import { Col } from "react-bootstrap";
 import { ListOfLists, SelectUserVersions } from "./component";
+import { GA_ID } from "./types";
 
 export const CoreVersionContext = createContext(null);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: (failureCount, error) => error.status >= 500 && failureCount < 3,
+      retry: (failureCount, error: Response) =>
+        error.status >= 500 && failureCount < 3,
       refetchOnWindowFocus: false,
     },
   },
 });
 
-const Analytics = ({ children }) => {
+// GA_ID is injected by WebPack in production
+const Analytics: React.FC = ({ children }) => {
   const location = useLocation();
   useEffect(() => {
     if (GA_ID) {
@@ -45,7 +48,7 @@ const Analytics = ({ children }) => {
   return <>{children}</>;
 };
 
-export default ({ children }) => {
+const App: React.FC = ({ children }) => {
   const [openmrsCoreVersion, setOpenmrsCoreVersion] = useState(null);
   return (
     <Analytics>
@@ -81,3 +84,5 @@ export default ({ children }) => {
     </Analytics>
   );
 };
+
+export default App;

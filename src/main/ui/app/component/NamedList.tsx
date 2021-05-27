@@ -11,21 +11,27 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { AddOn } from "./AddOn";
+import { AddOnCollection } from "../types";
 
-export const AddOnList = ({ addOns, heading }) => {
-  if (!!!addOns) {
-    return <></>;
-  }
+interface Props {
+  list: AddOnCollection;
+}
 
+export const NamedList: React.FC<Props> = ({ list }) => {
   return (
     <>
-      {heading ? <h4>{heading}</h4> : null}
+      <h1>{list.name}</h1>
+      <h3>{list.description}</h3>
       <Row>
-        {addOns.map((addOn) => (
-          <Col key={addOn.uid} xs={12}>
-            <AddOn addOn={addOn} />
-          </Col>
-        ))}
+        <Col xs={12}>
+          {list.addOns.map((addOn) => (
+            <AddOn
+              key={addOn.uid}
+              addOn={addOn.details}
+              version={addOn.version}
+            />
+          ))}
+        </Col>
       </Row>
     </>
   );

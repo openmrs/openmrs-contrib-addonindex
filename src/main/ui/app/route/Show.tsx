@@ -24,6 +24,9 @@ import { useQuery } from "react-query";
 import ReactGA from "react-ga";
 
 import dayjs from "dayjs/esm";
+// needed for TS to detect extension to DayJS
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import relativeTime from "dayjs/esm/plugin/relativeTime";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
@@ -32,11 +35,24 @@ import { CoreVersionContext } from "../App";
 import { useSearchParams } from "../hooks";
 import { ExternalLink, LegacyFaIcon } from "../component";
 import { myFetch } from "../utils";
+import { GA_ID, IAddOn, IAddOnVersion } from "../types";
+import { ButtonProps } from "react-bootstrap/Button";
 
-const DownloadButton = ({ uid, version, children, ...props }) => {
+interface DownloadButtonProps {
+  uid: string;
+  version: string;
+}
+
+const DownloadButton: React.FC<DownloadButtonProps & ButtonProps> = ({
+  uid,
+  version,
+  children,
+  ...props
+}) => {
   return (
     <Button
       onClick={
+        // GA_ID is injected by WebPack in production
         GA_ID
           ? () => {
               ReactGA.event({
@@ -73,7 +89,7 @@ const formatLinkHeader = (link) => {
 };
 
 const formatDateTime = (dt) => {
-  if (!!!dt) {
+  if (!dt) {
     return (
       <>
         <br />
@@ -84,7 +100,7 @@ const formatDateTime = (dt) => {
 
   const m = dayjs(dt);
 
-  if (!!!m) {
+  if (!m) {
     return (
       <>
         <br />
@@ -101,6 +117,7 @@ const formatDateTime = (dt) => {
     </>
   );
 };
+
 const formatRequiredModules = (version) => {
   const requirements = [];
 
@@ -115,23 +132,24 @@ const formatRequiredModules = (version) => {
   return requirements.join(", ");
 };
 
-export const Show = () => {
-  const { uid } = useParams();
-  const { highlightVersion } = useSearchParams();
+export const Show: React.FC = () => {
+  const { uid } = useParams<{ uid: string }>();
+  const { highlightVersion } =
+    useSearchParams<{ highlightVersion: string | string[] }>();
   const coreVersion = useContext(CoreVersionContext);
 
-  const addOnResult = useQuery(
+  const addOnResult = useQuery<IAddOn, Response>(
     ["addOn", uid],
-    () => myFetch(`/api/v1/addon/${uid}`),
+    () => myFetch<IAddOn>(`/api/v1/addon/${uid}`),
     { enabled: !!uid }
   );
 
   const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
 
-  const latestVersionResult = useQuery(
+  const latestVersionResult = useQuery<IAddOnVersion>(
     ["addOnLatestVersion", coreVersion],
     () =>
-      myFetch(
+      myFetch<IAddOnVersion>(
         `/api/v1/addon/${uid}/latestVersion` +
           (coreVersion ? `?coreversion=${coreVersion}` : "")
       ),
@@ -147,7 +165,7 @@ export const Show = () => {
   }, [latestVersionResult.data]);
 
   const tag = useMemo(() => {
-    if (!!!addOn) {
+    if (!addOn) {
       return null;
     }
 
@@ -203,7 +221,12 @@ export const Show = () => {
   }, [addOn]);
 
   const version = useMemo(() => {
-    if (latestVersion && addOn && addOn.versions) {
+    if (
+      latestVersion &&
+      addOn &&
+      addOn.versions &&
+      addOn.versions.length >= 1
+    ) {
       if (latestVersion.version === addOn.versions[0].version) {
         return (
           <span>
@@ -307,20 +330,22 @@ export const Show = () => {
           </Table>
         </Col>
         <Col xs={3}>
-          <DownloadButton
-            uid={addOn.uid}
-            version={latestVersion?.version}
-            variant="primary"
-            size="lg"
-            disabled={versionDownloadUri === null}
-            href={
-              latestVersion.renameTo
-                ? `/api/v1/addon/${addOn.uid}/${latestVersion.version}/download`
-                : latestVersion.downloadUri
-            }
-          >
-            {version}
-          </DownloadButton>
+          {latestVersion && (
+            <DownloadButton
+              uid={addOn.uid}
+              version={latestVersion?.version}
+              variant="primary"
+              size="lg"
+              disabled={versionDownloadUri === null}
+              href={
+                latestVersion.renameTo
+                  ? `/api/v1/addon/${addOn.uid}/${latestVersion.version}/download`
+                  : latestVersion.downloadUri
+              }
+            >
+              {version}
+            </DownloadButton>
+          )}
         </Col>
       </Row>
       <>
@@ -360,6 +385,8 @@ export const Show = () => {
                   <td>{formatRequiredModules(v)}</td>
                   <td>
                     <DownloadButton
+                      uid={addOn.uid}
+                      version={v.version}
                       variant="outline-primary"
                       size="sm"
                       href={

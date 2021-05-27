@@ -12,7 +12,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ExternalLink } from "../component";
 
-export const About = () => {
+export const About: React.FC = () => {
   return (
     <>
       <h1>About</h1>
@@ -56,7 +56,7 @@ export const About = () => {
         </li>
         <li>
           <strong>License:</strong> This software is available under the{" "}
-          <ExternalLink link="http://openmrs.org/license/">
+          <ExternalLink link="https://openmrs.org/license/">
             Mozilla Public License 2.0 with Healthcare Disclaimer (MPL 2.0 HD)
           </ExternalLink>
           .
