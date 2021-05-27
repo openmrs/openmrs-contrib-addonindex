@@ -142,7 +142,7 @@ public class FetchDetailsToIndex {
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
-					String configXml = fetchConfigXml(toIndex, version);
+					String configXml = fetchConfigXml(version);
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
@@ -157,7 +157,7 @@ public class FetchDetailsToIndex {
 		}
 	}
 	
-	String fetchConfigXml(AddOnToIndex addOnToIndex, AddOnVersion addOnVersion) throws IOException {
+	String fetchConfigXml(AddOnVersion addOnVersion) throws IOException {
 		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
 		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.getDownloadUri(), Resource.class);
 		if (resource != null) {
