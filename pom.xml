@@ -4,15 +4,52 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.openmrs</groupId>
-    <artifactId>addonindex</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
     </parent>
+
+    <groupId>org.openmrs</groupId>
+    <artifactId>addonindex</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>https://issues.openmrs.org/projects/AO/</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>OpenMRS Public License</name>
+            <url>http://openmrs.org/wiki/License</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>OpenMRS LLC.</name>
+        <url>https://openmrs.org</url>
+    </organization>
+
+    <scm>
+        <connection>scm:git:git@github.com:openmrs/openmrs-contrib-addonindex.git</connection>
+        <developerConnection>scm:git:git@github.com:openmrs/openmrs-contrib-addonindex.git</developerConnection>
+        <url>https://github.com/openmrs/openmrs-contrib-addonindex</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>openmrs-repo-modules</id>
+            <name>OpenMRS Maven Repo</name>
+            <url>https://mavenrepo.openmrs.org/contrib</url>
+        </repository>
+        <snapshotRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Maven Repo</name>
+            <url>https://mavenrepo.openmrs.org/contrib</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
