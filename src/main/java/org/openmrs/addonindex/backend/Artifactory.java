@@ -2,7 +2,13 @@ package org.openmrs.addonindex.backend;
 
 import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +32,6 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * <p>A {@link BackendHandler} for OpenMRS's Artifactory instance using the Artifactory API to find AddOns.</p>
- *
  * <p>We use two different searching mechanisms depending on whether or not an API key for Artifactory is available. It's
  * always preferable to have the API key available, as this results in fewer API requests, but an fallback mechanism
  * is provided using Artifactory's public API.</p>
@@ -39,20 +44,35 @@ public class Artifactory implements BackendHandler {
 
 	protected static final String AQL_URL = ARTIFACTORY_URL + "/api/search/aql";
 
-	private static final String AQL_SEARCH_TEMPLATE = "items.find({"
+	private static final String AQL_SEARCH_TEMPLATE_JAR = "items.find({"
 			+ "\"$and\": ["
 			+ "{\"repo\": {\"$nmatch\": \"*snapshots\"}},"
 			+ "{\"path\": {\"$match\": \"%1$s/%2$s/*\"}},"
 			+ "{\"name\": {\"$match\" : \"%2$s*.jar\"}}"
 			+ "] }).include(\"name\", \"repo\", \"path\", \"created\", \"stat.downloads\")";
 
+	private static final String AQL_SEARCH_TEMPLATE_OMOD = "items.find({"
+			+ "\"$and\": ["
+			+ "{\"repo\": {\"$match\": \"omod\"}},"
+			+ "{\"path\": {\"$match\": \"%1$s/%2$s/*\"}},"
+			+ "{\"name\": {\"$match\" : \"%2$s*.omod\"}}"
+			+ "] }).include(\"name\", \"repo\", \"path\", \"created\", \"stat.downloads\")";
+
 	protected static final String GAVC_URL = ARTIFACTORY_URL + "/api/search/gavc?g={g}&a={a}&repos={repos}";
 
-	private static final Pattern OMOD_RELEASED_VERSION = Pattern
+	private static final Pattern OMOD_RELEASED_VERSION_JAR = Pattern
 			.compile("(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
+
+	private static final Pattern OMOD_RELEASED_VERSION_OMOD = Pattern
+			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:omod)");
 
 	private static final Pattern OWA_RELEASED_VERSION = Pattern
 			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:zip)");
+
+	private enum OMOD_EXT {
+		OMOD,
+		JAR
+	}
 
 	private final RestTemplate restTemplate;
 
@@ -70,25 +90,42 @@ public class Artifactory implements BackendHandler {
 			throw new IllegalStateException("No maven repo details provided for AddOn: " + addOnToIndex.getName());
 		}
 
+		AddOnInfoAndVersions result;
 		if (artifactoryApiKey != null && !artifactoryApiKey.isEmpty()) {
-			return getInfoAndVersionsAql(addOnToIndex);
+			result = getInfoAndVersionsAql(addOnToIndex);
 		} else {
-			return getInfoAndVersionsGavc(addOnToIndex);
+			result = getInfoAndVersionsGavc(addOnToIndex);
 		}
+
+		Collections.sort(result.getVersions());
+
+		return result;
 	}
 
 	private AddOnInfoAndVersions getInfoAndVersionsAql(AddOnToIndex addOnToIndex) {
 		AddOnInfoAndVersions result = AddOnInfoAndVersions.from(addOnToIndex);
 
-		String groupPath = addOnToIndex.getMavenRepoDetails().getGroupId().replace(".", "/");
-		String artifact = addOnToIndex.getMavenRepoDetails().getArtifactId();
+		String groupPath = addOnToIndex.getMavenRepoDetails().getGroupId().replace(".", "/").toLowerCase(Locale.ROOT);
+		String artifact = addOnToIndex.getMavenRepoDetails().getArtifactId().toLowerCase(Locale.ROOT);
+
+		SortedSet<AddOnVersion> versions = new TreeSet<>();
 
 		if (addOnToIndex.getType() == AddOnType.OMOD) {
 			if (!artifact.endsWith("-omod")) {
-				artifact += "-omod";
+				versions.addAll(runAqlQueryFor(addOnToIndex, groupPath, artifact + "-omod"));
 			}
 		}
 
+		versions.addAll(runAqlQueryFor(addOnToIndex, groupPath, artifact));
+
+		result.getVersions().addAll(versions);
+
+		return result;
+	}
+
+	private List<AddOnVersion> runAqlQueryFor(AddOnToIndex addOnToIndex, String groupPath, String artifact) {
+		final List<AddOnVersion> result = new ArrayList<>();
+		final String AQL_SEARCH_TEMPLATE = artifact.endsWith("-omod") ? AQL_SEARCH_TEMPLATE_JAR : AQL_SEARCH_TEMPLATE_OMOD;
 		final String requestBody = String.format(AQL_SEARCH_TEMPLATE, groupPath, artifact);
 
 		ResponseEntity<AqlSearchResponse> responseEntity = restTemplate.execute(
@@ -108,12 +145,12 @@ public class Artifactory implements BackendHandler {
 					addOnToIndex.getMavenRepoDetails().getGroupId(),
 					addOnToIndex.getMavenRepoDetails().getArtifactId());
 
-			return null;
+			return Collections.emptyList();
 		}
 
 		if (!responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.warn("Problem fetching {} -> {} {}", AQL_URL, responseEntity.getStatusCode(), responseEntity.getBody());
-			return null;
+			return Collections.emptyList();
 		}
 
 		AqlSearchResponse searchResponse = responseEntity.getBody();
@@ -123,11 +160,12 @@ public class Artifactory implements BackendHandler {
 					addOnToIndex.getMavenRepoDetails().getGroupId(),
 					addOnToIndex.getMavenRepoDetails().getArtifactId());
 
-			return null;
+			return Collections.emptyList();
 		}
 
 		for (AqlArtifactInfo info : searchResponse.getResults()) {
-			Matcher m = getMatcherFor(addOnToIndex, info.getName());
+			Matcher m = getMatcherFor(addOnToIndex, info.getName(),
+					artifact.endsWith("-omod") ? OMOD_EXT.JAR : OMOD_EXT.OMOD);
 			if (m.matches()) {
 				AddOnVersion version = new AddOnVersion();
 				version.setVersion(new Version(m.group("version")));
@@ -135,7 +173,7 @@ public class Artifactory implements BackendHandler {
 				version.setDownloadUri(String.join("/", ARTIFACTORY_URL, info.getRepo(), info.getPath(), info.getName()));
 				version.setRenameTo(
 						m.group("name") + "-" + m.group("version") + "." + addOnToIndex.getType().getFileExtension());
-				result.addVersion(version);
+				result.add(version);
 			}
 		}
 
@@ -145,25 +183,40 @@ public class Artifactory implements BackendHandler {
 	private AddOnInfoAndVersions getInfoAndVersionsGavc(AddOnToIndex addOnToIndex) {
 		AddOnInfoAndVersions result = AddOnInfoAndVersions.from(addOnToIndex);
 
-		String group = addOnToIndex.getMavenRepoDetails().getGroupId();
-		String artifact = addOnToIndex.getMavenRepoDetails().getArtifactId();
+		String group = addOnToIndex.getMavenRepoDetails().getGroupId().toLowerCase(Locale.ROOT);
+		String artifact = addOnToIndex.getMavenRepoDetails().getArtifactId().toLowerCase(Locale.ROOT);
+
+		SortedSet<AddOnVersion> versions = new TreeSet<>();
 
 		if (addOnToIndex.getType() == AddOnType.OMOD) {
 			if (!artifact.endsWith("-omod")) {
-				artifact += "-omod";
+				versions.addAll(runGavcQueryFor(addOnToIndex, group, artifact + "-omod"));
 			}
+		}
+
+		versions.addAll(runGavcQueryFor(addOnToIndex, group, artifact));
+
+		result.getVersions().addAll(versions);
+
+		return result;
+	}
+
+	private List<AddOnVersion> runGavcQueryFor(AddOnToIndex addOnToIndex, String group, String artifact) {
+		String repos = "modules,owa";
+		if (addOnToIndex.getType() == AddOnType.OMOD && !artifact.endsWith("-omod")) {
+			repos = "omod";
 		}
 
 		ResponseEntity<GavcSearchResponse> responseEntity = restTemplate
 				.getForEntity(GAVC_URL, GavcSearchResponse.class, Map.of(
 						"g", group,
 						"a", artifact,
-						"repos", "modules,owa"
+						"repos", repos
 				));
 
 		if (!responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.warn("Problem fetching {} -> {} {}", AQL_URL, responseEntity.getStatusCode(), responseEntity.getBody());
-			return null;
+			return Collections.emptyList();
 		}
 
 		if (responseEntity.getBody() == null) {
@@ -171,16 +224,18 @@ public class Artifactory implements BackendHandler {
 					addOnToIndex.getMavenRepoDetails().getGroupId(),
 					addOnToIndex.getMavenRepoDetails().getArtifactId());
 
-			return null;
+			return Collections.emptyList();
 		}
 
+		List<AddOnVersion> result = new ArrayList<>();
 		for (GavcSearchResponse.GavcUri uri : responseEntity.getBody().getResults()) {
 			if (uri == null || uri.getUri() == null || uri.getUri().isEmpty()) {
 				continue;
 			}
 
 			String[] components = uri.getUri().split("/");
-			Matcher m = getMatcherFor(addOnToIndex, components[components.length - 1]);
+			Matcher m = getMatcherFor(addOnToIndex, components[components.length - 1],
+					repos.equals("omod") ? OMOD_EXT.OMOD : OMOD_EXT.JAR);
 			if (m.matches()) {
 				ArtifactoryArtifactDetails details = restTemplate
 						.getForObject(uri.getUri(), ArtifactoryArtifactDetails.class);
@@ -196,16 +251,20 @@ public class Artifactory implements BackendHandler {
 				version.setDownloadUri(details.getDownloadUri());
 				version.setRenameTo(
 						m.group("name") + "-" + m.group("version") + "." + addOnToIndex.getType().getFileExtension());
-				result.addVersion(version);
+				result.add(version);
 			}
 		}
 
 		return result;
 	}
 
-	private Matcher getMatcherFor(AddOnToIndex addOn, String stringToMatch) {
+	private Matcher getMatcherFor(AddOnToIndex addOn, String stringToMatch, OMOD_EXT extension) {
 		if (addOn.getType() == AddOnType.OMOD) {
-			return OMOD_RELEASED_VERSION.matcher(stringToMatch);
+			if (extension == OMOD_EXT.OMOD) {
+				return OMOD_RELEASED_VERSION_OMOD.matcher(stringToMatch);
+			} else {
+				return OMOD_RELEASED_VERSION_JAR.matcher(stringToMatch);
+			}
 		} else {
 			return OWA_RELEASED_VERSION.matcher(stringToMatch);
 		}

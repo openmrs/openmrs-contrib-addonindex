@@ -11,12 +11,14 @@
 package org.openmrs.addonindex.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
 import org.openmrs.addonindex.util.Version;
@@ -30,10 +32,13 @@ public class AddOnInfoAndVersions {
 	
 	public final static String ES_INDEX = "add_on_info_and_versions";
 
+	@EqualsAndHashCode.Include
 	private String uid;
 
+	@EqualsAndHashCode.Include
 	private String modulePackage;
 
+	@EqualsAndHashCode.Include
 	private String moduleId;
 
 	private AddOnStatus status;
@@ -82,7 +87,7 @@ public class AddOnInfoAndVersions {
 	}
 	
 	public Version getLatestVersion() {
-		return versions == null || versions.size() == 0 ? null : versions.get(0).getVersion();
+		return versions == null || versions.size() == 0 ? null : Collections.max(versions).getVersion();
 	}
 
 	public Optional<AddOnVersion> getVersion(Version version) {
