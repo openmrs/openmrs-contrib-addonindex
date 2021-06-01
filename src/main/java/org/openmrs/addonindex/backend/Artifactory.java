@@ -61,13 +61,13 @@ public class Artifactory implements BackendHandler {
 	protected static final String GAVC_URL = ARTIFACTORY_URL + "/api/search/gavc?g={g}&a={a}&repos={repos}";
 
 	private static final Pattern OMOD_RELEASED_VERSION_JAR = Pattern
-			.compile("(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
+			.compile("(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:(?<extension>jar|omod))");
 
 	private static final Pattern OMOD_RELEASED_VERSION_OMOD = Pattern
-			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:omod)");
+			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:(?<extension>omod))");
 
 	private static final Pattern OWA_RELEASED_VERSION = Pattern
-			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:zip)");
+			.compile("(?<name>.+)-(?<version>[0-9.]+)\\.(?i:(?<extensiont>zip))");
 
 	private enum OMOD_EXT {
 		OMOD,
