@@ -1793,6 +1793,35 @@
       }
     },
     {
+      "uid": "org.openmrs.module.cohort",
+      "type": "OMOD",
+      "name": "Cohort Module",
+      "icon": "users",
+      "tags": [
+        "cohort",
+        "patient-lists"
+      ],
+      "maintainers": [
+        { "name": "OpenMRS Community" }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Cohort+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-cohort"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "cohort"
+      }
+    },
+    {
       "uid": "org.openmrs.module.formimportexport",
       "status": "DEPRECATED",
       "type": "OMOD",
