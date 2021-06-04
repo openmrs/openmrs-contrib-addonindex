@@ -1798,11 +1798,11 @@
       "name": "Cohort Module",
       "icon": "users",
       "tags": [
-        "back-end",
         "cohort",
-        "patient lists"
+        "patient-lists"
       ],
       "maintainers": [
+        { "name": "OpenMRS Community" }
       ],
       "links": [
         {
