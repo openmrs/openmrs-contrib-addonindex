@@ -12,6 +12,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Redirect, Route, Switch, useLocation } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
 import {
   About,
   AddOnLists,
@@ -22,6 +23,7 @@ import {
   ShowList,
   TopDownloaded,
 } from "./route";
+import { ErrorFallback } from "./route/ErrorFallback";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -60,19 +62,21 @@ render(
   <Router>
     <HashRedirect>
       <App>
-        <Switch>
-          <Route path="/about" component={About} />
-          <Route path="/indexingStatus" component={IndexingStatus} />
-          <Route path="/search" component={SearchPage} />
-          <Route path="/show/:uid" component={Show} />
-          <Route path="/show" render={() => <Redirect to={"/"} />} />
-          <Route path="/lists" component={AddOnLists} />
-          <Route path="/list/:uid" component={ShowList} />
-          <Route path="/list" render={() => <Redirect to={"/lists"} />} />
-          <Route path="/topDownloaded" component={TopDownloaded} />
-          <Route exact path="/" component={Home} />
-          <Redirect to={"/"} push />
-        </Switch>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Switch>
+            <Route path="/about" component={About} />
+            <Route path="/indexingStatus" component={IndexingStatus} />
+            <Route path="/search" component={SearchPage} />
+            <Route path="/show/:uid" component={Show} />
+            <Route path="/show" render={() => <Redirect to={"/"} />} />
+            <Route path="/lists" component={AddOnLists} />
+            <Route path="/list/:uid" component={ShowList} />
+            <Route path="/list" render={() => <Redirect to={"/lists"} />} />
+            <Route path="/topDownloaded" component={TopDownloaded} />
+            <Route exact path="/" component={Home} />
+            <Redirect to={"/"} push />
+          </Switch>
+        </ErrorBoundary>
       </App>
     </HashRedirect>
   </Router>,
