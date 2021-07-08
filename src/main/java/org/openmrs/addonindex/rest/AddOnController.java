@@ -11,6 +11,7 @@
 package org.openmrs.addonindex.rest;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -52,6 +53,9 @@ public class AddOnController {
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}")
 	public ResponseEntity<AddOnInfoAndVersions> getOne(@PathVariable String uid) throws Exception {
 		AddOnInfoAndVersions addOn = index.getByUid(uid);
+		if (addOn != null) {
+			Collections.reverse(addOn.getVersions());
+		}
 		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
 

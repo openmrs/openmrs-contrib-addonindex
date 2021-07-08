@@ -81,7 +81,7 @@ public class AddOnInfoAndVersions {
 		versions.add(version);
 		versions.sort(Comparator.reverseOrder());
 	}
-	
+
 	public int getVersionCount() {
 		return versions == null ? 0 : versions.size();
 	}
