@@ -18,12 +18,21 @@ export const ErrorFallback: React.FC<FallbackProps> = ({
     <div role={"alert"}>
       <h3>Whoops! Something went wrong!</h3>
       <Button
+        className="mr-2"
         onClick={() => {
           resetErrorBoundary();
           history.goBack();
         }}
       >
         Go back
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          resetErrorBoundary();
+        }}
+      >
+        Retry
       </Button>
       {children}
     </div>
