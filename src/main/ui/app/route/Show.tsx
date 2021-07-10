@@ -257,154 +257,148 @@ export const Show: React.FC = () => {
 
   const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
 
-  if (addOnResult.isLoading) {
-    return <></>;
-  }
-
-  if (addOnResult.isError) {
-    if (addOnResult.error.status === 404) {
-      return (
-        <>
-          Sorry! We couldn't find the module "{uid}".
-          <br />
-          <Link to={"/"}>Go back to home screen</Link>
-        </>
-      );
-    } else {
-      return <></>;
-    }
-  }
-
   return (
-    <>
-      <Row style={{ marginBottom: `1rem` }} sm={12}>
-        <Col sm={1} className="hidden-xs">
-          <LegacyFaIcon icon={addOn.icon} size={"3x"} />
-        </Col>
-        <Col sm={11}>
-          <h2>{addOn.name}</h2>
-          <h4 className="lead">{addOn.description}</h4>
-          <div>{tag}</div>
-        </Col>
-      </Row>
-      <Row xs={12}>
-        <Col xs={9}>
-          <Table variant="condensed">
-            <tbody>
-              <tr>
-                <th>Type</th>
-                <td>{addOn.type}</td>
-              </tr>
-              {hostedAtRow}
-              <tr>
-                <th>Maintained by</th>
-                <td>
-                  <>
-                    {addOn?.maintainers?.map((m) =>
-                      m.url ? (
-                        <ExternalLink key={m.name} link={{ href: m.url }}>
-                          <span className="maintainer">{m.name}</span>
-                        </ExternalLink>
-                      ) : (
-                        <span key={m.name} className="maintainer">
-                          {m.name}
-                        </span>
-                      )
-                    )}
-                  </>
-                </td>
-              </tr>
-              {addOn?.links?.map((l) => (
-                <tr key={l.rel}>
-                  <th>{formatLinkHeader(l)}</th>
+    (addOnResult.isLoading && <></>) ||
+    (addOnResult.isError && (
+      <>
+        Sorry! We couldn't {addOnResult.error.status === 404 ? "find" : "load"}{" "}
+        the module "{uid}".
+        <br />
+        <Link to={"/"}>Go back to home screen</Link>
+      </>
+    )) || (
+      <>
+        <Row style={{ marginBottom: `1rem` }} sm={12}>
+          <Col sm={1} className="hidden-xs">
+            <LegacyFaIcon icon={addOn.icon} size={"3x"} />
+          </Col>
+          <Col sm={11}>
+            <h2>{addOn.name}</h2>
+            <h4 className="lead">{addOn.description}</h4>
+            <div>{tag}</div>
+          </Col>
+        </Row>
+        <Row xs={12}>
+          <Col xs={9}>
+            <Table variant="condensed">
+              <tbody>
+                <tr>
+                  <th>Type</th>
+                  <td>{addOn.type}</td>
+                </tr>
+                {hostedAtRow}
+                <tr>
+                  <th>Maintained by</th>
                   <td>
-                    <ExternalLink link={l} />
+                    <>
+                      {addOn?.maintainers?.map((m) =>
+                        m.url ? (
+                          <ExternalLink key={m.name} link={{ href: m.url }}>
+                            <span className="maintainer">{m.name}</span>
+                          </ExternalLink>
+                        ) : (
+                          <span key={m.name} className="maintainer">
+                            {m.name}
+                          </span>
+                        )
+                      )}
+                    </>
                   </td>
                 </tr>
-              ))}
+                {addOn?.links?.map((l) => (
+                  <tr key={l.rel}>
+                    <th>{formatLinkHeader(l)}</th>
+                    <td>
+                      <ExternalLink link={l} />
+                    </td>
+                  </tr>
+                ))}
+                <tr>
+                  <th>Downloads in the last 30 days</th>
+                  <td>{addOn?.downloadCountInLast30Days || "?"}</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Col>
+          <Col xs={3}>
+            {latestVersion && (
+              <DownloadButton
+                uid={addOn.uid}
+                version={latestVersion?.version}
+                variant="primary"
+                size="lg"
+                disabled={versionDownloadUri === null}
+                href={
+                  latestVersion.renameTo
+                    ? `/api/v1/addon/${addOn.uid}/${latestVersion.version}/download`
+                    : latestVersion.downloadUri
+                }
+              >
+                {version}
+              </DownloadButton>
+            )}
+          </Col>
+        </Row>
+        <>
+          <Table variant="condensed" hover>
+            <thead>
               <tr>
-                <th>Downloads in the last 30 days</th>
-                <td>{addOn?.downloadCountInLast30Days || "?"}</td>
+                <th>Version</th>
+                <th>Release Date</th>
+                <th>
+                  Platform Requirements&nbsp;
+                  <OverlayTrigger
+                    placement="right"
+                    overlay={
+                      <Tooltip id="tooltip">
+                        <strong>
+                          Minimum version of the OpenMRS Platform required.
+                        </strong>
+                      </Tooltip>
+                    }
+                  >
+                    <LegacyFaIcon icon={faQuestionCircle} />
+                  </OverlayTrigger>
+                </th>
+                <th>Other requirements</th>
+                <th>Download</th>
               </tr>
+            </thead>
+            <tbody>
+              {addOn?.versions?.map((v) => {
+                const className =
+                  v?.version === highlightVersion ? "highlight" : null;
+                return (
+                  v && (
+                    <tr key={v.version} className={className}>
+                      <td>{v.version}</td>
+                      <td>{formatDateTime(v.releaseDatetime)}</td>
+                      <td>{v.requireOpenmrsVersion}</td>
+                      <td>{formatRequiredModules(v)}</td>
+                      <td>
+                        <DownloadButton
+                          uid={addOn.uid}
+                          version={v.version}
+                          variant="outline-primary"
+                          size="sm"
+                          href={
+                            v.renameTo
+                              ? `/api/v1/addon/${addOn.uid}/${v.version}/download`
+                              : v.downloadUri
+                          }
+                        >
+                          <FontAwesomeIcon icon={faDownload} />
+                          Download
+                        </DownloadButton>
+                      </td>
+                    </tr>
+                  )
+                );
+              })}
             </tbody>
           </Table>
-        </Col>
-        <Col xs={3}>
-          {latestVersion && (
-            <DownloadButton
-              uid={addOn.uid}
-              version={latestVersion?.version}
-              variant="primary"
-              size="lg"
-              disabled={versionDownloadUri === null}
-              href={
-                latestVersion.renameTo
-                  ? `/api/v1/addon/${addOn.uid}/${latestVersion.version}/download`
-                  : latestVersion.downloadUri
-              }
-            >
-              {version}
-            </DownloadButton>
-          )}
-        </Col>
-      </Row>
-      <>
-        <Table variant="condensed" hover>
-          <thead>
-            <tr>
-              <th>Version</th>
-              <th>Release Date</th>
-              <th>
-                Platform Requirements&nbsp;
-                <OverlayTrigger
-                  placement="right"
-                  overlay={
-                    <Tooltip id="tooltip">
-                      <strong>
-                        Minimum version of the OpenMRS Platform required.
-                      </strong>
-                    </Tooltip>
-                  }
-                >
-                  <LegacyFaIcon icon={faQuestionCircle} />
-                </OverlayTrigger>
-              </th>
-              <th>Other requirements</th>
-              <th>Download</th>
-            </tr>
-          </thead>
-          <tbody>
-            {addOn?.versions?.map((v) => {
-              const className =
-                v.version === highlightVersion ? "highlight" : null;
-              return (
-                <tr key={v.version} className={className}>
-                  <td>{v.version}</td>
-                  <td>{formatDateTime(v.releaseDatetime)}</td>
-                  <td>{v.requireOpenmrsVersion}</td>
-                  <td>{formatRequiredModules(v)}</td>
-                  <td>
-                    <DownloadButton
-                      uid={addOn.uid}
-                      version={v.version}
-                      variant="outline-primary"
-                      size="sm"
-                      href={
-                        v.renameTo
-                          ? `/api/v1/addon/${addOn.uid}/${v.version}/download`
-                          : v.downloadUri
-                      }
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                      Download
-                    </DownloadButton>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        </>
       </>
-    </>
+    )
   );
 };
