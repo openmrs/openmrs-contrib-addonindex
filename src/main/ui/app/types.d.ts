@@ -1,7 +1,5 @@
 import { IconName } from "@fortawesome/fontawesome-common-types";
 
-declare const GA_ID: string | undefined;
-
 interface AddOnCollection {
   uid: string;
   name: string;

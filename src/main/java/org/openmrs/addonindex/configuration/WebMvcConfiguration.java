@@ -46,10 +46,21 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		//  2. A request for a static resource from a known location
 		//  3. A request that should be resolved to the default SPA page.
 
+		// known static resource paths
 		registry
-				.addResourceHandler("/app/**")
+				.addResourceHandler("/*.js")
 				.setCachePeriod(Integer.MAX_VALUE)
-				.addResourceLocations("classpath:/static/app/");
+				.addResourceLocations("classpath:/static/");
+
+		registry
+				.addResourceHandler("/*.css")
+				.setCachePeriod(Integer.MAX_VALUE)
+				.addResourceLocations("classpath:/static/");
+
+		registry
+				.addResourceHandler("/*.map")
+				.setCachePeriod(Integer.MAX_VALUE)
+				.addResourceLocations("classpath:/static/");
 
 		registry
 				.addResourceHandler("/images/**")
@@ -61,6 +72,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 				.setCachePeriod(0)
 				.addResourceLocations("classpath:/static/");
 
+		// the trick here is that for everything else, we either resolve it to a path
+		// Spring knows about or we just serve the index.html page
 		registry
 				.addResourceHandler("/", "/**")
 				.setCachePeriod(0)

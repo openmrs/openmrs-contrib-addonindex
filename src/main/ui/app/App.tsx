@@ -15,7 +15,6 @@ import { useLocation } from "react-router";
 import ReactGA from "react-ga";
 import { Col } from "react-bootstrap";
 import { ListOfLists, SelectUserVersions } from "./component";
-import { GA_ID } from "./types";
 
 export const CoreVersionContext = createContext(null);
 const queryClient = new QueryClient({
@@ -28,17 +27,21 @@ const queryClient = new QueryClient({
   },
 });
 
-// GA_ID is injected by WebPack in production
+let GA_ID = "UA-16695719-3";
+if (process.env.NODE_ENV === "development") {
+  GA_ID = undefined;
+}
+
 const Analytics: React.FC = ({ children }) => {
   const location = useLocation();
   useEffect(() => {
-    if (GA_ID) {
+    if (process.env.NODE_ENV !== "development") {
       ReactGA.initialize(GA_ID);
     }
   }, []);
 
   useEffect(() => {
-    if (GA_ID) {
+    if (process.env.NODE_ENV !== "development") {
       const fullLocation = location.pathname + location.search;
       ReactGA.set({ page: fullLocation });
       ReactGA.pageview(fullLocation);

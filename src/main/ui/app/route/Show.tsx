@@ -35,7 +35,7 @@ import { CoreVersionContext } from "../App";
 import { useSearchParams } from "../hooks";
 import { ExternalLink, LegacyFaIcon } from "../component";
 import { myFetch } from "../utils";
-import { GA_ID, IAddOn, IAddOnVersion } from "../types";
+import { IAddOn, IAddOnVersion } from "../types";
 import { ButtonProps } from "react-bootstrap/Button";
 
 interface DownloadButtonProps {
@@ -53,7 +53,7 @@ const DownloadButton: React.FC<DownloadButtonProps & ButtonProps> = ({
     <Button
       onClick={
         // GA_ID is injected by WebPack in production
-        GA_ID
+        process.env.NODE_ENV !== "development"
           ? () => {
               ReactGA.event({
                 category: "User",
