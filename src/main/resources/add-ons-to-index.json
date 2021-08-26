@@ -6541,6 +6541,62 @@
         "groupId": "org.openmrs.module",
         "artifactId": "emrmonitor"
       }
+    },
+    {
+      "uid": "org.openmrs.module.openconceptlab",
+      "type": "OMOD",
+      "name": "OCL Subscription Module",
+      "maintainers": [
+        {
+          "name": "Ian Bacher"
+        },
+        {
+          "name": "Rafal Korytkowski"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/projects/Overview%3A+OpenMRS+Dictionary+Manager",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-openconceptlab"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "openconceptlab"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.initializer",
+      "type": "OMOD",
+      "name": "Initializer",
+      "maintainers": [
+        {
+          "name": "Mekom Solutions",
+          "href": "https://mekomsolutions.com"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/mekomsolutions/openmrs-module-initializer/blob/master/README.md",
+          "title": "GitHub"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/mekomsolutions/openmrs-module-initializer"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "initializer"
+      }
     }
   ],
   "lists": [
