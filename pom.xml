@@ -10,7 +10,7 @@
 
     <groupId>org.openmrs</groupId>
     <artifactId>addonindex</artifactId>
-    <version>3.0.1</version>
+    <version>3.0.2-SNAPSHOT</version>
 
     <issueManagement>
         <system>JIRA</system>
@@ -33,7 +33,7 @@
         <connection>scm:git:git@github.com:openmrs/openmrs-contrib-addonindex.git</connection>
         <developerConnection>scm:git:git@github.com:openmrs/openmrs-contrib-addonindex.git</developerConnection>
         <url>https://github.com/openmrs/openmrs-contrib-addonindex</url>
-        <tag>addonindex-3.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
