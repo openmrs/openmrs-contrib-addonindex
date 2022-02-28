@@ -1403,6 +1403,61 @@
       }
     },
     {
+      "uid": "org.openmrs.module.bedmanagement",
+      "type": "OMOD",
+      "name": "Bed Management Module",
+      "maintainers": [
+        {
+          "name": "Angshuman Sarkar"
+        },
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/openmrs/openmrs-module-bedmanagement/blob/master/README.md",
+          "title": "Bed Management README"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-bedmanagement"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "bedmanagement"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.operationtheater",
+      "type": "OMOD",
+      "name": "Operation Theater Module",
+      "maintainers": [
+        {
+          "name": "Daniel Kayiwa"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Operation+Theater+Module",
+          "title": "OpenMRS Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-operationtheater"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "operationtheater"
+      }
+    },
+    {
       "uid": "org.openmrs.module.ermodule",
       "type": "OMOD",
       "name": "ER Module",
