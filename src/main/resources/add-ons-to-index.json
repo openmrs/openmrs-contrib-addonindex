@@ -6743,14 +6743,6 @@
           "version": "1.30.0"
         },
         {
-          "uid": "org.openmrs.module.bedmanagement",
-          "version": "5.11.0"
-        },
-        {
-          "uid": "org.openmrs.module.operationtheater",
-          "version": "1.3.0"
-        },
-        {
           "uid": "org.openmrs.module.event",
           "version": "2.8.0"
         },
