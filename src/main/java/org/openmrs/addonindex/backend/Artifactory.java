@@ -215,7 +215,7 @@ public class Artifactory implements BackendHandler {
 				));
 
 		if (!responseEntity.getStatusCode().is2xxSuccessful()) {
-			log.warn("Problem fetching {} -> {} {}", AQL_URL, responseEntity.getStatusCode(), responseEntity.getBody());
+			log.warn("Problem fetching {} -> {} {}", GAVC_URL, responseEntity.getStatusCode(), responseEntity.getBody());
 			return Collections.emptyList();
 		}
 
