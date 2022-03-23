@@ -38,7 +38,7 @@ You must have NodeJS and NPM installed already.
 
 From `src/main/ui` do
 
-    > npm install
+    > npm ci
     > npm run build:dev
    
 CI does `npm run build:prod` which minimizes js/css.
