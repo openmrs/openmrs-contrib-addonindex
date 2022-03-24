@@ -16,12 +16,11 @@ import { AddOnList, SearchBox } from "../component";
 import { IAddOn } from "../types";
 
 export const SearchPage: React.FC = () => {
-  const { type, q, tag } =
-    useSearchParams<{
-      type: string | string[];
-      q: string | string[];
-      tag: string | string[];
-    }>();
+  const { type, q, tag } = useSearchParams<{
+    type: string | string[];
+    q: string | string[];
+    tag: string | string[];
+  }>();
 
   const searchQuery = useQuery<IAddOn[]>(["search", type, q, tag], () => {
     const searchParams = new URLSearchParams();

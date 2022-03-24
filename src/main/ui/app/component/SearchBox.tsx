@@ -18,12 +18,11 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export const SearchBox: React.FC = () => {
   const history = useHistory();
-  const { type, q, tag } =
-    useSearchParams<{
-      type: string | string[];
-      q: string | string[];
-      tag: string | string[];
-    }>();
+  const { type, q, tag } = useSearchParams<{
+    type: string | string[];
+    q: string | string[];
+    tag: string | string[];
+  }>();
   const [query, setQuery] = useState(q);
 
   return (
