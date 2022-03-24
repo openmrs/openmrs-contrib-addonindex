@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.backend.Artifactory;
 import org.openmrs.addonindex.backend.Bintray;
 import org.openmrs.addonindex.backend.Modulus;
+import org.openmrs.addonindex.backend.Nexus3Repo;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.AddOnReference;
@@ -123,6 +124,10 @@ public class IndexingServiceTest {
 				assertThat(addOn.getBintrayPackageDetails().getRepo(), notNullValue());
 				assertThat(addOn.getBintrayPackageDetails().getPackageName(), notNullValue());
 			} else if (addOn.getBackend().equals(Artifactory.class)) {
+				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
+				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
+			} else if (addOn.getBackend().equals(Nexus3Repo.class)) {
+				assertThat(addOn.getMavenRepoDetails().getRepoUrl(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
 			} else if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
