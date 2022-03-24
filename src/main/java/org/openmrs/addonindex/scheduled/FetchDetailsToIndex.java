@@ -81,14 +81,15 @@ public class FetchDetailsToIndex {
 	public void run() {
 		AllAddOnsToIndex allToIndex = indexingService.getAllToIndex();
 		log.info("Fetching details for {} add-ons", allToIndex.size());
-		for (AddOnToIndex toIndex : allToIndex.getToIndex()) {
+		allToIndex.getToIndex().parallelStream().forEach(toIndex -> {
 			log.debug("Running scheduled index for {}", toIndex.getUid());
 			try {
 				getDetailsAndIndex(toIndex);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				log.error("Error getting details for {}", toIndex.getUid(), e);
 			}
-		}
+		});
 	}
 	
 	void setFetchExtraDetails(boolean fetchExtraDetails) {
