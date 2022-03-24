@@ -44,7 +44,7 @@ import org.xml.sax.InputSource;
 @Slf4j
 public class OpenmrsMavenRepo implements BackendHandler {
 	
-	public static final String NEXUS_URL = "http://mavenrepo.openmrs.org/nexus/";
+	public static final String NEXUS_URL = "https://mavenrepo.openmrs.org/nexus/";
 
 	private static final Pattern RENAME_PATTERN = Pattern.compile("(.+)-omod-([0-9.]+).jar");
 

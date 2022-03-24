@@ -18,9 +18,9 @@ import javax.xml.xpath.XPathFactory;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.time.ZoneOffset;
 import java.util.ListIterator;
 import java.util.Optional;
 import java.util.zip.ZipEntry;
@@ -56,16 +56,16 @@ import org.xml.sax.InputSource;
 @Component
 @Slf4j
 public class FetchDetailsToIndex {
-
+	
 	private final IndexingService indexingService;
 	
 	private final RestTemplateBuilder restTemplateBuilder;
-
+	
 	private final DocumentBuilderFactory documentBuilderFactory;
-
+	
 	@Autowired
 	public FetchDetailsToIndex(IndexingService indexingService,
-	                           RestTemplateBuilder restTemplateBuilder) {
+			RestTemplateBuilder restTemplateBuilder) {
 		this.indexingService = indexingService;
 		this.restTemplateBuilder = restTemplateBuilder;
 		this.documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -110,7 +110,7 @@ public class FetchDetailsToIndex {
 				}
 				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
 			}
-
+			
 			infoAndVersions.setDetailsBasedOnLatestVersion();
 			indexingService.index(infoAndVersions);
 			indexingService.getIndexingStatus().setStatus(toIndex,
@@ -124,7 +124,7 @@ public class FetchDetailsToIndex {
 	
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
-
+		
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
 			AddOnVersion version = iter.next();
 			if (existingInfo != null) {
@@ -132,13 +132,14 @@ public class FetchDetailsToIndex {
 				if (existingVersion.isPresent() &&
 						existingVersion.get().getDownloadUri().equals(version.getDownloadUri()) &&
 						(version.getReleaseDatetime() == null ||
-								 version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
-
+								version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
+					
 					log.debug("Using existing data for {} versions {}", toIndex.getUid(), version.getVersion());
 					iter.set(existingVersion.get());
 					continue;
 				}
 			}
+			
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
@@ -161,18 +162,22 @@ public class FetchDetailsToIndex {
 		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
 		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.getDownloadUri(), Resource.class);
 		if (resource != null) {
-			try (InputStream inputStream = resource.getInputStream();
-			     ZipInputStream zis = new ZipInputStream(new BufferedInputStream(inputStream))
+			try (
+					ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))
 			) {
 				ZipEntry entry;
 				while ((entry = zis.getNextEntry()) != null) {
 					if (entry.getName().equals("config.xml")) {
+						if (addOnVersion.getReleaseDatetime() == null) {
+							addOnVersion.setReleaseDatetime(entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
+						}
+						
 						return StreamUtils.copyToString(zis, Charset.defaultCharset());
 					}
 				}
 			}
 		}
-
+		
 		return null;
 	}
 	
@@ -187,7 +192,7 @@ public class FetchDetailsToIndex {
 		handleRequireModules(addOnVersion, xpath, config);
 		handleSupportedLanguages(addOnVersion, xpath, config);
 		handleModuleIdAndPackage(addOnVersion, xpath, config);
-
+		
 	}
 	
 	private void handleSupportedLanguages(AddOnVersion addOnVersion, XPath xpath, Document config)
@@ -224,16 +229,16 @@ public class FetchDetailsToIndex {
 			addOnVersion.setRequireOpenmrsVersion(((String) str).trim());
 		}
 	}
-
-	private void  handleModuleIdAndPackage(AddOnVersion addOnVersion, XPath xpath,
-                                           Document config) throws XPathExpressionException{
-        Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
-        Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
-        if (StringUtils.hasText((String) modulePackage)) {
-            addOnVersion.setModulePackage(((String) modulePackage).trim());
-        }
-        if (StringUtils.hasText((String) moduleId)) {
-            addOnVersion.setModuleId(((String) moduleId).trim());
-        }
-    }
+	
+	private void handleModuleIdAndPackage(AddOnVersion addOnVersion, XPath xpath,
+			Document config) throws XPathExpressionException {
+		Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
+		Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
+		if (StringUtils.hasText((String) modulePackage)) {
+			addOnVersion.setModulePackage(((String) modulePackage).trim());
+		}
+		if (StringUtils.hasText((String) moduleId)) {
+			addOnVersion.setModuleId(((String) moduleId).trim());
+		}
+	}
 }

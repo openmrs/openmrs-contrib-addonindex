@@ -37,13 +37,13 @@ public class OpenmrsMavenRepoTest {
 		
 		assertThat(versions.get(versions.size() - 1).getVersion().toString(), is("1.0"));
 		assertThat(versions.get(versions.size() - 1).getDownloadUri(),
-				is("http://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
+				is("https://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
 						+ "-omod/1.0/appui-omod-1.0.jar"));
 		assertThat(versions.get(versions.size() - 1).getRenameTo(), is("appui-1.0.omod"));
 		
 		assertThat(versions.get(0).getVersion().toString(), is("1.7"));
 		assertThat(versions.get(0).getDownloadUri(),
-				is("http://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
+				is("https://mavenrepo.openmrs.org/nexus/service/local/repositories/modules/content/org/openmrs/module/appui"
 						+ "-omod/1.7/appui-omod-1.7.jar"));
 		assertThat(versions.get(0).getRenameTo(), is("appui-1.7.omod"));
 	}

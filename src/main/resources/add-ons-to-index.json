@@ -6647,8 +6647,9 @@
           "href": "https://github.com/mekomsolutions/openmrs-module-initializer"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "backend": "org.openmrs.addonindex.backend.Nexus3Repo",
       "mavenRepoDetails": {
+        "repoUrl": "https://nexus.mekomsolutions.net",
         "groupId": "org.openmrs.module",
         "artifactId": "initializer"
       }

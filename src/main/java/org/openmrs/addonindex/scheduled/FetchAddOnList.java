@@ -59,7 +59,7 @@ public class FetchAddOnList {
 		
 		String json;
 		if (strategy == Strategy.LOCAL) {
-			log.debug("LOCAL strategy");
+			log.debug("FETCH strategy: LOCAL");
 			json = StreamUtils.copyToString(getClass().getClassLoader().getResourceAsStream("add-ons-to-index.json"),
 					Charset.defaultCharset());
 		} else {
