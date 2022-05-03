@@ -26,7 +26,7 @@ public class Nexus3Repo implements BackendHandler {
 	
 	private static final String NEXUS3_SEARCH_TEMPLATE = "service/rest/v1/search/assets?"
 			+ "maven.groupId={group}&"
-			+ "maven.artifactId={artifact}&maven.extension=jar&sort=version";
+			+ "maven.artifactId={artifact}&sort=version";
 	
 	private final RestTemplate restTemplate;
 	
