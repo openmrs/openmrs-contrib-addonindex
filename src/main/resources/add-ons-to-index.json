@@ -6653,6 +6653,70 @@
         "groupId": "org.openmrs.module",
         "artifactId": "initializer"
       }
+    },
+    {
+      "uid": "org.openmrs.module.ohri-core",
+      "type": "OMOD",
+      "name": "OHRI Core Module",
+      "maintainers": [
+        {
+          "name": "Arthur D. Mugume"
+        },
+        {
+          "name": "Amos Laboso"
+        },
+        {
+          "name": "Samuel Male"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/UCSF-IGHS/openmrs-module-ohri-core/blob/master/README.md",
+          "title": "GitHub"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/UCSF-IGHS/openmrs-module-ohri-core"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ohri-core"
+      }
+    },
+    {
+      "uid": "org.openmrs.module.ohrireports",
+      "type": "OMOD",
+      "name": "OHRI Reporting Module",
+      "maintainers": [
+        {
+          "name": "Amos Laboso"
+        },
+        {
+          "name": "Arthur D. Mugume"
+        },
+        {
+          "name": "Samuel Male"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://github.com/UCSF-IGHS/openmrs-module-ohri-reports/blob/master/README.md",
+          "title": "GitHub"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/UCSF-IGHS/openmrs-module-ohri-reports"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "ohrireports"
+      }
     }
   ],
   "lists": [
