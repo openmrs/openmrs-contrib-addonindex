@@ -6655,7 +6655,7 @@
       }
     },
     {
-      "uid": "org.openmrs.module.ohri-core",
+      "uid": "org.openmrs.module.ohricore",
       "type": "OMOD",
       "name": "OHRI Core Module",
       "maintainers": [
