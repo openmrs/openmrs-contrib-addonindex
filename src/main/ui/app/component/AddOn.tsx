@@ -56,7 +56,7 @@ export const AddOn: React.FC<Props> = ({ addOn, version }) => {
           <LegacyFaIcon
             icon={addOn.icon}
             style={addOnItemStyle}
-            size={"3x"}
+            size={"2x"}
             ifNotFound={<span style={{ ...addOnItemStyle, height: "3rem" }} />}
           />
         )}
