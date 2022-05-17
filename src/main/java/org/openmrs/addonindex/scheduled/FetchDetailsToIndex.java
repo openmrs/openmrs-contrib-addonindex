@@ -20,7 +20,9 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ListIterator;
 import java.util.Optional;
 import java.util.zip.ZipEntry;
@@ -41,6 +43,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
@@ -161,7 +165,8 @@ public class FetchDetailsToIndex {
 	
 	String fetchConfigXml(AddOnVersion addOnVersion) throws IOException {
 		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
-		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.getDownloadUri(), Resource.class);
+		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(), Resource.class);
+		Resource resource = response.getBody();
 		if (resource != null) {
 			try (
 					ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))
@@ -170,7 +175,18 @@ public class FetchDetailsToIndex {
 				while ((entry = zis.getNextEntry()) != null) {
 					if (entry.getName().equals("config.xml")) {
 						if (addOnVersion.getReleaseDatetime() == null) {
-							addOnVersion.setReleaseDatetime(entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
+							if (entry.getCreationTime() != null) {
+								addOnVersion.setReleaseDatetime(
+										entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
+							} else if (entry.getLastModifiedTime() != null) {
+								addOnVersion.setReleaseDatetime(
+										entry.getLastModifiedTime().toInstant().atOffset(ZoneOffset.UTC));
+							} else if (response.getHeaders().containsKey(HttpHeaders.LAST_MODIFIED)) {
+								ZonedDateTime zdt = response.getHeaders().getFirstZonedDateTime(HttpHeaders.LAST_MODIFIED);
+								if (zdt != null) {
+									addOnVersion.setReleaseDatetime(OffsetDateTime.from(zdt));
+								}
+							}
 						}
 						
 						return StreamUtils.copyToString(zis, Charset.defaultCharset());
