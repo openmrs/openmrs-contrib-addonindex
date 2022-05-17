@@ -48,9 +48,9 @@ public class AddOnInfoAndVersionsTest {
         AddOnVersion earlierVersion = new AddOnVersion();
         earlierVersion.setVersion(new Version("1.0"));
         earlierVersion.setRequireOpenmrsVersion("1.9.0");
-
+		
+		info.addVersion(earlierVersion);
         info.addVersion(latestVersion);
-        info.addVersion(earlierVersion);
 
         assertThat(info.getLatestSupportedVersion("2.1.0").getVersion().toString(), is("2.0"));
         assertThat(info.getLatestSupportedVersion("2.0.0").getVersion().toString(), is("1.0"));

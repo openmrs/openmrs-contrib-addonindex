@@ -97,9 +97,9 @@ public class AddOnInfoAndVersions {
 
 		return versions.stream().filter(v -> v.getVersion().equals(version)).findFirst();
 	}
-	
+
 	public void addTag(String tag) {
-		if (!Pattern.matches("[^\\s]*", tag)) {
+		if (!Pattern.matches("\\S*", tag)) {
 			throw new IllegalArgumentException("Tag cannot contain whitespace:" + tag);
 		}
 
@@ -112,7 +112,10 @@ public class AddOnInfoAndVersions {
 
     public AddOnVersion getLatestSupportedVersion(String userCoreVersion) {
         if (userCoreVersion != null) {
-            for (AddOnVersion addOnVersion : getVersions()) {
+	        List<AddOnVersion> versions = new ArrayList<>(this.versions);
+	        versions.sort(Collections.reverseOrder());
+
+            for (AddOnVersion addOnVersion : versions) {
                 if (OpenmrsVersionCompareUtil.matchRequiredVersions(userCoreVersion, addOnVersion.getRequireOpenmrsVersion())) {
                     return addOnVersion;
                 }
