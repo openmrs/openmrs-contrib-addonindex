@@ -12,12 +12,12 @@ import React, { useState } from "react";
 import { Button, Col, Form, FormControl, InputGroup } from "react-bootstrap";
 import { useSearchParams } from "../hooks";
 import { handleParam } from "../utils";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export const SearchBox: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { type, q, tag } = useSearchParams<{
     type: string | string[];
     q: string | string[];
@@ -36,7 +36,7 @@ export const SearchBox: React.FC = () => {
         handleParam("q", query, searchParams);
         handleParam("tag", tag, searchParams);
 
-        history.push(`/search?${searchParams.toString()}`);
+        navigate(`/search?${searchParams.toString()}`);
       }}
     >
       <Col md={12} lg={8}>

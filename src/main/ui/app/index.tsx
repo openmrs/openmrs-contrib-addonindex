@@ -8,9 +8,8 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
-import { render } from "react-dom";
-import { Redirect, Route, Switch, useLocation } from "react-router";
+import React, { PropsWithChildren } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import {
@@ -33,6 +32,7 @@ import relativeTime from "dayjs/esm/plugin/relativeTime";
 import localizedFormat from "dayjs/esm/plugin/localizedFormat";
 import "./sass/addonindex.scss";
 import App from "./App";
+import { createRoot } from "react-dom/client";
 
 // setup fontawesome
 library.add(fas, far);
@@ -44,13 +44,13 @@ dayjs.extend(localizedFormat);
 // This is a bit of a hack to try to support legacy URLs
 // from the previous version of the AddonIndex which used
 // the HashRouter instead of BrowserRouter
-const HashRedirect = ({ children }) => {
+const HashRedirect: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
   const location = useLocation();
 
   return (
     <>
       {!location.search && location.hash?.startsWith("#/") ? (
-        <Redirect to={location.hash.replace("#", "")} push />
+        <Navigate to={location.hash.replace("#", "")} />
       ) : (
         children
       )}
@@ -58,27 +58,26 @@ const HashRedirect = ({ children }) => {
   );
 };
 
-render(
+createRoot(document.getElementById("root")).render(
   <Router>
     <HashRedirect>
       <App>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Switch>
-            <Route path="/about" component={About} />
-            <Route path="/indexingStatus" component={IndexingStatus} />
-            <Route path="/search" component={SearchPage} />
-            <Route path="/show/:uid" component={Show} />
-            <Route path="/show" render={() => <Redirect to={"/"} />} />
-            <Route path="/lists" component={AddOnLists} />
-            <Route path="/list/:uid" component={ShowList} />
-            <Route path="/list" render={() => <Redirect to={"/lists"} />} />
-            <Route path="/topDownloaded" component={TopDownloaded} />
-            <Route exact path="/" component={Home} />
-            <Redirect to={"/"} push />
-          </Switch>
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/indexingStatus" element={<IndexingStatus />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/show/:uid" element={<Show />} />
+            <Route path="/show" element={<Navigate to={"/"} />} />
+            <Route path="/lists" element={<AddOnLists />} />
+            <Route path="/list/:uid" element={<ShowList />} />
+            <Route path="/list" element={<Navigate to={"/lists"} />} />
+            <Route path="/topDownloaded" element={<TopDownloaded />} />
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
         </ErrorBoundary>
       </App>
     </HashRedirect>
-  </Router>,
-  document.getElementById("root")
+  </Router>
 );

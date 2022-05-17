@@ -24,9 +24,6 @@ import { useQuery } from "react-query";
 import ReactGA from "react-ga";
 
 import dayjs from "dayjs/esm";
-// needed for TS to detect extension to DayJS
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import relativeTime from "dayjs/esm/plugin/relativeTime";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";

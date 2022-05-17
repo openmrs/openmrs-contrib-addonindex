@@ -24,11 +24,10 @@ const addOnItemStyle = { marginRight: "1rem", width: "3.7rem" };
 const Title: React.FC<{ addOn: IAddOn }> = ({ addOn }) => {
   const status = addOn?.status?.toUpperCase();
   const hasBadge = status === "DEPRECATED" || status === "INACTIVE";
-  const variant = hasBadge
-    ? status === "DEPRECATED"
-      ? "danger"
-      : "warning"
-    : null;
+  const variant = useMemo(
+    () => (hasBadge ? (status === "DEPRECATED" ? "danger" : "warning") : null),
+    [hasBadge, status]
+  );
 
   return (
     <h5>

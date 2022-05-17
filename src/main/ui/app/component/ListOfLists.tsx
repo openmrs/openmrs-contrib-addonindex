@@ -13,14 +13,14 @@ import { Nav } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { myFetch } from "../utils";
 import { Link } from "react-router-dom";
-import { useLocation, useRouteMatch } from "react-router";
+import { useLocation, useMatch } from "react-router";
 import { AddOnCollection } from "../types";
 
 const LISTS_TO_SHOW = 3;
 
 export const ListOfLists: React.FC = () => {
   const location = useLocation();
-  const match = useRouteMatch(location.pathname);
+  const match = useMatch(location.pathname);
 
   const listQuery = useQuery<AddOnCollection[] | null>(["lists"], () =>
     myFetch<AddOnCollection[]>("/api/v1/list")
@@ -73,7 +73,7 @@ export const ListOfLists: React.FC = () => {
           <Nav.Item key={listRoute}>
             <Link
               className={
-                "nav-link" + (match.path === listRoute ? " active" : "")
+                "nav-link" + (match.pathname === listRoute ? " active" : "")
               }
               to={listRoute}
             >

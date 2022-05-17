@@ -8,14 +8,17 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Link } from "../types";
 
 interface Props {
   link: string | Link;
 }
 
-export const ExternalLink: React.FC<Props> = ({ link, children }) => {
+export const ExternalLink: React.FC<PropsWithChildren<Props>> = ({
+  link,
+  children,
+}) => {
   const myLink =
     typeof link === "string" ? ({ href: link } as Link) : (link as Link);
   const title = myLink.title ? myLink.title : myLink.href;

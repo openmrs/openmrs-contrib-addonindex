@@ -8,7 +8,12 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import React, { createContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useLocation } from "react-router";
@@ -32,7 +37,7 @@ if (process.env.NODE_ENV === "development") {
   GA_ID = undefined;
 }
 
-const Analytics: React.FC = ({ children }) => {
+const Analytics: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
   const location = useLocation();
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") {
@@ -51,7 +56,7 @@ const Analytics: React.FC = ({ children }) => {
   return <>{children}</>;
 };
 
-const App: React.FC = ({ children }) => {
+const App: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [openmrsCoreVersion, setOpenmrsCoreVersion] = useState(null);
   return (
     <Analytics>
@@ -76,7 +81,10 @@ const App: React.FC = ({ children }) => {
               </Col>
             </header>
             <div className="offset-10 text-right">
-              <NavLink to={`/about`} activeClassName="hidden">
+              <NavLink
+                to={`/about`}
+                className={({ isActive }) => (isActive ? "hidden" : "")}
+              >
                 About Add Ons
               </NavLink>
             </div>

@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { FallbackProps } from "react-error-boundary";
 import { Button } from "react-bootstrap";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
-export const ErrorFallback: React.FC<FallbackProps> = ({
+export const ErrorFallback: React.FC<PropsWithChildren<FallbackProps>> = ({
   error,
   resetErrorBoundary,
   children,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(`Unexpected error: ${error.message}: ${error}`);
@@ -21,7 +21,7 @@ export const ErrorFallback: React.FC<FallbackProps> = ({
         className="mr-2"
         onClick={() => {
           resetErrorBoundary();
-          history.goBack();
+          navigate(-1);
         }}
       >
         Go back
