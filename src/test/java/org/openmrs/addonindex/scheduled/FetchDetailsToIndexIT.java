@@ -98,7 +98,7 @@ public class FetchDetailsToIndexIT {
 	@Test
 	public void testGettingExtraDetailsByDefault() {
 		task.getDetailsAndIndex(toIndex);
-		then(restTemplate).should().getForObject(DOWNLOAD_URI, Resource.class);
+		then(restTemplate).should().getForEntity(DOWNLOAD_URI, Resource.class);
 	}
 	
 	@Test
