@@ -3,9 +3,9 @@
   "description": "UI for the OpenMRS Add-On Index",
   "private": true,
   "scripts": {
-    "build:watch": "parcel watch --out-dir ../../../target/classes/static --cache-dir ../../../target/classes/parcel-cache index.html",
-    "build:dev": "NODE_ENV=development parcel build --out-dir ../../../target/classes/static --cache-dir ../../../target/classes/parcel-cache --no-minify index.html",
-    "build:prod": "parcel build --out-dir ../../../target/classes/static --cache-dir ../../../target/classes/parcel-cache index.html",
+    "build:watch": "parcel watch --dist-dir ../../../target/classes/static --cache-dir ../../../target/parcel-cache index.html",
+    "build:dev": "NODE_ENV=development parcel build --dist-dir ../../../target/classes/static --cache-dir ../../../target/parcel-cache --no-optimize index.html",
+    "build:prod": "parcel build --dist-dir ../../../target/classes/static --cache-dir ../../../target/parcel-cache index.html",
     "lint": "eslint --ext js,jsx,ts,tsx",
     "prettier": "prettier app/**/* --write",
     "test": "jest --passWithNoTests"
@@ -42,13 +42,7 @@
     "react-select": "^4.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.14.5",
+    "@parcel/transformer-sass": "^2.5.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^7.0.1",
@@ -59,8 +53,6 @@
     "@types/react-select": "^4.0.17",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.0.6",
     "browserslist-config-openmrs": "^1.0.1",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
@@ -69,13 +61,17 @@
     "html-webpack-plugin": "^5.3.2",
     "jest": "^27.0.6",
     "jest-fetch-mock": "^3.0.3",
-    "parcel-bundler": "^1.12.5",
-    "parcel-plugin-ignore-assets": "^1.0.0",
+    "parcel": "^2.5.0",
+    "parcel-resolver-ignore": "^2.0.0",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
     "react-test-renderer": "^17.0.2",
     "sass": "^1.35.2",
     "sass-loader": "^11.1.1",
     "typescript": "^4.3.5"
-  }
+  },
+  "parcelIgnore": [
+    "/favicon.ico",
+    "https://id.openmrs.org/.*"
+  ]
 }
