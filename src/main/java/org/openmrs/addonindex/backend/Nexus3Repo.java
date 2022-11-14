@@ -31,7 +31,7 @@ public class Nexus3Repo implements BackendHandler {
 	private final RestTemplate restTemplate;
 	
 	private static final Pattern OMOD_RELEASED_VERSION_JAR = Pattern
-			.compile("(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
+			.compile(".*/(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
 	
 	@Autowired
 	public Nexus3Repo(RestTemplate restTemplate) {

@@ -65,10 +65,8 @@ public class RenamingFileProxyController {
 			return;
 		}
 
-		if (addOnVersion.get().getRenameTo() == null ||
-				!(addOnVersion.get().getDownloadUri().startsWith(Artifactory.ARTIFACTORY_URL) ||
-					addOnVersion.get().getDownloadUri().startsWith(OpenmrsMavenRepo.NEXUS_URL))) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		if (addOnVersion.get().getRenameTo() == null) {
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "File name not set");
 			return;
 		}
 
