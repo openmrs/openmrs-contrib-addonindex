@@ -12,10 +12,10 @@ import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Media } from "react-bootstrap";
 import { LegacyFaIcon } from "./LegacyFaIcon";
-import { IAddOn } from "../types";
+import type { IAddOn } from "../types";
 
 interface Props {
-  addOn: IAddOn;
+  addOn?: IAddOn;
   version?: string;
 }
 

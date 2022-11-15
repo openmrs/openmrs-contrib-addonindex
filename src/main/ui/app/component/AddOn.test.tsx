@@ -1,16 +1,19 @@
-import React from "react";
 import "@testing-library/jest-dom";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { AddOn } from "./AddOn";
+import type { IAddOn } from "../types";
 
 jest.mock("./LegacyFaIcon", () => ({
   LegacyFaIcon: ({ icon }) => <span>{icon}</span>,
 }));
 
-const mockAddOn = {
+const mockAddOn: IAddOn = {
   uid: "my-addon",
   name: "My AddOn",
+  type: "OMOD",
+  hostedUrl: "",
 };
 
 const mockAddOnWithDescription = {

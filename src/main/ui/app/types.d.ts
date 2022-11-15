@@ -18,7 +18,7 @@ interface IAddOn {
   uid: string;
   name: string;
   type: "OWA" | "OMOD";
-  maintainers: {
+  maintainers?: {
     name: string;
     url?: string;
   }[];
