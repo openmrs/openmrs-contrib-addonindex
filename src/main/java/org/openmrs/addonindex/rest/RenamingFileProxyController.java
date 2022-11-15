@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.Optional;
 
-import org.openmrs.addonindex.backend.Artifactory;
-import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.Index;
