@@ -6689,7 +6689,34 @@
         "groupId": "org.openmrs.module",
         "artifactId": "ohrireports"
       }
-    }
+    },
+    {
+      "uid": "org.openmrs.module.datafilter",
+      "type": "OMOD",
+      "name": "Data Filter",
+      "maintainers": [
+        {
+          "name": "Mekom Solutions",
+          "href": "https://mekomsolutions.com"
+        }
+      ],
+      "links": [
+        {
+          "rel": "documentation",
+          "href": "https://wiki.openmrs.org/display/docs/Data+Filter",
+          "title": "Wiki"
+        },
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-datafilter"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "datafilter"
+      }
+    },
   ],
   "lists": [
     {
