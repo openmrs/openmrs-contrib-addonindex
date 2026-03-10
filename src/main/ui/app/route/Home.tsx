@@ -22,7 +22,7 @@ export const Home: React.FC = () => {
 
   const defaultList = useMemo(
     () => defaultListQuery.data,
-    [defaultListQuery.data]
+    [defaultListQuery.data],
   );
 
   return (

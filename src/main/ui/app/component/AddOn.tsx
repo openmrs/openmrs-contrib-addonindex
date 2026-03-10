@@ -26,7 +26,7 @@ const Title: React.FC<{ addOn: IAddOn }> = ({ addOn }) => {
   const hasBadge = status === "DEPRECATED" || status === "INACTIVE";
   const variant = useMemo(
     () => (hasBadge ? (status === "DEPRECATED" ? "danger" : "warning") : null),
-    [hasBadge, status]
+    [hasBadge, status],
   );
 
   return (
@@ -46,7 +46,7 @@ export const AddOn: React.FC<Props> = ({ addOn, version }) => {
           ? `/show/${addOn.uid}?highlightVersion=${version}`
           : `/show/${addOn.uid}`
         : "",
-    [addOn, version]
+    [addOn, version],
   );
 
   return (

@@ -39,7 +39,7 @@ export const IndexingStatus: React.FC = () => {
 
   const status = useMemo(
     () => indexingStatusQuery.data,
-    [indexingStatusQuery.data]
+    [indexingStatusQuery.data],
   );
 
   const [okay, error, pending] = useMemo(() => {

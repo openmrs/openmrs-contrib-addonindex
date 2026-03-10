@@ -10,7 +10,9 @@ export const ErrorFallback: React.FC<FallbackProps> = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(`Unexpected error: ${error instanceof Error ? error.message : error}`);
+    console.log(
+      `Unexpected error: ${error instanceof Error ? error.message : error}`,
+    );
   }, [error]);
 
   return (

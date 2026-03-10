@@ -39,7 +39,7 @@ describe("<AddOn/>", () => {
 
     expect(screen.getByText("My AddOn").closest("a")).toHaveAttribute(
       "href",
-      `/show/${mockAddOn.uid}`
+      `/show/${mockAddOn.uid}`,
     );
   });
 
@@ -49,7 +49,7 @@ describe("<AddOn/>", () => {
     });
     expect(screen.getByText("My AddOn").closest("a")).toHaveAttribute(
       "href",
-      `/show/${mockAddOn.uid}?highlightVersion=0.0.0`
+      `/show/${mockAddOn.uid}?highlightVersion=0.0.0`,
     );
   });
 

@@ -23,7 +23,7 @@ export const AddOnLists: React.FC = () => {
 
   const lists = useMemo(
     () => (!listQuery.data ? null : listQuery.data),
-    [listQuery]
+    [listQuery],
   );
 
   if (listQuery.isError) {

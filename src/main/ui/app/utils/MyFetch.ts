@@ -12,7 +12,7 @@
 // useful to integrate `fetch` with the react-query library
 export const myFetch = async <T>(
   url: RequestInfo,
-  options: RequestInit = {}
+  options: RequestInit = {},
 ): Promise<T | null> => {
   const response = await fetch(url, options);
   if (!response.ok) throw response;

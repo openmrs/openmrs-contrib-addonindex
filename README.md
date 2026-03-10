@@ -22,7 +22,7 @@ See [PUBLISHING-AN-ADD-ON](PUBLISHING-AN-ADD-ON.md).
 
 ## Testing / Development
 
-The server is a Spring Boot application, written with Java 8, built using maven. The web UI is a ReactJS SPA, built 
+The server is a Spring Boot application, written with Java 17, built using maven. The web UI is a ReactJS SPA, built 
 with pnpm (using parcel).
 
 It uses ElasticSearch to store its index.
@@ -115,9 +115,7 @@ The production server is updated via a webhook whenever you push to the `product
 This is automated in CI as a manual stage in the build plan. In case you need to do this manually, first you need to have 
 a docker image to tag, which you do either by:
 
-* (Option A) build everything locally (first the UI then the jar + docker build, and looking for output like `Successfully 
-built 
-089a664e4a61`)
+* (Option A) build everything locally (first the UI then the jar + docker build, and looking for output like `Successfully built 089a664e4a61`)
 * (Option B) do `docker pull <id>`
     
 Then you need to tag this and push to dockerhub, like: 

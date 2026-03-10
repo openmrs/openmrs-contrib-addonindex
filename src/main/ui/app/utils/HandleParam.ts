@@ -15,7 +15,7 @@
 export const handleParam = (
   name: string,
   value: string | string[],
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams,
 ): void => {
   if (value) {
     if (value instanceof Array) {

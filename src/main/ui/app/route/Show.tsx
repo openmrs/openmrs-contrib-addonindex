@@ -121,7 +121,7 @@ const formatRequiredModules = (version) => {
   if (version.requireModules) {
     version.requireModules.forEach((m) => {
       requirements.push(
-        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`
+        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`,
       );
     });
   }
@@ -131,8 +131,9 @@ const formatRequiredModules = (version) => {
 
 export const Show: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
-  const { highlightVersion } =
-    useSearchParams<{ highlightVersion: string | string[] }>();
+  const { highlightVersion } = useSearchParams<{
+    highlightVersion: string | string[];
+  }>();
   const coreVersion = useContext(CoreVersionContext);
 
   const addOnResult = useQuery({
@@ -148,7 +149,7 @@ export const Show: React.FC = () => {
     queryFn: () =>
       myFetch<IAddOnVersion>(
         `/api/v1/addon/${uid}/latestVersion` +
-          (coreVersion ? `?coreversion=${coreVersion}` : "")
+          (coreVersion ? `?coreversion=${coreVersion}` : ""),
       ),
     enabled: !!uid,
   });
@@ -301,7 +302,7 @@ export const Show: React.FC = () => {
                           <span key={m.name} className="maintainer">
                             {m.name}
                           </span>
-                        )
+                        ),
                       )}
                     </>
                   </td>
