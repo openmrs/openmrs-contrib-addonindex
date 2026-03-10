@@ -1,17 +1,16 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.backend;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.when;
-import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 import java.time.OffsetDateTime;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -24,6 +23,17 @@ import org.openmrs.addonindex.util.Version;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.when;
+import static org.openmrs.addonindex.TestUtil.getFileAsString;
+
 public class ModulusTest {
 	
 	@Mock
@@ -31,7 +41,7 @@ public class ModulusTest {
 	
 	@Mock
 	private RestTemplate restTemplate;
-
+	
 	private Modulus modulus;
 	
 	@BeforeEach
@@ -51,27 +61,22 @@ public class ModulusTest {
 		
 		String json = getFileAsString("modulus-module.json");
 		
-		when(restTemplate.getForObject("https://modules.openmrs.org/modulus/api/modules/3/releases?max=1000",
-				ArrayNode.class))
-				.thenReturn(new ObjectMapper().readValue(getFileAsString("modulus-releases.json"), ArrayNode.class));
+		when(restTemplate
+		        .getForObject("https://modules.openmrs.org/modulus/api/modules/3/releases?max=1000", ArrayNode.class))
+		        .thenReturn(new ObjectMapper().readValue(getFileAsString("modulus-releases.json"), ArrayNode.class));
 		
 		AddOnInfoAndVersions info = modulus.handleModuleJson(addOnToIndex, json);
 		assertThat(info.getName(), is("Address Hierarchy"));
-		assertThat(info.getDescription(),
-				is("Allows for the entry of structured addresses."));
+		assertThat(info.getDescription(), is("Allows for the entry of structured addresses."));
 		assertThat(info.getHostedUrl(), is("https://modules.openmrs.org/#/show/3"));
 		assertThat(info.getVersionCount(), is(2));
-		assertThat(info.getVersions().get(0), is(allOf(
-				hasProperty("version", equalTo(new Version("1.1"))),
-				hasProperty("releaseDatetime", is(OffsetDateTime.parse("2009-10-13T10:58:12Z"))),
-				hasProperty("downloadUri",
-						is("https://modules.openmrs.org/modulus/api/releases/6/download/addresshierarchy-1.1.omod"))
-		)));
-		assertThat(info.getVersions().get(1), is(allOf(
-				hasProperty("version", equalTo(new Version("1.0"))),
-				hasProperty("releaseDatetime", is(OffsetDateTime.parse("2008-09-11T08:44:32Z"))),
-				hasProperty("downloadUri",
-						is("https://modules.openmrs.org/modulus/api/releases/5/download/addresshierarchy-1.0.omod"))
-		)));
+		assertThat(info.getVersions().get(0),
+		    is(allOf(hasProperty("version", equalTo(new Version("1.1"))),
+		        hasProperty("releaseDatetime", is(OffsetDateTime.parse("2009-10-13T10:58:12Z"))), hasProperty("downloadUri",
+		            is("https://modules.openmrs.org/modulus/api/releases/6/download/addresshierarchy-1.1.omod")))));
+		assertThat(info.getVersions().get(1),
+		    is(allOf(hasProperty("version", equalTo(new Version("1.0"))),
+		        hasProperty("releaseDatetime", is(OffsetDateTime.parse("2008-09-11T08:44:32Z"))), hasProperty("downloadUri",
+		            is("https://modules.openmrs.org/modulus/api/releases/5/download/addresshierarchy-1.0.omod")))));
 	}
 }

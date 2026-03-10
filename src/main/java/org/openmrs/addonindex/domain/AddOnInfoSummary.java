@@ -12,10 +12,11 @@ package org.openmrs.addonindex.domain;
 
 import java.util.List;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.BeanUtils;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * A summary of an Add On and its Versions that we have indexed, e.g. for use as a search result
@@ -45,5 +46,5 @@ public class AddOnInfoSummary {
 	public AddOnInfoSummary(AddOnInfoAndVersions full) {
 		BeanUtils.copyProperties(full, this);
 	}
-
+	
 }

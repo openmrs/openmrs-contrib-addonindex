@@ -13,11 +13,6 @@ package org.openmrs.addonindex.backend;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
@@ -28,15 +23,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Indexes files from the (soon-to-be-legacy) modules.openmrs.org
  */
 @Component
 @Slf4j
 public class Modulus implements BackendHandler {
-
+	
 	private final RestTemplateBuilder restTemplateBuilder;
-
+	
 	private final ObjectMapper objectMapper;
 	
 	@Autowired
@@ -61,7 +63,7 @@ public class Modulus implements BackendHandler {
 	AddOnInfoAndVersions handleModuleJson(AddOnToIndex addOnToIndex, String moduleJson) throws IOException {
 		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(addOnToIndex);
 		info.setHostedUrl(hostedUrlFor(addOnToIndex));
-
+		
 		ObjectNode obj = objectMapper.readValue(moduleJson, ObjectNode.class);
 		
 		if (!StringUtils.hasText(info.getName())) {
@@ -78,7 +80,7 @@ public class Modulus implements BackendHandler {
 					log.debug("Invalid release in modulus for {}", addOnToIndex.getUid());
 					continue;
 				}
-
+				
 				AddOnVersion version = new AddOnVersion();
 				version.setVersion(new Version(releaseNode.path("moduleVersion").asText()));
 				version.setReleaseDatetime(OffsetDateTime.parse(releaseNode.path("dateCreated").asText()));
@@ -95,12 +97,11 @@ public class Modulus implements BackendHandler {
 	}
 	
 	private String moduleUrlFor(AddOnToIndex addOnToIndex) {
-		return String.format("https://modules.openmrs.org/modulus/api/modules/%s", addOnToIndex.getModulusDetails().getId
-				());
+		return String.format("https://modules.openmrs.org/modulus/api/modules/%s", addOnToIndex.getModulusDetails().getId());
 	}
 	
 	private String releasesUrlFor(AddOnToIndex addOnToIndex) {
 		return String.format("https://modules.openmrs.org/modulus/api/modules/%s/releases?max=1000",
-				addOnToIndex.getModulusDetails().getId());
+		    addOnToIndex.getModulusDetails().getId());
 	}
 }

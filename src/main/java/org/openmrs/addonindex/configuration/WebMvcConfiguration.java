@@ -10,6 +10,8 @@
 
 package org.openmrs.addonindex.configuration;
 
+import java.io.IOException;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,24 +22,18 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
-
+	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		// I don't suppose there's too much of a risk to enabling CORS for everywhere, but here we restrict things to
 		// the known API paths. Of course, Spring's @CrossOrigin annotation could be used to enable CORS for URLs that
 		// don't match these patterns
-
-		registry
-				.addMapping("/api/**")
-				.allowedMethods(RequestMethod.GET.name())
-				.maxAge(1800L);
-
-		registry
-				.addMapping("/{path:^modul(?:us|es)$}/**")
-				.allowedMethods(RequestMethod.GET.name())
-				.maxAge(1800L);
+		
+		registry.addMapping("/api/**").allowedMethods(RequestMethod.GET.name()).maxAge(1800L);
+		
+		registry.addMapping("/{path:^modul(?:us|es)$}/**").allowedMethods(RequestMethod.GET.name()).maxAge(1800L);
 	}
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// This is a little verbose, but it allows us to serve static content correctly and not need to manually map
@@ -45,46 +41,32 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		//  1. A request for a known API (whether legacy or the REST API)
 		//  2. A request for a static resource from a known location
 		//  3. A request that should be resolved to the default SPA page.
-
+		
 		// known static resource paths
-		registry
-				.addResourceHandler("/*.js")
-				.setCachePeriod(Integer.MAX_VALUE)
-				.addResourceLocations("classpath:/static/");
-
-		registry
-				.addResourceHandler("/*.css")
-				.setCachePeriod(Integer.MAX_VALUE)
-				.addResourceLocations("classpath:/static/");
-
-		registry
-				.addResourceHandler("/*.map")
-				.setCachePeriod(Integer.MAX_VALUE)
-				.addResourceLocations("classpath:/static/");
-
-		registry
-				.addResourceHandler("/images/**")
-				.setCachePeriod(0)
-				.addResourceLocations("classpath:/static/images/");
-
-		registry
-				.addResourceHandler("/favicon.ico")
-				.setCachePeriod(0)
-				.addResourceLocations("classpath:/static/");
-
+		registry.addResourceHandler("/*.js").setCachePeriod(Integer.MAX_VALUE).addResourceLocations("classpath:/static/");
+		
+		registry.addResourceHandler("/*.css").setCachePeriod(Integer.MAX_VALUE).addResourceLocations("classpath:/static/");
+		
+		registry.addResourceHandler("/*.map").setCachePeriod(Integer.MAX_VALUE).addResourceLocations("classpath:/static/");
+		
+		registry.addResourceHandler("/images/**").setCachePeriod(0).addResourceLocations("classpath:/static/images/");
+		
+		registry.addResourceHandler("/favicon.ico").setCachePeriod(0).addResourceLocations("classpath:/static/");
+		
 		// the trick here is that for everything else, we either resolve it to a path
 		// Spring knows about or we just serve the index.html page
-		registry
-				.addResourceHandler("/", "/**")
-				.setCachePeriod(0)
-				.addResourceLocations("classpath:/static/index.html")
-				.resourceChain(true)
-				.addResolver(new PathResourceResolver() {
-
-					@Override
-					protected Resource getResource(String resourcePath, Resource location) {
-						return location.exists() && location.isReadable() ? location : null;
-					}
-				});
+		registry.addResourceHandler("/", "/**").setCachePeriod(0).addResourceLocations("classpath:/static/")
+		        .resourceChain(true).addResolver(new PathResourceResolver() {
+			        
+			        @Override
+			        protected Resource getResource(String resourcePath, Resource location) throws IOException {
+				        Resource requested = location.createRelative(resourcePath);
+				        if (requested.exists() && requested.isReadable()) {
+					        return requested;
+				        }
+				        // Fall back to index.html for SPA routing
+				        return location.createRelative("index.html");
+			        }
+		        });
 	}
 }

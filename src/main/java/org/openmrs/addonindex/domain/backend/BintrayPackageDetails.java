@@ -11,17 +11,18 @@
 package org.openmrs.addonindex.domain.backend;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 public class BintrayPackageDetails {
-
+	
 	private String owner;
-
+	
 	private String repo;
-
+	
 	private String packageName; // "package" is a reserved word in Java, so we use this instead, but serialize as package
 	
 	@JsonProperty("package")

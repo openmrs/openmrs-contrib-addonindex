@@ -20,5 +20,5 @@ public class Maintainer {
 	private String name;
 	
 	private String url;
-
+	
 }

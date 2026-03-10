@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         platform: [ ubuntu-latest ]
-        java-version: [ 17 ]
+        java-version: [ 21 ]
 
     runs-on: ${{ matrix.platform }}
     env:

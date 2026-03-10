@@ -21,13 +21,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class MavenRepoDetails {
-
+	
 	@NonNull
 	private String groupId;
-
+	
 	@NonNull
 	private String artifactId;
 	
 	private String repoUrl;
-
+	
 }

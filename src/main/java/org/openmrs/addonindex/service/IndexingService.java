@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -30,16 +29,18 @@ import org.openmrs.addonindex.domain.MaterializedReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 @Slf4j
 public class IndexingService {
-
+	
 	private final Index repository;
-
+	
 	private final IndexingStatus indexingStatus = new IndexingStatus();
-
+	
 	private AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
-
+	
 	private Map<Class<? extends BackendHandler>, BackendHandler> handlers;
 	
 	@Autowired
@@ -101,10 +102,8 @@ public class IndexingService {
 			if (reference.getVersion() != null) {
 				Optional<AddOnVersion> addOnVersion = info.getVersion(reference.getVersion());
 				if (addOnVersion.isEmpty()) {
-					log.warn("List {} refers to {} version {} but this version is not indexed",
-							list.getUid(),
-							reference.getUid(),
-							reference.getVersion());
+					log.warn("List {} refers to {} version {} but this version is not indexed", list.getUid(),
+					    reference.getUid(), reference.getVersion());
 					continue;
 				}
 				materializedReference.setAddOnVersion(addOnVersion.get());

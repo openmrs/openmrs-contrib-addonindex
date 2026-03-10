@@ -10,15 +10,13 @@
 
 package org.openmrs.addonindex.backend;
 
+import java.io.StringReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
-import java.io.StringReader;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
@@ -30,26 +28,26 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * OpenMRS has historically released many of its modules in its maven repository (basically, all the modules in the
- * Reference Application, or in PIH's EMR, or that are built by ci.openmrs.org are released this way).
- *
- * Usually the artifacts are deployed to maven with type=jar and named like "{moduleId}-omod-{version}.jar" so they need
- * to be renamed before being deployed to OpenMRS.
- *
- * This Backend is a bit of a hack, but it allows us to rapidly start using this application, even before we've shifed
- * many of our releases to Bintray or Github Releases.
+ * OpenMRS has historically released many of its modules in its maven repository (basically, all the
+ * modules in the Reference Application, or in PIH's EMR, or that are built by ci.openmrs.org are
+ * released this way). Usually the artifacts are deployed to maven with type=jar and named like
+ * "{moduleId}-omod-{version}.jar" so they need to be renamed before being deployed to OpenMRS. This
+ * Backend is a bit of a hack, but it allows us to rapidly start using this application, even before
+ * we've shifed many of our releases to Bintray or Github Releases.
  */
 @Component
 @Slf4j
 public class OpenmrsMavenRepo implements BackendHandler {
 	
 	public static final String NEXUS_URL = "https://mavenrepo.openmrs.org/nexus/";
-
+	
 	private static final Pattern RENAME_PATTERN = Pattern.compile("(.+)-omod-([0-9.]+).jar");
-
+	
 	private final RestTemplateBuilder restTemplateBuilder;
-
+	
 	@Autowired
 	public OpenmrsMavenRepo(RestTemplateBuilder restTemplateBuilder) {
 		this.restTemplateBuilder = restTemplateBuilder;
@@ -57,9 +55,9 @@ public class OpenmrsMavenRepo implements BackendHandler {
 	
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {
-		String url = NEXUS_URL + "service/local/repositories/modules/index_content/"
-				+ "?groupIdHint=" + addOnToIndex.getMavenRepoDetails().getGroupId()
-				+ "&artifactIdHint=" + addOnToIndex.getMavenRepoDetails().getArtifactId();
+		String url = NEXUS_URL + "service/local/repositories/modules/index_content/" + "?groupIdHint="
+		        + addOnToIndex.getMavenRepoDetails().getGroupId() + "&artifactIdHint="
+		        + addOnToIndex.getMavenRepoDetails().getArtifactId();
 		log.info("Getting info from {}", url);
 		String xml = restTemplateBuilder.build().getForObject(url, String.class);
 		return handleIndexBrowserTreeViewResponse(addOnToIndex, xml);
@@ -70,8 +68,7 @@ public class OpenmrsMavenRepo implements BackendHandler {
 		
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		NodeList result = (NodeList) xpath.evaluate("//indexBrowserTreeNode[type='artifact' and not(classifier)]",
-				new InputSource(new StringReader(xml)),
-				XPathConstants.NODESET);
+		    new InputSource(new StringReader(xml)), XPathConstants.NODESET);
 		
 		for (int i = 0; i < result.getLength(); ++i) {
 			Element node = (Element) result.item(i);

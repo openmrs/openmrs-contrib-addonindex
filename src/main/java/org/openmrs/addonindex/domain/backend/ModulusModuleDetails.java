@@ -18,5 +18,5 @@ import lombok.Data;
 public class ModulusModuleDetails {
 	
 	private String id;
-
+	
 }

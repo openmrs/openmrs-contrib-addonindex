@@ -7,7 +7,8 @@ server:
   servlet:
     encoding:
       charset: utf-8
-      force: true
+      force-request: true
+      force-response: true
 
 core_version_list: # where to fetch list of OpenMRS core versions
   url: https://openmrs.jfrog.io/openmrs/api/storage/public/org/openmrs/api/openmrs-api/

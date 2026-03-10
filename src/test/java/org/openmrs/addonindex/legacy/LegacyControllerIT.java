@@ -1,11 +1,13 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.legacy;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.endsWith;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.startsWith;
-import static org.mockito.BDDMockito.given;
-import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,15 +28,22 @@ import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.endsWith;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.startsWith;
+import static org.mockito.BDDMockito.given;
+import static org.xmlunit.matchers.CompareMatcher.isSimilarTo;
 
 @SpringBootTest
 public class LegacyControllerIT {
 	
-	@MockBean
+	@MockitoBean
 	ElasticSearchIndex elasticSearchIndex;
 	
-	@MockBean
+	@MockitoBean
 	IndexingService indexingService;
 	
 	@Autowired
@@ -66,10 +75,8 @@ public class LegacyControllerIT {
 		
 		AddOnInfoSummary summary = new AddOnInfoSummary(full);
 		
-		given(elasticSearchIndex.search(AddOnType.OMOD, "appui", null))
-				.willReturn(Collections.singleton(summary));
-		given(elasticSearchIndex.getByUid("org.openmrs.module.appui"))
-				.willReturn(full);
+		given(elasticSearchIndex.search(AddOnType.OMOD, "appui", null)).willReturn(Collections.singleton(summary));
+		given(elasticSearchIndex.getByUid("org.openmrs.module.appui")).willReturn(full);
 		
 		AddOnToIndex moduleToIndex = new AddOnToIndex();
 		moduleToIndex.setType(AddOnType.OMOD);
@@ -77,11 +84,9 @@ public class LegacyControllerIT {
 		AllAddOnsToIndex allToIndex = new AllAddOnsToIndex();
 		allToIndex.setToIndex(Arrays.asList(moduleToIndex, moduleToIndex));
 		
-		given(indexingService.getAllToIndex())
-				.willReturn(allToIndex);
+		given(indexingService.getAllToIndex()).willReturn(allToIndex);
 		
-		given(indexingService.getByUid(full.getUid()))
-				.willReturn(full);
+		given(indexingService.getByUid(full.getUid())).willReturn(full);
 	}
 	
 	@Test
@@ -129,7 +134,6 @@ public class LegacyControllerIT {
 	
 	@Test
 	public void testOldDownloadRdf() throws Exception {
-		assertThat(controller.checkUpdate("appui"),
-				equalTo(controller.oldestLegacyGetUpdateRdf("appui")));
+		assertThat(controller.checkUpdate("appui"), equalTo(controller.oldestLegacyGetUpdateRdf("appui")));
 	}
 }

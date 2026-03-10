@@ -39,13 +39,14 @@ public class AddOnController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
-	                                           @RequestParam(value = "q", required = false) String query, 
-						   @RequestParam(value = "tag", required = false) String tag) throws Exception {
+	        @RequestParam(value = "q", required = false) String query,
+	        @RequestParam(value = "tag", required = false) String tag) throws Exception {
 		return index.search(type, query, tag);
 	}
-
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")
-	public ResponseEntity<AddOnInfoAndVersions> getByModulePackage(@RequestParam(value = "modulePackage") String modulePackage) throws Exception {
+	public ResponseEntity<AddOnInfoAndVersions> getByModulePackage(
+	        @RequestParam(value = "modulePackage") String modulePackage) throws Exception {
 		AddOnInfoAndVersions addOn = index.getByModulePackage(modulePackage);
 		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
@@ -58,18 +59,18 @@ public class AddOnController {
 		}
 		return new ResponseEntity<>(addOn, addOn == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
-
-    @RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}/latestVersion")
-    public ResponseEntity<AddOnVersion> getLatestVersion(
-            @RequestParam(value = "coreversion", required = false) String userCoreVersion,
-            @PathVariable String uid) throws Exception {
-	    AddOnInfoAndVersions addOn = index.getByUid(uid);
-	    if (addOn != null) {
-		    AddOnVersion addOnVersion = addOn.getLatestSupportedVersion(userCoreVersion);
-		    return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
-	    }
-
-	    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon/{uid}/latestVersion")
+	public ResponseEntity<AddOnVersion> getLatestVersion(
+	        @RequestParam(value = "coreversion", required = false) String userCoreVersion, @PathVariable String uid)
+	        throws Exception {
+		AddOnInfoAndVersions addOn = index.getByUid(uid);
+		if (addOn != null) {
+			AddOnVersion addOnVersion = addOn.getLatestSupportedVersion(userCoreVersion);
+			return new ResponseEntity<>(addOnVersion, addOnVersion == null ? HttpStatus.NO_CONTENT : HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
 }

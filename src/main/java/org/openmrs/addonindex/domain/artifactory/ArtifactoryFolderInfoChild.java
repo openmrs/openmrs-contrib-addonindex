@@ -19,9 +19,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ArtifactoryFolderInfoChild {
-
+	
 	private String uri;
-
+	
 	private boolean folder;
-
+	
 }

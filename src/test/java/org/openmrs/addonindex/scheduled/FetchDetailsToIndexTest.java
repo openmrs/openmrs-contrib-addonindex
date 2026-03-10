@@ -1,4 +1,17 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.scheduled;
+
+import org.junit.jupiter.api.Test;
+import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
+import org.openmrs.addonindex.domain.AddOnVersion;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -8,10 +21,6 @@ import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
-
-import org.junit.jupiter.api.Test;
-import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
-import org.openmrs.addonindex.domain.AddOnVersion;
 
 public class FetchDetailsToIndexTest {
 	
@@ -44,26 +53,22 @@ public class FetchDetailsToIndexTest {
 		task.handleConfigXml(getFileAsString("config.withRequiredModules.xml"), version);
 		assertThat(version.getRequireOpenmrsVersion(), is("1.11.3, 1.10.2 - 1.10.*, 1.9.9 - 1.9.*"));
 		assertThat(version.getRequireModules().size(), is(2));
-		assertThat(version.getRequireModules(), hasItem(allOf(
-				hasProperty("module", is("org.openmrs.module.reporting")),
-				hasProperty("version", is("?"))
-		)));
-		assertThat(version.getRequireModules(), hasItem(allOf(
-				hasProperty("module", is("org.openmrs.event")),
-				hasProperty("version", is("?"))
-		)));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.reporting")), hasProperty("version", is("?")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.event")), hasProperty("version", is("?")))));
 	}
-
-    @Test
+	
+	@Test
 	public void testParsingConfigXmlForSettingModulePackageAndId() throws Exception {
-	    FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
-	    AddOnVersion version = new AddOnVersion();
-	    task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
-	    assertThat(version.getModulePackage(), is("org.openmrs.module.mdrtb"));
-	    assertThat(version.getModuleId(), is("mdrtb"));
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleConfigXml(getFileAsString("config.withRelativePathDtd.xml"), version);
+		assertThat(version.getModulePackage(), is("org.openmrs.module.mdrtb"));
+		assertThat(version.getModuleId(), is("mdrtb"));
 	}
-
-    @Test
+	
+	@Test
 	public void testParsingWithDoctypeRelativePath() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();

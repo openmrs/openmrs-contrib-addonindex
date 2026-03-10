@@ -12,27 +12,28 @@ package org.openmrs.addonindex.domain;
 
 import java.util.List;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
 import org.openmrs.addonindex.domain.backend.ModulusModuleDetails;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 /**
- * An OpenMRS add-on that should be indexed.
- * Authors add these to our registry, and the application takes care of indexing them.
+ * An OpenMRS add-on that should be indexed. Authors add these to our registry, and the application
+ * takes care of indexing them.
  */
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class AddOnToIndex {
-
+	
 	@EqualsAndHashCode.Include
 	private String uid;
-
+	
 	private AddOnStatus status;
 	
 	private AddOnType type;
@@ -56,5 +57,5 @@ public class AddOnToIndex {
 	private BintrayPackageDetails bintrayPackageDetails;
 	
 	private ModulusModuleDetails modulusDetails;
-
+	
 }

@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CoreVersionsController {
-
-    private final VersionsService versionsService;
-
-    @Autowired
-    public CoreVersionsController(VersionsService versionsService) {
-        this.versionsService = versionsService;
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "api/v1/coreversions")
-    public SortedSet<Version> coreversions() {
-        return versionsService.getVersions().getVersions();
-    }
+	
+	private final VersionsService versionsService;
+	
+	@Autowired
+	public CoreVersionsController(VersionsService versionsService) {
+		this.versionsService = versionsService;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "api/v1/coreversions")
+	public SortedSet<Version> coreversions() {
+		return versionsService.getVersions().getVersions();
+	}
 }

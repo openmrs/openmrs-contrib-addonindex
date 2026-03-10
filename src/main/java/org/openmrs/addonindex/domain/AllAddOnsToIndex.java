@@ -18,8 +18,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represents the complete list of add-ons that we want to index the versions of.
- * The source of this data is a static file on github (which module authors update via pull requests).
+ * Represents the complete list of add-ons that we want to index the versions of. The source of this
+ * data is a static file on github (which module authors update via pull requests).
  */
 @Data
 @NoArgsConstructor

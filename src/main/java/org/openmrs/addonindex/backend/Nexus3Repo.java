@@ -1,3 +1,12 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.backend;
 
 import java.net.MalformedURLException;
@@ -9,7 +18,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
@@ -20,18 +28,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
 @Slf4j
 public class Nexus3Repo implements BackendHandler {
 	
-	private static final String NEXUS3_SEARCH_TEMPLATE = "service/rest/v1/search/assets?"
-			+ "maven.groupId={group}&"
-			+ "maven.artifactId={artifact}&sort=version";
+	private static final String NEXUS3_SEARCH_TEMPLATE = "service/rest/v1/search/assets?" + "maven.groupId={group}&"
+	        + "maven.artifactId={artifact}&sort=version";
 	
 	private final RestTemplate restTemplate;
 	
 	private static final Pattern OMOD_RELEASED_VERSION_JAR = Pattern
-			.compile(".*/(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
+	        .compile(".*/(?<name>.+)-(?i:omod)-(?<version>[0-9.]+)\\.(?i:jar)");
 	
 	@Autowired
 	public Nexus3Repo(RestTemplate restTemplate) {
@@ -41,20 +50,17 @@ public class Nexus3Repo implements BackendHandler {
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {
 		if (addOnToIndex.getMavenRepoDetails() == null) {
-			throw new IllegalStateException(
-					"Must supply Maven repository details for the addon " + addOnToIndex.getUid());
+			throw new IllegalStateException("Must supply Maven repository details for the addon " + addOnToIndex.getUid());
 		}
 		
-		if (addOnToIndex.getMavenRepoDetails().getGroupId() == null || addOnToIndex.getMavenRepoDetails().getGroupId()
-				.isEmpty()) {
-			throw new IllegalStateException(
-					"Must supply group id for the addon " + addOnToIndex.getUid());
+		if (addOnToIndex.getMavenRepoDetails().getGroupId() == null
+		        || addOnToIndex.getMavenRepoDetails().getGroupId().isEmpty()) {
+			throw new IllegalStateException("Must supply group id for the addon " + addOnToIndex.getUid());
 		}
 		
-		if (addOnToIndex.getMavenRepoDetails().getArtifactId() == null || addOnToIndex.getMavenRepoDetails().getArtifactId()
-				.isEmpty()) {
-			throw new IllegalStateException(
-					"Must supply artifact id for the addon " + addOnToIndex.getUid());
+		if (addOnToIndex.getMavenRepoDetails().getArtifactId() == null
+		        || addOnToIndex.getMavenRepoDetails().getArtifactId().isEmpty()) {
+			throw new IllegalStateException("Must supply artifact id for the addon " + addOnToIndex.getUid());
 		}
 		
 		AddOnInfoAndVersions result = AddOnInfoAndVersions.from(addOnToIndex);
@@ -66,11 +72,8 @@ public class Nexus3Repo implements BackendHandler {
 			artifactId += "-omod";
 		}
 		
-		ResponseEntity<Nexus3SearchResponse> responseEntity = restTemplate
-				.getForEntity(finalUrl, Nexus3SearchResponse.class, Map.of(
-						"group", addOnToIndex.getMavenRepoDetails().getGroupId(),
-						"artifact", artifactId
-				));
+		ResponseEntity<Nexus3SearchResponse> responseEntity = restTemplate.getForEntity(finalUrl, Nexus3SearchResponse.class,
+		    Map.of("group", addOnToIndex.getMavenRepoDetails().getGroupId(), "artifact", artifactId));
 		
 		if (!responseEntity.getStatusCode().is2xxSuccessful()) {
 			log.warn("Problem fetching {} -> {} {}", finalUrl, responseEntity.getStatusCode(), responseEntity.getBody());
@@ -79,9 +82,8 @@ public class Nexus3Repo implements BackendHandler {
 		
 		if (responseEntity.getBody() == null) {
 			log.error("Did not receive a result for {}:{} from Nexus API at {}",
-					addOnToIndex.getMavenRepoDetails().getGroupId(),
-					addOnToIndex.getMavenRepoDetails().getArtifactId(),
-					addOnToIndex.getMavenRepoDetails().getRepoUrl());
+			    addOnToIndex.getMavenRepoDetails().getGroupId(), addOnToIndex.getMavenRepoDetails().getArtifactId(),
+			    addOnToIndex.getMavenRepoDetails().getRepoUrl());
 			
 			return result;
 		}
@@ -91,10 +93,8 @@ public class Nexus3Repo implements BackendHandler {
 		Nexus3SearchResponse searchResponse = responseEntity.getBody();
 		
 		if (searchResponse == null) {
-			log.warn("No response returned for {}:{} from Nexus API at {}",
-					addOnToIndex.getMavenRepoDetails().getGroupId(),
-					addOnToIndex.getMavenRepoDetails().getArtifactId(),
-					addOnToIndex.getMavenRepoDetails().getRepoUrl());
+			log.warn("No response returned for {}:{} from Nexus API at {}", addOnToIndex.getMavenRepoDetails().getGroupId(),
+			    addOnToIndex.getMavenRepoDetails().getArtifactId(), addOnToIndex.getMavenRepoDetails().getRepoUrl());
 			
 			return result;
 		}
@@ -102,10 +102,8 @@ public class Nexus3Repo implements BackendHandler {
 		List<Nexus3SearchResponse.Nexus3SearchItemDetails> items = searchResponse.getItems();
 		
 		if (items == null || items.isEmpty()) {
-			log.info("No items returned for {}:{} from Nexus API at {}",
-					addOnToIndex.getMavenRepoDetails().getGroupId(),
-					addOnToIndex.getMavenRepoDetails().getArtifactId(),
-					addOnToIndex.getMavenRepoDetails().getRepoUrl());
+			log.info("No items returned for {}:{} from Nexus API at {}", addOnToIndex.getMavenRepoDetails().getGroupId(),
+			    addOnToIndex.getMavenRepoDetails().getArtifactId(), addOnToIndex.getMavenRepoDetails().getRepoUrl());
 			
 			return result;
 		}
@@ -117,7 +115,7 @@ public class Nexus3Repo implements BackendHandler {
 				version.setVersion(new Version(m.group("version")));
 				version.setDownloadUri(details.getDownloadUrl());
 				version.setRenameTo(
-						m.group("name") + "-" + m.group("version") + "." + addOnToIndex.getType().getFileExtension());
+				    m.group("name") + "-" + m.group("version") + "." + addOnToIndex.getType().getFileExtension());
 				versions.add(version);
 			}
 		}
@@ -129,14 +127,13 @@ public class Nexus3Repo implements BackendHandler {
 	
 	private String getBaseUrlFor(AddOnToIndex addOnToIndex) {
 		if (addOnToIndex.getMavenRepoDetails() == null) {
-			throw new IllegalStateException(
-					"Must supply Maven repository details for the addon " + addOnToIndex.getUid());
+			throw new IllegalStateException("Must supply Maven repository details for the addon " + addOnToIndex.getUid());
 		}
 		
 		String baseUrl = addOnToIndex.getMavenRepoDetails().getRepoUrl();
 		if (baseUrl == null || baseUrl.isEmpty()) {
 			throw new IllegalStateException(
-					"Must supply a URL for Nexus Maven repository to use for " + addOnToIndex.getUid());
+			        "Must supply a URL for Nexus Maven repository to use for " + addOnToIndex.getUid());
 		}
 		
 		try {
@@ -144,7 +141,7 @@ public class Nexus3Repo implements BackendHandler {
 		}
 		catch (MalformedURLException e) {
 			throw new IllegalStateException(baseUrl + " is not a valid URL for the repository for " + addOnToIndex.getUid(),
-					e);
+			        e);
 		}
 		
 		if (!baseUrl.endsWith("/")) {
