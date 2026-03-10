@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 
 // Hook to grab the current URL parameters
 export function useSearchParams<
-  Params extends { [k in keyof Params]?: string | string[] }
+  Params extends { [k in keyof Params]?: string | string[] },
 >(): Params {
   const location = useLocation();
   return useMemo(() => {

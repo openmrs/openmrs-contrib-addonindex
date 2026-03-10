@@ -10,7 +10,7 @@
 
 import React, { useMemo } from "react";
 import { useSearchParams } from "../hooks";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { handleParam, myFetch } from "../utils";
 import { AddOnList, SearchBox } from "../component";
 import { IAddOn } from "../types";
@@ -22,13 +22,16 @@ export const SearchPage: React.FC = () => {
     tag: string | string[];
   }>();
 
-  const searchQuery = useQuery<IAddOn[]>(["search", type, q, tag], () => {
-    const searchParams = new URLSearchParams();
-    handleParam("type", type, searchParams);
-    handleParam("q", q, searchParams);
-    handleParam("tag", tag, searchParams);
+  const searchQuery = useQuery({
+    queryKey: ["search", type, q, tag],
+    queryFn: () => {
+      const searchParams = new URLSearchParams();
+      handleParam("type", type, searchParams);
+      handleParam("q", q, searchParams);
+      handleParam("tag", tag, searchParams);
 
-    return myFetch<IAddOn[]>(`/api/v1/addon?${searchParams.toString()}`);
+      return myFetch<IAddOn[]>(`/api/v1/addon?${searchParams.toString()}`);
+    },
   });
 
   const searchResults = useMemo(() => searchQuery.data, [searchQuery.data]);

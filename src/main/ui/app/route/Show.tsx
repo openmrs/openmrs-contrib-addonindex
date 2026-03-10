@@ -20,7 +20,7 @@ import {
   Table,
   Tooltip,
 } from "react-bootstrap";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import ReactGA from "react-ga";
 
 import dayjs from "dayjs/esm";
@@ -121,7 +121,7 @@ const formatRequiredModules = (version) => {
   if (version.requireModules) {
     version.requireModules.forEach((m) => {
       requirements.push(
-        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`
+        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`,
       );
     });
   }
@@ -131,27 +131,28 @@ const formatRequiredModules = (version) => {
 
 export const Show: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
-  const { highlightVersion } =
-    useSearchParams<{ highlightVersion: string | string[] }>();
+  const { highlightVersion } = useSearchParams<{
+    highlightVersion: string | string[];
+  }>();
   const coreVersion = useContext(CoreVersionContext);
 
-  const addOnResult = useQuery<IAddOn, Response>(
-    ["addOn", uid],
-    () => myFetch<IAddOn>(`/api/v1/addon/${uid}`),
-    { enabled: !!uid }
-  );
+  const addOnResult = useQuery({
+    queryKey: ["addOn", uid],
+    queryFn: () => myFetch<IAddOn>(`/api/v1/addon/${uid}`),
+    enabled: !!uid,
+  });
 
   const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
 
-  const latestVersionResult = useQuery<IAddOnVersion>(
-    ["addOnLatestVersion", coreVersion],
-    () =>
+  const latestVersionResult = useQuery({
+    queryKey: ["addOnLatestVersion", coreVersion],
+    queryFn: () =>
       myFetch<IAddOnVersion>(
         `/api/v1/addon/${uid}/latestVersion` +
-          (coreVersion ? `?coreversion=${coreVersion}` : "")
+          (coreVersion ? `?coreversion=${coreVersion}` : ""),
       ),
-    { enabled: !!uid }
-  );
+    enabled: !!uid,
+  });
 
   const [latestVersion, setLatestVersion] = useState(latestVersionResult.data);
 
@@ -258,7 +259,11 @@ export const Show: React.FC = () => {
     (addOnResult.isLoading && <></>) ||
     (addOnResult.isError && (
       <>
-        Sorry! We couldn't {addOnResult.error.status === 404 ? "find" : "load"}{" "}
+        Sorry! We couldn't{" "}
+        {addOnResult.error instanceof Response &&
+        addOnResult.error.status === 404
+          ? "find"
+          : "load"}{" "}
         the module "{uid}".
         <br />
         <Link to={"/"}>Go back to home screen</Link>
@@ -297,7 +302,7 @@ export const Show: React.FC = () => {
                           <span key={m.name} className="maintainer">
                             {m.name}
                           </span>
-                        )
+                        ),
                       )}
                     </>
                   </td>

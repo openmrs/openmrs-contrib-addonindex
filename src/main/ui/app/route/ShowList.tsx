@@ -10,7 +10,7 @@
 
 import React, { useMemo } from "react";
 import { useParams } from "react-router";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { NamedList } from "../component";
 import { myFetch } from "../utils";
 import { AddOnCollection } from "../types";
@@ -18,9 +18,10 @@ import { AddOnCollection } from "../types";
 export const ShowList: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
 
-  const listQuery = useQuery<AddOnCollection>(["list", uid], () =>
-    myFetch<AddOnCollection>(`/api/v1/list/${uid}`)
-  );
+  const listQuery = useQuery({
+    queryKey: ["list", uid],
+    queryFn: () => myFetch<AddOnCollection>(`/api/v1/list/${uid}`),
+  });
 
   const list = useMemo(() => {
     if (!listQuery.data) {

@@ -10,7 +10,7 @@
 
 import React, { useMemo } from "react";
 import { Nav } from "react-bootstrap";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { myFetch } from "../utils";
 import { Link } from "react-router-dom";
 import { useLocation, useMatch } from "react-router";
@@ -22,9 +22,10 @@ export const ListOfLists: React.FC = () => {
   const location = useLocation();
   const match = useMatch(location.pathname);
 
-  const listQuery = useQuery<AddOnCollection[] | null>(["lists"], () =>
-    myFetch<AddOnCollection[]>("/api/v1/list")
-  );
+  const listQuery = useQuery({
+    queryKey: ["lists"],
+    queryFn: () => myFetch<AddOnCollection[]>("/api/v1/list"),
+  });
 
   const lists = useMemo(() => {
     if (!listQuery.data || !(listQuery.data instanceof Array)) {

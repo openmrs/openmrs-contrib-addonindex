@@ -22,8 +22,8 @@ See [PUBLISHING-AN-ADD-ON](PUBLISHING-AN-ADD-ON.md).
 
 ## Testing / Development
 
-The server is a Spring Boot application, written with Java 8, built using maven. The web UI is a ReactJS SPA, built 
-with npm (using webpack).
+The server is a Spring Boot application, written with Java 17, built using maven. The web UI is a ReactJS SPA, built 
+with pnpm (using parcel).
 
 It uses ElasticSearch to store its index.
 
@@ -34,14 +34,14 @@ you'll still be able to see the server's REST API)
 
 ### Building the Web UI
 
-You must have NodeJS and NPM installed already.
+You must have NodeJS and CorePack installed already.
 
 From `src/main/ui` do
 
-    > npm ci
-    > npm run build:dev
+    > pnpm install --frozen-lockfile
+    > pnpm run build:dev
    
-CI does `npm run build:prod` which minimizes js/css.
+CI does `pnpm run build:prod` which minimizes js/css.
 
 ### ElasticSearch
 
@@ -77,7 +77,7 @@ Thus, the workflow of doing front-end development is:
   
 1. (First, run the application in IntelliJ)
 1. Make changes to the javascript code
-1. (in `src/main/ui`) `npm run build:dev` (set up an IDE Run Configuration for this)
+1. (in `src/main/ui`) `pnpm run build:dev` (set up an IDE Run Configuration for this)
 1. In IntelliJ, `Build Project`
 1. Refresh your browser window
 
@@ -115,9 +115,7 @@ The production server is updated via a webhook whenever you push to the `product
 This is automated in CI as a manual stage in the build plan. In case you need to do this manually, first you need to have 
 a docker image to tag, which you do either by:
 
-* (Option A) build everything locally (first the UI then the jar + docker build, and looking for output like `Successfully 
-built 
-089a664e4a61`)
+* (Option A) build everything locally (first the UI then the jar + docker build, and looking for output like `Successfully built 089a664e4a61`)
 * (Option B) do `docker pull <id>`
     
 Then you need to tag this and push to dockerhub, like: 

@@ -10,7 +10,7 @@
 
 import React, { useMemo } from "react";
 import { AddOn } from "../component";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { myFetch } from "../utils";
 import { Col, Row } from "react-bootstrap";
 import { IAddOn } from "../types";
@@ -21,9 +21,10 @@ interface ITopDownloaded {
 }
 
 export const TopDownloaded: React.FC = () => {
-  const downloadQuery = useQuery<ITopDownloaded[]>(["topdownloaded"], () =>
-    myFetch<ITopDownloaded[]>("/api/v1/topdownloaded")
-  );
+  const downloadQuery = useQuery({
+    queryKey: ["topdownloaded"],
+    queryFn: () => myFetch<ITopDownloaded[]>("/api/v1/topdownloaded"),
+  });
 
   const topDownloaded = useMemo(() => downloadQuery.data, [downloadQuery]);
 

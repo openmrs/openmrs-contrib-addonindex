@@ -10,7 +10,7 @@
 
 import React, { useContext, useMemo } from "react";
 import Select from "react-select";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { CoreVersionContext } from "../App";
 import { myFetch } from "../utils";
 
@@ -27,9 +27,10 @@ export const SelectUserVersions: React.FC<Props> = ({
   updateValue = () => null,
 }) => {
   const selectedValue = useContext<string | undefined>(CoreVersionContext);
-  const versionQuery = useQuery<string[]>(["coreversions"], () =>
-    myFetch<string[]>("/api/v1/coreversions")
-  );
+  const versionQuery = useQuery({
+    queryKey: ["coreversions"],
+    queryFn: () => myFetch<string[]>("/api/v1/coreversions"),
+  });
 
   const versions: Version[] = useMemo(() => {
     if (!versionQuery.data) {
@@ -51,10 +52,11 @@ export const SelectUserVersions: React.FC<Props> = ({
         !versionQuery.isError && (
           <Select
             styles={{
-              menu: (provided) => ({
-                ...provided,
-                zIndex: 500,
-              }),
+              menu: (provided) =>
+                ({
+                  ...provided,
+                  zIndex: 500,
+                }) as typeof provided,
             }}
             theme={(theme) => ({
               ...theme,

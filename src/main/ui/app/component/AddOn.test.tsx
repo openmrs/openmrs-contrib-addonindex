@@ -1,11 +1,11 @@
-import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { vi, describe, it, expect } from "vitest";
 import { AddOn } from "./AddOn";
 import type { IAddOn } from "../types";
 
-jest.mock("./LegacyFaIcon", () => ({
+vi.mock("./LegacyFaIcon", () => ({
   LegacyFaIcon: ({ icon }) => <span>{icon}</span>,
 }));
 
@@ -39,7 +39,7 @@ describe("<AddOn/>", () => {
 
     expect(screen.getByText("My AddOn").closest("a")).toHaveAttribute(
       "href",
-      `/show/${mockAddOn.uid}`
+      `/show/${mockAddOn.uid}`,
     );
   });
 
@@ -49,7 +49,7 @@ describe("<AddOn/>", () => {
     });
     expect(screen.getByText("My AddOn").closest("a")).toHaveAttribute(
       "href",
-      `/show/${mockAddOn.uid}?highlightVersion=0.0.0`
+      `/show/${mockAddOn.uid}?highlightVersion=0.0.0`,
     );
   });
 
