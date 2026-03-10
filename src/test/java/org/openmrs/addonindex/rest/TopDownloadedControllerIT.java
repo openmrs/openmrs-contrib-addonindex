@@ -1,8 +1,13 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.rest;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -19,11 +24,15 @@ import org.openmrs.addonindex.util.Version;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TopDownloadedControllerIT {
@@ -31,10 +40,10 @@ public class TopDownloadedControllerIT {
 	@LocalServerPort
 	private int port;
 	
-	@MockBean
+	@MockitoBean
 	private AnalysisService analysisService;
 	
-	@MockBean
+	@MockitoBean
 	@SuppressWarnings("unused")
 	private ElasticSearchIndex elasticSearchIndex;
 	
@@ -66,11 +75,9 @@ public class TopDownloadedControllerIT {
 	@Test
 	public void getTopDownloaded() throws Exception {
 		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/topdownloaded",
-				String.class);
+		    String.class);
 		
 		assertThat(entity.getStatusCode(), is(HttpStatus.OK));
-		JSONAssert.assertEquals("[{summary:{uid:\"reporting-module\"},"
-						+ "downloadCount:123}]",
-				entity.getBody(), false);
+		JSONAssert.assertEquals("[{summary:{uid:\"reporting-module\"}," + "downloadCount:123}]", entity.getBody(), false);
 	}
 }

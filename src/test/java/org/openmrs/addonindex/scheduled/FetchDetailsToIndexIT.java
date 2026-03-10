@@ -1,11 +1,13 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex.scheduled;
-
-import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.never;
-import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,27 +26,34 @@ import org.openmrs.addonindex.service.IndexingService;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.core.io.Resource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.client.RestTemplate;
+
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.never;
+import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 
 @SpringBootTest
 public class FetchDetailsToIndexIT {
 	
-	@MockBean
+	@MockitoBean
 	ElasticSearchIndex elasticSearchIndex;
 	
-	@MockBean
+	@MockitoBean
 	private IndexingService indexingService;
 	
-	@MockBean
+	@MockitoBean
 	private OpenmrsMavenRepo openmrsMavenRepo;
 	
-	@MockBean
+	@MockitoBean
 	private RestTemplateBuilder restTemplateBuilder;
 	
-	@MockBean
+	@MockitoBean
 	private RestTemplate restTemplate;
 	
 	@Mock
@@ -56,7 +65,7 @@ public class FetchDetailsToIndexIT {
 	private AddOnToIndex toIndex;
 	
 	public static final String DOWNLOAD_URI = "http://www.google.com";
-
+	
 	@BeforeEach
 	public void setUp() throws Exception {
 		toIndex = new AddOnToIndex();
@@ -68,18 +77,14 @@ public class FetchDetailsToIndexIT {
 		AddOnVersion v = new AddOnVersion();
 		v.setVersion(new Version("1.0"));
 		v.setDownloadUri(DOWNLOAD_URI);
-
+		
 		AddOnInfoAndVersions infoAndVersions = new AddOnInfoAndVersions();
 		infoAndVersions.addVersion(v);
 		
-		given(indexingService.getHandlerFor(toIndex))
-				.willReturn(openmrsMavenRepo);
-		given(indexingService.getIndexingStatus())
-				.willReturn(status);
-		given(openmrsMavenRepo.getInfoAndVersionsFor(toIndex))
-				.willReturn(infoAndVersions);
-		given(restTemplateBuilder.build())
-				.willReturn(restTemplate);
+		given(indexingService.getHandlerFor(toIndex)).willReturn(openmrsMavenRepo);
+		given(indexingService.getIndexingStatus()).willReturn(status);
+		given(openmrsMavenRepo.getInfoAndVersionsFor(toIndex)).willReturn(infoAndVersions);
+		given(restTemplateBuilder.build()).willReturn(restTemplate);
 	}
 	
 	@Test
@@ -87,12 +92,10 @@ public class FetchDetailsToIndexIT {
 		task.getDetailsAndIndex(toIndex);
 		
 		InOrder inOrder = Mockito.inOrder(status);
-		inOrder.verify(status).setStatus(
-				argThat(hasProperty("uid", is("appui-omod"))),
-				argThat(hasProperty("indexingNow", is(true))));
-		inOrder.verify(status).setStatus(
-				argThat(hasProperty("uid", is("appui-omod"))),
-				argThat(hasProperty("summary", hasProperty("versionCount", is(1)))));
+		inOrder.verify(status).setStatus(argThat(hasProperty("uid", is("appui-omod"))),
+		    argThat(hasProperty("indexingNow", is(true))));
+		inOrder.verify(status).setStatus(argThat(hasProperty("uid", is("appui-omod"))),
+		    argThat(hasProperty("summary", hasProperty("versionCount", is(1)))));
 	}
 	
 	@Test

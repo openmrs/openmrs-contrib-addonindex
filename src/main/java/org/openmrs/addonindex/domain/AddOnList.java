@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class AddOnList {
-
+	
 	@EqualsAndHashCode.Include
 	private String uid;
 	
@@ -32,5 +32,5 @@ public class AddOnList {
 	private String description;
 	
 	private List<AddOnReference> addOns;
-
+	
 }

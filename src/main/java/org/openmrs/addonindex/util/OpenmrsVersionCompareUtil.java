@@ -45,13 +45,14 @@ public class OpenmrsVersionCompareUtil {
 	 * Again the possible require version number formats with their interpretation:
 	 * <ul>
 	 * <li>1.2.3 means 1.2.3 and above</li>
-	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not 1.3.0, 1.4.0</li>
+	 * <li>1.2.* means any version of the 1.2.x branch. That is 1.2.0, 1.2.1, 1.2.2,... but not 1.3.0,
+	 * 1.4.0</li>
 	 * <li>1.2.2 - 1.2.3 means 1.2.2 and 1.2.3 (inclusive)</li>
 	 * <li>1.2.* - 1.3.* means any version of the 1.2.x and 1.3.x branch</li>
 	 * </ul>
 	 * </p>
 	 *
-	 * @param version      openmrs version number to be compared
+	 * @param version openmrs version number to be compared
 	 * @param versionRange value in the config file for required openmrs version
 	 * @return true if the <code>version</code> is within the <code>value</code>
 	 * @should allow ranged required version
@@ -107,10 +108,8 @@ public class OpenmrsVersionCompareUtil {
 					// only preserve part of the string that match the following format:
 					// - xx.yy.*
 					// - xx.yy.zz*
-					lowerBound = StringUtils.delete(lowerBound, lowerBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
-							""));
-					upperBound = StringUtils.delete(upperBound, upperBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+",
-							""));
+					lowerBound = StringUtils.delete(lowerBound, lowerBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+", ""));
+					upperBound = StringUtils.delete(upperBound, upperBound.replaceAll("^\\s?\\d+[\\.\\d+\\*?|\\.\\*]+", ""));
 					
 					// if the lower contains "*" then change it to zero
 					if (lowerBound.indexOf("*") > 0) {
@@ -159,16 +158,16 @@ public class OpenmrsVersionCompareUtil {
 	}
 	
 	/**
-	 * Compares <code>version</code> to <code>value</code> version and value are strings like
-	 * 1.9.2.0 Returns <code>0</code> if either <code>version</code> or <code>value</code> is null.
+	 * Compares <code>version</code> to <code>value</code> version and value are strings like 1.9.2.0
+	 * Returns <code>0</code> if either <code>version</code> or <code>value</code> is null.
 	 *
 	 * @param version String like 1.9.2.0
-	 * @param value   String like 1.9.2.0
+	 * @param value String like 1.9.2.0
 	 * @return the value <code>0</code> if <code>version</code> is equal to the argument
-	 * <code>value</code>; a value less than <code>0</code> if <code>version</code> is
-	 * numerically less than the argument <code>value</code>; and a value greater than
-	 * <code>0</code> if <code>version</code> is numerically greater than the argument
-	 * <code>value</code>
+	 *         <code>value</code>; a value less than <code>0</code> if <code>version</code> is
+	 *         numerically less than the argument <code>value</code>; and a value greater than
+	 *         <code>0</code> if <code>version</code> is numerically greater than the argument
+	 *         <code>value</code>
 	 * @should correctly comparing two version numbers
 	 * @should treat SNAPSHOT as earliest version
 	 */
@@ -210,14 +209,16 @@ public class OpenmrsVersionCompareUtil {
 				Long ver;
 				try {
 					ver = NumberUtils.parseNumber(verNum, Long.class);
-				} catch (NumberFormatException e) {
+				}
+				catch (NumberFormatException e) {
 					ver = 0L;
 				}
-
+				
 				Long val;
 				try {
 					val = NumberUtils.parseNumber(valNum, Long.class);
-				} catch (NumberFormatException e) {
+				}
+				catch (NumberFormatException e) {
 					val = 0L;
 				}
 				

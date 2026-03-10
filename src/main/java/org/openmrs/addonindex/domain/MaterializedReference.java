@@ -10,9 +10,10 @@
 
 package org.openmrs.addonindex.domain;
 
+import org.openmrs.addonindex.util.Version;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.openmrs.addonindex.util.Version;
 
 /**
  * Represents the result of getting a Module and/or Version for a Reference
@@ -20,7 +21,7 @@ import org.openmrs.addonindex.util.Version;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class MaterializedReference {
-
+	
 	@EqualsAndHashCode.Include
 	private String uid;
 	
@@ -34,5 +35,5 @@ public class MaterializedReference {
 		this.uid = addOnReference.getUid();
 		this.version = addOnReference.getVersion();
 	}
-
+	
 }

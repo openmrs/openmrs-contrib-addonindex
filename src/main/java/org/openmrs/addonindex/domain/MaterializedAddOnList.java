@@ -39,5 +39,5 @@ public class MaterializedAddOnList {
 	public void add(MaterializedReference materializedReference) {
 		addOns.add(materializedReference);
 	}
-
+	
 }

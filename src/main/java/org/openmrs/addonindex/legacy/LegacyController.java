@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnType;
@@ -30,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * Supports legacy functionality required by the OpenMRS Module API and Legacy UI
  */
@@ -41,7 +42,7 @@ public class LegacyController {
 	private final IndexingService indexingService;
 	
 	private final ObjectMapper objectMapper;
-
+	
 	@Autowired
 	public LegacyController(Index index, IndexingService indexingService, ObjectMapper objectMapper) {
 		this.index = index;
@@ -49,33 +50,31 @@ public class LegacyController {
 		this.objectMapper = objectMapper;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/modulus/feeds/{moduleId}/update.rdf",
-			produces = { "application/rdf+xml", "application/xml", "text/xml; charset=utf-8" })
+	@RequestMapping(method = RequestMethod.GET, value = "/modulus/feeds/{moduleId}/update.rdf", produces = {
+	        "application/rdf+xml", "application/xml", "text/xml; charset=utf-8" })
 	@ResponseBody
 	public String checkUpdate(@PathVariable("moduleId") String moduleId) throws Exception {
 		AddOnInfoAndVersions info = indexingService.getByUid("org.openmrs.module." + moduleId);
 		if (info == null) {
 			throw new NullPointerException(); // should map to a 404
 		}
-
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("<updates configVersion=\"1.1\" moduleId=\"").append(moduleId).append("\">\n");
 		for (AddOnVersion version : info.getVersions()) {
-			sb.append("<update>\n")
-				.append("<currentVersion>").append(version.getVersion()).append("</currentVersion>\n")
-				.append("<requireOpenMRSVersion>").append(version.getRequireOpenmrsVersion())
-					.append("</requireOpenMRSVersion>\n")
-				.append("<downloadURL>").append(version.getDownloadUri()).append("</downloadURL>\n")
-				.append("</update>\n");
+			sb.append("<update>\n").append("<currentVersion>").append(version.getVersion()).append("</currentVersion>\n")
+			        .append("<requireOpenMRSVersion>").append(version.getRequireOpenmrsVersion())
+			        .append("</requireOpenMRSVersion>\n").append("<downloadURL>").append(version.getDownloadUri())
+			        .append("</downloadURL>\n").append("</update>\n");
 		}
 		sb.append("</updates>");
-
+		
 		return sb.toString();
 	}
 	
 	/**
-	 * According to https://tickets.openmrs.org/browse/MOD-5 there is an even older URL path we need to support (from before
-	 * modulus, even)
+	 * According to https://tickets.openmrs.org/browse/MOD-5 there is an even older URL path we need to
+	 * support (from before modulus, even)
 	 *
 	 * @param moduleId
 	 * @return
@@ -99,21 +98,19 @@ public class LegacyController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/modules/findModules")
 	@ResponseBody
-	public String findModules(
-			@RequestParam(value = "callback", required = false) String callback,
-			@RequestParam(value = "sSearch", required = false) String query,
-			@RequestParam(value = "iDisplayStart", defaultValue = "0") Integer start,
-			@RequestParam(value = "iDisplayLength", defaultValue = "100") Integer length,
-			@RequestParam(value = "sEcho", required = false) Integer sEcho,
-			@RequestParam(value = "openmrs_version", required = false) String openmrsVersion,
-			@RequestParam(value = "excludeModule", required = false) List<String> excludeModuleIds
-	) throws Exception {
+	public String findModules(@RequestParam(value = "callback", required = false) String callback,
+	        @RequestParam(value = "sSearch", required = false) String query,
+	        @RequestParam(value = "iDisplayStart", defaultValue = "0") Integer start,
+	        @RequestParam(value = "iDisplayLength", defaultValue = "100") Integer length,
+	        @RequestParam(value = "sEcho", required = false) Integer sEcho,
+	        @RequestParam(value = "openmrs_version", required = false) String openmrsVersion,
+	        @RequestParam(value = "excludeModule", required = false) List<String> excludeModuleIds) throws Exception {
 		Collection<AddOnInfoSummary> results = index.search(AddOnType.OMOD, query, null);
 		
 		LegacyFindModulesResponse response = new LegacyFindModulesResponse();
 		response.setsEcho(sEcho);
-		response.setiTotalRecords((int) indexingService.getAllToIndex()
-				.getToIndex().stream().filter(i -> i.getType().equals(AddOnType.OMOD)).count());
+		response.setiTotalRecords((int) indexingService.getAllToIndex().getToIndex().stream()
+		        .filter(i -> i.getType().equals(AddOnType.OMOD)).count());
 		for (AddOnInfoSummary result : results) {
 			if (shouldExclude(excludeModuleIds, result)) {
 				continue;
@@ -121,9 +118,9 @@ public class LegacyController {
 			AddOnInfoAndVersions full = index.getByUid(result.getUid());
 			
 			Optional<AddOnVersion> firstMatch = full.getVersions().stream()
-					.filter(i ->
-							OpenmrsVersionCompareUtil.matchRequiredVersions(openmrsVersion, i.getRequireOpenmrsVersion()))
-					.findFirst();
+			        .filter(
+			            i -> OpenmrsVersionCompareUtil.matchRequiredVersions(openmrsVersion, i.getRequireOpenmrsVersion()))
+			        .findFirst();
 			if (firstMatch.isEmpty()) {
 				// no version of this module is suitable for the specified OpenMRS version
 				continue;
@@ -131,15 +128,12 @@ public class LegacyController {
 			
 			AddOnVersion matchedVersion = firstMatch.get();
 			
-			String maintainer = full.getMaintainers() != null && full.getMaintainers().size() > 0 ?
-					full.getMaintainers().get(0).getName() : "";
+			String maintainer = full.getMaintainers() != null && full.getMaintainers().size() > 0
+			        ? full.getMaintainers().get(0).getName()
+			        : "";
 			
-			response.addRow(
-					matchedVersion.getDownloadUri(),
-					result.getName(),
-					matchedVersion.getVersion().toString(),
-					maintainer,
-					result.getDescription());
+			response.addRow(matchedVersion.getDownloadUri(), result.getName(), matchedVersion.getVersion().toString(),
+			    maintainer, result.getDescription());
 		}
 		
 		String json = objectMapper.writeValueAsString(response);
@@ -156,9 +150,9 @@ public class LegacyController {
 		}
 		// excludeModuleIds would just be "appui" but candidate.uid would be something like "org.openmrs.module.appui".
 		// this is an imperfect hack to cover most cases
-		String lookFor = candidate.getUid().startsWith("org.openmrs.module.") ?
-				candidate.getUid().substring("org.openmrs.module.".length()) :
-				candidate.getUid();
+		String lookFor = candidate.getUid().startsWith("org.openmrs.module.")
+		        ? candidate.getUid().substring("org.openmrs.module.".length())
+		        : candidate.getUid();
 		return excludeModuleIds.contains(lookFor);
 	}
 }

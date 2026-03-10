@@ -17,14 +17,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VersionsService {
-
-    private VersionList versionList;
-
-    public void setVersions(Collection<String> coreversion) {
-        this.versionList = new VersionList(coreversion);
-    }
-
-    public VersionList getVersions() {
-        return versionList;
-    }
+	
+	private VersionList versionList;
+	
+	public void setVersions(Collection<String> coreversion) {
+		this.versionList = new VersionList(coreversion);
+	}
+	
+	public VersionList getVersions() {
+		return versionList;
+	}
 }

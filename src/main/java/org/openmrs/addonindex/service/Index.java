@@ -19,7 +19,8 @@ import org.openmrs.addonindex.domain.AddOnInfoSummaryAndStats;
 import org.openmrs.addonindex.domain.AddOnType;
 
 /**
- * Interface for accessing the datastore where we have indexed information about add-ons and versions.
+ * Interface for accessing the datastore where we have indexed information about add-ons and
+ * versions.
  */
 public interface Index {
 	
@@ -30,7 +31,7 @@ public interface Index {
 	Collection<AddOnInfoAndVersions> getAllByType(AddOnType type) throws Exception;
 	
 	Collection<AddOnInfoAndVersions> getByTag(String tag) throws Exception;
-
+	
 	AddOnInfoAndVersions getByModulePackage(String modulePackage) throws Exception;
 	
 	AddOnInfoAndVersions getByUid(String uid) throws Exception;

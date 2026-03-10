@@ -17,11 +17,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
+import org.openmrs.addonindex.util.Version;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
-import org.openmrs.addonindex.util.Version;
 
 /**
  * Details about an OpenMRS add-on and its available versions
@@ -31,16 +32,16 @@ import org.openmrs.addonindex.util.Version;
 public class AddOnInfoAndVersions {
 	
 	public final static String ES_INDEX = "add_on_info_and_versions";
-
+	
 	@EqualsAndHashCode.Include
 	private String uid;
-
+	
 	@EqualsAndHashCode.Include
 	private String modulePackage;
-
+	
 	@EqualsAndHashCode.Include
 	private String moduleId;
-
+	
 	private AddOnStatus status;
 	
 	private AddOnType type;
@@ -60,7 +61,7 @@ public class AddOnInfoAndVersions {
 	private String hostedUrl;
 	
 	private List<AddOnVersion> versions = new ArrayList<>();
-
+	
 	private Integer downloadCountInLast30Days;
 	
 	public static AddOnInfoAndVersions from(AddOnToIndex toIndex) {
@@ -81,7 +82,7 @@ public class AddOnInfoAndVersions {
 		versions.add(version);
 		versions.sort(Comparator.reverseOrder());
 	}
-
+	
 	public int getVersionCount() {
 		return versions == null ? 0 : versions.size();
 	}
@@ -89,41 +90,42 @@ public class AddOnInfoAndVersions {
 	public Version getLatestVersion() {
 		return versions == null || versions.size() == 0 ? null : Collections.max(versions).getVersion();
 	}
-
+	
 	public Optional<AddOnVersion> getVersion(Version version) {
 		if (versions == null) {
 			return Optional.empty();
 		}
-
+		
 		return versions.stream().filter(v -> v.getVersion().equals(version)).findFirst();
 	}
-
+	
 	public void addTag(String tag) {
 		if (!Pattern.matches("\\S*", tag)) {
 			throw new IllegalArgumentException("Tag cannot contain whitespace:" + tag);
 		}
-
+		
 		if (tags == null) {
 			tags = new ArrayList<>();
 		}
-
+		
 		tags.add(tag);
 	}
-
-    public AddOnVersion getLatestSupportedVersion(String userCoreVersion) {
-        if (userCoreVersion != null) {
-	        List<AddOnVersion> versions = new ArrayList<>(this.versions);
-	        versions.sort(Collections.reverseOrder());
-
-            for (AddOnVersion addOnVersion : versions) {
-                if (OpenmrsVersionCompareUtil.matchRequiredVersions(userCoreVersion, addOnVersion.getRequireOpenmrsVersion())) {
-                    return addOnVersion;
-                }
-            }
-            return null;
-        }
-        return getVersion(getLatestVersion()).isPresent() ? getVersion(getLatestVersion()).get() : null;
-    }
+	
+	public AddOnVersion getLatestSupportedVersion(String userCoreVersion) {
+		if (userCoreVersion != null) {
+			List<AddOnVersion> versions = new ArrayList<>(this.versions);
+			versions.sort(Collections.reverseOrder());
+			
+			for (AddOnVersion addOnVersion : versions) {
+				if (OpenmrsVersionCompareUtil.matchRequiredVersions(userCoreVersion,
+				    addOnVersion.getRequireOpenmrsVersion())) {
+					return addOnVersion;
+				}
+			}
+			return null;
+		}
+		return getVersion(getLatestVersion()).isPresent() ? getVersion(getLatestVersion()).get() : null;
+	}
 	
 	public void setDetailsBasedOnLatestVersion() {
 		Optional<AddOnVersion> version = getVersion(getLatestVersion());

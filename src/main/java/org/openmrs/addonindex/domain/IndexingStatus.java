@@ -21,52 +21,52 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 public class IndexingStatus {
-
+	
 	private final Map<String, Status> statuses = new LinkedHashMap<>();
-
+	
 	public Map<String, Status> getStatuses() {
 		return statuses;
 	}
-
+	
 	public void setStatus(AddOnToIndex toIndex, Status status) {
 		statuses.put(toIndex.getUid(), status);
 	}
-
+	
 	public Map<AddOnToIndex, Status> getStatusesFor(Collection<AddOnToIndex> toIndex) {
 		return toIndex.stream()
-				.collect(Collectors.toMap(a -> a, a -> statuses.get(a.getUid()), (a, b) -> a, LinkedHashMap::new));
+		        .collect(Collectors.toMap(a -> a, a -> statuses.get(a.getUid()), (a, b) -> a, LinkedHashMap::new));
 	}
-
+	
 	@Data
 	@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 	@NoArgsConstructor
 	public static class Status {
-
+		
 		private boolean indexingNow;
-
+		
 		private OffsetDateTime lastIndexed;
-
+		
 		private OffsetDateTime startedIndexing;
-
+		
 		@EqualsAndHashCode.Include
 		private AddOnInfoSummary summary;
-
+		
 		private Exception error;
-
+		
 		public static Status success(AddOnInfoSummary summary) {
 			Status status = new Status();
 			status.lastIndexed = OffsetDateTime.now();
 			status.summary = summary;
 			return status;
 		}
-
+		
 		public static Status error(Exception error) {
 			Status status = new Status();
 			status.lastIndexed = OffsetDateTime.now();
 			status.error = error;
 			return status;
 		}
-
+		
 		public static Status indexingNow() {
 			Status status = new Status();
 			status.startedIndexing = OffsetDateTime.now();
@@ -74,5 +74,5 @@ public class IndexingStatus {
 			return status;
 		}
 	}
-
+	
 }

@@ -12,8 +12,6 @@ package org.openmrs.addonindex.scheduled;
 
 import java.nio.charset.Charset;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.service.IndexingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +21,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Fetches the list of Add-Ons that we need to index
  */
 @Component
 @Slf4j
 public class FetchAddOnList {
-
+	
 	@Value("${add_on_list.url}")
 	private String url;
 	
@@ -43,17 +45,14 @@ public class FetchAddOnList {
 	private final IndexingService indexingService;
 	
 	@Autowired
-	public FetchAddOnList(RestTemplateBuilder restTemplateBuilder,
-	                      ObjectMapper objectMapper,
-	                      IndexingService indexingService) {
+	public FetchAddOnList(RestTemplateBuilder restTemplateBuilder, ObjectMapper objectMapper,
+	    IndexingService indexingService) {
 		this.restTemplateBuilder = restTemplateBuilder;
 		this.objectMapper = objectMapper;
 		this.indexingService = indexingService;
 	}
 	
-	@Scheduled(
-			initialDelayString = "${scheduler.fetch_add_on_list.initial_delay}",
-			fixedDelayString = "${scheduler.fetch_add_on_list.period}")
+	@Scheduled(initialDelayString = "${scheduler.fetch_add_on_list.initial_delay}", fixedDelayString = "${scheduler.fetch_add_on_list.period}")
 	public void fetchAddOnList() throws Exception {
 		log.info("Fetching list of add-ons to index");
 		
@@ -61,23 +60,24 @@ public class FetchAddOnList {
 		if (strategy == Strategy.LOCAL) {
 			log.debug("FETCH strategy: LOCAL");
 			json = StreamUtils.copyToString(getClass().getClassLoader().getResourceAsStream("add-ons-to-index.json"),
-					Charset.defaultCharset());
+			    Charset.defaultCharset());
 		} else {
 			log.debug("FETCH strategy: {}", url);
 			json = restTemplateBuilder.build().getForObject(url, String.class);
 		}
-
+		
 		AllAddOnsToIndex toIndex;
 		try {
 			toIndex = objectMapper.readValue(json, AllAddOnsToIndex.class);
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
 			throw new RuntimeException("File downloaded from " + url + " could not be parsed", ex);
 		}
-
+		
 		if (log.isInfoEnabled()) {
 			log.info("We have {} add-ons to index", toIndex.getToIndex().size());
 		}
-
+		
 		if (toIndex.size() > 0) {
 			indexingService.setAllToIndex(toIndex);
 		} else {
@@ -86,6 +86,7 @@ public class FetchAddOnList {
 	}
 	
 	public enum Strategy {
-		FETCH, LOCAL
+		FETCH,
+		LOCAL
 	}
 }

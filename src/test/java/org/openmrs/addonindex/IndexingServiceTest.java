@@ -1,22 +1,18 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+ * the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+ *
+ * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+ * graphic logo is a trademark of OpenMRS Inc.
+ */
 package org.openmrs.addonindex;
-
-import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.matchesPattern;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.backend.Artifactory;
@@ -33,11 +29,26 @@ import org.openmrs.addonindex.domain.Maintainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.matchesPattern;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 /**
- * The idea is that the add-ons-to-index.json file represents all the modules we want to index, and the application will
- * periodically refresh it from github. Further, we expect module authors to submit pull requests modifying that file
- * in order to add their own modules for indexing. This class will test for various scenarios to ensure the file remains
- * well-formed, consistent, and doesn't violate any constraints. (CI should report if any PRs violate these tests.)
+ * The idea is that the add-ons-to-index.json file represents all the modules we want to index, and
+ * the application will periodically refresh it from github. Further, we expect module authors to
+ * submit pull requests modifying that file in order to add their own modules for indexing. This
+ * class will test for various scenarios to ensure the file remains well-formed, consistent, and
+ * doesn't violate any constraints. (CI should report if any PRs violate these tests.)
  */
 @JsonTest
 public class IndexingServiceTest {
@@ -115,7 +126,7 @@ public class IndexingServiceTest {
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			assertThat(addOn.getBackend(), notNullValue());
 		}
-
+		
 		for (AddOnToIndex addOn : toIndex.getToIndex()) {
 			if (addOn.getBackend().equals(Modulus.class)) {
 				assertThat(addOn.getModulusDetails().getId(), notNullValue());
@@ -152,7 +163,7 @@ public class IndexingServiceTest {
 		for (AddOnList list : toIndex.getLists()) {
 			for (AddOnReference reference : list.getAddOns()) {
 				assertThat(reference.getUid() + " does not refer to an indexed add-on",
-						toIndex.getAddOnByUid(reference.getUid()), optionalWithValue());
+				    toIndex.getAddOnByUid(reference.getUid()), optionalWithValue());
 			}
 		}
 	}
@@ -163,8 +174,8 @@ public class IndexingServiceTest {
 			if (addOn.getTags() != null) {
 				for (String tag : addOn.getTags()) {
 					assertThat(tag, not(emptyOrNullString()));
-					assertThat("Tag should not have whitespace: \"" + tag + "\" (" + addOn.getUid() + ")",
-							tag, matchesPattern("[^\\s]*"));
+					assertThat("Tag should not have whitespace: \"" + tag + "\" (" + addOn.getUid() + ")", tag,
+					    matchesPattern("[^\\s]*"));
 				}
 			}
 		}

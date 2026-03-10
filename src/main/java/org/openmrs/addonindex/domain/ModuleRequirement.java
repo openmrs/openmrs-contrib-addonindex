@@ -22,5 +22,5 @@ public class ModuleRequirement {
 	private String module;
 	
 	private String version;
-
+	
 }

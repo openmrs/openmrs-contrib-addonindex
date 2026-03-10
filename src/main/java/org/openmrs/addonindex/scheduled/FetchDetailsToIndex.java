@@ -10,12 +10,6 @@
 
 package org.openmrs.addonindex.scheduled;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -27,8 +21,12 @@ import java.util.ListIterator;
 import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.SupportsDownloadCounts;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -54,8 +52,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * For each of the Add-Ons we're supposed to index, uses its backend handler to fetch details and available versions
+ * For each of the Add-Ons we're supposed to index, uses its backend handler to fetch details and
+ * available versions
  */
 @Component
 @Slf4j
@@ -68,8 +69,7 @@ public class FetchDetailsToIndex {
 	private final DocumentBuilderFactory documentBuilderFactory;
 	
 	@Autowired
-	public FetchDetailsToIndex(IndexingService indexingService,
-			RestTemplateBuilder restTemplateBuilder) {
+	public FetchDetailsToIndex(IndexingService indexingService, RestTemplateBuilder restTemplateBuilder) {
 		this.indexingService = indexingService;
 		this.restTemplateBuilder = restTemplateBuilder;
 		this.documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -79,9 +79,7 @@ public class FetchDetailsToIndex {
 	@Value("${scheduler.fetch_details_to_index.fetch_extra_details}")
 	private boolean fetchExtraDetails = true;
 	
-	@Scheduled(
-			initialDelayString = "${scheduler.fetch_details_to_index.initial_delay}",
-			fixedDelayString = "${scheduler.fetch_details_to_index.period}")
+	@Scheduled(initialDelayString = "${scheduler.fetch_details_to_index.initial_delay}", fixedDelayString = "${scheduler.fetch_details_to_index.period}")
 	public void run() {
 		AllAddOnsToIndex allToIndex = indexingService.getAllToIndex();
 		log.info("Fetching details for {} add-ons", allToIndex.size());
@@ -119,7 +117,7 @@ public class FetchDetailsToIndex {
 			infoAndVersions.setDetailsBasedOnLatestVersion();
 			indexingService.index(infoAndVersions);
 			indexingService.getIndexingStatus().setStatus(toIndex,
-					IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
+			    IndexingStatus.Status.success(new AddOnInfoSummary(infoAndVersions)));
 		}
 		catch (Exception ex) {
 			log.error("Error indexing {}", toIndex.getUid(), ex);
@@ -130,14 +128,13 @@ public class FetchDetailsToIndex {
 	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
 		
-		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext(); ) {
+		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext();) {
 			AddOnVersion version = iter.next();
 			if (existingInfo != null) {
 				Optional<AddOnVersion> existingVersion = existingInfo.getVersion(version.getVersion());
-				if (existingVersion.isPresent() &&
-						existingVersion.get().getDownloadUri().equals(version.getDownloadUri()) &&
-						(version.getReleaseDatetime() == null ||
-								version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
+				if (existingVersion.isPresent() && existingVersion.get().getDownloadUri().equals(version.getDownloadUri())
+				        && (version.getReleaseDatetime() == null
+				                || version.getReleaseDatetime().equals(existingVersion.get().getReleaseDatetime()))) {
 					
 					log.debug("Using existing data for {} versions {}", toIndex.getUid(), version.getVersion());
 					iter.set(existingVersion.get());
@@ -165,22 +162,21 @@ public class FetchDetailsToIndex {
 	
 	String fetchConfigXml(AddOnVersion addOnVersion) throws IOException {
 		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
-		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(), Resource.class);
+		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(),
+		    Resource.class);
 		Resource resource = response.getBody();
 		if (resource != null) {
-			try (
-					ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))
-			) {
+			try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))) {
 				ZipEntry entry;
 				while ((entry = zis.getNextEntry()) != null) {
 					if (entry.getName().equals("config.xml")) {
 						if (addOnVersion.getReleaseDatetime() == null) {
 							if (entry.getCreationTime() != null) {
-								addOnVersion.setReleaseDatetime(
-										entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
+								addOnVersion
+								        .setReleaseDatetime(entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
 							} else if (entry.getLastModifiedTime() != null) {
 								addOnVersion.setReleaseDatetime(
-										entry.getLastModifiedTime().toInstant().atOffset(ZoneOffset.UTC));
+								    entry.getLastModifiedTime().toInstant().atOffset(ZoneOffset.UTC));
 							} else if (response.getHeaders().containsKey(HttpHeaders.LAST_MODIFIED)) {
 								ZonedDateTime zdt = response.getHeaders().getFirstZonedDateTime(HttpHeaders.LAST_MODIFIED);
 								if (zdt != null) {
@@ -203,8 +199,7 @@ public class FetchDetailsToIndex {
 		// we don't need DTD validation in any case, so we strip any DOCTYPE
 		configXml = configXml.replaceAll("(?s)<!DOCTYPE .*?>", "");
 		XPath xpath = XPathFactory.newInstance().newXPath();
-		Document config = documentBuilderFactory.newDocumentBuilder().parse(
-				new InputSource(new StringReader(configXml)));
+		Document config = documentBuilderFactory.newDocumentBuilder().parse(new InputSource(new StringReader(configXml)));
 		handleRequireOpenmrsVersion(addOnVersion, xpath, config);
 		handleRequireModules(addOnVersion, xpath, config);
 		handleSupportedLanguages(addOnVersion, xpath, config);
@@ -213,7 +208,7 @@ public class FetchDetailsToIndex {
 	}
 	
 	private void handleSupportedLanguages(AddOnVersion addOnVersion, XPath xpath, Document config)
-			throws XPathExpressionException {
+	        throws XPathExpressionException {
 		NodeList nodeList = (NodeList) xpath.evaluate("/module/messages/lang", config, XPathConstants.NODESET);
 		for (int i = 0; i < nodeList.getLength(); ++i) {
 			Node item = nodeList.item(i);
@@ -222,9 +217,9 @@ public class FetchDetailsToIndex {
 	}
 	
 	private void handleRequireModules(AddOnVersion addOnVersion, XPath xpath, Document config)
-			throws XPathExpressionException {
+	        throws XPathExpressionException {
 		NodeList nodeList = (NodeList) xpath.evaluate("/module/require_modules/require_module", config,
-				XPathConstants.NODESET);
+		    XPathConstants.NODESET);
 		for (int i = 0; i < nodeList.getLength(); ++i) {
 			Node item = nodeList.item(i);
 			Node version = item.getAttributes().getNamedItem("version");
@@ -240,15 +235,15 @@ public class FetchDetailsToIndex {
 	}
 	
 	private void handleRequireOpenmrsVersion(AddOnVersion addOnVersion, XPath xpath, Document config)
-			throws XPathExpressionException {
+	        throws XPathExpressionException {
 		Object str = xpath.evaluate("/module/require_version/text()", config, XPathConstants.STRING);
 		if (StringUtils.hasText((String) str)) {
 			addOnVersion.setRequireOpenmrsVersion(((String) str).trim());
 		}
 	}
 	
-	private void handleModuleIdAndPackage(AddOnVersion addOnVersion, XPath xpath,
-			Document config) throws XPathExpressionException {
+	private void handleModuleIdAndPackage(AddOnVersion addOnVersion, XPath xpath, Document config)
+	        throws XPathExpressionException {
 		Object modulePackage = xpath.evaluate("/module/package/text()", config, XPathConstants.STRING);
 		Object moduleId = xpath.evaluate("/module/id/text()", config, XPathConstants.STRING);
 		if (StringUtils.hasText((String) modulePackage)) {

@@ -16,12 +16,12 @@ public enum AddOnType {
 	
 	OMOD("omod"),
 	OWA("zip");
-
+	
 	@Getter
 	private final String fileExtension;
 	
 	AddOnType(String fileExtension) {
 		this.fileExtension = fileExtension;
 	}
-
+	
 }

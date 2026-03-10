@@ -14,10 +14,11 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openmrs.addonindex.util.Version;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.openmrs.addonindex.util.Version;
 
 /**
  * Details about a single version, for use inside {@link AddOnInfoAndVersions}
@@ -26,7 +27,7 @@ import org.openmrs.addonindex.util.Version;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class AddOnVersion implements Comparable<AddOnVersion> {
-
+	
 	@EqualsAndHashCode.Include
 	private Version version;
 	
@@ -37,14 +38,14 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	private String renameTo;
 	
 	private String requireOpenmrsVersion;
-
+	
 	@EqualsAndHashCode.Include
-    private String modulePackage;
-
+	private String modulePackage;
+	
 	@EqualsAndHashCode.Include
-    private String moduleId;
-
-    private List<ModuleRequirement> requireModules;
+	private String moduleId;
+	
+	private List<ModuleRequirement> requireModules;
 	
 	private List<String> supportedLanguages;
 	
@@ -55,7 +56,7 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 		}
 		this.requireOpenmrsVersion = requireOpenmrsVersion;
 	}
-
+	
 	@Override
 	public int compareTo(AddOnVersion other) {
 		if (other == null) {

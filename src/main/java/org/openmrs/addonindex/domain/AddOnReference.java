@@ -10,10 +10,11 @@
 
 package org.openmrs.addonindex.domain;
 
+import org.openmrs.addonindex.util.Version;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.openmrs.addonindex.util.Version;
 
 /**
  * A reference to a specific Add On, with an optional version
@@ -22,10 +23,10 @@ import org.openmrs.addonindex.util.Version;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class AddOnReference {
-
+	
 	@EqualsAndHashCode.Include
 	private String uid;
 	
 	private Version version;
-
+	
 }

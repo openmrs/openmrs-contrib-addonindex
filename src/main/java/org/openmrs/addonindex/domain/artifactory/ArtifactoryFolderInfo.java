@@ -13,23 +13,24 @@ package org.openmrs.addonindex.domain.artifactory;
 import java.util.List;
 
 /**
- * Represents the response from https://www.jfrog.com/confluence/display/RTF/Artifactory+REST+API#ArtifactoryRESTAPI-FolderInfo
+ * Represents the response from
+ * https://www.jfrog.com/confluence/display/RTF/Artifactory+REST+API#ArtifactoryRESTAPI-FolderInfo
  * We use this to determine the list of OpenMRS core versions
  */
 
 public class ArtifactoryFolderInfo {
-
-    private List<ArtifactoryFolderInfoChild> versions;
-
-    public List<ArtifactoryFolderInfoChild> getChildren() {
-        return versions;
-    }
-
-    public void setChildren(List<ArtifactoryFolderInfoChild> input) {
-        this.versions = input;
-    }
-
-    public int size() {
-        return versions == null ? 0 : versions.size();
-    }
+	
+	private List<ArtifactoryFolderInfoChild> versions;
+	
+	public List<ArtifactoryFolderInfoChild> getChildren() {
+		return versions;
+	}
+	
+	public void setChildren(List<ArtifactoryFolderInfoChild> input) {
+		this.versions = input;
+	}
+	
+	public int size() {
+		return versions == null ? 0 : versions.size();
+	}
 }

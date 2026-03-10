@@ -14,21 +14,22 @@ import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.openmrs.addonindex.util.Version;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.openmrs.addonindex.util.Version;
 
 @EqualsAndHashCode
 public class VersionList {
-
-    @Getter
-    private final SortedSet<Version> versions;
-
-    public VersionList(Collection<String> versions) {
-        this.versions = new TreeSet<>();
-        for (String candidateVersion : versions) {
-            this.versions.add(new Version(candidateVersion));
-        }
-    }
-
+	
+	@Getter
+	private final SortedSet<Version> versions;
+	
+	public VersionList(Collection<String> versions) {
+		this.versions = new TreeSet<>();
+		for (String candidateVersion : versions) {
+			this.versions.add(new Version(candidateVersion));
+		}
+	}
+	
 }
