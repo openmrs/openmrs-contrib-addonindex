@@ -9,7 +9,7 @@
  */
 
 import React, { Fragment, useEffect, useMemo, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { myFetch } from "../utils";
 import { Badge, Col, Row } from "react-bootstrap";
 import { IAddOn } from "../types";
@@ -30,14 +30,12 @@ const LONG_REFETCH_INTERVAL = 5 * 60 * 1000;
 export const IndexingStatus: React.FC = () => {
   const [refetchInterval, setRefetchInterval] = useState(LIVE_REFETCH_INTERVAL);
 
-  const indexingStatusQuery = useQuery<IIndexingStatus>(
-    ["indexingStatus"],
-    () => myFetch<IIndexingStatus>("/api/v1/indexingstatus"),
-    {
-      refetchOnWindowFocus: "always",
-      refetchInterval: refetchInterval,
-    }
-  );
+  const indexingStatusQuery = useQuery({
+    queryKey: ["indexingStatus"],
+    queryFn: () => myFetch<IIndexingStatus>("/api/v1/indexingstatus"),
+    refetchOnWindowFocus: "always",
+    refetchInterval: refetchInterval,
+  });
 
   const status = useMemo(
     () => indexingStatusQuery.data,

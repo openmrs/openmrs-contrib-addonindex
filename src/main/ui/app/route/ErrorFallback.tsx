@@ -1,17 +1,16 @@
-import React, { PropsWithChildren, useEffect } from "react";
+import React, { useEffect } from "react";
 import { FallbackProps } from "react-error-boundary";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
-export const ErrorFallback: React.FC<PropsWithChildren<FallbackProps>> = ({
+export const ErrorFallback: React.FC<FallbackProps> = ({
   error,
   resetErrorBoundary,
-  children,
 }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(`Unexpected error: ${error.message}: ${error}`);
+    console.log(`Unexpected error: ${error instanceof Error ? error.message : error}`);
   }, [error]);
 
   return (
@@ -34,7 +33,6 @@ export const ErrorFallback: React.FC<PropsWithChildren<FallbackProps>> = ({
       >
         Retry
       </Button>
-      {children}
     </div>
   );
 };

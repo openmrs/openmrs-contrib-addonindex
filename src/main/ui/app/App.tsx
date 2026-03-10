@@ -15,7 +15,7 @@ import React, {
   useState,
 } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useLocation } from "react-router";
 import ReactGA from "react-ga";
 import { Col } from "react-bootstrap";
@@ -25,8 +25,8 @@ export const CoreVersionContext = createContext(null);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: (failureCount, error: Response) =>
-        error.status >= 500 && failureCount < 3,
+      retry: (failureCount, error) =>
+        error instanceof Response && error.status >= 500 && failureCount < 3,
       refetchOnWindowFocus: false,
     },
   },

@@ -1,11 +1,11 @@
-import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { vi, describe, it, expect } from "vitest";
 import { AddOn } from "./AddOn";
 import type { IAddOn } from "../types";
 
-jest.mock("./LegacyFaIcon", () => ({
+vi.mock("./LegacyFaIcon", () => ({
   LegacyFaIcon: ({ icon }) => <span>{icon}</span>,
 }));
 

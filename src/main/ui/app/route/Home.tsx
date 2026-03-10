@@ -10,14 +10,15 @@
 
 import React, { useMemo } from "react";
 import { NamedList, SearchBox } from "../component";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { myFetch } from "../utils";
 import { AddOnCollection } from "../types";
 
 export const Home: React.FC = () => {
-  const defaultListQuery = useQuery<AddOnCollection>(["defaultList"], () =>
-    myFetch<AddOnCollection>("/api/v1/list/DEFAULT")
-  );
+  const defaultListQuery = useQuery({
+    queryKey: ["defaultList"],
+    queryFn: () => myFetch<AddOnCollection>("/api/v1/list/DEFAULT"),
+  });
 
   const defaultList = useMemo(
     () => defaultListQuery.data,
