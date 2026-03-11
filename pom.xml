@@ -143,6 +143,15 @@
     </properties>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>${maven.frontend.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -217,30 +226,27 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>${maven.frontend.version}</version>
                 <configuration>
                     <nodeVersion>v24.14.0</nodeVersion>
+                    <pnpmVersion>9.5.0</pnpmVersion>
                     <workingDirectory>${project.basedir}/src/main/ui</workingDirectory>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>install node and corepack</id>
+                        <id>install node and pnpm</id>
                         <goals>
-                            <goal>install-node-and-corepack</goal>
+                            <goal>install-node-and-pnpm</goal>
                         </goals>
                         <phase>generate-resources</phase>
-                        <configuration>
-                          <nodeVersion>v24.14.0</nodeVersion>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>pnpm install</id>
                         <goals>
-                            <goal>corepack</goal>
+                            <goal>pnpm</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <arguments>pnpm install</arguments>
+                            <arguments>install</arguments>
                         </configuration>
                     </execution>
                 </executions>
@@ -333,16 +339,15 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>${maven.frontend.version}</version>
                         <executions>
                             <execution>
                                 <id>pnpm build</id>
                                 <goals>
-                                    <goal>corepack</goal>
+                                    <goal>pnpm</goal>
                                 </goals>
                                 <phase>generate-resources</phase>
                                 <configuration>
-                                    <arguments>pnpm run build:dev</arguments>
+                                    <arguments>run build:dev</arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -362,16 +367,15 @@
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
                         <artifactId>frontend-maven-plugin</artifactId>
-                        <version>${maven.frontend.version}</version>
                         <executions>
                             <execution>
                                 <id>pnpm build</id>
                                 <goals>
-                                    <goal>corepack</goal>
+                                    <goal>pnpm</goal>
                                 </goals>
                                 <phase>generate-resources</phase>
                                 <configuration>
-                                    <arguments>pnpm run build:prod</arguments>
+                                    <arguments>run build:prod</arguments>
                                 </configuration>
                             </execution>
                         </executions>
@@ -391,6 +395,26 @@
                 <spotless.goal>check</spotless.goal>
                 <license.goal>check</license.goal>
             </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>pnpm install</id>
+                                <goals>
+                                    <goal>pnpm</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                                <configuration>
+                                    <arguments>install --frozen-lockfile</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
