@@ -31,7 +31,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tanstack/react-query": "^5.64.0",
     "bootstrap": "^4.6.1",
-    "dayjs": "^1.11.19",
+    "dayjs": "^1.11.20",
     "react": "^18.3.1",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^18.3.1",
@@ -55,15 +55,15 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "jsdom": "^28.1.0",
+    "jsdom": "^29.0.0",
     "parcel": "^2.16.4",
     "parcel-resolver-ignore": "^2.1.1",
     "prettier": "^3.8.1",
     "pretty-quick": "^4.2.2",
-    "sass": "^1.97.3",
+    "sass": "^1.98.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.0"
+    "vitest": "^4.1.0"
   },
   "parcelIgnore": [
     "/favicon.ico",
