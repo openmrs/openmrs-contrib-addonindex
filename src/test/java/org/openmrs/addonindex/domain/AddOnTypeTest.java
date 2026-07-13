@@ -10,20 +10,16 @@
 
 package org.openmrs.addonindex.domain;
 
-import lombok.Getter;
+import org.junit.jupiter.api.Test;
 
-public enum AddOnType {
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
+public class AddOnTypeTest {
 	
-	OMOD("omod"),
-	OWA("zip"),
-	FRONTEND_MODULE("tgz"),
-	CONTENT_PACKAGE("zip");
-	
-	@Getter
-	private final String fileExtension;
-	
-	AddOnType(String fileExtension) {
-		this.fileExtension = fileExtension;
+	@Test
+	public void newTypesHaveExpectedFileExtensions() {
+		assertThat(AddOnType.FRONTEND_MODULE.getFileExtension(), is("tgz"));
+		assertThat(AddOnType.CONTENT_PACKAGE.getFileExtension(), is("zip"));
 	}
-	
 }

@@ -11,14 +11,18 @@
 package org.openmrs.addonindex.scheduled;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ListIterator;
 import java.util.Optional;
+import java.util.Properties;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,6 +31,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.SupportsDownloadCounts;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
@@ -52,6 +58,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -67,6 +76,10 @@ public class FetchDetailsToIndex {
 	private final RestTemplateBuilder restTemplateBuilder;
 	
 	private final DocumentBuilderFactory documentBuilderFactory;
+	
+	private final ObjectMapper objectMapper = new ObjectMapper();
+	
+	static final String SPA_PREFIX = "spa.frontendModules.";
 	
 	@Autowired
 	public FetchDetailsToIndex(IndexingService indexingService, RestTemplateBuilder restTemplateBuilder) {
@@ -150,6 +163,18 @@ public class FetchDetailsToIndex {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
 						handleConfigXml(configXml, version);
+					}
+				} else if (toIndex.getType() == AddOnType.FRONTEND_MODULE) {
+					log.info("Fetching tarball for {} {}", toIndex.getUid(), version.getVersion());
+					String routesJson = fetchRoutesJson(version);
+					if (routesJson != null) {
+						handleRoutesJson(routesJson, version);
+					}
+				} else if (toIndex.getType() == AddOnType.CONTENT_PACKAGE) {
+					log.info("Fetching content package for {} {}", toIndex.getUid(), version.getVersion());
+					String contentProperties = fetchContentProperties(version);
+					if (contentProperties != null) {
+						handleContentProperties(contentProperties, version);
 					}
 				}
 			}
@@ -251,6 +276,81 @@ public class FetchDetailsToIndex {
 		}
 		if (StringUtils.hasText((String) moduleId)) {
 			addOnVersion.setModuleId(((String) moduleId).trim());
+		}
+	}
+	
+	void handleRoutesJson(String routesJson, AddOnVersion addOnVersion) throws IOException {
+		JsonNode root = objectMapper.readTree(routesJson);
+		JsonNode backendDeps = root.path("backendDependencies");
+		backendDeps.fieldNames()
+		        .forEachRemaining(module -> addOnVersion.addRequiredModule(module, backendDeps.path(module).asText(null)));
+	}
+	
+	String fetchRoutesJson(AddOnVersion addOnVersion) throws IOException {
+		log.info("fetching routes.json from {}", addOnVersion.getDownloadUri());
+		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(),
+		    Resource.class);
+		Resource resource = response.getBody();
+		if (resource != null) {
+			try (TarArchiveInputStream tar = new TarArchiveInputStream(
+			        new GZIPInputStream(new BufferedInputStream(resource.getInputStream())))) {
+				TarArchiveEntry entry;
+				while ((entry = tar.getNextEntry()) != null) {
+					if (entry.getName().endsWith("dist/routes.json")) {
+						return StreamUtils.copyToString(tar, Charset.defaultCharset());
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	String fetchContentProperties(AddOnVersion addOnVersion) throws IOException {
+		log.info("fetching content.properties from {}", addOnVersion.getDownloadUri());
+		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(),
+		    Resource.class);
+		Resource resource = response.getBody();
+		if (resource != null) {
+			try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))) {
+				ZipEntry entry;
+				while ((entry = zis.getNextEntry()) != null) {
+					if (entry.getName().equals("content.properties")) {
+						if (addOnVersion.getReleaseDatetime() == null) {
+							if (entry.getCreationTime() != null) {
+								addOnVersion
+								        .setReleaseDatetime(entry.getCreationTime().toInstant().atOffset(ZoneOffset.UTC));
+							} else if (entry.getLastModifiedTime() != null) {
+								addOnVersion.setReleaseDatetime(
+								    entry.getLastModifiedTime().toInstant().atOffset(ZoneOffset.UTC));
+							} else if (response.getHeaders().containsKey(HttpHeaders.LAST_MODIFIED)) {
+								ZonedDateTime zdt = response.getHeaders().getFirstZonedDateTime(HttpHeaders.LAST_MODIFIED);
+								if (zdt != null) {
+									addOnVersion.setReleaseDatetime(OffsetDateTime.from(zdt));
+								}
+							}
+						}
+						
+						return StreamUtils.copyToString(zis, Charset.defaultCharset());
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	void handleContentProperties(String propertiesText, AddOnVersion addOnVersion) throws IOException {
+		Properties props = new Properties();
+		props.load(new ByteArrayInputStream(propertiesText.getBytes(StandardCharsets.UTF_8)));
+		for (String key : props.stringPropertyNames()) {
+			String value = props.getProperty(key).trim();
+			if (key.startsWith("omod.")) {
+				if (key.endsWith(".groupId")) {
+					continue; // groupId qualifier, not a separate dependency
+				}
+				addOnVersion.addRequiredModule(key.substring("omod.".length()), value);
+			} else if (key.startsWith(SPA_PREFIX)) {
+				addOnVersion.addRequiredFrontendModule(key.substring(SPA_PREFIX.length()), value);
+			}
 		}
 	}
 }

@@ -93,4 +93,39 @@ public class FetchDetailsToIndexTest {
 		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version);
 		// just test that we could parse at all
 	}
+	
+	@Test
+	public void testParsingRoutesJsonForBackendDependencies() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleRoutesJson(getFileAsString("routes.json"), version);
+		assertThat(version.getRequireModules().size(), is(2));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("webservices.rest")), hasProperty("version", is(">=2.2.0")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("fhir2")), hasProperty("version", is(">=1.2.0")))));
+	}
+	
+	@Test
+	public void testParsingContentPropertiesWithDependencies() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties(getFileAsString("content.withDependencies.properties"), version);
+		assertThat(version.getRequireModules().size(), is(2));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("webservices.rest")), hasProperty("version", is(">= 2.44")))));
+		assertThat(version.getRequireModules(), hasItem(hasProperty("module", is("events"))));
+		assertThat(version.getRequireFrontendModules().size(), is(1));
+		assertThat(version.getRequireFrontendModules(),
+		    hasItem(allOf(hasProperty("module", is("@openmrs/esm-patient-chart-app")), hasProperty("version", is("7.x")))));
+	}
+	
+	@Test
+	public void testParsingContentPropertiesNameVersionOnly() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties(getFileAsString("content.nameVersionOnly.properties"), version);
+		assertThat(version.getRequireModules(), nullValue());
+		assertThat(version.getRequireFrontendModules(), nullValue());
+	}
 }

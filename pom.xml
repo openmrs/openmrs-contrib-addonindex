@@ -130,6 +130,11 @@
             <artifactId>hamcrest-optional</artifactId>
             <version>1.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.27.1</version>
+        </dependency>
     </dependencies>
 
     <properties>

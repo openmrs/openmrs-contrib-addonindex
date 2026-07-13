@@ -17,7 +17,7 @@ interface AddOnCollectionItem {
 interface IAddOn {
   uid: string;
   name: string;
-  type: "OWA" | "OMOD";
+  type: "OWA" | "OMOD" | "FRONTEND_MODULE" | "CONTENT_PACKAGE";
   maintainers?: {
     name: string;
     url?: string;
@@ -38,6 +38,8 @@ interface IAddOnVersion {
   releaseDatetime?: Date;
   requireOpenmrsVersion: string;
   renameTo?: string;
+  requireModules?: { module: string; version?: string }[];
+  requireFrontendModules?: { module: string; version?: string }[];
 }
 
 interface Link {

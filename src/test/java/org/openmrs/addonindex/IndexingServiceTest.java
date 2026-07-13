@@ -17,8 +17,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.backend.Artifactory;
 import org.openmrs.addonindex.backend.Bintray;
+import org.openmrs.addonindex.backend.MavenContentPackage;
 import org.openmrs.addonindex.backend.Modulus;
 import org.openmrs.addonindex.backend.Nexus3Repo;
+import org.openmrs.addonindex.backend.NpmRegistry;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.AddOnReference;
@@ -142,6 +144,11 @@ public class IndexingServiceTest {
 				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
 			} else if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
+				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
+				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
+			} else if (addOn.getBackend().equals(NpmRegistry.class)) {
+				assertThat(addOn.getNpmPackageDetails().getPackageName(), notNullValue());
+			} else if (addOn.getBackend().equals(MavenContentPackage.class)) {
 				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
 			} else {

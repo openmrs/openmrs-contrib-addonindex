@@ -8,22 +8,14 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.domain;
+package org.openmrs.addonindex.domain.backend;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public enum AddOnType {
+@Data
+@NoArgsConstructor
+public class NpmPackageDetails {
 	
-	OMOD("omod"),
-	OWA("zip"),
-	FRONTEND_MODULE("tgz"),
-	CONTENT_PACKAGE("zip");
-	
-	@Getter
-	private final String fileExtension;
-	
-	AddOnType(String fileExtension) {
-		this.fileExtension = fileExtension;
-	}
-	
+	private String packageName;
 }

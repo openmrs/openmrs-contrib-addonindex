@@ -1,0 +1,14 @@
+{
+  "name": "@openmrs/esm-patient-chart-app",
+  "dist-tags": { "latest": "9.0.1", "next": "10.0.0-pre.1234" },
+  "time": {
+    "8.1.0": "2025-09-16T10:00:00.000Z",
+    "9.0.1": "2026-06-14T10:00:00.000Z",
+    "10.0.0-pre.1234": "2026-06-20T10:00:00.000Z"
+  },
+  "versions": {
+    "8.1.0": { "version": "8.1.0", "dist": { "tarball": "https://registry.npmjs.org/@openmrs/esm-patient-chart-app/-/esm-patient-chart-app-8.1.0.tgz" } },
+    "9.0.1": { "version": "9.0.1", "dist": { "tarball": "https://registry.npmjs.org/@openmrs/esm-patient-chart-app/-/esm-patient-chart-app-9.0.1.tgz" } },
+    "10.0.0-pre.1234": { "version": "10.0.0-pre.1234", "dist": { "tarball": "https://registry.npmjs.org/@openmrs/esm-patient-chart-app/-/esm-patient-chart-app-10.0.0-pre.1234.tgz" } }
+  }
+}

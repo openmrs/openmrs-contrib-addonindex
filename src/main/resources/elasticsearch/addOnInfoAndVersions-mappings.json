@@ -79,6 +79,18 @@
             }
           }
         },
+        "requireFrontendModules": {
+          "type": "nested",
+          "properties": {
+            "module": {
+              "type": "text"
+            },
+            "version": {
+              "type": "text",
+              "index": false
+            }
+          }
+        },
         "supportedLanguages": {
           "type": "keyword"
         }

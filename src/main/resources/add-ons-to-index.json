@@ -6717,6 +6717,92 @@
         "artifactId": "datafilter"
       }
     },
+    {
+      "uid": "openmrs-esm-patient-chart",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Chart",
+      "description": "The O3 patient dashboard: vitals and biometrics, conditions, medications, orders, allergies, and visit notes.",
+      "tags": ["o3", "patient-chart", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-chart-app" }
+    },
+    {
+      "uid": "openmrs-esm-form-builder",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Form Builder",
+      "description": "Build and edit O3 forms with a visual editor and JSON schema.",
+      "tags": ["o3", "forms", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-form-builder" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-form-builder-app" }
+    },
+    {
+      "uid": "openmrs-esm-form-engine",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Form Engine",
+      "description": "Renders O3 forms from JSON schemas at the point of care.",
+      "tags": ["o3", "forms", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-form-engine-app" }
+    },
+    {
+      "uid": "openmrs-esm-dispensing",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Dispensing",
+      "description": "Medication dispensing workflows for O3 pharmacy.",
+      "tags": ["o3", "pharmacy", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-dispensing-app" }
+    },
+    {
+      "uid": "org.openmrs.content.referenceapplication",
+      "type": "CONTENT_PACKAGE",
+      "status": "ACTIVE",
+      "name": "Reference Application Content",
+      "description": "Baseline content for the O3 Reference Application: concepts, forms, encounter and visit types, and frontend configuration.",
+      "tags": ["o3", "forms", "concepts", "reference-application"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-content-referenceapplication" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.MavenContentPackage",
+      "mavenRepoDetails": { "groupId": "org.openmrs.content", "artifactId": "referenceapplication" }
+    },
+    {
+      "uid": "org.openmrs.content.referenceapplication-demo",
+      "type": "CONTENT_PACKAGE",
+      "status": "ACTIVE",
+      "name": "Reference Application Demo Content",
+      "description": "Demo metadata for the O3 Reference Application: common labs, diagnoses, drugs, and sample patient data configuration.",
+      "tags": ["o3", "demo", "reference-application"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "backend": "org.openmrs.addonindex.backend.MavenContentPackage",
+      "mavenRepoDetails": { "groupId": "org.openmrs.content", "artifactId": "referenceapplication-demo" }
+    },
+    {
+      "uid": "org.openmrs.content.hiv",
+      "type": "CONTENT_PACKAGE",
+      "status": "ACTIVE",
+      "name": "HIV Care & Treatment Package",
+      "description": "Clinical forms, encounter types, concepts, and workflows supporting structured capture and tracking of patient information for HIV care.",
+      "tags": ["o3", "hiv", "content"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "backend": "org.openmrs.addonindex.backend.MavenContentPackage",
+      "mavenRepoDetails": { "groupId": "org.openmrs.content", "artifactId": "hiv" }
+    },
   ],
   "lists": [
     {

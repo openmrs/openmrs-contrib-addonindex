@@ -116,17 +116,20 @@ const formatDateTime = (dt) => {
 };
 
 const formatRequiredModules = (version) => {
-  const requirements = [];
-
-  if (version.requireModules) {
-    version.requireModules.forEach((m) => {
-      requirements.push(
-        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`,
-      );
-    });
+  const backend = (version.requireModules ?? []).map(
+    (m) => `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim(),
+  );
+  const frontend = (version.requireFrontendModules ?? []).map(
+    (m) => `${m.module} ${m.version || ""}`.trim(),
+  );
+  const parts = [];
+  if (backend.length) {
+    parts.push(backend.join(", "));
   }
-
-  return requirements.join(", ");
+  if (frontend.length) {
+    parts.push(`Frontend: ${frontend.join(", ")}`);
+  }
+  return parts.join(" · ");
 };
 
 export const Show: React.FC = () => {
@@ -362,7 +365,11 @@ export const Show: React.FC = () => {
                     <LegacyFaIcon icon={faQuestionCircle} />
                   </OverlayTrigger>
                 </th>
-                <th>Other requirements</th>
+                <th>
+                  {addOn.type === "CONTENT_PACKAGE"
+                    ? "Required Modules & Frontend Modules"
+                    : "Required Modules"}
+                </th>
                 <th>Download</th>
               </tr>
             </thead>
