@@ -6718,10 +6718,10 @@
       }
     },
     {
-      "uid": "openmrs-esm-patient-chart",
+      "uid": "openmrs-esm-patient-chart-app",
       "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
-      "name": "Patient Chart",
+      "name": "Patient Chart App",
       "description": "The O3 patient dashboard: vitals and biometrics, conditions, medications, orders, allergies, and visit notes.",
       "tags": ["o3", "patient-chart", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
@@ -6732,10 +6732,10 @@
       "npmPackageDetails": { "packageName": "@openmrs/esm-patient-chart-app" }
     },
     {
-      "uid": "openmrs-esm-form-builder",
+      "uid": "openmrs-esm-form-builder-app",
       "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
-      "name": "Form Builder",
+      "name": "Form Builder App",
       "description": "Build and edit O3 forms with a visual editor and JSON schema.",
       "tags": ["o3", "forms", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
@@ -6746,10 +6746,10 @@
       "npmPackageDetails": { "packageName": "@openmrs/esm-form-builder-app" }
     },
     {
-      "uid": "openmrs-esm-form-engine",
+      "uid": "openmrs-esm-form-engine-app",
       "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
-      "name": "Form Engine",
+      "name": "Form Engine App",
       "description": "Renders O3 forms from JSON schemas at the point of care.",
       "tags": ["o3", "forms", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
@@ -6757,10 +6757,10 @@
       "npmPackageDetails": { "packageName": "@openmrs/esm-form-engine-app" }
     },
     {
-      "uid": "openmrs-esm-dispensing",
+      "uid": "openmrs-esm-dispensing-app",
       "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
-      "name": "Dispensing",
+      "name": "Dispensing App",
       "description": "Medication dispensing workflows for O3 pharmacy.",
       "tags": ["o3", "pharmacy", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
@@ -6789,20 +6789,600 @@
       "description": "Demo metadata for the O3 Reference Application: common labs, diagnoses, drugs, and sample patient data configuration.",
       "tags": ["o3", "demo", "reference-application"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-content-referenceapplication-demo" }
+      ],
       "backend": "org.openmrs.addonindex.backend.MavenContentPackage",
       "mavenRepoDetails": { "groupId": "org.openmrs.content", "artifactId": "referenceapplication-demo" }
     },
     {
-      "uid": "org.openmrs.content.hiv",
-      "type": "CONTENT_PACKAGE",
+      "uid": "openmrs-esm-active-visits-app",
+      "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
-      "name": "HIV Care & Treatment Package",
-      "description": "Clinical forms, encounter types, concepts, and workflows supporting structured capture and tracking of patient information for HIV care.",
-      "tags": ["o3", "hiv", "content"],
+      "name": "Active Visits App",
+      "description": "Active visits widget microfrontend for O3",
+      "tags": ["o3", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
-      "backend": "org.openmrs.addonindex.backend.MavenContentPackage",
-      "mavenRepoDetails": { "groupId": "org.openmrs.content", "artifactId": "hiv" }
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-active-visits-app" }
     },
+    {
+      "uid": "openmrs-esm-appointments-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Appointments App",
+      "description": "Appointments front-end module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-appointments-app" }
+    },
+    {
+      "uid": "openmrs-esm-bed-management-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Bed Management App",
+      "description": "Bed management app for OpenMRS 3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-bed-management-app" }
+    },
+    {
+      "uid": "openmrs-esm-billing-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Billing App",
+      "description": "O3 frontend module for handling billing concerns in healthcare settings",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-billing-app" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-billing-app" }
+    },
+    {
+      "uid": "openmrs-esm-cohort-builder-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Cohort Builder App",
+      "description": "O3 frontend module for managing cohorts",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-cohortbuilder" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-cohort-builder-app" }
+    },
+    {
+      "uid": "openmrs-esm-devtools-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Dev Tools App",
+      "description": "Dev tools for frontend devs using OpenMRS",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-core" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-devtools-app" }
+    },
+    {
+      "uid": "openmrs-esm-fast-data-entry-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Fast Data Entry App",
+      "description": "O3 frontend module for fast data entry using the OpenMRS Angular Form Engine",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-fast-data-entry-app" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-fast-data-entry-app" }
+    },
+    {
+      "uid": "openmrs-esm-generic-patient-widgets-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Generic Patient Widgets App",
+      "description": "Generic widgets for the patient chart",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-generic-patient-widgets-app" }
+    },
+    {
+      "uid": "openmrs-esm-help-menu-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Help Menu App",
+      "description": "A microfrontend that provides a help menu for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-core" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-help-menu-app" }
+    },
+    {
+      "uid": "openmrs-esm-home-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Home App",
+      "description": "Homepage microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-home" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-home-app" }
+    },
+    {
+      "uid": "openmrs-esm-implementer-tools-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Implementer Tools App",
+      "description": "The admin interface for OpenMRS Frontend",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-core" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-implementer-tools-app" }
+    },
+    {
+      "uid": "openmrs-esm-laboratory-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Laboratory App",
+      "description": "An O3 frontend module for managing laboratory requests and queues",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-laboratory" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-laboratory-app" }
+    },
+    {
+      "uid": "openmrs-esm-login-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Login App",
+      "description": "The login microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-core" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-login-app" }
+    },
+    {
+      "uid": "openmrs-esm-openconceptlab-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Open Concept Lab App",
+      "description": "Open Concept Lab management frontend module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-admin-tools" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-openconceptlab-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-allergies-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Allergies App",
+      "description": "Patient allergies microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-allergies-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-attachments-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Attachments App",
+      "description": "Patient attachments microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-attachments-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-banner-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Banner App",
+      "description": "Patient banner microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-banner-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-conditions-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Conditions App",
+      "description": "Patient conditions microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-conditions-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-flags-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Flags App",
+      "description": "An OpenMRS frontend module for managing patient flags",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-flags-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-forms-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Forms App",
+      "description": "Patient forms microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-forms-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-growth-chart-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Growth Chart App",
+      "description": "patient-growth-chart frontend module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/esm-patient-growth-chart-app" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-growth-chart-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-immunizations-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Immunizations App",
+      "description": "Patient immunizations microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-immunizations-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-label-printing-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Label Printing App",
+      "description": "Patient Label Printing frontend module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-label-printing-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-list-management-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient List Management App",
+      "description": "Microfrontend for managing patient lists in O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-list-management-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-lists-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Lists App",
+      "description": "An OpenMRS frontend module for managing patient lists in the Patient Chart",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-lists-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-medications-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Medications App",
+      "description": "Patient medications microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-medications-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-notes-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Notes App",
+      "description": "Patient notes microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-notes-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-orders-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Orders App",
+      "description": "Microfrontend for the OpenMRS SPA providing the order basket for the patient chart",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-orders-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-programs-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Programs App",
+      "description": "Patient programs microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-programs-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-registration-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Registration App",
+      "description": "Patient registration microfrontend for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-registration-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-search-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Search App",
+      "description": "Patient search microfrontend for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-search-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-task-list-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Task List App",
+      "description": "Task list microfrontend for the OpenMRS SPA patient chart",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-task-list-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-tests-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Tests App",
+      "description": "Patient test order and results microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-tests-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-vitals-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Vitals App",
+      "description": "Patient vitals microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-vitals-app" }
+    },
+    {
+      "uid": "openmrs-esm-patient-procedures-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Patient Procedures App",
+      "description": "Patient procedures microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-procedures-app" }
+    },
+    {
+      "uid": "openmrs-esm-primary-navigation-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Primary Navigation App",
+      "description": "Main navbar microfrontend for the OpenMRS SPA",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-core" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-primary-navigation-app" }
+    },
+    {
+      "uid": "openmrs-esm-reports-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Reports App",
+      "description": "Reports admin dashboard for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-admin-tools" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-reports-app" }
+    },
+    {
+      "uid": "openmrs-esm-service-queues-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Service Queues App",
+      "description": "Outpatient front-end module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-service-queues-app" }
+    },
+    {
+      "uid": "openmrs-esm-stock-management-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Stock Management App",
+      "description": "Stock management microfrontend for OpenMRS 3.x",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-stock-management-app" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-stock-management-app" }
+    },
+    {
+      "uid": "openmrs-esm-system-admin-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "System Admin App",
+      "description": "System admin frontend module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-admin-tools" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-system-admin-app" }
+    },
+    {
+      "uid": "openmrs-esm-user-onboarding-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "User Onboarding App",
+      "description": "An OpenMRS microfrontend for user onboarding walkthroughs",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-user-onboarding" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-user-onboarding-app" }
+    },
+    {
+      "uid": "openmrs-esm-ward-app",
+      "type": "FRONTEND_MODULE",
+      "status": "ACTIVE",
+      "name": "Ward App",
+      "description": "Ward and bed management module for O3",
+      "tags": ["o3", "frontend"],
+      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-management" }
+      ],
+      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
+      "npmPackageDetails": { "packageName": "@openmrs/esm-ward-app" }
+    }
   ],
   "lists": [
     {
