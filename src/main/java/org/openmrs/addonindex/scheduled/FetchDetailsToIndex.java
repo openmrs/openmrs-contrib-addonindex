@@ -350,6 +350,8 @@ public class FetchDetailsToIndex {
 				addOnVersion.addRequiredModule(key.substring("omod.".length()), value);
 			} else if (key.startsWith(SPA_PREFIX)) {
 				addOnVersion.addRequiredFrontendModule(key.substring(SPA_PREFIX.length()), value);
+			} else if (key.equals("war.openmrs")) {
+				addOnVersion.setRequireOpenmrsVersion(value);
 			}
 		}
 	}
