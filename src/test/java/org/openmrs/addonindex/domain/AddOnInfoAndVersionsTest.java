@@ -88,6 +88,35 @@ public class AddOnInfoAndVersionsTest {
 	}
 	
 	@Test
+	public void testGetLatestSupportedVersionWithMixedPlatformRequirements() {
+		// If any version declares a platform requirement, the core-version filter runs. Versions that
+		// declare no requirement are treated as compatible with everything, so they can still be selected
+		// for a core version that the higher, range-bearing versions don't support.
+		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
+		info.setName("Mixed");
+		
+		AddOnVersion newest = new AddOnVersion();
+		newest.setVersion(new Version("3.0"));
+		newest.setRequireOpenmrsVersion("2.4.0");
+		info.addVersion(newest);
+		
+		AddOnVersion middleNoRequirement = new AddOnVersion();
+		middleNoRequirement.setVersion(new Version("2.0"));
+		info.addVersion(middleNoRequirement);
+		
+		AddOnVersion oldest = new AddOnVersion();
+		oldest.setVersion(new Version("1.0"));
+		oldest.setRequireOpenmrsVersion("1.9.0");
+		info.addVersion(oldest);
+		
+		// 3.0 supports 2.4.0, so it wins
+		assertThat(info.getLatestSupportedVersion("2.4.0").getVersion().toString(), is("3.0"));
+		// 3.0 needs 2.4.0, so we fall through to 2.0, which declares no requirement and matches anything
+		assertThat(info.getLatestSupportedVersion("2.0.0").getVersion().toString(), is("2.0"));
+		assertThat(info.getLatestSupportedVersion("1.0.0").getVersion().toString(), is("2.0"));
+	}
+	
+	@Test
 	public void setDetailsBasedOnLatestVersion() {
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version("1.0"));
