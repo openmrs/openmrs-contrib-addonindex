@@ -40,6 +40,8 @@ interface IAddOnVersion {
   renameTo?: string;
   requireModules?: { module: string; version?: string }[];
   requireFrontendModules?: { module: string; version?: string }[];
+  optionalRequireModules?: { module: string; version?: string }[];
+  requireOwas?: { module: string; version?: string }[];
 }
 
 interface Link {

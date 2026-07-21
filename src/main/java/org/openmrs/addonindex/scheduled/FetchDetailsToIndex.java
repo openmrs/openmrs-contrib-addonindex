@@ -284,6 +284,9 @@ public class FetchDetailsToIndex {
 		JsonNode backendDeps = root.path("backendDependencies");
 		backendDeps.fieldNames()
 		        .forEachRemaining(module -> addOnVersion.addRequiredModule(module, backendDeps.path(module).asText(null)));
+		JsonNode optionalDeps = root.path("optionalBackendDependencies");
+		optionalDeps.fieldNames().forEachRemaining(
+		    module -> addOnVersion.addOptionalRequiredModule(module, optionalDeps.path(module).asText(null)));
 	}
 	
 	String fetchRoutesJson(AddOnVersion addOnVersion) throws IOException {
@@ -350,6 +353,11 @@ public class FetchDetailsToIndex {
 				addOnVersion.addRequiredModule(key.substring("omod.".length()), value);
 			} else if (key.startsWith(SPA_PREFIX)) {
 				addOnVersion.addRequiredFrontendModule(key.substring(SPA_PREFIX.length()), value);
+			} else if (key.startsWith("owa.")) {
+				if (key.endsWith(".groupId")) {
+					continue; // groupId qualifier, not a separate dependency
+				}
+				addOnVersion.addRequiredOwa(key.substring("owa.".length()), value);
 			} else if (key.equals("war.openmrs")) {
 				addOnVersion.setRequireOpenmrsVersion(value);
 			}

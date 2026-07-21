@@ -49,6 +49,10 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	
 	private List<ModuleRequirement> requireFrontendModules;
 	
+	private List<ModuleRequirement> optionalRequireModules;
+	
+	private List<ModuleRequirement> requireOwas;
+	
 	private List<String> supportedLanguages;
 	
 	public void setRequireOpenmrsVersion(String requireOpenmrsVersion) {
@@ -79,6 +83,20 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 			requireFrontendModules = new ArrayList<>();
 		}
 		requireFrontendModules.add(new ModuleRequirement(requiredModule, version == null ? "?" : version));
+	}
+	
+	public void addOptionalRequiredModule(String optionalModule, String version) {
+		if (optionalRequireModules == null) {
+			optionalRequireModules = new ArrayList<>();
+		}
+		optionalRequireModules.add(new ModuleRequirement(optionalModule, version == null ? "?" : version));
+	}
+	
+	public void addRequiredOwa(String owa, String version) {
+		if (requireOwas == null) {
+			requireOwas = new ArrayList<>();
+		}
+		requireOwas.add(new ModuleRequirement(owa, version == null ? "?" : version));
 	}
 	
 	public void addLanguage(String localeCode) {

@@ -107,6 +107,16 @@ public class FetchDetailsToIndexTest {
 	}
 	
 	@Test
+	public void testParsingRoutesJsonForOptionalBackendDependencies() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleRoutesJson(getFileAsString("routes.json"), version);
+		assertThat(version.getOptionalRequireModules().size(), is(1));
+		assertThat(version.getOptionalRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("billing")), hasProperty("version", is(">=2.0.0-0")))));
+	}
+	
+	@Test
 	public void testParsingContentPropertiesWithDependencies() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
@@ -118,6 +128,9 @@ public class FetchDetailsToIndexTest {
 		assertThat(version.getRequireFrontendModules().size(), is(1));
 		assertThat(version.getRequireFrontendModules(),
 		    hasItem(allOf(hasProperty("module", is("@openmrs/esm-patient-chart-app")), hasProperty("version", is("7.x")))));
+		assertThat(version.getRequireOwas().size(), is(1));
+		assertThat(version.getRequireOwas(),
+		    hasItem(allOf(hasProperty("module", is("orderentry")), hasProperty("version", is("^1.0.0")))));
 	}
 	
 	@Test

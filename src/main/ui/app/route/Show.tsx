@@ -129,8 +129,21 @@ const formatRequiredModules = (version) => {
   if (frontend.length) {
     parts.push(`Frontend: ${frontend.join(", ")}`);
   }
+  const owa = (version.requireOwas ?? []).map((m) =>
+    `${m.module} ${m.version || ""}`.trim(),
+  );
+  if (owa.length) {
+    parts.push(`OWA: ${owa.join(", ")}`);
+  }
   return parts.join(" · ");
 };
+
+const formatOptionalModules = (version) =>
+  (version.optionalRequireModules ?? [])
+    .map((m) =>
+      `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim(),
+    )
+    .join(", ");
 
 export const Show: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
@@ -401,7 +414,16 @@ export const Show: React.FC = () => {
                       <td>{v.version}</td>
                       <td>{formatDateTime(v.releaseDatetime)}</td>
                       <td>{v.requireOpenmrsVersion}</td>
-                      <td>{formatRequiredModules(v)}</td>
+                      <td>
+                        {formatRequiredModules(v)}
+                        {v.optionalRequireModules?.length ? (
+                          <div>
+                            <small className="text-muted">
+                              Optional: {formatOptionalModules(v)}
+                            </small>
+                          </div>
+                        ) : null}
+                      </td>
                       <td>
                         <DownloadButton
                           uid={addOn.uid}
