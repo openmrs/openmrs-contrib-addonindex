@@ -53,7 +53,8 @@ SNAPSHOTs are skipped. If your add-on is published to the OpenMRS Artifactory, s
 
 ### Your own Nexus 3 repository
 
-If you host your add-on in your own Nexus 3 repository, also give us its base URL:
+If you host your module in your own Nexus 3 repository, also give us its base URL. (This backend currently indexes
+OMODs only.)
 
 ```json
 "backend": "org.openmrs.addonindex.backend.Nexus3Repo",
