@@ -28,7 +28,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
-import { CoreVersionContext } from "../App";
+import { CoreVersionContext, VersionPickerVisibilityContext } from "../App";
 import { useSearchParams } from "../hooks";
 import { ExternalLink, LegacyFaIcon } from "../component";
 import { myFetch } from "../utils";
@@ -116,11 +116,11 @@ const formatDateTime = (dt) => {
 };
 
 const formatRequiredModules = (version) => {
-  const backend = (version.requireModules ?? []).map(
-    (m) => `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim(),
+  const backend = (version.requireModules ?? []).map((m) =>
+    `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim(),
   );
-  const frontend = (version.requireFrontendModules ?? []).map(
-    (m) => `${m.module} ${m.version || ""}`.trim(),
+  const frontend = (version.requireFrontendModules ?? []).map((m) =>
+    `${m.module} ${m.version || ""}`.trim(),
   );
   const parts = [];
   if (backend.length) {
@@ -138,6 +138,7 @@ export const Show: React.FC = () => {
     highlightVersion: string | string[];
   }>();
   const coreVersion = useContext(CoreVersionContext);
+  const setShowVersionPicker = useContext(VersionPickerVisibilityContext);
 
   const addOnResult = useQuery({
     queryKey: ["addOn", uid],
@@ -146,6 +147,20 @@ export const Show: React.FC = () => {
   });
 
   const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
+
+  // Add-ons with no declared platform requirement (e.g. frontend modules) don't support core-version
+  // filtering, so hide the global picker for them and always show the latest version rather than a
+  // misleading "supported version".
+  const hasPlatformRequirement = !!addOn?.versions?.some(
+    (v) => v.requireOpenmrsVersion,
+  );
+
+  useEffect(() => {
+    if (addOn) {
+      setShowVersionPicker(hasPlatformRequirement);
+    }
+    return () => setShowVersionPicker(true);
+  }, [addOn, hasPlatformRequirement, setShowVersionPicker]);
 
   const latestVersionResult = useQuery({
     queryKey: ["addOnLatestVersion", coreVersion],
@@ -228,7 +243,10 @@ export const Show: React.FC = () => {
       addOn.versions &&
       addOn.versions.length >= 1
     ) {
-      if (latestVersion.version === addOn.versions[0].version) {
+      if (
+        !hasPlatformRequirement ||
+        latestVersion.version === addOn.versions[0].version
+      ) {
         return (
           <span>
             Download <FontAwesomeIcon icon={faDownload} />
@@ -254,7 +272,7 @@ export const Show: React.FC = () => {
         </span>
       );
     }
-  }, [latestVersion, coreVersion, addOn]);
+  }, [latestVersion, coreVersion, addOn, hasPlatformRequirement]);
 
   const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
 

@@ -68,6 +68,26 @@ public class AddOnInfoAndVersionsTest {
 	}
 	
 	@Test
+	public void testGetLatestSupportedVersionWithoutPlatformRequirement() {
+		// Frontend modules never declare a required OpenMRS version. A coreversion query should not filter
+		// them out (which would falsely report compatibility); we always return the latest version.
+		AddOnInfoAndVersions info = new AddOnInfoAndVersions();
+		info.setName("Patient Chart");
+		
+		AddOnVersion earlierVersion = new AddOnVersion();
+		earlierVersion.setVersion(new Version("1.0"));
+		info.addVersion(earlierVersion);
+		
+		AddOnVersion latestVersion = new AddOnVersion();
+		latestVersion.setVersion(new Version("2.0"));
+		info.addVersion(latestVersion);
+		
+		assertThat(info.getLatestSupportedVersion("1.6.0").getVersion().toString(), is("2.0"));
+		assertThat(info.getLatestSupportedVersion("2.4.0").getVersion().toString(), is("2.0"));
+		assertThat(info.getLatestSupportedVersion(null).getVersion().toString(), is("2.0"));
+	}
+	
+	@Test
 	public void setDetailsBasedOnLatestVersion() {
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version("1.0"));

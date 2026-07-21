@@ -22,6 +22,12 @@ import { Col } from "react-bootstrap";
 import { ListOfLists, SelectUserVersions } from "./component";
 
 export const CoreVersionContext = createContext(null);
+
+// Lets the currently-viewed add-on hide the global core-version picker when the add-on has no
+// platform requirement (e.g. frontend modules), where filtering by core version is meaningless.
+export const VersionPickerVisibilityContext = createContext<
+  (visible: boolean) => void
+>(() => {});
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -58,38 +64,43 @@ const Analytics: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
 
 const App: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [openmrsCoreVersion, setOpenmrsCoreVersion] = useState(null);
+  const [showVersionPicker, setShowVersionPicker] = useState(true);
   return (
     <Analytics>
       <QueryClientProvider client={queryClient}>
         <CoreVersionContext.Provider value={openmrsCoreVersion}>
-          <Col className="container-fluid">
-            <header className="clearfix row vertical-align-center">
-              <h1 className="col-4">
-                <Link to="/">
-                  <img
-                    className="logo logo1"
-                    src="/images/logo.png"
-                    alt="OpenMRS Add-Ons Logo"
-                  />
-                </Link>
-              </h1>
-              <Col sm={5}>
-                <ListOfLists />
-              </Col>
-              <Col sm={3}>
-                <SelectUserVersions updateValue={setOpenmrsCoreVersion} />
-              </Col>
-            </header>
-            <div className="offset-10 text-right">
-              <NavLink
-                to={`/about`}
-                className={({ isActive }) => (isActive ? "hidden" : "")}
-              >
-                About Add Ons
-              </NavLink>
-            </div>
-            {children}
-          </Col>
+          <VersionPickerVisibilityContext.Provider value={setShowVersionPicker}>
+            <Col className="container-fluid">
+              <header className="clearfix row vertical-align-center">
+                <h1 className="col-4">
+                  <Link to="/">
+                    <img
+                      className="logo logo1"
+                      src="/images/logo.png"
+                      alt="OpenMRS Add-Ons Logo"
+                    />
+                  </Link>
+                </h1>
+                <Col sm={5}>
+                  <ListOfLists />
+                </Col>
+                <Col sm={3}>
+                  {showVersionPicker && (
+                    <SelectUserVersions updateValue={setOpenmrsCoreVersion} />
+                  )}
+                </Col>
+              </header>
+              <div className="offset-10 text-right">
+                <NavLink
+                  to={`/about`}
+                  className={({ isActive }) => (isActive ? "hidden" : "")}
+                >
+                  About Add Ons
+                </NavLink>
+              </div>
+              {children}
+            </Col>
+          </VersionPickerVisibilityContext.Provider>
         </CoreVersionContext.Provider>
       </QueryClientProvider>
     </Analytics>

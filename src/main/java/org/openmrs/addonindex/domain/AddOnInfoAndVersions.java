@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 import org.openmrs.addonindex.util.OpenmrsVersionCompareUtil;
 import org.openmrs.addonindex.util.Version;
+import org.springframework.util.StringUtils;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -112,7 +113,12 @@ public class AddOnInfoAndVersions {
 	}
 	
 	public AddOnVersion getLatestSupportedVersion(String userCoreVersion) {
-		if (userCoreVersion != null) {
+		boolean declaresPlatformRequirement = this.versions.stream()
+		        .anyMatch(v -> StringUtils.hasText(v.getRequireOpenmrsVersion()));
+		// Only filter by core version for add-ons that actually declare a platform requirement (e.g. OMODs).
+		// Frontend modules never do, so filtering would be a no-op that wrongly reports every version as
+		// compatible with any platform; for those we just return the latest version.
+		if (userCoreVersion != null && declaresPlatformRequirement) {
 			List<AddOnVersion> versions = new ArrayList<>(this.versions);
 			versions.sort(Collections.reverseOrder());
 			
