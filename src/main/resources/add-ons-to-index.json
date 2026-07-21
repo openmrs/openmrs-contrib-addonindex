@@ -7082,20 +7082,6 @@
       "npmPackageDetails": { "packageName": "@openmrs/esm-patient-forms-app" }
     },
     {
-      "uid": "openmrs-esm-patient-growth-chart-app",
-      "type": "FRONTEND_MODULE",
-      "status": "ACTIVE",
-      "name": "Patient Growth Chart App",
-      "description": "patient-growth-chart frontend module for O3",
-      "tags": ["o3", "frontend"],
-      "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
-      "links": [
-        { "rel": "source", "href": "https://github.com/openmrs/esm-patient-growth-chart-app" }
-      ],
-      "backend": "org.openmrs.addonindex.backend.NpmRegistry",
-      "npmPackageDetails": { "packageName": "@openmrs/esm-patient-growth-chart-app" }
-    },
-    {
       "uid": "openmrs-esm-patient-immunizations-app",
       "type": "FRONTEND_MODULE",
       "status": "ACTIVE",
