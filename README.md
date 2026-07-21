@@ -91,7 +91,8 @@ The workflow for front-end development is:
 
 #### UI-only development
 
-If you are working directly in `src/main/ui`, install dependencies and build the UI with:
+If you are working directly in `src/main/ui`, you need pnpm 9 or newer (the Maven build pins Node v24.14.0 and
+pnpm 9.5.0 in `pom.xml`). Install dependencies and build the UI with:
 
 ```bash
 cd src/main/ui
