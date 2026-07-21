@@ -6753,6 +6753,9 @@
       "description": "Renders O3 forms from JSON schemas at the point of care.",
       "tags": ["o3", "forms", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-patient-chart" }
+      ],
       "backend": "org.openmrs.addonindex.backend.NpmRegistry",
       "npmPackageDetails": { "packageName": "@openmrs/esm-form-engine-app" }
     },
@@ -6764,6 +6767,9 @@
       "description": "Medication dispensing workflows for O3 pharmacy.",
       "tags": ["o3", "pharmacy", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
+      "links": [
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-dispensing-app" }
+      ],
       "backend": "org.openmrs.addonindex.backend.NpmRegistry",
       "npmPackageDetails": { "packageName": "@openmrs/esm-dispensing-app" }
     },
@@ -6860,7 +6866,7 @@
       "tags": ["o3", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
       "links": [
-        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-cohortbuilder" }
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-cohortbuilder-app" }
       ],
       "backend": "org.openmrs.addonindex.backend.NpmRegistry",
       "npmPackageDetails": { "packageName": "@openmrs/esm-cohort-builder-app" }
@@ -6958,7 +6964,7 @@
       "tags": ["o3", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
       "links": [
-        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-laboratory" }
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-laboratory-app" }
       ],
       "backend": "org.openmrs.addonindex.backend.NpmRegistry",
       "npmPackageDetails": { "packageName": "@openmrs/esm-laboratory-app" }
@@ -7336,7 +7342,7 @@
       "tags": ["o3", "frontend"],
       "maintainers": [{ "name": "OpenMRS", "url": "https://github.com/openmrs" }],
       "links": [
-        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-stock-management-app" }
+        { "rel": "source", "href": "https://github.com/openmrs/openmrs-esm-stock-management" }
       ],
       "backend": "org.openmrs.addonindex.backend.NpmRegistry",
       "npmPackageDetails": { "packageName": "@openmrs/esm-stock-management-app" }
