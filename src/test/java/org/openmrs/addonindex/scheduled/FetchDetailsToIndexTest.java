@@ -117,6 +117,20 @@ public class FetchDetailsToIndexTest {
 	}
 	
 	@Test
+	public void testParsingRoutesJsonForObjectFormOptionalBackendDependencies() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleRoutesJson(getFileAsString("routes.withObjectOptionalDependency.json"), version);
+		assertThat(version.getOptionalRequireModules().size(), is(2));
+		// object-form value: version lives under a nested "version" field
+		assertThat(version.getOptionalRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("emrapi")), hasProperty("version", is(">=3.3.0 <4.0.0")))));
+		// string-form value continues to work alongside the object form
+		assertThat(version.getOptionalRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("billing")), hasProperty("version", is(">=2.0.0-0")))));
+	}
+	
+	@Test
 	public void testParsingContentPropertiesWithDependencies() throws Exception {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();

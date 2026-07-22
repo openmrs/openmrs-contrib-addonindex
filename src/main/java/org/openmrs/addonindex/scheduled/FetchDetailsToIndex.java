@@ -286,7 +286,19 @@ public class FetchDetailsToIndex {
 		        .forEachRemaining(module -> addOnVersion.addRequiredModule(module, backendDeps.path(module).asText(null)));
 		JsonNode optionalDeps = root.path("optionalBackendDependencies");
 		optionalDeps.fieldNames().forEachRemaining(
-		    module -> addOnVersion.addOptionalRequiredModule(module, optionalDeps.path(module).asText(null)));
+		    module -> addOnVersion.addOptionalRequiredModule(module, resolveDependencyVersion(optionalDeps.path(module))));
+	}
+	
+	/**
+	 * Reads a routes.json dependency version. A value may be either a plain version string or an object
+	 * with a nested {@code version} field (used by optional backend dependencies that carry a feature
+	 * flag).
+	 */
+	private static String resolveDependencyVersion(JsonNode value) {
+		if (value.isObject()) {
+			return value.path("version").asText(null);
+		}
+		return value.asText(null);
 	}
 	
 	String fetchRoutesJson(AddOnVersion addOnVersion) throws IOException {
