@@ -1,0 +1,13 @@
+{
+  "results" : [ {
+    "repo" : "releases",
+    "path" : "org/openmrs/content/referenceapplication/1.4.0",
+    "name" : "referenceapplication-1.4.0.zip",
+    "created" : "2025-09-01T10:00:00.000Z"
+  } ],
+  "range" : {
+    "start_pos" : 0,
+    "end_pos" : 1,
+    "total" : 1
+  }
+}

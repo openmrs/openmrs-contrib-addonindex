@@ -1,6 +1,50 @@
 {
   "toIndex": [
     {
+      "uid": "org.openmrs.content.referenceapplication",
+      "type": "CONTENT_PACKAGE",
+      "name": "Reference Application Content Package",
+      "maintainers": [
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-content-referenceapplication"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.content",
+        "artifactId": "referenceapplication"
+      }
+    },
+    {
+      "uid": "org.openmrs.content.referenceapplication-demo",
+      "type": "CONTENT_PACKAGE",
+      "name": "Reference Application Demo Content Package",
+      "maintainers": [
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-content-referenceapplication-demo"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.content",
+        "artifactId": "referenceapplication-demo"
+      }
+    },
+    {
       "uid": "org.openmrs.owa.conceptdictionary",
       "type": "OWA",
       "name": "Concept Dictionary OWA",

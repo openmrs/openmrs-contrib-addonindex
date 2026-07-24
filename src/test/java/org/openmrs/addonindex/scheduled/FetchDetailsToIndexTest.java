@@ -93,4 +93,34 @@ public class FetchDetailsToIndexTest {
 		task.handleConfigXml(getFileAsString("config.withCommentedDoctype.xml"), version);
 		// just test that we could parse at all
 	}
+	
+	@Test
+	public void testParsingContentPropertiesForDependencies() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties(getFileAsString("content.withDependencies.properties"), version);
+		assertThat(version.getRequireOpenmrsVersion(), is(">=2.4.0"));
+		// name, version, the .groupId and .type sub-keys, and the ${...} placeholder are all excluded
+		assertThat(version.getRequireModules().size(), is(5));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("omod.webservices.rest")), hasProperty("version", is(">= 2.44")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("omod.events")), hasProperty("version", is("^2")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("owa.addonmanager")), hasProperty("version", is("1.2.0")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("spa.frontendModules.@openmrs/esm-generic-patient-widgets-app")),
+		        hasProperty("version", is("7.x")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("content.referenceapplication")), hasProperty("version", is("1.5.0")))));
+	}
+	
+	@Test
+	public void testParsingContentPropertiesWithOnlyMetadata() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties(getFileAsString("content.nameVersionOnly.properties"), version);
+		assertThat(version.getRequireOpenmrsVersion(), nullValue());
+		assertThat(version.getRequireModules(), nullValue());
+	}
 }

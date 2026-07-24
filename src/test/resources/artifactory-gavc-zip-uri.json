@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "uri": "https://openmrs.jfrog.io/artifactory/api/storage/releases/org/openmrs/content/referenceapplication/1.4.0/referenceapplication-1.4.0.zip"
+    },
+    {
+      "uri": "https://openmrs.jfrog.io/artifactory/api/storage/releases/org/openmrs/content/referenceapplication/1.4.0/referenceapplication-1.4.0.pom"
+    }
+  ]
+}

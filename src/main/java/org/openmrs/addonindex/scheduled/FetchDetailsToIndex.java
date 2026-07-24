@@ -19,6 +19,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ListIterator;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -145,11 +146,20 @@ public class FetchDetailsToIndex {
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
-					String configXml = fetchConfigXml(version);
+					String configXml = fetchZipEntry(version, "config.xml");
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
 						handleConfigXml(configXml, version);
+					}
+				} else if (toIndex.getType() == AddOnType.CONTENT_PACKAGE) {
+					log.info("Fetching content package for {} {}", toIndex.getUid(), version.getVersion());
+					String contentProperties = fetchZipEntry(version, "content.properties");
+					if (contentProperties == null) {
+						// a content package without a manifest is unusual but not fatal; index it anyway
+						log.warn("No content.properties file in {}", version.getDownloadUri());
+					} else {
+						handleContentProperties(contentProperties, version);
 					}
 				}
 			}
@@ -160,8 +170,8 @@ public class FetchDetailsToIndex {
 		}
 	}
 	
-	String fetchConfigXml(AddOnVersion addOnVersion) throws IOException {
-		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
+	String fetchZipEntry(AddOnVersion addOnVersion, String entryName) throws IOException {
+		log.info("fetching {} from {}", entryName, addOnVersion.getDownloadUri());
 		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(),
 		    Resource.class);
 		Resource resource = response.getBody();
@@ -169,7 +179,7 @@ public class FetchDetailsToIndex {
 			try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))) {
 				ZipEntry entry;
 				while ((entry = zis.getNextEntry()) != null) {
-					if (entry.getName().equals("config.xml")) {
+					if (entry.getName().equals(entryName)) {
 						if (addOnVersion.getReleaseDatetime() == null) {
 							if (entry.getCreationTime() != null) {
 								addOnVersion
@@ -205,6 +215,30 @@ public class FetchDetailsToIndex {
 		handleSupportedLanguages(addOnVersion, xpath, config);
 		handleModuleIdAndPackage(addOnVersion, xpath, config);
 		
+	}
+	
+	void handleContentProperties(String contentProperties, AddOnVersion addOnVersion) throws IOException {
+		Properties properties = new Properties();
+		properties.load(new StringReader(contentProperties));
+		for (String key : properties.stringPropertyNames()) {
+			String value = properties.getProperty(key).trim();
+			// Skip keys that aren't dependencies: name/version describe the package itself, and
+			// *.groupId/*.type are sub-attributes of a dependency (e.g. omod.foo.groupId), not one.
+			if (key.equals("name") || key.equals("version") || key.endsWith(".groupId") || key.endsWith(".type")) {
+				continue;
+			}
+			// Skip unresolved Maven placeholders that were published without substitution, e.g. ${openmrsPlatformVersion}
+			if (value.startsWith("${")) {
+				continue;
+			}
+			if (key.equals("war.openmrs")) {
+				addOnVersion.setRequireOpenmrsVersion(value);
+			} else {
+				// Everything else (omod.*, owa.*, spa.frontendModules.*, content.*) is a dependency;
+				// store it as a required module, using the full prefixed key as the identifier.
+				addOnVersion.addRequiredModule(key, value);
+			}
+		}
 	}
 	
 	private void handleSupportedLanguages(AddOnVersion addOnVersion, XPath xpath, Document config)

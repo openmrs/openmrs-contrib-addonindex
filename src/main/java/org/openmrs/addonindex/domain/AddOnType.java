@@ -15,7 +15,8 @@ import lombok.Getter;
 public enum AddOnType {
 	
 	OMOD("omod"),
-	OWA("zip");
+	OWA("zip"),
+	CONTENT_PACKAGE("zip");
 	
 	@Getter
 	private final String fileExtension;

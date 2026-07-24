@@ -17,7 +17,7 @@ interface AddOnCollectionItem {
 interface IAddOn {
   uid: string;
   name: string;
-  type: "OWA" | "OMOD";
+  type: "OWA" | "OMOD" | "CONTENT_PACKAGE";
   maintainers?: {
     name: string;
     url?: string;
