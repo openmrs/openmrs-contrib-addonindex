@@ -45,10 +45,6 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	@EqualsAndHashCode.Include
 	private String moduleId;
 	
-	// The meaning of each ModuleRequirement.module depends on the owning add-on's type: for OMOD it is a
-	// module package (e.g. org.openmrs.module.reporting); for CONTENT_PACKAGE it is the namespaced
-	// content.properties key (omod.*, owa.*, spa.frontendModules.*, content.*), while war.openmrs is routed
-	// to requireOpenmrsVersion instead.
 	private List<ModuleRequirement> requireModules;
 	
 	private List<String> supportedLanguages;

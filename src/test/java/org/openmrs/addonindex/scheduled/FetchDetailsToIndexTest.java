@@ -99,20 +99,50 @@ public class FetchDetailsToIndexTest {
 		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
 		AddOnVersion version = new AddOnVersion();
 		task.handleContentProperties(getFileAsString("content.withDependencies.properties"), version);
-		assertThat(version.getRequireOpenmrsVersion(), is(">=2.4.0"));
-		// name, version, the .groupId and .type sub-keys, and the ${...} placeholder are all excluded
-		assertThat(version.getRequireModules().size(), is(5));
+		assertThat(version.getRequireOpenmrsVersion(), is("2.4.0"));
+		// name, version, the .groupId and .type sub-keys, and the var.* config values are all excluded
+		assertThat(version.getRequireModules().size(), is(7));
+		// omod.* requirements are recorded under the module package they are indexed by
+		assertThat(version.getRequireModules(), hasItem(
+		    allOf(hasProperty("module", is("org.openmrs.module.webservices.rest")), hasProperty("version", is("2.44")))));
+		// ...which for the event module means honouring the groupId it declares, rather than assuming one
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("omod.webservices.rest")), hasProperty("version", is(">= 2.44")))));
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.event")), hasProperty("version", is("2.*")))));
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("omod.events")), hasProperty("version", is("^2")))));
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.owa.addonmanager")), hasProperty("version", is("1.2.0")))));
+		// frontend modules aren't indexed here, so the npm package name is the only identifier they have
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("owa.addonmanager")), hasProperty("version", is("1.2.0")))));
+		    hasItem(allOf(hasProperty("module", is("@openmrs/esm-generic-patient-widgets-app")),
+		        hasProperty("version", is("7.*")))));
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("spa.frontendModules.@openmrs/esm-generic-patient-widgets-app")),
-		        hasProperty("version", is("7.x")))));
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.content.referenceapplication")),
+		        hasProperty("version", is("1.5.0")))));
+		// a requirement whose version we can't use is still recorded, with an unknown version
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("content.referenceapplication")), hasProperty("version", is("1.5.0")))));
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.appui")), hasProperty("version", is("?")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.legacyui")), hasProperty("version", is("?")))));
+	}
+	
+	@Test
+	public void testParsingContentPropertiesIgnoresUnrecognizedKeys() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties("foo.bar=1.0\nsomething=1.0\n", version);
+		assertThat(version.getRequireModules(), nullValue());
+	}
+	
+	@Test
+	public void testParsingContentPropertiesFallsBackToDefaultGroupId() throws Exception {
+		FetchDetailsToIndex task = new FetchDetailsToIndex(null, null);
+		AddOnVersion version = new AddOnVersion();
+		task.handleContentProperties("omod.foo=1.0\nomod.foo.groupId=${someGroupId}\nowa.bar=1.0\nowa.bar.groupId=\n",
+		    version);
+		assertThat(version.getRequireModules().size(), is(2));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.foo")), hasProperty("version", is("1.0")))));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.owa.bar")), hasProperty("version", is("1.0")))));
 	}
 	
 	@Test
