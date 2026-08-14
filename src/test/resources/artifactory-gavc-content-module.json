@@ -1,0 +1,23 @@
+{
+  "repo": "releases",
+  "path": "/org/openmrs/content/referenceapplication/1.4.0/referenceapplication-1.4.0.zip",
+  "created": "2025-09-01T10:00:00.000Z",
+  "createdBy": "ci",
+  "lastModified": "2025-09-01T09:59:58.000Z",
+  "modifiedBy": "ci",
+  "lastUpdated": "2025-09-01T10:00:00.001Z",
+  "downloadUri": "https://openmrs.jfrog.io/artifactory/releases/org/openmrs/content/referenceapplication/1.4.0/referenceapplication-1.4.0.zip",
+  "mimeType": "application/zip",
+  "size": "123456",
+  "checksums": {
+    "sha1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "md5": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "originalChecksums": {
+    "sha1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "md5": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "uri": "https://openmrs.jfrog.io/artifactory/api/storage/releases/org/openmrs/content/referenceapplication/1.4.0/referenceapplication-1.4.0.zip"
+}

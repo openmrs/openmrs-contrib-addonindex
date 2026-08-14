@@ -69,6 +69,11 @@ public class Artifactory implements BackendHandler {
 	        + "{\"name\": {\"$match\" : \"%2$s*.omod\"}}"
 	        + "] }).include(\"name\", \"repo\", \"path\", \"created\", \"stat.downloads\")";
 	
+	private static final String AQL_SEARCH_TEMPLATE_ZIP = "items.find({" + "\"$and\": ["
+	        + "{\"repo\": {\"$nmatch\": \"*snapshots\"}}," + "{\"path\": {\"$match\": \"%1$s/%2$s/*\"}},"
+	        + "{\"name\": {\"$match\" : \"%2$s*.zip\"}}"
+	        + "] }).include(\"name\", \"repo\", \"path\", \"created\", \"stat.downloads\")";
+	
 	protected static final String GAVC_URL = ARTIFACTORY_URL + "/api/search/gavc?g={g}&a={a}&repos={repos}";
 	
 	private static final Pattern OMOD_RELEASED_VERSION_JAR = Pattern
@@ -136,7 +141,12 @@ public class Artifactory implements BackendHandler {
 	
 	private List<AddOnVersion> runAqlQueryFor(AddOnToIndex addOnToIndex, String groupPath, String artifact) {
 		final List<AddOnVersion> result = new ArrayList<>();
-		final String AQL_SEARCH_TEMPLATE = artifact.endsWith("-omod") ? AQL_SEARCH_TEMPLATE_JAR : AQL_SEARCH_TEMPLATE_OMOD;
+		final String AQL_SEARCH_TEMPLATE;
+		if (addOnToIndex.getType() == AddOnType.OMOD) {
+			AQL_SEARCH_TEMPLATE = artifact.endsWith("-omod") ? AQL_SEARCH_TEMPLATE_JAR : AQL_SEARCH_TEMPLATE_OMOD;
+		} else {
+			AQL_SEARCH_TEMPLATE = AQL_SEARCH_TEMPLATE_ZIP;
+		}
 		final String requestBody = String.format(AQL_SEARCH_TEMPLATE, groupPath, artifact);
 		
 		ResponseEntity<AqlSearchResponse> responseEntity = restTemplate.execute(AQL_URL, HttpMethod.POST, request -> {
@@ -213,6 +223,10 @@ public class Artifactory implements BackendHandler {
 		String repos = "modules,owa";
 		if (addOnToIndex.getType() == AddOnType.OMOD && !artifact.endsWith("-omod")) {
 			repos = "omod";
+		} else if (addOnToIndex.getType() == AddOnType.CONTENT_PACKAGE) {
+			// content packages are published to the "releases" repo (the "public" virtual repo that
+			// aggregates it is not searchable via the GAVC API)
+			repos = "releases";
 		}
 		
 		ResponseEntity<GavcSearchResponse> responseEntity = restTemplate.getForEntity(GAVC_URL, GavcSearchResponse.class,

@@ -18,7 +18,9 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,6 +39,7 @@ import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.domain.AllAddOnsToIndex;
 import org.openmrs.addonindex.domain.IndexingStatus;
 import org.openmrs.addonindex.service.IndexingService;
+import org.openmrs.addonindex.util.VersionRangeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -61,6 +64,15 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class FetchDetailsToIndex {
+	
+	private static final String SPA_PREFIX = "spa.frontendModules.";
+	
+	/**
+	 * The groupId each content.properties namespace is published under, used when a dependency doesn't
+	 * declare one of its own
+	 */
+	private static final Map<String, String> DEFAULT_GROUP_IDS = Map.of("omod", "org.openmrs.module", "owa",
+	    "org.openmrs.owa", "content", "org.openmrs.content");
 	
 	private final IndexingService indexingService;
 	
@@ -145,11 +157,20 @@ public class FetchDetailsToIndex {
 			try {
 				if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
-					String configXml = fetchConfigXml(version);
+					String configXml = fetchZipEntry(version, "config.xml");
 					if (configXml == null) {
 						throw new IllegalArgumentException("No config.xml file in " + version.getDownloadUri());
 					} else {
 						handleConfigXml(configXml, version);
+					}
+				} else if (toIndex.getType() == AddOnType.CONTENT_PACKAGE) {
+					log.info("Fetching content package for {} {}", toIndex.getUid(), version.getVersion());
+					String contentProperties = fetchZipEntry(version, "content.properties");
+					if (contentProperties == null) {
+						// a content package without a manifest is unusual but not fatal; index it anyway
+						log.warn("No content.properties file in {}", version.getDownloadUri());
+					} else {
+						handleContentProperties(contentProperties, version);
 					}
 				}
 			}
@@ -160,8 +181,8 @@ public class FetchDetailsToIndex {
 		}
 	}
 	
-	String fetchConfigXml(AddOnVersion addOnVersion) throws IOException {
-		log.info("fetching config.xml from {}", addOnVersion.getDownloadUri());
+	String fetchZipEntry(AddOnVersion addOnVersion, String entryName) throws IOException {
+		log.info("fetching {} from {}", entryName, addOnVersion.getDownloadUri());
 		ResponseEntity<Resource> response = restTemplateBuilder.build().getForEntity(addOnVersion.getDownloadUri(),
 		    Resource.class);
 		Resource resource = response.getBody();
@@ -169,7 +190,7 @@ public class FetchDetailsToIndex {
 			try (ZipInputStream zis = new ZipInputStream(new BufferedInputStream(resource.getInputStream()))) {
 				ZipEntry entry;
 				while ((entry = zis.getNextEntry()) != null) {
-					if (entry.getName().equals("config.xml")) {
+					if (entry.getName().equals(entryName)) {
 						if (addOnVersion.getReleaseDatetime() == null) {
 							if (entry.getCreationTime() != null) {
 								addOnVersion
@@ -205,6 +226,63 @@ public class FetchDetailsToIndex {
 		handleSupportedLanguages(addOnVersion, xpath, config);
 		handleModuleIdAndPackage(addOnVersion, xpath, config);
 		
+	}
+	
+	void handleContentProperties(String contentProperties, AddOnVersion addOnVersion) throws IOException {
+		Properties properties = new Properties();
+		properties.load(new StringReader(contentProperties));
+		for (String key : properties.stringPropertyNames()) {
+			String value = properties.getProperty(key).trim();
+			// Skip keys that aren't dependencies: name/version describe the package itself, *.groupId and
+			// *.type are sub-attributes of a dependency (read alongside it below, rather than indexed in
+			// their own right), and var.* are configuration values the package exposes for overriding.
+			if (key.equals("name") || key.equals("version") || key.endsWith(".groupId") || key.endsWith(".type")
+			        || key.startsWith("var.")) {
+				continue;
+			}
+			// Requirements are SemVer ranges here, but strict minimums and wildcards everywhere else we
+			// index, so they have to be translated before anything compares them. As in config.xml, a
+			// requirement whose version we can't make sense of is still worth recording without one.
+			String requiredVersion = null;
+			if (value.startsWith("${")) {
+				// published without substituting maven variables, e.g. ${openmrsPlatformVersion}
+				log.debug("Unsubstituted maven variable {} as the version of {}", value, key);
+			} else {
+				requiredVersion = VersionRangeConverter.toOpenmrsVersionRange(value);
+				if (requiredVersion == null) {
+					log.warn("Cannot express version range \"{}\" of {} as an OpenMRS version range", value, key);
+				}
+			}
+			if (key.equals("war.openmrs")) {
+				addOnVersion.setRequireOpenmrsVersion(requiredVersion);
+			} else if (key.startsWith(SPA_PREFIX)) {
+				// frontend modules are npm packages, so the package name is the only identifier they have
+				addOnVersion.addRequiredModule(key.substring(SPA_PREFIX.length()), requiredVersion);
+			} else {
+				addRequiredMavenModule(addOnVersion, properties, key, requiredVersion);
+			}
+		}
+	}
+	
+	/**
+	 * Records an omod/owa/content requirement under the same identifier we index the required add-on
+	 * itself by: its Maven groupId and artifactId, which is the module package for an OMOD and the uid
+	 * for an OWA or content package. Content packages only declare a groupId when it isn't the usual
+	 * one for that namespace (e.g. the event module, which is published under org.openmrs).
+	 */
+	private void addRequiredMavenModule(AddOnVersion addOnVersion, Properties properties, String key,
+	        String requiredVersion) {
+		int firstDot = key.indexOf('.');
+		String defaultGroupId = firstDot < 0 ? null : DEFAULT_GROUP_IDS.get(key.substring(0, firstDot));
+		if (defaultGroupId == null) {
+			log.warn("Ignoring content.properties key {}, which is not in a namespace we know how to index", key);
+			return;
+		}
+		String groupId = properties.getProperty(key + ".groupId", defaultGroupId).trim();
+		if (groupId.isEmpty() || groupId.startsWith("${")) {
+			groupId = defaultGroupId;
+		}
+		addOnVersion.addRequiredModule(groupId + "." + key.substring(firstDot + 1), requiredVersion);
 	}
 	
 	private void handleSupportedLanguages(AddOnVersion addOnVersion, XPath xpath, Document config)

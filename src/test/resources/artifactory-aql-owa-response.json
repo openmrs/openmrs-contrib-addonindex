@@ -1,0 +1,13 @@
+{
+  "results" : [ {
+    "repo" : "owa",
+    "path" : "org/openmrs/owa/conceptdictionary/1.0.0",
+    "name" : "conceptdictionary-1.0.0.zip",
+    "created" : "2020-01-01T00:00:00.000Z"
+  } ],
+  "range" : {
+    "start_pos" : 0,
+    "end_pos" : 1,
+    "total" : 1
+  }
+}
