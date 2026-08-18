@@ -17,7 +17,7 @@ interface AddOnCollectionItem {
 interface IAddOn {
   uid: string;
   name: string;
-  type: "OWA" | "OMOD" | "CONTENT_PACKAGE";
+  type: "OWA" | "OMOD" | "CONTENT_PACKAGE" | "FRONTEND_MODULE";
   maintainers?: {
     name: string;
     url?: string;
@@ -32,12 +32,19 @@ interface IAddOn {
   downloadCountInLast30Days?: number;
 }
 
+interface IModuleRequirement {
+  module: string;
+  version: string;
+  optional?: boolean;
+}
+
 interface IAddOnVersion {
   version: string;
   downloadUri: string;
   releaseDatetime?: Date;
-  requireOpenmrsVersion: string;
+  requireOpenmrsVersion?: string;
   renameTo?: string;
+  requireModules?: IModuleRequirement[];
 }
 
 interface Link {

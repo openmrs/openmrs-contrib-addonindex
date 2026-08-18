@@ -58,4 +58,10 @@ public class AddOnToIndex {
 	
 	private ModulusModuleDetails modulusDetails;
 	
+	/**
+	 * The npm package name for a FRONTEND_MODULE, e.g. "@openmrs/esm-billing-app". The uid cannot hold
+	 * this directly because it must survive being a single URL path segment.
+	 */
+	private String npmPackage;
+	
 }

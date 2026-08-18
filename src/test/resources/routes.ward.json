@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": ">=2.2.0",
+    "emrapi": "^2.0.0"
+  },
+  "optionalBackendDependencies": {
+    "bedmanagement": {
+      "version": ">=6.0.0 <8.0.0",
+      "feature": {
+        "flagName": "bedmanagement-module",
+        "label": "Ward App Patient Service",
+        "description": "This module, if installed, provides services for managing patients admitted to the ward."
+      }
+    }
+  }
+}

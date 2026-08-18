@@ -10,3 +10,4 @@
 
 export { handleParam } from "./HandleParam";
 export { myFetch } from "./MyFetch";
+export { formatRequiredModules } from "./FormatRequiredModules";

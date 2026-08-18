@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
@@ -89,5 +90,37 @@ public class AddOnInfoAndVersionsTest {
 		
 		assertThat(info.getModuleId(), is("1"));
 		assertThat(info.getModulePackage(), is("org.openmrs.module.openmrs"));
+	}
+	
+	@Test
+	public void addRequiredModuleShouldDefaultToNotOptional() {
+		AddOnVersion version = new AddOnVersion();
+		version.addRequiredModule("org.openmrs.module.reporting", "1.2.3");
+		assertThat(version.getRequireModules(), hasSize(1));
+		assertThat(version.getRequireModules().get(0).getModule(), is("org.openmrs.module.reporting"));
+		assertThat(version.getRequireModules().get(0).getVersion(), is("1.2.3"));
+		assertThat(version.getRequireModules().get(0).getOptional(), is(false));
+	}
+	
+	@Test
+	public void addRequiredModuleShouldRecordOptionalAndSubstituteMissingVersion() {
+		AddOnVersion version = new AddOnVersion();
+		version.addRequiredModule("stockmanagement", null, true);
+		assertThat(version.getRequireModules(), hasSize(1));
+		assertThat(version.getRequireModules().get(0).getModule(), is("stockmanagement"));
+		assertThat(version.getRequireModules().get(0).getVersion(), is("?"));
+		assertThat(version.getRequireModules().get(0).getOptional(), is(true));
+	}
+	
+	@Test
+	public void frontendModuleShouldUseTgzExtension() {
+		assertThat(AddOnType.FRONTEND_MODULE.getFileExtension(), is("tgz"));
+	}
+	
+	@Test
+	public void addOnToIndexShouldCarryNpmPackage() {
+		AddOnToIndex toIndex = new AddOnToIndex();
+		toIndex.setNpmPackage("@openmrs/esm-billing-app");
+		assertThat(toIndex.getNpmPackage(), is("@openmrs/esm-billing-app"));
 	}
 }

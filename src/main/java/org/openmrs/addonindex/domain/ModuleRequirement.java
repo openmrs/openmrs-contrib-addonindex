@@ -23,4 +23,6 @@ public class ModuleRequirement {
 	
 	private String version;
 	
+	private boolean optional;
+	
 }

@@ -26,13 +26,22 @@ import java.util.regex.Pattern;
  */
 public class VersionRangeConverter {
 	
-	private static final Pattern CARET = Pattern.compile("^\\^\\s*(\\d+)(?:\\.(\\d+))?(?:\\.\\d+)?$");
+	// A pre-release suffix on a version (-0, -SNAPSHOT, -pre.1928) is dropped everywhere:
+	// OpenmrsVersionCompareUtil strips any -qualifier before comparing, so the suffix can't affect
+	// the translated range anyway. The suffix never contains whitespace, which keeps SemVer hyphen
+	// ranges ("1.2.3 - 2.3.4") from matching as a version with a suffix.
+	private static final String PRERELEASE = "(?:-[0-9A-Za-z.-]+)?";
 	
-	private static final Pattern TILDE = Pattern.compile("^~\\s*(\\d+)(?:\\.(\\d+))?(?:\\.\\d+)?$");
+	private static final Pattern CARET = Pattern.compile("^\\^\\s*(\\d+)(?:\\.(\\d+))?(?:\\.\\d+)?" + PRERELEASE + "$");
+	
+	private static final Pattern TILDE = Pattern.compile("^~\\s*(\\d+)(?:\\.(\\d+))?(?:\\.\\d+)?" + PRERELEASE + "$");
 	
 	private static final Pattern WILDCARD = Pattern.compile("^(\\d+(?:\\.\\d+)*)\\.[xX*]$");
 	
-	private static final Pattern MINIMUM = Pattern.compile("^(?:(?:>=|>|=)\\s*)?v?(\\d+(?:\\.\\d+)*)$");
+	private static final Pattern MINIMUM = Pattern.compile("^(?:(?:>=|>|=)\\s*)?v?(\\d+(?:\\.\\d+)*)" + PRERELEASE + "$");
+	
+	private static final Pattern BOUNDED = Pattern.compile(
+	    "^(?:>=|>)\\s*v?(\\d+(?:\\.\\d+)*)" + PRERELEASE + "\\s+<(=)?\\s*v?(\\d+(?:\\.\\d+)*)" + PRERELEASE + "$");
 	
 	private VersionRangeConverter() {
 	}
@@ -105,8 +114,38 @@ public class VersionRangeConverter {
 			return minimum.group(1);
 		}
 		
-		// compound ranges (|| and space-separated comparators), upper bounds and pre-release qualifiers
-		// have no OpenMRS equivalent we can rely on
+		// a bounded range becomes OpenMRS's inclusive dash range: the upper bound stays as-is when
+		// inclusive (<=), and becomes the wildcard branch just below it when exclusive (<)
+		Matcher bounded = BOUNDED.matcher(range);
+		if (bounded.matches()) {
+			String upper = bounded.group(2) != null ? bounded.group(3) : wildcardBelow(bounded.group(3));
+			if (upper != null) {
+				return bounded.group(1) + " - " + upper;
+			}
+		}
+		
+		// || unions and bare upper bounds have no OpenMRS equivalent we can rely on
 		return null;
+	}
+	
+	/**
+	 * The inclusive OpenMRS upper bound just below an exclusive SemVer one: everything under 4.0.0 is
+	 * 3.*, everything under 2.4.0 is 2.3.*. Returns null for a bound of zero, which nothing sits below.
+	 */
+	private static String wildcardBelow(String bound) {
+		String[] parts = bound.split("\\.");
+		int last = parts.length - 1;
+		while (last > 0 && "0".equals(parts[last])) {
+			last--;
+		}
+		long edge = Long.parseLong(parts[last]);
+		if (edge == 0) {
+			return null;
+		}
+		StringBuilder below = new StringBuilder();
+		for (int i = 0; i < last; i++) {
+			below.append(parts[i]).append('.');
+		}
+		return below.append(edge - 1).append(".*").toString();
 	}
 }

@@ -1,0 +1,44 @@
+{
+  "name": "@openmrs/esm-billing-app",
+  "description": "Billing frontend app for O3",
+  "dist-tags": {
+    "latest": "1.3.1",
+    "next": "1.3.2-pre.1928"
+  },
+  "time": {
+    "created": "2024-02-12T12:16:51.078Z",
+    "modified": "2026-07-27T20:39:26.304Z",
+    "1.3.0": "2026-02-02T09:14:22.001Z",
+    "1.3.1": "2026-04-14T11:02:47.512Z",
+    "1.3.2-pre.1928": "2026-07-27T20:39:26.304Z"
+  },
+  "versions": {
+    "1.3.0": {
+      "name": "@openmrs/esm-billing-app",
+      "version": "1.3.0",
+      "browser": "dist/openmrs-esm-billing-app.js",
+      "dist": {
+        "shasum": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "tarball": "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.0.tgz"
+      }
+    },
+    "1.3.1": {
+      "name": "@openmrs/esm-billing-app",
+      "version": "1.3.1",
+      "browser": "dist/openmrs-esm-billing-app.js",
+      "dist": {
+        "shasum": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "tarball": "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.1.tgz"
+      }
+    },
+    "1.3.2-pre.1928": {
+      "name": "@openmrs/esm-billing-app",
+      "version": "1.3.2-pre.1928",
+      "browser": "dist/openmrs-esm-billing-app.js",
+      "dist": {
+        "shasum": "cccccccccccccccccccccccccccccccccccccccc",
+        "tarball": "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.2-pre.1928.tgz"
+      }
+    }
+  }
+}

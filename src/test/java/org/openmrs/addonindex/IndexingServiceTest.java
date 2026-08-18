@@ -19,6 +19,7 @@ import org.openmrs.addonindex.backend.Artifactory;
 import org.openmrs.addonindex.backend.Bintray;
 import org.openmrs.addonindex.backend.Modulus;
 import org.openmrs.addonindex.backend.Nexus3Repo;
+import org.openmrs.addonindex.backend.Npm;
 import org.openmrs.addonindex.backend.OpenmrsMavenRepo;
 import org.openmrs.addonindex.domain.AddOnList;
 import org.openmrs.addonindex.domain.AddOnReference;
@@ -144,6 +145,8 @@ public class IndexingServiceTest {
 			} else if (addOn.getBackend().equals(OpenmrsMavenRepo.class)) {
 				assertThat(addOn.getMavenRepoDetails().getGroupId(), notNullValue());
 				assertThat(addOn.getMavenRepoDetails().getArtifactId(), notNullValue());
+			} else if (addOn.getBackend().equals(Npm.class)) {
+				assertThat(addOn.getNpmPackage(), notNullValue());
 			} else {
 				fail("Unrecognized backend: " + addOn.getBackend());
 			}

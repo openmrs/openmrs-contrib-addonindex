@@ -28,6 +28,22 @@ public class VersionRangeConverterTest {
 	}
 	
 	@Test
+	public void testIgnoringPrereleaseSuffixes() {
+		// routes.json conventionally writes >=2.3.0-0, where -0 admits pre-release builds of the
+		// minimum, and content.properties often carries -SNAPSHOT. OpenmrsVersionCompareUtil strips
+		// any -qualifier before comparing, so dropping the suffix here loses nothing it could see.
+		assertThat(toOpenmrsVersionRange(">=2.3.0-0"), is("2.3.0"));
+		assertThat(toOpenmrsVersionRange("2.3.0-0"), is("2.3.0"));
+		assertThat(toOpenmrsVersionRange("2.0.0-SNAPSHOT"), is("2.0.0"));
+		assertThat(toOpenmrsVersionRange(">=2.4.0-SNAPSHOT"), is("2.4.0"));
+		assertThat(toOpenmrsVersionRange("^2.4.0-0"), is("2.*"));
+		assertThat(toOpenmrsVersionRange("^1.2.0-SNAPSHOT"), is("1.*"));
+		assertThat(toOpenmrsVersionRange("^1.3.2-pre.1928"), is("1.*"));
+		assertThat(toOpenmrsVersionRange("^0.2.3-0"), is("0.2.*"));
+		assertThat(toOpenmrsVersionRange("~2.4.1-0"), is("2.4.*"));
+	}
+	
+	@Test
 	public void testConvertingPlainVersions() {
 		assertThat(toOpenmrsVersionRange("1.2.0"), is("1.2.0"));
 		assertThat(toOpenmrsVersionRange(" 1.2.0 "), is("1.2.0"));
@@ -67,11 +83,25 @@ public class VersionRangeConverterTest {
 	}
 	
 	@Test
+	public void testConvertingBoundedRanges() {
+		assertThat(toOpenmrsVersionRange(">=2.0.0 <4.0.0"), is("2.0.0 - 3.*"));
+		assertThat(toOpenmrsVersionRange(">=6.0.0 <8.0.0"), is("6.0.0 - 7.*"));
+		assertThat(toOpenmrsVersionRange(">3.3.0 <4.0.0"), is("3.3.0 - 3.*"));
+		assertThat(toOpenmrsVersionRange(">=2.2.0 <2.4.0"), is("2.2.0 - 2.3.*"));
+		assertThat(toOpenmrsVersionRange(">=1.2.0 <=2.0.0"), is("1.2.0 - 2.0.0"));
+		assertThat(toOpenmrsVersionRange(">=2.0.0-0 <4.0.0-0"), is("2.0.0 - 3.*"));
+		assertThat(toOpenmrsVersionRange(">=0.5.0 <1.0.0"), is("0.5.0 - 0.*"));
+	}
+	
+	@Test
 	public void testRangesWeCannotExpress() {
 		assertThat(toOpenmrsVersionRange(">=1.0.0 || ^2"), nullValue());
-		assertThat(toOpenmrsVersionRange(">=1.2.0 <2.0.0"), nullValue());
+		// a bare upper bound has no lower edge to anchor an OpenMRS range on
 		assertThat(toOpenmrsVersionRange("<2.0.0"), nullValue());
-		assertThat(toOpenmrsVersionRange("2.0.0-SNAPSHOT"), nullValue());
+		// nothing sits below an upper bound of zero
+		assertThat(toOpenmrsVersionRange(">=0.0.0 <0.0.0"), nullValue());
+		// a SemVer hyphen range is a bounded range, not a minimum with a suffix
+		assertThat(toOpenmrsVersionRange("1.2.3 - 2.3.4"), nullValue());
 		assertThat(toOpenmrsVersionRange("${appuiVersion}"), nullValue());
 	}
 	
@@ -87,5 +117,12 @@ public class VersionRangeConverterTest {
 		
 		assertThat(OpenmrsVersionCompareUtil.matchRequiredVersions("2.5.0", toOpenmrsVersionRange("^2")), is(true));
 		assertThat(OpenmrsVersionCompareUtil.matchRequiredVersions("3.0.0", toOpenmrsVersionRange("^2")), is(false));
+		
+		assertThat(OpenmrsVersionCompareUtil.matchRequiredVersions("3.9.0", toOpenmrsVersionRange(">=2.0.0 <4.0.0")),
+		    is(true));
+		assertThat(OpenmrsVersionCompareUtil.matchRequiredVersions("4.0.0", toOpenmrsVersionRange(">=2.0.0 <4.0.0")),
+		    is(false));
+		assertThat(OpenmrsVersionCompareUtil.matchRequiredVersions("1.9.0", toOpenmrsVersionRange(">=2.0.0 <4.0.0")),
+		    is(false));
 	}
 }

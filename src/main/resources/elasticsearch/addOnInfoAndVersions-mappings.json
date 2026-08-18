@@ -76,6 +76,9 @@
             "version": {
               "type": "text",
               "index": false
+            },
+            "optional": {
+              "type": "boolean"
             }
           }
         },

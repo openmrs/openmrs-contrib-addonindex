@@ -37,7 +37,9 @@ export const SelectUserVersions: React.FC<Props> = ({
       return null;
     }
 
-    return versionQuery.data.reverse().map((v) => ({
+    // Copy before reversing: versionQuery.data is React Query's cached array,
+    // and reversing in place would corrupt it across remounts of this component.
+    return [...versionQuery.data].reverse().map((v) => ({
       value: v,
       label: v,
     }));

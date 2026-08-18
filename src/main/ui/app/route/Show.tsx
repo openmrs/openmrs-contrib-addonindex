@@ -28,10 +28,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
-import { CoreVersionContext } from "../App";
+import { CoreVersionContext, HidePlatformPickerContext } from "../App";
 import { useSearchParams } from "../hooks";
 import { ExternalLink, LegacyFaIcon } from "../component";
-import { myFetch } from "../utils";
+import { formatRequiredModules, myFetch } from "../utils";
 import { IAddOn, IAddOnVersion } from "../types";
 import { ButtonProps } from "react-bootstrap/Button";
 
@@ -115,20 +115,6 @@ const formatDateTime = (dt) => {
   );
 };
 
-const formatRequiredModules = (version) => {
-  const requirements = [];
-
-  if (version.requireModules) {
-    version.requireModules.forEach((m) => {
-      requirements.push(
-        `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`,
-      );
-    });
-  }
-
-  return requirements.join(", ");
-};
-
 export const Show: React.FC = () => {
   const { uid } = useParams<{ uid: string }>();
   const { highlightVersion } = useSearchParams<{
@@ -143,6 +129,16 @@ export const Show: React.FC = () => {
   });
 
   const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
+
+  const isFrontendModule = addOn?.type === "FRONTEND_MODULE";
+
+  const setHidePlatformPicker = useContext(HidePlatformPickerContext);
+
+  useEffect(() => {
+    // frontend modules have no OpenMRS core requirement, so the picker means nothing here
+    setHidePlatformPicker(isFrontendModule);
+    return () => setHidePlatformPicker(false);
+  }, [isFrontendModule, setHidePlatformPicker]);
 
   const latestVersionResult = useQuery({
     queryKey: ["addOnLatestVersion", coreVersion],
@@ -347,21 +343,23 @@ export const Show: React.FC = () => {
               <tr>
                 <th>Version</th>
                 <th>Release Date</th>
-                <th>
-                  Platform Requirements&nbsp;
-                  <OverlayTrigger
-                    placement="right"
-                    overlay={
-                      <Tooltip id="tooltip">
-                        <strong>
-                          Minimum version of the OpenMRS Platform required.
-                        </strong>
-                      </Tooltip>
-                    }
-                  >
-                    <LegacyFaIcon icon={faQuestionCircle} />
-                  </OverlayTrigger>
-                </th>
+                {!isFrontendModule && (
+                  <th>
+                    Platform Requirements&nbsp;
+                    <OverlayTrigger
+                      placement="right"
+                      overlay={
+                        <Tooltip id="tooltip">
+                          <strong>
+                            Minimum version of the OpenMRS Platform required.
+                          </strong>
+                        </Tooltip>
+                      }
+                    >
+                      <LegacyFaIcon icon={faQuestionCircle} />
+                    </OverlayTrigger>
+                  </th>
+                )}
                 <th>Other requirements</th>
                 <th>Download</th>
               </tr>
@@ -375,7 +373,7 @@ export const Show: React.FC = () => {
                     <tr key={v.version} className={className}>
                       <td>{v.version}</td>
                       <td>{formatDateTime(v.releaseDatetime)}</td>
-                      <td>{v.requireOpenmrsVersion}</td>
+                      {!isFrontendModule && <td>{v.requireOpenmrsVersion}</td>}
                       <td>{formatRequiredModules(v)}</td>
                       <td>
                         <DownloadButton
