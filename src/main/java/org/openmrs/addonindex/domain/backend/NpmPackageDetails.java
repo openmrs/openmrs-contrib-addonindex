@@ -8,19 +8,24 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-package org.openmrs.addonindex.domain;
+package org.openmrs.addonindex.domain.backend;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+/**
+ * Where to find a FRONTEND_MODULE on an NPM registry. The uid cannot hold the package name directly
+ * because a scoped name like "@openmrs/esm-billing-app" does not survive being a single URL path
+ * segment.
+ */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class ModuleRequirement {
+@RequiredArgsConstructor
+public class NpmPackageDetails {
 	
-	private String module;
-	
-	private String version;
+	@NonNull
+	private String packageName;
 	
 }

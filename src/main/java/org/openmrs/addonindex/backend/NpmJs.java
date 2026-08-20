@@ -9,7 +9,9 @@
  */
 package org.openmrs.addonindex.backend;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -19,9 +21,13 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnVersion;
+import org.openmrs.addonindex.domain.backend.NpmPackageDetails;
 import org.openmrs.addonindex.domain.npm.NpmDownloadCount;
 import org.openmrs.addonindex.domain.npm.NpmPackument;
 import org.openmrs.addonindex.domain.npm.NpmVersionInfo;
@@ -34,8 +40,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -44,19 +50,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * A {@link BackendHandler} for OpenMRS frontend modules published to the npm registry.
+ * A {@link BackendHandler} for OpenMRS frontend modules published to the npmjs.com registry.
  */
 @Component
 @Slf4j
-public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVersionDetails {
+public class NpmJs implements BackendHandler, SupportsDownloadCounts, SupportsVersionDetails {
 	
 	protected static final String REGISTRY_URL = "https://registry.npmjs.org/{package}";
 	
 	protected static final String DOWNLOADS_URL = "https://api.npmjs.org/downloads/point/last-month/{package}";
 	
-	protected static final String UNPKG_ROUTES_URL = "https://unpkg.com/{package}@{version}/dist/routes.json";
-	
-	protected static final String UNPKG_PACKAGE_JSON_URL = "https://unpkg.com/{package}@{version}/package.json";
+	/**
+	 * The path of the routes file inside a version's tarball, below the single leading directory
+	 * (conventionally "package/") that npm pack puts everything under.
+	 */
+	private static final String ROUTES_JSON_TARBALL_PATH = "dist/routes.json";
 	
 	/**
 	 * routes.json refers to backend modules by their module id (e.g. webservices.rest), but the rest of
@@ -74,13 +82,13 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 	 * The last ETag we saw per package, with the versions and description we read from that packument.
 	 * A packument lists every version ever published, including a CI pre-release per merge, so it can
 	 * run to several MB of which we keep a handful of stable versions. Sending the ETag back as
-	 * If-None-Match lets npm answer 304 with an empty body whenever nothing has been published since,
-	 * which skips both the download and the parse.
+	 * If-None-Match lets the registry answer 304 with an empty body whenever nothing has been published
+	 * since, which skips both the download and the parse.
 	 */
 	private final Map<String, CachedPackument> cachedPackuments = new ConcurrentHashMap<>();
 	
 	@Autowired
-	public Npm(RestTemplate restTemplate, ObjectMapper objectMapper) {
+	public NpmJs(RestTemplate restTemplate, ObjectMapper objectMapper) {
 		this.restTemplate = restTemplate;
 		this.objectMapper = objectMapper;
 	}
@@ -97,6 +105,11 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 	private record CachedPackument(String etag, List<PublishedVersion> versions, String description) {
 
 		private CachedPackument {
+			if (versions.isEmpty()) {
+				// fetchPackument throws first with a message naming the package; this guards any
+				// future construction site, because a cached empty list would replay on every 304
+				throw new IllegalStateException("must never cache an empty version list");
+			}
 			// the cache must never hand out a list a caller could mutate
 			versions = List.copyOf(versions);
 		}
@@ -104,10 +117,7 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 	
 	@Override
 	public AddOnInfoAndVersions getInfoAndVersionsFor(AddOnToIndex addOnToIndex) throws Exception {
-		String npmPackage = addOnToIndex.getNpmPackage();
-		if (!StringUtils.hasText(npmPackage)) {
-			throw new IllegalStateException("No npm package provided for AddOn: " + addOnToIndex.getName());
-		}
+		String npmPackage = packageNameFor(addOnToIndex);
 		
 		AddOnInfoAndVersions result = AddOnInfoAndVersions.from(addOnToIndex);
 		
@@ -126,6 +136,14 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 		result.getVersions().addAll(versions);
 		
 		return result;
+	}
+	
+	private String packageNameFor(AddOnToIndex addOnToIndex) {
+		NpmPackageDetails details = addOnToIndex.getNpmPackageDetails();
+		if (details == null || !StringUtils.hasText(details.getPackageName())) {
+			throw new IllegalStateException("No npm package details for AddOn: " + addOnToIndex.getName());
+		}
+		return details.getPackageName();
 	}
 	
 	/**
@@ -169,6 +187,11 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 	}
 	
 	private List<PublishedVersion> publishedVersions(String npmPackage, NpmPackument packument) {
+		if (packument.getTime() == null) {
+			// unlike a single bad timestamp (warned per version below), a missing map would
+			// otherwise silently cost every version its release date
+			log.warn("Packument for {} has no time map; versions will index without release dates", npmPackage);
+		}
 		List<PublishedVersion> published = new ArrayList<>();
 		for (Map.Entry<String, NpmVersionInfo> entry : packument.getVersions().entrySet()) {
 			String versionString = entry.getKey();
@@ -211,64 +234,67 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 	
 	@Override
 	public void fetchDownloadCounts(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) {
+		String npmPackage = packageNameFor(toIndex);
 		try {
 			NpmDownloadCount count = restTemplate.getForObject(DOWNLOADS_URL, NpmDownloadCount.class,
-			    Map.of("package", toIndex.getNpmPackage()));
+			    Map.of("package", npmPackage));
 			if (count != null && count.getDownloads() != null) {
 				infoAndVersions.setDownloadCountInLast30Days(count.getDownloads());
 			} else {
-				log.warn("No download count in the response for {}", toIndex.getNpmPackage());
+				log.warn("No download count in the response for {}", npmPackage);
 			}
 		}
 		catch (Exception ex) {
 			// a missing download count must never cost us the versions we already collected
-			log.warn("Could not fetch download counts for {}", toIndex.getNpmPackage(), ex);
+			log.warn("Could not fetch download counts for {}", npmPackage, ex);
 		}
 	}
 	
 	@Override
 	public void fetchVersionDetails(AddOnToIndex toIndex, AddOnVersion addOnVersion) throws IOException {
-		String npmPackage = toIndex.getNpmPackage();
-		log.info("Fetching routes.json for {} {}", toIndex.getUid(), addOnVersion.getVersion());
-		String routesJson = fetchRoutesJson(npmPackage, addOnVersion.getVersion().toString());
+		log.info("Fetching tarball of {} {} for its routes.json", toIndex.getUid(), addOnVersion.getVersion());
+		String routesJson = fetchRoutesJson(addOnVersion);
 		if (routesJson == null) {
 			// a frontend module without a routes.json declares no backend dependencies; index it anyway
-			log.warn("No dist/routes.json for {}@{}", npmPackage, addOnVersion.getVersion());
+			log.warn("No {} in {}", ROUTES_JSON_TARBALL_PATH, addOnVersion.getDownloadUri());
 			return;
 		}
 		handleRoutesJson(routesJson, addOnVersion);
 	}
 	
 	/**
-	 * Fetches one version's routes.json from unpkg. Returns null if the package published no
-	 * routes.json for this version. Throws if unpkg cannot serve the version at all, which happens for
-	 * a short window after a publish: indexing "declares no dependencies" in that window would be wrong
-	 * data that the reuse check then keeps forever.
+	 * Reads one version's routes.json out of its tarball on the registry, the same way OMOD and content
+	 * package details are read out of their zips. Returns null if the version ships no routes.json. A
+	 * failure to fetch or read the tarball propagates: the caller then drops the version for this run,
+	 * and a later run retries it.
+	 * <p>
+	 * The multi-MB tarball is streamed rather than buffered, which caps memory use, not bandwidth:
+	 * npm's entry ordering usually puts dist/routes.json late in the archive, so most of the transfer
+	 * still happens, and returning from the extractor abandons only the remainder.
 	 */
-	private String fetchRoutesJson(String npmPackage, String version) {
-		try {
-			return restTemplate.getForObject(UNPKG_ROUTES_URL, String.class,
-			    Map.of("package", npmPackage, "version", version));
-		}
-		catch (HttpClientErrorException.NotFound ex) {
-			// a 404 is ambiguous: no routes.json in the tarball, or unpkg lagging behind the
-			// registry. Every published version has a package.json, so it tells the two apart.
-			try {
-				restTemplate.getForObject(UNPKG_PACKAGE_JSON_URL, String.class,
-				    Map.of("package", npmPackage, "version", version));
-			}
-			catch (HttpClientErrorException.NotFound versionUnknown) {
-				throw new IllegalStateException(
-				        npmPackage + "@" + version + " is not on unpkg yet; a later run will retry it", versionUnknown);
+	private String fetchRoutesJson(AddOnVersion addOnVersion) {
+		return restTemplate.execute(addOnVersion.getDownloadUri(), HttpMethod.GET, null, response -> {
+			try (TarArchiveInputStream tar = new TarArchiveInputStream(
+			        new GzipCompressorInputStream(new BufferedInputStream(response.getBody())))) {
+				TarArchiveEntry entry;
+				while ((entry = tar.getNextEntry()) != null) {
+					String name = entry.getName();
+					int slash = name.indexOf('/');
+					if (slash >= 0 && name.substring(slash + 1).equals(ROUTES_JSON_TARBALL_PATH)) {
+						return StreamUtils.copyToString(tar, StandardCharsets.UTF_8);
+					}
+				}
 			}
 			return null;
-		}
+		});
 	}
 	
 	/**
-	 * Reads the two backend dependency maps out of a frontend module's routes.json. Frontend modules
-	 * depend on backend modules rather than on an OpenMRS core version, so requireOpenmrsVersion is
-	 * deliberately left unset.
+	 * Reads the backend dependency map out of a frontend module's routes.json. The
+	 * optionalBackendDependencies map is deliberately not indexed, for parity with how config.xml
+	 * indexing considers require_module directives but not aware_of ones. Frontend modules depend on
+	 * backend modules rather than on an OpenMRS core version, so requireOpenmrsVersion is deliberately
+	 * left unset.
 	 */
 	void handleRoutesJson(String routesJson, AddOnVersion addOnVersion) throws IOException {
 		JsonNode root = objectMapper.readTree(routesJson);
@@ -277,20 +303,14 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 		if (!root.isObject()) {
 			throw new IOException("Expected routes.json to be an object but got " + root.getNodeType());
 		}
-		addBackendDependencies(root.path("backendDependencies"), addOnVersion, false);
-		addBackendDependencies(root.path("optionalBackendDependencies"), addOnVersion, true);
-	}
-	
-	private void addBackendDependencies(JsonNode dependencies, AddOnVersion addOnVersion, boolean optional)
-	        throws IOException {
+		JsonNode dependencies = root.path("backendDependencies");
 		if (dependencies.isMissingNode() || dependencies.isNull()) {
-			// legitimately absent: many apps declare no optional (or no required) dependencies.
+			// legitimately absent: many apps declare no backend dependencies.
 			// An explicit null is schema-invalid but harmless, so it must not fail the version.
 			return;
 		}
-		String mapName = optional ? "optionalBackendDependencies" : "backendDependencies";
 		if (!dependencies.isObject()) {
-			throw new IOException("Expected an object for " + mapName + " but got " + dependencies.getNodeType());
+			throw new IOException("Expected an object for backendDependencies but got " + dependencies.getNodeType());
 		}
 		for (Map.Entry<String, JsonNode> entry : dependencies.properties()) {
 			JsonNode value = entry.getValue();
@@ -298,7 +318,7 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 			// whose "feature" block describes a UI feature flag we don't index
 			JsonNode version = value.isObject() ? value.path("version") : value;
 			if (!version.isTextual()) {
-				throw new IOException("No usable version for " + entry.getKey() + " in " + mapName);
+				throw new IOException("No usable version for " + entry.getKey() + " in backendDependencies");
 			}
 			// routes.json expresses versions as SemVer ranges, but the rest of the index uses strict
 			// minimums and wildcards, so they are translated here. As in content.properties, a
@@ -308,7 +328,7 @@ public class Npm implements BackendHandler, SupportsDownloadCounts, SupportsVers
 				log.warn("Cannot express version range \"{}\" of {} as an OpenMRS version range", version.asText(),
 				    entry.getKey());
 			}
-			addOnVersion.addRequiredModule(BACKEND_MODULE_PREFIX + entry.getKey(), requiredVersion, optional);
+			addOnVersion.addRequiredModule(BACKEND_MODULE_PREFIX + entry.getKey(), requiredVersion);
 		}
 	}
 	

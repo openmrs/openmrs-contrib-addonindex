@@ -93,34 +93,21 @@ public class AddOnInfoAndVersionsTest {
 	}
 	
 	@Test
-	public void addRequiredModuleShouldDefaultToNotOptional() {
+	public void addRequiredModuleShouldRecordTheRequirement() {
 		AddOnVersion version = new AddOnVersion();
 		version.addRequiredModule("org.openmrs.module.reporting", "1.2.3");
 		assertThat(version.getRequireModules(), hasSize(1));
 		assertThat(version.getRequireModules().get(0).getModule(), is("org.openmrs.module.reporting"));
 		assertThat(version.getRequireModules().get(0).getVersion(), is("1.2.3"));
-		assertThat(version.getRequireModules().get(0).getOptional(), is(false));
 	}
 	
 	@Test
-	public void addRequiredModuleShouldRecordOptionalAndSubstituteMissingVersion() {
+	public void addRequiredModuleShouldSubstituteMissingVersion() {
 		AddOnVersion version = new AddOnVersion();
-		version.addRequiredModule("stockmanagement", null, true);
+		version.addRequiredModule("stockmanagement", null);
 		assertThat(version.getRequireModules(), hasSize(1));
 		assertThat(version.getRequireModules().get(0).getModule(), is("stockmanagement"));
 		assertThat(version.getRequireModules().get(0).getVersion(), is("?"));
-		assertThat(version.getRequireModules().get(0).getOptional(), is(true));
 	}
 	
-	@Test
-	public void frontendModuleShouldUseTgzExtension() {
-		assertThat(AddOnType.FRONTEND_MODULE.getFileExtension(), is("tgz"));
-	}
-	
-	@Test
-	public void addOnToIndexShouldCarryNpmPackage() {
-		AddOnToIndex toIndex = new AddOnToIndex();
-		toIndex.setNpmPackage("@openmrs/esm-billing-app");
-		assertThat(toIndex.getNpmPackage(), is("@openmrs/esm-billing-app"));
-	}
 }

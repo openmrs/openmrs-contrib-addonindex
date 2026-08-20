@@ -142,6 +142,7 @@ public class FetchDetailsToIndex {
 	        throws Exception {
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
 		boolean hadVersions = !infoAndVersions.getVersions().isEmpty();
+		SupportsVersionDetails detailsHandler = handler instanceof SupportsVersionDetails s ? s : null;
 		
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext();) {
 			AddOnVersion version = iter.next();
@@ -158,8 +159,8 @@ public class FetchDetailsToIndex {
 			}
 			
 			try {
-				if (handler instanceof SupportsVersionDetails) {
-					((SupportsVersionDetails) handler).fetchVersionDetails(toIndex, version);
+				if (detailsHandler != null) {
+					detailsHandler.fetchVersionDetails(toIndex, version);
 				} else if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
 					String configXml = fetchZipEntry(version, "config.xml");
@@ -181,7 +182,7 @@ public class FetchDetailsToIndex {
 			}
 			catch (Exception ex) {
 				log.warn("Error fetching/parsing details of {}:{}", toIndex.getUid(), version.getVersion(), ex);
-				if (handler instanceof SupportsVersionDetails) {
+				if (detailsHandler != null) {
 					// the reuse check above compares fields that never change for these versions, so
 					// indexing this one without its details would be permanent. Leaving it out of this
 					// run means the next run will not find it in the index and will fetch it again.

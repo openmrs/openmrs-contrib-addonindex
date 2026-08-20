@@ -16,6 +16,7 @@ import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
 import org.openmrs.addonindex.domain.backend.ModulusModuleDetails;
+import org.openmrs.addonindex.domain.backend.NpmPackageDetails;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -58,10 +59,6 @@ public class AddOnToIndex {
 	
 	private ModulusModuleDetails modulusDetails;
 	
-	/**
-	 * The npm package name for a FRONTEND_MODULE, e.g. "@openmrs/esm-billing-app". The uid cannot hold
-	 * this directly because it must survive being a single URL path segment.
-	 */
-	private String npmPackage;
+	private NpmPackageDetails npmPackageDetails;
 	
 }

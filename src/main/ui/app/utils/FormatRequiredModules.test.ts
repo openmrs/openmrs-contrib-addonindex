@@ -26,31 +26,14 @@ describe("formatRequiredModules", () => {
     ).toBe("webservices.rest >=2.24.0");
   });
 
-  it("marks optional requirements", () => {
+  it("joins multiple requirements", () => {
     expect(
       formatRequiredModules(
         version([
-          {
-            module: "bedmanagement",
-            version: ">=6.0.0 <8.0.0",
-            optional: true,
-          },
+          { module: "org.openmrs.module.billing", version: "2.3.0" },
+          { module: "webservices.rest", version: "2.24.0" },
         ]),
       ),
-    ).toBe("bedmanagement >=6.0.0 <8.0.0 (optional)");
-  });
-
-  it("lists required requirements before optional ones", () => {
-    expect(
-      formatRequiredModules(
-        version([
-          { module: "stockmanagement", version: "^1.4.0", optional: true },
-          { module: "billing", version: ">=2.3.0-0", optional: false },
-          { module: "webservices.rest", version: ">=2.24.0" },
-        ]),
-      ),
-    ).toBe(
-      "billing >=2.3.0-0, webservices.rest >=2.24.0, stockmanagement ^1.4.0 (optional)",
-    );
+    ).toBe("billing 2.3.0, webservices.rest 2.24.0");
   });
 });

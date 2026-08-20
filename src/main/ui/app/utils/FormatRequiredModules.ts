@@ -8,20 +8,11 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-import type { IAddOnVersion, IModuleRequirement } from "../types";
+import type { IAddOnVersion } from "../types";
 
-const describeRequirement = (m: IModuleRequirement) =>
-  `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim() +
-  (m.optional ? " (optional)" : "");
-
-export const formatRequiredModules = (version: IAddOnVersion): string => {
-  if (!version.requireModules) {
-    return "";
-  }
-
-  // required first, so the things you must install lead the list
-  const required = version.requireModules.filter((m) => !m.optional);
-  const optional = version.requireModules.filter((m) => m.optional);
-
-  return [...required, ...optional].map(describeRequirement).join(", ");
-};
+export const formatRequiredModules = (version: IAddOnVersion): string =>
+  (version.requireModules ?? [])
+    .map((m) =>
+      `${m.module.replace("org.openmrs.module.", "")} ${m.version || ""}`.trim(),
+    )
+    .join(", ");

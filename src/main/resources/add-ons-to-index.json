@@ -6765,7 +6765,9 @@
       "uid": "openmrs-esm-active-visits-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-active-visits-app",
-      "npmPackage": "@openmrs/esm-active-visits-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-active-visits-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6778,13 +6780,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-appointments-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-appointments-app",
-      "npmPackage": "@openmrs/esm-appointments-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-appointments-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6797,13 +6801,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-bed-management-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-bed-management-app",
-      "npmPackage": "@openmrs/esm-bed-management-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-bed-management-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6816,13 +6822,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-billing-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-billing-app",
-      "npmPackage": "@openmrs/esm-billing-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-billing-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6835,13 +6843,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-billing-app"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-cohort-builder-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-cohort-builder-app",
-      "npmPackage": "@openmrs/esm-cohort-builder-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-cohort-builder-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6854,13 +6864,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-cohortbuilder"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-devtools-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-devtools-app",
-      "npmPackage": "@openmrs/esm-devtools-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-devtools-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6873,13 +6885,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-core"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-dispensing-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-dispensing-app",
-      "npmPackage": "@openmrs/esm-dispensing-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-dispensing-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6892,13 +6906,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-dispensing"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-fast-data-entry-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-fast-data-entry-app",
-      "npmPackage": "@openmrs/esm-fast-data-entry-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-fast-data-entry-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6911,13 +6927,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-fast-data-entry-app"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-form-builder-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-form-builder-app",
-      "npmPackage": "@openmrs/esm-form-builder-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-form-builder-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6930,13 +6948,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-form-builder"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-form-engine-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-form-engine-app",
-      "npmPackage": "@openmrs/esm-form-engine-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-form-engine-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6949,13 +6969,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-generic-patient-widgets-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-generic-patient-widgets-app",
-      "npmPackage": "@openmrs/esm-generic-patient-widgets-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-generic-patient-widgets-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6968,13 +6990,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-help-menu-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-help-menu-app",
-      "npmPackage": "@openmrs/esm-help-menu-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-help-menu-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -6987,13 +7011,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-core"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-home-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-home-app",
-      "npmPackage": "@openmrs/esm-home-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-home-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7006,13 +7032,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-home"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-implementer-tools-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-implementer-tools-app",
-      "npmPackage": "@openmrs/esm-implementer-tools-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-implementer-tools-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7025,13 +7053,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-core"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-laboratory-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-laboratory-app",
-      "npmPackage": "@openmrs/esm-laboratory-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-laboratory-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7044,13 +7074,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-laboratory"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-login-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-login-app",
-      "npmPackage": "@openmrs/esm-login-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-login-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7063,13 +7095,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-core"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-openconceptlab-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-openconceptlab-app",
-      "npmPackage": "@openmrs/esm-openconceptlab-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-openconceptlab-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7082,13 +7116,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-admin-tools"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-allergies-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-allergies-app",
-      "npmPackage": "@openmrs/esm-patient-allergies-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-allergies-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7101,13 +7137,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-attachments-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-attachments-app",
-      "npmPackage": "@openmrs/esm-patient-attachments-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-attachments-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7120,13 +7158,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-banner-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-banner-app",
-      "npmPackage": "@openmrs/esm-patient-banner-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-banner-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7139,13 +7179,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-chart-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-chart-app",
-      "npmPackage": "@openmrs/esm-patient-chart-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-chart-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7158,13 +7200,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-conditions-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-conditions-app",
-      "npmPackage": "@openmrs/esm-patient-conditions-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-conditions-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7177,13 +7221,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-flags-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-flags-app",
-      "npmPackage": "@openmrs/esm-patient-flags-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-flags-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7196,13 +7242,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-forms-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-forms-app",
-      "npmPackage": "@openmrs/esm-patient-forms-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-forms-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7215,13 +7263,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-immunizations-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-immunizations-app",
-      "npmPackage": "@openmrs/esm-patient-immunizations-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-immunizations-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7234,13 +7284,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-label-printing-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-label-printing-app",
-      "npmPackage": "@openmrs/esm-patient-label-printing-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-label-printing-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7253,13 +7305,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-list-management-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-list-management-app",
-      "npmPackage": "@openmrs/esm-patient-list-management-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-list-management-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7272,13 +7326,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-lists-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-lists-app",
-      "npmPackage": "@openmrs/esm-patient-lists-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-lists-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7291,13 +7347,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-medications-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-medications-app",
-      "npmPackage": "@openmrs/esm-patient-medications-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-medications-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7310,13 +7368,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-notes-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-notes-app",
-      "npmPackage": "@openmrs/esm-patient-notes-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-notes-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7329,13 +7389,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-orders-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-orders-app",
-      "npmPackage": "@openmrs/esm-patient-orders-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-orders-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7348,13 +7410,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-procedures-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-procedures-app",
-      "npmPackage": "@openmrs/esm-patient-procedures-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-procedures-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7367,13 +7431,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-programs-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-programs-app",
-      "npmPackage": "@openmrs/esm-patient-programs-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-programs-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7386,13 +7452,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-registration-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-registration-app",
-      "npmPackage": "@openmrs/esm-patient-registration-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-registration-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7405,13 +7473,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-search-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-search-app",
-      "npmPackage": "@openmrs/esm-patient-search-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-search-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7424,13 +7494,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-task-list-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-task-list-app",
-      "npmPackage": "@openmrs/esm-patient-task-list-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-task-list-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7443,13 +7515,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-tests-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-tests-app",
-      "npmPackage": "@openmrs/esm-patient-tests-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-tests-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7462,13 +7536,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-patient-vitals-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-patient-vitals-app",
-      "npmPackage": "@openmrs/esm-patient-vitals-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-patient-vitals-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7481,13 +7557,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-chart"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-primary-navigation-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-primary-navigation-app",
-      "npmPackage": "@openmrs/esm-primary-navigation-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-primary-navigation-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7500,13 +7578,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-core"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-reports-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-reports-app",
-      "npmPackage": "@openmrs/esm-reports-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-reports-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7519,13 +7599,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-admin-tools"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-service-queues-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-service-queues-app",
-      "npmPackage": "@openmrs/esm-service-queues-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-service-queues-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7538,13 +7620,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-stock-management-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-stock-management-app",
-      "npmPackage": "@openmrs/esm-stock-management-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-stock-management-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7557,13 +7641,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-stock-management-app"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-system-admin-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-system-admin-app",
-      "npmPackage": "@openmrs/esm-system-admin-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-system-admin-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7576,13 +7662,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-admin-tools"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-user-onboarding-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-user-onboarding-app",
-      "npmPackage": "@openmrs/esm-user-onboarding-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-user-onboarding-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7595,13 +7683,15 @@
           "href": "https://github.com/openmrs/openmrs-esm-user-onboarding"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     },
     {
       "uid": "openmrs-esm-ward-app",
       "type": "FRONTEND_MODULE",
       "name": "@openmrs/esm-ward-app",
-      "npmPackage": "@openmrs/esm-ward-app",
+      "npmPackageDetails": {
+        "packageName": "@openmrs/esm-ward-app"
+      },
       "maintainers": [
         {
           "name": "OpenMRS",
@@ -7614,7 +7704,7 @@
           "href": "https://github.com/openmrs/openmrs-esm-patient-management"
         }
       ],
-      "backend": "org.openmrs.addonindex.backend.Npm"
+      "backend": "org.openmrs.addonindex.backend.NpmJs"
     }
   ],
   "lists": [

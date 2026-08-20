@@ -9,10 +9,16 @@
  */
 package org.openmrs.addonindex.backend;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
+import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
+import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
+import org.apache.commons.compress.compressors.gzip.GzipCompressorOutputStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -20,6 +26,7 @@ import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnToIndex;
 import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.domain.AddOnVersion;
+import org.openmrs.addonindex.domain.backend.NpmPackageDetails;
 import org.openmrs.addonindex.domain.npm.NpmDownloadCount;
 import org.openmrs.addonindex.domain.npm.NpmPackument;
 import org.openmrs.addonindex.util.Version;
@@ -30,8 +37,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,13 +59,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.openmrs.addonindex.TestUtil.getFileAsString;
 
 @JsonTest
-class NpmTest {
+class NpmJsTest {
+	
+	private static final String TARBALL_131 = "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.1.tgz";
 	
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -64,18 +77,18 @@ class NpmTest {
 	@MockitoBean
 	private RestTemplate restTemplate;
 	
-	private Npm npm;
+	private NpmJs npm;
 	
 	@BeforeEach
 	public void setUp() {
-		npm = new Npm(restTemplate, objectMapper);
+		npm = new NpmJs(restTemplate, objectMapper);
 	}
 	
 	private AddOnToIndex billingApp() {
 		AddOnToIndex addOnToIndex = new AddOnToIndex();
 		addOnToIndex.setType(AddOnType.FRONTEND_MODULE);
 		addOnToIndex.setName("@openmrs/esm-billing-app");
-		addOnToIndex.setNpmPackage("@openmrs/esm-billing-app");
+		addOnToIndex.setNpmPackageDetails(new NpmPackageDetails("@openmrs/esm-billing-app"));
 		return addOnToIndex;
 	}
 	
@@ -84,7 +97,7 @@ class NpmTest {
 	}
 	
 	private void stubRegistry(ResponseEntity<NpmPackument> response) {
-		when(restTemplate.exchange(eq(Npm.REGISTRY_URL), eq(HttpMethod.GET), any(HttpEntity.class), eq(NpmPackument.class),
+		when(restTemplate.exchange(eq(NpmJs.REGISTRY_URL), eq(HttpMethod.GET), any(HttpEntity.class), eq(NpmPackument.class),
 		    anyMap())).thenReturn(response);
 	}
 	
@@ -116,8 +129,7 @@ class NpmTest {
 		
 		AddOnInfoAndVersions infoAndVersions = npm.getInfoAndVersionsFor(billingApp());
 		
-		assertThat(infoAndVersions.getVersions().get(1).getDownloadUri(),
-		    equalTo("https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.1.tgz"));
+		assertThat(infoAndVersions.getVersions().get(1).getDownloadUri(), equalTo(TARBALL_131));
 		// the tarball is already sensibly named, so downloads bypass the renaming proxy
 		assertThat(infoAndVersions.getVersions().get(1).getRenameTo(), nullValue());
 	}
@@ -175,7 +187,7 @@ class NpmTest {
 	}
 	
 	@Test
-	public void shouldThrowWhenNpmPackageIsMissing() {
+	public void shouldThrowWhenNpmPackageDetailsAreMissing() {
 		AddOnToIndex addOnToIndex = new AddOnToIndex();
 		addOnToIndex.setType(AddOnType.FRONTEND_MODULE);
 		addOnToIndex.setName("broken");
@@ -224,13 +236,13 @@ class NpmTest {
 		
 		npm.getInfoAndVersionsFor(billingApp());
 		
-		verify(restTemplate).exchange(eq(Npm.REGISTRY_URL), eq(HttpMethod.GET), any(HttpEntity.class),
+		verify(restTemplate).exchange(eq(NpmJs.REGISTRY_URL), eq(HttpMethod.GET), any(HttpEntity.class),
 		    eq(NpmPackument.class), eq(Map.of("package", "@openmrs/esm-billing-app")));
 	}
 	
 	@Test
 	public void shouldSetDownloadCountInLast30Days() throws Exception {
-		when(restTemplate.getForObject(eq(Npm.DOWNLOADS_URL), eq(NpmDownloadCount.class), anyMap()))
+		when(restTemplate.getForObject(eq(NpmJs.DOWNLOADS_URL), eq(NpmDownloadCount.class), anyMap()))
 		        .thenReturn(objectMapper.readValue(getFileAsString("npm-downloads.json"), NpmDownloadCount.class));
 		
 		AddOnInfoAndVersions infoAndVersions = new AddOnInfoAndVersions();
@@ -242,7 +254,7 @@ class NpmTest {
 	
 	@Test
 	public void shouldNotFailWhenDownloadCountsAreUnavailable() {
-		when(restTemplate.getForObject(eq(Npm.DOWNLOADS_URL), eq(NpmDownloadCount.class), anyMap()))
+		when(restTemplate.getForObject(eq(NpmJs.DOWNLOADS_URL), eq(NpmDownloadCount.class), anyMap()))
 		        .thenThrow(new RestClientException("503 Service Unavailable"));
 		
 		AddOnInfoAndVersions infoAndVersions = new AddOnInfoAndVersions();
@@ -252,11 +264,6 @@ class NpmTest {
 		assertThat(infoAndVersions.getDownloadCountInLast30Days(), nullValue());
 	}
 	
-	@Test
-	public void shouldBeUsableAsADownloadCountSource() {
-		assertThat(npm instanceof SupportsDownloadCounts, equalTo(true));
-	}
-	
 	private HttpClientErrorException notFound() {
 		return HttpClientErrorException.create(HttpStatus.NOT_FOUND, "Not Found", HttpHeaders.EMPTY, new byte[0], null);
 	}
@@ -264,14 +271,40 @@ class NpmTest {
 	private AddOnVersion versionToEnrich(String versionString) {
 		AddOnVersion version = new AddOnVersion();
 		version.setVersion(new Version(versionString));
+		version.setDownloadUri(
+		    "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-" + versionString + ".tgz");
 		return version;
 	}
 	
+	private byte[] tarball(Map<String, String> entries) throws IOException {
+		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		try (TarArchiveOutputStream tar = new TarArchiveOutputStream(new GzipCompressorOutputStream(bytes))) {
+			for (Map.Entry<String, String> entry : entries.entrySet()) {
+				byte[] content = entry.getValue().getBytes(StandardCharsets.UTF_8);
+				TarArchiveEntry tarEntry = new TarArchiveEntry(entry.getKey());
+				tarEntry.setSize(content.length);
+				tar.putArchiveEntry(tarEntry);
+				tar.write(content);
+				tar.closeArchiveEntry();
+			}
+		}
+		return bytes.toByteArray();
+	}
+	
+	/**
+	 * NpmJs streams the tarball through restTemplate.execute, so the stub hands the extractor a
+	 * response whose body is the tarball bytes.
+	 */
+	private void stubTarball(byte[] tarball) throws IOException {
+		ClientHttpResponse response = mock(ClientHttpResponse.class);
+		when(response.getBody()).thenReturn(new ByteArrayInputStream(tarball));
+		when(restTemplate.execute(eq(TARBALL_131), eq(HttpMethod.GET), isNull(), any()))
+		        .thenAnswer(invocation -> invocation.<ResponseExtractor<String>> getArgument(3).extractData(response));
+	}
+	
 	@Test
-	public void shouldFetchRoutesJsonForTheExactPackageAndVersion() throws Exception {
-		when(restTemplate.getForObject(eq(Npm.UNPKG_ROUTES_URL), eq(String.class),
-		    eq(Map.of("package", "@openmrs/esm-billing-app", "version", "1.3.1"))))
-		        .thenReturn(getFileAsString("routes.billing.json"));
+	public void shouldReadRoutesJsonOutOfTheVersionsTarball() throws Exception {
+		stubTarball(tarball(Map.of("package/dist/routes.json", getFileAsString("routes.billing.json"))));
 		
 		AddOnVersion version = versionToEnrich("1.3.1");
 		npm.fetchVersionDetails(billingApp(), version);
@@ -280,26 +313,23 @@ class NpmTest {
 	}
 	
 	@Test
-	public void shouldIndexAVersionWithoutRoutesJsonWhenUnpkgServesTheVersion() throws Exception {
-		when(restTemplate.getForObject(eq(Npm.UNPKG_ROUTES_URL), eq(String.class), anyMap())).thenThrow(notFound());
-		when(restTemplate.getForObject(eq(Npm.UNPKG_PACKAGE_JSON_URL), eq(String.class), anyMap()))
-		        .thenReturn("{\"name\": \"@openmrs/esm-billing-app\"}");
+	public void shouldIndexAVersionWhoseTarballShipsNoRoutesJson() throws Exception {
+		stubTarball(tarball(Map.of("package/package.json", "{\"name\": \"@openmrs/esm-billing-app\"}")));
 		
 		AddOnVersion version = versionToEnrich("1.3.1");
 		npm.fetchVersionDetails(billingApp(), version);
 		
-		// unpkg serves the version and it ships no routes.json: it declares no dependencies
+		// a frontend module without a routes.json declares no backend dependencies
 		assertThat(version.getRequireModules(), nullValue());
 	}
 	
 	@Test
-	public void shouldThrowWhenUnpkgDoesNotServeTheVersionAtAll() {
-		// right after a publish, unpkg can lag behind the registry. Indexing "no dependencies"
-		// in that window would be wrong data, and the reuse check would keep it forever.
-		when(restTemplate.getForObject(eq(Npm.UNPKG_ROUTES_URL), eq(String.class), anyMap())).thenThrow(notFound());
-		when(restTemplate.getForObject(eq(Npm.UNPKG_PACKAGE_JSON_URL), eq(String.class), anyMap())).thenThrow(notFound());
+	public void shouldThrowWhenTheTarballCannotBeFetched() {
+		// the registry serves a tarball for every version its packument lists, so a failure here is
+		// transient: the caller drops the version for this run and a later run retries it
+		when(restTemplate.execute(eq(TARBALL_131), eq(HttpMethod.GET), isNull(), any())).thenThrow(notFound());
 		
-		assertThrows(IllegalStateException.class, () -> npm.fetchVersionDetails(billingApp(), versionToEnrich("1.3.1")));
+		assertThrows(HttpClientErrorException.class, () -> npm.fetchVersionDetails(billingApp(), versionToEnrich("1.3.1")));
 	}
 	
 	@Test
@@ -321,37 +351,57 @@ class NpmTest {
 		assertThat(version.getRequireOpenmrsVersion(), nullValue());
 		assertThat(version.getRequireModules().size(), is(2));
 		// SemVer ranges are translated to the OpenMRS syntax the rest of the index uses
-		assertThat(version.getRequireModules(), hasItem(allOf(hasProperty("module", is("org.openmrs.module.billing")),
-		    hasProperty("version", is("2.3.0")), hasProperty("optional", is(false)))));
 		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.webservices.rest")),
-		        hasProperty("version", is("2.24.0")), hasProperty("optional", is(false)))));
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.billing")), hasProperty("version", is("2.3.0")))));
+		assertThat(version.getRequireModules(), hasItem(
+		    allOf(hasProperty("module", is("org.openmrs.module.webservices.rest")), hasProperty("version", is("2.24.0")))));
 	}
 	
 	@Test
-	public void testParsingRoutesJsonForObjectFormOptionalDependencies() throws Exception {
+	public void testParsingRoutesJsonIgnoresOptionalDependencies() throws Exception {
 		AddOnVersion version = new AddOnVersion();
 		
+		// only backendDependencies are indexed, for parity with config.xml's require_module handling
 		npm.handleRoutesJson(getFileAsString("routes.ward.json"), version);
-		assertThat(version.getRequireModules().size(), is(3));
-		assertThat(version.getRequireModules(),
-		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.webservices.rest")),
-		        hasProperty("version", is("2.2.0")), hasProperty("optional", is(false)))));
-		assertThat(version.getRequireModules(), hasItem(allOf(hasProperty("module", is("org.openmrs.module.emrapi")),
-		    hasProperty("version", is("2.*")), hasProperty("optional", is(false)))));
-		// the object form contributes its "version" and its "feature" block is ignored
-		assertThat(version.getRequireModules(), hasItem(allOf(hasProperty("module", is("org.openmrs.module.bedmanagement")),
-		    hasProperty("version", is("6.0.0 - 7.*")), hasProperty("optional", is(true)))));
+		assertThat(version.getRequireModules().size(), is(2));
+		assertThat(version.getRequireModules(), hasItem(
+		    allOf(hasProperty("module", is("org.openmrs.module.webservices.rest")), hasProperty("version", is("2.2.0")))));
+		assertThat(version.getRequireModules(), hasItem(
+		    allOf(hasProperty("module", is("org.openmrs.module.emrapi")), hasProperty("version", is("2.0.0 - 2.*")))));
 	}
 	
 	@Test
-	public void testParsingRoutesJsonWithNoRequiredDependencies() throws Exception {
+	public void testParsingRoutesJsonForObjectFormDependencies() throws Exception {
+		AddOnVersion version = new AddOnVersion();
+		
+		// the object form contributes its "version" and its "feature" block is ignored
+		npm.handleRoutesJson("{ \"backendDependencies\": { \"bedmanagement\": { \"version\": \">=6.0.0 <8.0.0\","
+		        + " \"feature\": { \"flagName\": \"bedmanagement-module\" } } } }",
+		    version);
+		assertThat(version.getRequireModules().size(), is(1));
+		assertThat(version.getRequireModules(), hasItem(allOf(hasProperty("module", is("org.openmrs.module.bedmanagement")),
+		    hasProperty("version", is("6.0.0 - 7.*")))));
+	}
+	
+	@Test
+	public void testParsingRoutesJsonWithUntranslatableRangeRecordsUnknownVersion() throws Exception {
+		AddOnVersion version = new AddOnVersion();
+		
+		// an || union has no OpenMRS equivalent; the module must still be recorded, with an
+		// unknown version, rather than dropped or allowed to fail the whole version
+		npm.handleRoutesJson("{ \"backendDependencies\": { \"billing\": \">=1.0.0 || ^2\" } }", version);
+		
+		assertThat(version.getRequireModules().size(), is(1));
+		assertThat(version.getRequireModules(),
+		    hasItem(allOf(hasProperty("module", is("org.openmrs.module.billing")), hasProperty("version", is("?")))));
+	}
+	
+	@Test
+	public void testParsingRoutesJsonWithOnlyOptionalDependencies() throws Exception {
 		AddOnVersion version = new AddOnVersion();
 		
 		npm.handleRoutesJson(getFileAsString("routes.patientChart.json"), version);
-		assertThat(version.getRequireModules().size(), is(1));
-		assertThat(version.getRequireModules(), hasItem(allOf(hasProperty("module", is("org.openmrs.module.emrapi")),
-		    hasProperty("version", is("2.0.0 - 3.*")), hasProperty("optional", is(true)))));
+		assertThat(version.getRequireModules(), nullValue());
 	}
 	
 	@Test
@@ -418,7 +468,7 @@ class NpmTest {
 		npm.getInfoAndVersionsFor(billingApp());
 		
 		ArgumentCaptor<HttpEntity<Void>> request = ArgumentCaptor.captor();
-		verify(restTemplate).exchange(eq(Npm.REGISTRY_URL), eq(HttpMethod.GET), request.capture(), eq(NpmPackument.class),
+		verify(restTemplate).exchange(eq(NpmJs.REGISTRY_URL), eq(HttpMethod.GET), request.capture(), eq(NpmPackument.class),
 		    anyMap());
 		assertThat(request.getValue().getHeaders().getIfNoneMatch(), hasSize(0));
 	}
@@ -431,7 +481,7 @@ class NpmTest {
 		npm.getInfoAndVersionsFor(billingApp());
 		
 		ArgumentCaptor<HttpEntity<Void>> request = ArgumentCaptor.captor();
-		verify(restTemplate, times(2)).exchange(eq(Npm.REGISTRY_URL), eq(HttpMethod.GET), request.capture(),
+		verify(restTemplate, times(2)).exchange(eq(NpmJs.REGISTRY_URL), eq(HttpMethod.GET), request.capture(),
 		    eq(NpmPackument.class), anyMap());
 		assertThat(request.getAllValues().get(0).getHeaders().getIfNoneMatch(), hasSize(0));
 		assertThat(request.getAllValues().get(1).getHeaders().getIfNoneMatch(), contains("\"abc123\""));
@@ -448,8 +498,7 @@ class NpmTest {
 		
 		assertThat(infoAndVersions.getVersions(), hasSize(2));
 		assertThat(infoAndVersions.getVersions().get(1).getVersion().toString(), equalTo("1.3.1"));
-		assertThat(infoAndVersions.getVersions().get(1).getDownloadUri(),
-		    equalTo("https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.1.tgz"));
+		assertThat(infoAndVersions.getVersions().get(1).getDownloadUri(), equalTo(TARBALL_131));
 		assertThat(infoAndVersions.getVersions().get(1).getReleaseDatetime(),
 		    equalTo(OffsetDateTime.parse("2026-04-14T11:02:47.512Z")));
 	}
@@ -459,7 +508,7 @@ class NpmTest {
 		stubRegistry(okWithEtag(packument(), "\"abc123\""));
 		AddOnInfoAndVersions first = npm.getInfoAndVersionsFor(billingApp());
 		// the indexing run enriches the versions it is handed
-		first.getVersions().get(0).addRequiredModule("webservices.rest", ">=2.24.0", false);
+		first.getVersions().get(0).addRequiredModule("webservices.rest", ">=2.24.0");
 		stubRegistry(new ResponseEntity<>(null, HttpStatus.NOT_MODIFIED));
 		
 		AddOnInfoAndVersions second = npm.getInfoAndVersionsFor(billingApp());
@@ -475,7 +524,7 @@ class NpmTest {
 		npm.getInfoAndVersionsFor(billingApp());
 		
 		ArgumentCaptor<HttpEntity<Void>> request = ArgumentCaptor.captor();
-		verify(restTemplate, times(2)).exchange(eq(Npm.REGISTRY_URL), eq(HttpMethod.GET), request.capture(),
+		verify(restTemplate, times(2)).exchange(eq(NpmJs.REGISTRY_URL), eq(HttpMethod.GET), request.capture(),
 		    eq(NpmPackument.class), anyMap());
 		assertThat(request.getAllValues().get(1).getHeaders().getIfNoneMatch(), hasSize(0));
 	}

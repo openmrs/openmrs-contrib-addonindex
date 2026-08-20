@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class NpmPackument {
 	
 	/**
-	 * The registry copies this from the latest published version's package.json.
+	 * The registry copies this from the package.json of the version tagged latest.
 	 */
 	private String description;
 	

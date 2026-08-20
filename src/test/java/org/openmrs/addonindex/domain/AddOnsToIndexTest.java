@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
-import org.openmrs.addonindex.backend.Npm;
+import org.openmrs.addonindex.backend.NpmJs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 
@@ -30,6 +30,10 @@ import static org.openmrs.addonindex.TestUtil.getFileAsString;
 class AddOnsToIndexTest {
 	
 	private static final Pattern URL_SAFE_UID = Pattern.compile("[a-z0-9._-]+");
+	
+	// Jackson cannot enforce @NonNull when the key is simply absent, and a typo in a package name
+	// only fails much later at the registry, so the catalogue is checked here instead
+	private static final Pattern NPM_PACKAGE_NAME = Pattern.compile("^(@[a-z0-9._-]+/)?[a-z0-9._-]+$");
 	
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -50,10 +54,12 @@ class AddOnsToIndexTest {
 	@Test
 	public void everyFrontendModuleShouldDeclareAnNpmPackageAndTheNpmBackend() throws Exception {
 		for (AddOnToIndex addOn : frontendModules()) {
-			assertThat("npmPackage missing for " + addOn.getUid(), addOn.getNpmPackage(), notNullValue());
-			assertThat("name should be the package name for " + addOn.getUid(), addOn.getName(),
-			    equalTo(addOn.getNpmPackage()));
-			assertThat("wrong backend for " + addOn.getUid(), addOn.getBackend(), equalTo(Npm.class));
+			assertThat("npmPackageDetails missing for " + addOn.getUid(), addOn.getNpmPackageDetails(), notNullValue());
+			String packageName = addOn.getNpmPackageDetails().getPackageName();
+			assertThat("packageName is not a valid npm name for " + addOn.getUid(),
+			    packageName != null && NPM_PACKAGE_NAME.matcher(packageName).matches(), equalTo(true));
+			assertThat("name should be the package name for " + addOn.getUid(), addOn.getName(), equalTo(packageName));
+			assertThat("wrong backend for " + addOn.getUid(), addOn.getBackend(), equalTo(NpmJs.class));
 		}
 	}
 	
@@ -63,7 +69,7 @@ class AddOnsToIndexTest {
 			// uid is a single URL path segment in /api/v1/addon/{uid} and /show/:uid
 			assertThat("uid is not URL-safe: " + addOn.getUid(), URL_SAFE_UID.matcher(addOn.getUid()).matches(),
 			    equalTo(true));
-			String expected = addOn.getNpmPackage().replace("@", "").replace("/", "-");
+			String expected = addOn.getNpmPackageDetails().getPackageName().replace("@", "").replace("/", "-");
 			assertThat(addOn.getUid(), equalTo(expected));
 		}
 	}

@@ -40,8 +40,8 @@ const frontendApp: IAddOn = {
       downloadUri:
         "https://registry.npmjs.org/@openmrs/esm-billing-app/-/esm-billing-app-1.3.1.tgz",
       requireModules: [
-        { module: "billing", version: ">=2.3.0-0", optional: false },
-        { module: "stockmanagement", version: "^1.4.0", optional: true },
+        { module: "org.openmrs.module.billing", version: "2.3.0" },
+        { module: "webservices.rest", version: "2.24.0" },
       ],
     },
   ],
@@ -62,26 +62,6 @@ const omod: IAddOn = {
 };
 
 const renderShow = (addOn: IAddOn) => {
-  myFetch.mockImplementation((url: string) =>
-    url.includes("latestVersion")
-      ? Promise.resolve(addOn.versions[0])
-      : Promise.resolve(addOn),
-  );
-  const client = new QueryClient({
-    defaultOptions: { queries: { retry: false } },
-  });
-  return render(
-    <QueryClientProvider client={client}>
-      <MemoryRouter initialEntries={[`/show/${addOn.uid}`]}>
-        <Routes>
-          <Route path="/show/:uid" element={<Show />} />
-        </Routes>
-      </MemoryRouter>
-    </QueryClientProvider>,
-  );
-};
-
-const renderShowWithPickerSpy = (addOn: IAddOn) => {
   const setHidePlatformPicker = vi.fn();
   myFetch.mockImplementation((url: string) =>
     url.includes("latestVersion")
@@ -105,14 +85,13 @@ const renderShowWithPickerSpy = (addOn: IAddOn) => {
   return { setHidePlatformPicker, ...utils };
 };
 
-describe("the platform picker", () => {
-  beforeEach(() => {
-    myFetch.mockReset();
-  });
+beforeEach(() => {
+  myFetch.mockReset();
+});
 
+describe("the platform picker", () => {
   it("is hidden for a frontend module and restored on leaving the page", async () => {
-    const { setHidePlatformPicker, unmount } =
-      renderShowWithPickerSpy(frontendApp);
+    const { setHidePlatformPicker, unmount } = renderShow(frontendApp);
     await waitFor(() =>
       expect(setHidePlatformPicker).toHaveBeenCalledWith(true),
     );
@@ -123,7 +102,7 @@ describe("the platform picker", () => {
   });
 
   it("is never hidden for an OMOD", async () => {
-    const { setHidePlatformPicker } = renderShowWithPickerSpy(omod);
+    const { setHidePlatformPicker } = renderShow(omod);
     await waitFor(() =>
       expect(screen.getByText("Reporting Module")).toBeVisible(),
     );
@@ -132,10 +111,6 @@ describe("the platform picker", () => {
 });
 
 describe("<Show/> for a frontend module", () => {
-  beforeEach(() => {
-    myFetch.mockReset();
-  });
-
   it("hides the Platform Requirements column", async () => {
     renderShow(frontendApp);
     await waitFor(() =>
@@ -144,13 +119,11 @@ describe("<Show/> for a frontend module", () => {
     expect(screen.queryByText(/Platform Requirements/)).not.toBeInTheDocument();
   });
 
-  it("shows required and optional backend dependencies", async () => {
+  it("shows backend dependencies", async () => {
     renderShow(frontendApp);
     await waitFor(() =>
       expect(
-        screen.getByText(
-          "billing >=2.3.0-0, stockmanagement ^1.4.0 (optional)",
-        ),
+        screen.getByText("billing 2.3.0, webservices.rest 2.24.0"),
       ).toBeVisible(),
     );
   });

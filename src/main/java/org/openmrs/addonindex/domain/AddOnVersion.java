@@ -45,9 +45,6 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	@EqualsAndHashCode.Include
 	private String moduleId;
 	
-	// Each ModuleRequirement.module is a module package (e.g. org.openmrs.module.reporting), whichever
-	// add-on type declared it; for FRONTEND_MODULE the package is assumed from the routes.json module id,
-	// and optional distinguishes backendDependencies from optionalBackendDependencies.
 	private List<ModuleRequirement> requireModules;
 	
 	private List<String> supportedLanguages;
@@ -69,14 +66,10 @@ public class AddOnVersion implements Comparable<AddOnVersion> {
 	}
 	
 	public void addRequiredModule(String requiredModule, String version) {
-		addRequiredModule(requiredModule, version, false);
-	}
-	
-	public void addRequiredModule(String requiredModule, String version, boolean optional) {
 		if (requireModules == null) {
 			requireModules = new ArrayList<>();
 		}
-		requireModules.add(new ModuleRequirement(requiredModule, version == null ? "?" : version, optional));
+		requireModules.add(new ModuleRequirement(requiredModule, version == null ? "?" : version));
 	}
 	
 	public void addLanguage(String localeCode) {

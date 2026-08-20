@@ -35,7 +35,6 @@ interface IAddOn {
 interface IModuleRequirement {
   module: string;
   version: string;
-  optional?: boolean;
 }
 
 interface IAddOnVersion {
