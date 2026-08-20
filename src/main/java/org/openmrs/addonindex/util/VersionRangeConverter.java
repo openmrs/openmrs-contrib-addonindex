@@ -24,10 +24,10 @@ import org.semver4j.range.RangeListFactory;
  * {@link OpenmrsVersionCompareUtil}. Content packages and frontend modules express their
  * requirements as SemVer ranges (e.g. {@code >=2.4.0}, {@code ^2}), whereas everything else
  * expresses them in the OpenMRS syntax (e.g. {@code 2.4.0}, {@code 2.*}, {@code 2.0.0 - 2.*}).
- *
- * <p>semver4j does the SemVer parsing: it normalizes every range form (caret, tilde, x-ranges,
- * hyphen ranges) into one or two comparators, which are then rendered in OpenMRS syntax here.
- * Pre-release suffixes are dropped when {@code format(Semver)} writes the OpenMRS string.
+ * <p>
+ * semver4j does the SemVer parsing: it normalizes every range form (caret, tilde, x-ranges, hyphen
+ * ranges) into one or two comparators, which are then rendered in OpenMRS syntax here. Pre-release
+ * suffixes are dropped when {@code format(Semver)} writes the OpenMRS string.
  */
 public class VersionRangeConverter {
 	
@@ -67,11 +67,11 @@ public class VersionRangeConverter {
 	 * <td>the 7.x branch only</td>
 	 * </tr>
 	 * </table>
-	 *
-	 * <p>Note that a bare {@code 1.2.0} means exactly that version in SemVer, but "that version and
-	 * above" in OpenMRS. We keep the looser OpenMRS reading, on the assumption that a manifest listing
-	 * a plain version means a minimum. {@code >} is likewise kept as the looser inclusive minimum,
-	 * since OpenMRS syntax has no exclusive bound.
+	 * <p>
+	 * Note that a bare {@code 1.2.0} means exactly that version in SemVer, but "that version and above"
+	 * in OpenMRS. We keep the looser OpenMRS reading, on the assumption that a manifest listing a plain
+	 * version means a minimum. {@code >} is likewise kept as the looser inclusive minimum, since
+	 * OpenMRS syntax has no exclusive bound.
 	 *
 	 * @param semVerRange a SemVer range, as found in {@code content.properties} or {@code routes.json}
 	 * @return the equivalent OpenMRS version range, or {@code null} if there is no constraint to
@@ -134,8 +134,7 @@ public class VersionRangeConverter {
 	
 	/**
 	 * A bounded range becomes OpenMRS's inclusive dash range: the upper bound stays as-is when
-	 * inclusive ({@code <=}), and becomes the wildcard branch just below it when exclusive
-	 * ({@code <}).
+	 * inclusive ({@code <=}), and becomes the wildcard branch just below it when exclusive ({@code <}).
 	 */
 	private static String fromBoundedRange(Range first, Range second) {
 		Range.RangeOperator firstOperator = operatorOf(first);
