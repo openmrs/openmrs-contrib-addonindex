@@ -381,13 +381,14 @@ export const Show: React.FC = () => {
                           version={v.version}
                           variant="outline-primary"
                           size="sm"
+                          className="d-inline-flex align-items-center justify-content-center"
                           href={
                             v.renameTo
                               ? `/api/v1/addon/${addOn.uid}/${v.version}/download`
                               : v.downloadUri
                           }
                         >
-                          <FontAwesomeIcon icon={faDownload} />
+                          <FontAwesomeIcon icon={faDownload} className="mr-1" />
                           Download
                         </DownloadButton>
                       </td>
