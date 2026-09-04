@@ -141,7 +141,7 @@ export const Show: React.FC = () => {
   }, [isFrontendModule, setHidePlatformPicker]);
 
   const latestVersionResult = useQuery({
-    queryKey: ["addOnLatestVersion", coreVersion],
+    queryKey: ["addOnLatestVersion", uid, coreVersion],
     queryFn: () =>
       myFetch<IAddOnVersion>(
         `/api/v1/addon/${uid}/latestVersion` +

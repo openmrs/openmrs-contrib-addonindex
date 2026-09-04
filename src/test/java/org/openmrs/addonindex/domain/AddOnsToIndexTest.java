@@ -46,8 +46,8 @@ class AddOnsToIndexTest {
 	@Test
 	public void shouldRegisterEveryReferenceApplicationFrontendModule() throws Exception {
 		// 45 is every app in the reference application's spa-assemble-config.json except
-		// @openmrs/esm-patient-growth-chart-app (which has no stable npm release); update this
-		// number when that config changes
+		// @openmrs/esm-patient-growth-chart-app and @openmrs/esm-metadataexport-app (which
+		// have no stable npm release yet); update this number when that config changes
 		assertThat(frontendModules(), hasSize(45));
 	}
 	
