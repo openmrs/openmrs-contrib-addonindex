@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
@@ -90,4 +91,23 @@ public class AddOnInfoAndVersionsTest {
 		assertThat(info.getModuleId(), is("1"));
 		assertThat(info.getModulePackage(), is("org.openmrs.module.openmrs"));
 	}
+	
+	@Test
+	public void addRequiredModuleShouldRecordTheRequirement() {
+		AddOnVersion version = new AddOnVersion();
+		version.addRequiredModule("org.openmrs.module.reporting", "1.2.3");
+		assertThat(version.getRequireModules(), hasSize(1));
+		assertThat(version.getRequireModules().get(0).getModule(), is("org.openmrs.module.reporting"));
+		assertThat(version.getRequireModules().get(0).getVersion(), is("1.2.3"));
+	}
+	
+	@Test
+	public void addRequiredModuleShouldSubstituteMissingVersion() {
+		AddOnVersion version = new AddOnVersion();
+		version.addRequiredModule("stockmanagement", null);
+		assertThat(version.getRequireModules(), hasSize(1));
+		assertThat(version.getRequireModules().get(0).getModule(), is("stockmanagement"));
+		assertThat(version.getRequireModules().get(0).getVersion(), is("?"));
+	}
+	
 }

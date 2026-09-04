@@ -16,6 +16,7 @@ import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.domain.backend.BintrayPackageDetails;
 import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
 import org.openmrs.addonindex.domain.backend.ModulusModuleDetails;
+import org.openmrs.addonindex.domain.backend.NpmPackageDetails;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -57,5 +58,7 @@ public class AddOnToIndex {
 	private BintrayPackageDetails bintrayPackageDetails;
 	
 	private ModulusModuleDetails modulusDetails;
+	
+	private NpmPackageDetails npmPackageDetails;
 	
 }

@@ -7,23 +7,21 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+package org.openmrs.addonindex.domain.npm;
 
-package org.openmrs.addonindex.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public enum AddOnType {
+/**
+ * The response from npm's point-in-time downloads API.
+ */
+@Data
+@NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class NpmDownloadCount {
 	
-	OMOD("omod"),
-	OWA("zip"),
-	CONTENT_PACKAGE("zip"),
-	FRONTEND_MODULE("tgz");
-	
-	@Getter
-	private final String fileExtension;
-	
-	AddOnType(String fileExtension) {
-		this.fileExtension = fileExtension;
-	}
+	private Integer downloads;
 	
 }

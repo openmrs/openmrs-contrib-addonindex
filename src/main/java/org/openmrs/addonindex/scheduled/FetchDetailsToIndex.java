@@ -31,6 +31,7 @@ import javax.xml.xpath.XPathFactory;
 
 import org.openmrs.addonindex.backend.BackendHandler;
 import org.openmrs.addonindex.backend.SupportsDownloadCounts;
+import org.openmrs.addonindex.backend.SupportsVersionDetails;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
 import org.openmrs.addonindex.domain.AddOnToIndex;
@@ -123,7 +124,7 @@ public class FetchDetailsToIndex {
 				if (handler instanceof SupportsDownloadCounts) {
 					((SupportsDownloadCounts) handler).fetchDownloadCounts(toIndex, infoAndVersions);
 				}
-				fetchExtraDetailsForEachVersion(toIndex, infoAndVersions);
+				fetchExtraDetailsForEachVersion(handler, toIndex, infoAndVersions);
 			}
 			
 			infoAndVersions.setDetailsBasedOnLatestVersion();
@@ -137,8 +138,11 @@ public class FetchDetailsToIndex {
 		}
 	}
 	
-	void fetchExtraDetailsForEachVersion(AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions) throws Exception {
+	void fetchExtraDetailsForEachVersion(BackendHandler handler, AddOnToIndex toIndex, AddOnInfoAndVersions infoAndVersions)
+	        throws Exception {
 		AddOnInfoAndVersions existingInfo = indexingService.getByUid(toIndex.getUid());
+		boolean hadVersions = !infoAndVersions.getVersions().isEmpty();
+		SupportsVersionDetails detailsHandler = handler instanceof SupportsVersionDetails s ? s : null;
 		
 		for (ListIterator<AddOnVersion> iter = infoAndVersions.getVersions().listIterator(); iter.hasNext();) {
 			AddOnVersion version = iter.next();
@@ -155,7 +159,9 @@ public class FetchDetailsToIndex {
 			}
 			
 			try {
-				if (toIndex.getType() == AddOnType.OMOD) {
+				if (detailsHandler != null) {
+					detailsHandler.fetchVersionDetails(toIndex, version);
+				} else if (toIndex.getType() == AddOnType.OMOD) {
 					log.info("Fetching OMOD for {} {}", toIndex.getUid(), version.getVersion());
 					String configXml = fetchZipEntry(version, "config.xml");
 					if (configXml == null) {
@@ -176,8 +182,22 @@ public class FetchDetailsToIndex {
 			}
 			catch (Exception ex) {
 				log.warn("Error fetching/parsing details of {}:{}", toIndex.getUid(), version.getVersion(), ex);
+				if (detailsHandler != null) {
+					// the reuse check above compares fields that never change for these versions, so
+					// indexing this one without its details would be permanent. Leaving it out of this
+					// run means the next run will not find it in the index and will fetch it again.
+					// (A permanently unfetchable version retries on every run, which we prefer over
+					// indexing wrong data.)
+					iter.remove();
+				}
 				// don't fail here, keep going
 			}
+		}
+		
+		if (hadVersions && infoAndVersions.getVersions().isEmpty()) {
+			// indexing this would replace the whole document with an empty one and report success
+			throw new IllegalStateException(
+			        "Every version of " + toIndex.getUid() + " failed its details fetch; not indexing an empty document");
 		}
 	}
 	
