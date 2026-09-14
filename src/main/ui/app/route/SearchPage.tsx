@@ -17,20 +17,16 @@ import { handleParam, myFetch } from "../utils";
 import { AddOnList, SearchBox } from "../component";
 import { IAddOn } from "../types";
 
-// the API defaults to OMOD and OWA only, so the website asks for every type explicitly
-const ALL_TYPES: IAddOn["type"][] = [
-  "OMOD",
-  "FRONTEND_MODULE",
-  "CONTENT_PACKAGE",
-  "OWA",
-];
-
+// pill order; a total Record so a new AddOnType fails to compile here
 const TYPE_LABELS: Record<IAddOn["type"], string> = {
   OMOD: "Backend Modules",
   FRONTEND_MODULE: "Frontend Modules",
   CONTENT_PACKAGE: "Content Packages",
   OWA: "Open Web Apps",
 };
+
+// the API defaults to OMOD and OWA only, so the website asks for every type explicitly
+const ALL_TYPES = Object.keys(TYPE_LABELS) as IAddOn["type"][];
 
 const TypePill: React.FC<{
   active: boolean;
@@ -42,6 +38,7 @@ const TypePill: React.FC<{
     size="sm"
     variant={active ? "primary" : "outline-primary"}
     className="rounded-pill mr-2"
+    aria-pressed={active}
     onClick={onClick}
   >
     {label} ({count})

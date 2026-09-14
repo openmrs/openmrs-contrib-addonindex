@@ -13,6 +13,7 @@ package org.openmrs.addonindex.rest;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -49,7 +50,9 @@ public class AddOnController {
 	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) List<AddOnType> types,
 	        @RequestParam(value = "q", required = false) String query,
 	        @RequestParam(value = "tag", required = false) String tag) throws Exception {
-		return index.search(types == null || types.isEmpty() ? DEFAULT_TYPES : types, query, tag);
+		// an empty value (?type=) binds to a null element
+		List<AddOnType> requested = types == null ? List.of() : types.stream().filter(Objects::nonNull).toList();
+		return index.search(requested.isEmpty() ? DEFAULT_TYPES : requested, query, tag);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")

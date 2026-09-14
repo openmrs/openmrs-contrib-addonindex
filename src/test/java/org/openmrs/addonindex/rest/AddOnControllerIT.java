@@ -90,6 +90,13 @@ public class AddOnControllerIT {
 	}
 	
 	@Test
+	public void testSearchIgnoresEmptyTypeValues() throws Exception {
+		testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?type=OMOD&type=&q=report", String.class);
+		
+		verify(index).search(List.of(AddOnType.OMOD), "report", null);
+	}
+	
+	@Test
 	public void testSearchWithTypes() throws Exception {
 		testRestTemplate.getForEntity(
 		    "http://localhost:" + port + "/api/v1/addon?type=CONTENT_PACKAGE&type=FRONTEND_MODULE&q=report", String.class);

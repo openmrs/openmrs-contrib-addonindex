@@ -87,7 +87,7 @@ describe("<SearchPage/>", () => {
   });
 
   it("filters the results by the selected pill without refetching", async () => {
-    renderSearch("q=patient");
+    renderSearch("q=patient&tag=reporting");
     fireEvent.click(await screen.findByText("Content Packages (1)"));
 
     expect(await screen.findByText("1 result(s)")).toBeVisible();
