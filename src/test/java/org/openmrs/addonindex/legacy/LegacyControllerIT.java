@@ -11,6 +11,7 @@ package org.openmrs.addonindex.legacy;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -75,7 +76,7 @@ public class LegacyControllerIT {
 		
 		AddOnInfoSummary summary = new AddOnInfoSummary(full);
 		
-		given(elasticSearchIndex.search(AddOnType.OMOD, "appui", null)).willReturn(Collections.singleton(summary));
+		given(elasticSearchIndex.search(List.of(AddOnType.OMOD), "appui", null)).willReturn(Collections.singleton(summary));
 		given(elasticSearchIndex.getByUid("org.openmrs.module.appui")).willReturn(full);
 		
 		AddOnToIndex moduleToIndex = new AddOnToIndex();

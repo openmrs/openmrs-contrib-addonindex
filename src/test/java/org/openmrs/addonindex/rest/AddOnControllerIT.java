@@ -11,11 +11,13 @@ package org.openmrs.addonindex.rest;
 
 import java.net.URI;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
+import org.openmrs.addonindex.domain.AddOnType;
 import org.openmrs.addonindex.domain.AddOnVersion;
 import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.util.Version;
@@ -33,6 +35,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -62,7 +65,8 @@ public class AddOnControllerIT {
 		info.setDescription("For reporting");
 		info.addVersion(version);
 		
-		when(index.search(null, "report", null)).thenReturn(singletonList(new AddOnInfoSummary(info)));
+		when(index.search(AddOnController.DEFAULT_TYPES, "report", null))
+		        .thenReturn(singletonList(new AddOnInfoSummary(info)));
 		when(index.getByModulePackage("org.openmrs.module.reporting-module")).thenReturn(info);
 		when(index.getByUid("reporting-module")).thenReturn(info);
 	}
@@ -76,6 +80,21 @@ public class AddOnControllerIT {
 		JSONAssert.assertEquals("[{uid:\"reporting-module\"," + "name:\"Reporting Module\","
 		        + "description:\"For reporting\"," + "versionCount:1," + "latestVersion:\"1.0\"}]",
 		    entity.getBody(), false);
+	}
+	
+	@Test
+	public void testSearchDefaultsToModulesAndOwas() throws Exception {
+		testRestTemplate.getForEntity("http://localhost:" + port + "/api/v1/addon?q=report", String.class);
+		
+		verify(index).search(List.of(AddOnType.OMOD, AddOnType.OWA), "report", null);
+	}
+	
+	@Test
+	public void testSearchWithTypes() throws Exception {
+		testRestTemplate.getForEntity(
+		    "http://localhost:" + port + "/api/v1/addon?type=CONTENT_PACKAGE&type=FRONTEND_MODULE&q=report", String.class);
+		
+		verify(index).search(List.of(AddOnType.CONTENT_PACKAGE, AddOnType.FRONTEND_MODULE), "report", null);
 	}
 	
 	@Test

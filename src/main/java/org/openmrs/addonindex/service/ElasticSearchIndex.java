@@ -99,11 +99,11 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws IOException {
+	public Collection<AddOnInfoSummary> search(Collection<AddOnType> types, String query, String tag) throws IOException {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
-		if (type != null) {
-			//Exact match on type
-			boolQB.filter(QueryBuilders.matchQuery("type", type));
+		if (types != null && !types.isEmpty()) {
+			//Exact match on any of the given types
+			boolQB.filter(QueryBuilders.termsQuery("type", types.stream().map(Enum::name).collect(Collectors.toList())));
 		}
 		
 		if (tag != null) {
