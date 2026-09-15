@@ -105,7 +105,7 @@ public class LegacyController {
 	        @RequestParam(value = "sEcho", required = false) Integer sEcho,
 	        @RequestParam(value = "openmrs_version", required = false) String openmrsVersion,
 	        @RequestParam(value = "excludeModule", required = false) List<String> excludeModuleIds) throws Exception {
-		Collection<AddOnInfoSummary> results = index.search(AddOnType.OMOD, query, null);
+		Collection<AddOnInfoSummary> results = index.search(List.of(AddOnType.OMOD), query, null);
 		
 		LegacyFindModulesResponse response = new LegacyFindModulesResponse();
 		response.setsEcho(sEcho);

@@ -54,7 +54,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ElasticSearchIndex implements Index {
 	
-	private static final int SEARCH_SIZE = 200;
+	/**
+	 * Must stay above the number of indexed add-ons (about 260 in 2026): the website search page
+	 * fetches every type in one request and filters client-side. Elasticsearch allows up to 10000.
+	 */
+	private static final int SEARCH_SIZE = 1000;
 	
 	private static final int TOP_DOWNLOADS_SIZE = 20;
 	
@@ -99,11 +103,11 @@ public class ElasticSearchIndex implements Index {
 	}
 	
 	@Override
-	public Collection<AddOnInfoSummary> search(AddOnType type, String query, String tag) throws IOException {
+	public Collection<AddOnInfoSummary> search(Collection<AddOnType> types, String query, String tag) throws IOException {
 		BoolQueryBuilder boolQB = QueryBuilders.boolQuery();
-		if (type != null) {
-			//Exact match on type
-			boolQB.filter(QueryBuilders.matchQuery("type", type));
+		if (types != null && !types.isEmpty()) {
+			//Exact match on any of the given types
+			boolQB.filter(QueryBuilders.termsQuery("type", types.stream().map(Enum::name).collect(Collectors.toList())));
 		}
 		
 		if (tag != null) {
