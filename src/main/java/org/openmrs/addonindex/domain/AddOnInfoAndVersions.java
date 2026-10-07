@@ -60,6 +60,14 @@ public class AddOnInfoAndVersions {
 	
 	private String hostedUrl;
 	
+	// Maven coordinates, so the UI can build the distro.properties line; null for frontend modules
+	private String mavenGroupId;
+	
+	private String mavenArtifactId;
+	
+	// npm package name, so the UI can build the spa.frontendModules line; null for Maven add-ons
+	private String npmPackageName;
+	
 	private List<AddOnVersion> versions = new ArrayList<>();
 	
 	private Integer downloadCountInLast30Days;
@@ -75,6 +83,13 @@ public class AddOnInfoAndVersions {
 		ret.setType(toIndex.getType());
 		ret.setMaintainers(toIndex.getMaintainers());
 		ret.setLinks(toIndex.getLinks());
+		if (toIndex.getMavenRepoDetails() != null) {
+			ret.setMavenGroupId(toIndex.getMavenRepoDetails().getGroupId());
+			ret.setMavenArtifactId(toIndex.getMavenRepoDetails().getArtifactId());
+		}
+		if (toIndex.getNpmPackageDetails() != null) {
+			ret.setNpmPackageName(toIndex.getNpmPackageDetails().getPackageName());
+		}
 		return ret;
 	}
 	

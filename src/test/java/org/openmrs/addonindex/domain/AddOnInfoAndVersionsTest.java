@@ -10,6 +10,8 @@
 package org.openmrs.addonindex.domain;
 
 import org.junit.jupiter.api.Test;
+import org.openmrs.addonindex.domain.backend.MavenRepoDetails;
+import org.openmrs.addonindex.domain.backend.NpmPackageDetails;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -43,6 +45,32 @@ public class AddOnInfoAndVersionsTest {
 		assertThat(parsed.getDescription(), is("Write code, save lives"));
 		assertThat(parsed.getVersions().size(), is(1));
 		assertThat(parsed.getVersions().get(0).getVersion().toString(), is("1.0"));
+	}
+	
+	@Test
+	public void fromCopiesMavenCoordinatesForDistroSnippet() {
+		AddOnToIndex toIndex = new AddOnToIndex();
+		toIndex.setUid("org.openmrs.module.event");
+		toIndex.setType(AddOnType.OMOD);
+		toIndex.setMavenRepoDetails(new MavenRepoDetails("org.openmrs", "event"));
+		
+		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(toIndex);
+		assertThat(info.getMavenGroupId(), is("org.openmrs"));
+		assertThat(info.getMavenArtifactId(), is("event"));
+		assertThat(info.getNpmPackageName(), nullValue());
+	}
+	
+	@Test
+	public void fromCopiesNpmPackageNameForFrontendModule() {
+		AddOnToIndex toIndex = new AddOnToIndex();
+		toIndex.setUid("openmrs-esm-billing-app");
+		toIndex.setType(AddOnType.FRONTEND_MODULE);
+		toIndex.setNpmPackageDetails(new NpmPackageDetails("@openmrs/esm-billing-app"));
+		
+		AddOnInfoAndVersions info = AddOnInfoAndVersions.from(toIndex);
+		assertThat(info.getNpmPackageName(), is("@openmrs/esm-billing-app"));
+		assertThat(info.getMavenGroupId(), nullValue());
+		assertThat(info.getMavenArtifactId(), nullValue());
 	}
 	
 	@Test

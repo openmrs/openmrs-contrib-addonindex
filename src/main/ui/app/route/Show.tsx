@@ -25,7 +25,7 @@ import ReactGA from "react-ga";
 
 import dayjs from "dayjs/esm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 import { CoreVersionContext, HidePlatformPickerContext } from "../App";
@@ -71,6 +71,72 @@ const DownloadButton: React.FC<DownloadButtonProps & ButtonProps> = ({
     >
       {children}
     </Button>
+  );
+};
+
+// distro.properties key prefix per add-on type, and the groupId the OpenMRS SDK
+// assumes when the entry has no `.groupId` line
+const DISTRO_KEY: Record<
+  IAddOn["type"],
+  { prefix: string; defaultGroupId?: string }
+> = {
+  OMOD: { prefix: "omod", defaultGroupId: "org.openmrs.module" },
+  OWA: { prefix: "owa", defaultGroupId: "org.openmrs.owa" },
+  CONTENT_PACKAGE: { prefix: "content", defaultGroupId: "org.openmrs.content" },
+  FRONTEND_MODULE: { prefix: "spa.frontendModules" },
+};
+
+const distroSnippet = (addOn: IAddOn, version: string) => {
+  const { prefix, defaultGroupId } = DISTRO_KEY[addOn.type];
+  const id =
+    addOn.type === "FRONTEND_MODULE"
+      ? addOn.npmPackageName
+      : addOn.mavenArtifactId;
+  if (!id) {
+    return null;
+  }
+  const key = `${prefix}.${id}`;
+  const lines = [`${key}=${version}`];
+  if (
+    defaultGroupId &&
+    addOn.mavenGroupId &&
+    addOn.mavenGroupId !== defaultGroupId
+  ) {
+    lines.push(`${key}.groupId=${addOn.mavenGroupId}`);
+  }
+  return lines.join("\n");
+};
+
+const DistroSnippet: React.FC<{ snippet: string }> = ({ snippet }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copy = () =>
+    navigator.clipboard.writeText(snippet).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+
+  return (
+    <div className="mt-3">
+      <strong>Add to your distribution:</strong>
+      <div className="d-flex align-items-center">
+        <pre
+          className="mb-0 mr-2 p-2 rounded bg-light text-danger text-break"
+          style={{ whiteSpace: "pre-wrap", minWidth: 0 }}
+        >
+          <code>{snippet}</code>
+        </pre>
+        <Button
+          variant="outline-secondary"
+          size="sm"
+          className="text-nowrap"
+          onClick={copy}
+        >
+          <FontAwesomeIcon icon={faCopy} className="mr-1" />
+          {copied ? "Copied" : "Copy"}
+        </Button>
+      </div>
+    </div>
   );
 };
 
@@ -251,6 +317,9 @@ export const Show: React.FC = () => {
 
   const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
 
+  const snippet =
+    addOn && latestVersion ? distroSnippet(addOn, latestVersion.version) : null;
+
   return (
     (addOnResult.isLoading && <></>) ||
     (addOnResult.isError && (
@@ -335,6 +404,7 @@ export const Show: React.FC = () => {
                 {version}
               </DownloadButton>
             )}
+            {snippet && <DistroSnippet snippet={snippet} />}
           </Col>
         </Row>
         <>
