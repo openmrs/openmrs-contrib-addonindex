@@ -1,6 +1,28 @@
 {
   "toIndex": [
     {
+      "uid": "org.openmrs.core",
+      "type": "CORE",
+      "name": "OpenMRS Core (WAR)",
+      "maintainers": [
+        {
+          "name": "OpenMRS",
+          "url": "https://github.com/openmrs"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-core"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.ArtifactoryVersionFolders",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.web",
+        "artifactId": "openmrs-webapp"
+      }
+    },
+    {
       "uid": "org.openmrs.content.referenceapplication",
       "type": "CONTENT_PACKAGE",
       "name": "Reference Application Content Package",
