@@ -20,7 +20,10 @@ import org.openmrs.addonindex.service.Index;
 import org.openmrs.addonindex.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,12 +71,22 @@ public class RenamingFileProxyController {
 			return;
 		}
 		
-		Resource resource = restTemplateBuilder.build().getForObject(addOnVersion.get().getDownloadUri(), Resource.class);
-		
-		response.setHeader("Content-Disposition", "inline;filename=" + addOnVersion.get().getRenameTo());
-		if (resource != null) {
-			StreamUtils.copy(resource.getInputStream(), response.getOutputStream());
-		}
+		String fileName = addOnVersion.get().getRenameTo();
+		// streams the upstream body straight through
+		restTemplateBuilder.build().execute(addOnVersion.get().getDownloadUri(), HttpMethod.GET, null, upstream -> {
+			response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
+			    ContentDisposition.attachment().filename(fileName).build().toString());
+			MediaType contentType = upstream.getHeaders().getContentType();
+			if (contentType != null) {
+				response.setContentType(contentType.toString());
+			}
+			long contentLength = upstream.getHeaders().getContentLength();
+			if (contentLength >= 0) {
+				response.setContentLengthLong(contentLength);
+			}
+			StreamUtils.copy(upstream.getBody(), response.getOutputStream());
+			return null;
+		});
 	}
 	
 }

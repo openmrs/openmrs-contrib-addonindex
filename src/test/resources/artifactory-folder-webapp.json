@@ -1,0 +1,32 @@
+{
+  "repo" : "releases",
+  "path" : "/org/openmrs/web/openmrs-webapp",
+  "created" : "2017-02-08T13:41:34.976Z",
+  "createdBy" : "rkorytkowski",
+  "lastModified" : "2017-02-08T13:41:34.976Z",
+  "modifiedBy" : "rkorytkowski",
+  "lastUpdated" : "2017-02-08T13:41:34.976Z",
+  "children" : [ {
+    "uri" : "/2.8.10",
+    "folder" : true
+  }, {
+    "uri" : "/2.8.0-alpha",
+    "folder" : true
+  }, {
+    "uri" : "/2.8.0-beta",
+    "folder" : true
+  }, {
+    "uri" : "/1.9.0-RC",
+    "folder" : true
+  }, {
+    "uri" : "/2.9.0-SNAPSHOT",
+    "folder" : true
+  }, {
+    "uri" : "/2.8.9",
+    "folder" : true
+  }, {
+    "uri" : "/maven-metadata.xml",
+    "folder" : false
+  } ],
+  "uri" : "https://openmrs.jfrog.io/artifactory/api/storage/releases/org/openmrs/web/openmrs-webapp"
+}

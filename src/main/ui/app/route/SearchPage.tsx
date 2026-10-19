@@ -23,6 +23,7 @@ const TYPE_LABELS: Record<IAddOn["type"], string> = {
   FRONTEND_MODULE: "Frontend Modules",
   CONTENT_PACKAGE: "Content Packages",
   OWA: "Open Web Apps",
+  CORE: "OpenMRS Core",
 };
 
 // the API defaults to OMOD and OWA only, so the website asks for every type explicitly

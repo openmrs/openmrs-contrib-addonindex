@@ -70,7 +70,13 @@ describe("<SearchPage/>", () => {
     renderSearch("q=patient");
     await waitFor(() => expect(myFetch).toHaveBeenCalled());
     const url: string = myFetch.mock.calls[0][0];
-    for (const type of ["OMOD", "OWA", "CONTENT_PACKAGE", "FRONTEND_MODULE"]) {
+    for (const type of [
+      "OMOD",
+      "OWA",
+      "CONTENT_PACKAGE",
+      "FRONTEND_MODULE",
+      "CORE",
+    ]) {
       expect(url).toContain(`type=${type}`);
     }
     expect(url).toContain("q=patient");
@@ -83,6 +89,7 @@ describe("<SearchPage/>", () => {
     expect(screen.getByText("Frontend Modules (1)")).toBeVisible();
     expect(screen.getByText("Content Packages (1)")).toBeVisible();
     expect(screen.getByText("Open Web Apps (0)")).toBeVisible();
+    expect(screen.getByText("OpenMRS Core (0)")).toBeVisible();
     expect(screen.getByText("3 result(s)")).toBeVisible();
   });
 

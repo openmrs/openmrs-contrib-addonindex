@@ -1,0 +1,13 @@
+{
+  "repo": "releases",
+  "path": "/org/openmrs/web/openmrs-webapp/2.8.10/openmrs-webapp-2.8.10.war",
+  "created": "2026-10-05T16:56:25.370Z",
+  "createdBy": "ci",
+  "lastModified": "2026-10-05T16:56:22.000Z",
+  "modifiedBy": "ci",
+  "lastUpdated": "2026-10-05T16:56:25.371Z",
+  "downloadUri": "https://openmrs.jfrog.io/artifactory/releases/org/openmrs/web/openmrs-webapp/2.8.10/openmrs-webapp-2.8.10.war",
+  "mimeType": "application/java-archive",
+  "size": "130819547",
+  "uri": "https://openmrs.jfrog.io/artifactory/api/storage/releases/org/openmrs/web/openmrs-webapp/2.8.10/openmrs-webapp-2.8.10.war"
+}
