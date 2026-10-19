@@ -207,6 +207,7 @@ describe("the distro.properties snippet", () => {
     fireEvent.click(button);
     expect(writeText).toHaveBeenCalledWith("omod.reporting=1.0.0");
     await waitFor(() => expect(screen.getByText(/copied/i)).toBeVisible());
+  });
 });
 
 describe("<Show/> for OpenMRS core", () => {
