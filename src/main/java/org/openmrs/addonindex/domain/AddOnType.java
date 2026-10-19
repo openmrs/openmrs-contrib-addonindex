@@ -17,7 +17,8 @@ public enum AddOnType {
 	OMOD("omod"),
 	OWA("zip"),
 	CONTENT_PACKAGE("zip"),
-	FRONTEND_MODULE("tgz");
+	FRONTEND_MODULE("tgz"),
+	CORE("war");
 	
 	@Getter
 	private final String fileExtension;

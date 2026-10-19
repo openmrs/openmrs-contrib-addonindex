@@ -83,7 +83,7 @@ public class ElasticSearchIndexManualTest {
 		Collection<AddOnInfoAndVersions> allByType = elasticSearchIndex.getAllByType(AddOnType.OMOD);
 		assertThat(allByType.size(), greaterThanOrEqualTo(1));
 		
-		Collection<AddOnInfoSummary> results = elasticSearchIndex.search(AddOnType.OMOD, "testing", null);
+		Collection<AddOnInfoSummary> results = elasticSearchIndex.search(List.of(AddOnType.OMOD), "testing", null);
 		assertThat(results.size(), greaterThanOrEqualTo(1));
 	}
 	

@@ -196,15 +196,17 @@ export const Show: React.FC = () => {
 
   const addOn = useMemo(() => addOnResult.data, [addOnResult.data]);
 
-  const isFrontendModule = addOn?.type === "FRONTEND_MODULE";
+  // frontend modules and core itself have no OpenMRS core requirement
+  const hasNoCoreRequirement =
+    addOn?.type === "FRONTEND_MODULE" || addOn?.type === "CORE";
 
   const setHidePlatformPicker = useContext(HidePlatformPickerContext);
 
   useEffect(() => {
-    // frontend modules have no OpenMRS core requirement, so the picker means nothing here
-    setHidePlatformPicker(isFrontendModule);
+    // without a core requirement, the picker means nothing here
+    setHidePlatformPicker(hasNoCoreRequirement);
     return () => setHidePlatformPicker(false);
-  }, [isFrontendModule, setHidePlatformPicker]);
+  }, [hasNoCoreRequirement, setHidePlatformPicker]);
 
   const latestVersionResult = useQuery({
     queryKey: ["addOnLatestVersion", uid, coreVersion],
@@ -413,7 +415,7 @@ export const Show: React.FC = () => {
               <tr>
                 <th>Version</th>
                 <th>Release Date</th>
-                {!isFrontendModule && (
+                {!hasNoCoreRequirement && (
                   <th>
                     Platform Requirements&nbsp;
                     <OverlayTrigger
@@ -443,7 +445,9 @@ export const Show: React.FC = () => {
                     <tr key={v.version} className={className}>
                       <td>{v.version}</td>
                       <td>{formatDateTime(v.releaseDatetime)}</td>
-                      {!isFrontendModule && <td>{v.requireOpenmrsVersion}</td>}
+                      {!hasNoCoreRequirement && (
+                        <td>{v.requireOpenmrsVersion}</td>
+                      )}
                       <td>{formatRequiredModules(v)}</td>
                       <td>
                         <DownloadButton

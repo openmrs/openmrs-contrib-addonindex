@@ -12,6 +12,8 @@ package org.openmrs.addonindex.rest;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 import org.openmrs.addonindex.domain.AddOnInfoAndVersions;
 import org.openmrs.addonindex.domain.AddOnInfoSummary;
@@ -37,11 +39,20 @@ public class AddOnController {
 		this.index = index;
 	}
 	
+	/**
+	 * Add-on types returned when the request has no "type" parameter. Content packages and frontend
+	 * modules are excluded so that clients written before those types existed (e.g. the Add On Manager
+	 * OWA) keep getting only what they can install.
+	 */
+	static final List<AddOnType> DEFAULT_TYPES = List.of(AddOnType.OMOD, AddOnType.OWA);
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon")
-	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) AddOnType type,
+	public Collection<AddOnInfoSummary> search(@RequestParam(value = "type", required = false) List<AddOnType> types,
 	        @RequestParam(value = "q", required = false) String query,
 	        @RequestParam(value = "tag", required = false) String tag) throws Exception {
-		return index.search(type, query, tag);
+		// an empty value (?type=) binds to a null element
+		List<AddOnType> requested = types == null ? List.of() : types.stream().filter(Objects::nonNull).toList();
+		return index.search(requested.isEmpty() ? DEFAULT_TYPES : requested, query, tag);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/v1/addon", params = "modulePackage")

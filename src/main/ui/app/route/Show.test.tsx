@@ -64,6 +64,21 @@ const omod: IAddOn = {
   ],
 };
 
+const core: IAddOn = {
+  uid: "org.openmrs.core",
+  name: "OpenMRS Core (WAR)",
+  type: "CORE",
+  hostedUrl: "",
+  versions: [
+    {
+      version: "2.8.10",
+      downloadUri:
+        "https://openmrs.jfrog.io/artifactory/releases/org/openmrs/web/openmrs-webapp/2.8.10/openmrs-webapp-2.8.10.war",
+      renameTo: "openmrs.war",
+    },
+  ],
+};
+
 const renderShow = (addOn: IAddOn) => {
   const setHidePlatformPicker = vi.fn();
   myFetch.mockImplementation((url: string) =>
@@ -192,5 +207,27 @@ describe("the distro.properties snippet", () => {
     fireEvent.click(button);
     expect(writeText).toHaveBeenCalledWith("omod.reporting=1.0.0");
     await waitFor(() => expect(screen.getByText(/copied/i)).toBeVisible());
+});
+
+describe("<Show/> for OpenMRS core", () => {
+  it("hides the platform picker and the Platform Requirements column", async () => {
+    const { setHidePlatformPicker } = renderShow(core);
+    await waitFor(() =>
+      expect(setHidePlatformPicker).toHaveBeenCalledWith(true),
+    );
+    expect(screen.queryByText(/Platform Requirements/)).not.toBeInTheDocument();
+  });
+
+  it("downloads through the renaming proxy", async () => {
+    renderShow(core);
+    await waitFor(() =>
+      expect(screen.getByText("OpenMRS Core (WAR)")).toBeVisible(),
+    );
+    for (const link of screen.getAllByRole("link", { name: /Download/ })) {
+      expect(link).toHaveAttribute(
+        "href",
+        "/api/v1/addon/org.openmrs.core/2.8.10/download",
+      );
+    }
   });
 });

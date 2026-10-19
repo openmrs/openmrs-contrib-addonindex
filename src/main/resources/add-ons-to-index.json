@@ -2940,6 +2940,35 @@
       }
     },
     {
+      "uid": "org.openmrs.module.metadataexport",
+      "type": "OMOD",
+      "name": "Metadata Export",
+      "description": "Exports metadata from a running OpenMRS instance as an Initializer-format configuration package, so a configuration can be captured from one server and replayed elsewhere",
+      "tags": [
+        "metadata",
+        "initializer"
+      ],
+      "maintainers": [
+        {
+          "name": "Wikum Weerakutti"
+        },
+        {
+          "name": "Bawantha Thilan"
+        }
+      ],
+      "links": [
+        {
+          "rel": "source",
+          "href": "https://github.com/openmrs/openmrs-module-metadataexport"
+        }
+      ],
+      "backend": "org.openmrs.addonindex.backend.Artifactory",
+      "mavenRepoDetails": {
+        "groupId": "org.openmrs.module",
+        "artifactId": "metadataexport"
+      }
+    },
+    {
       "uid": "org.openmrs.module.metadatamapping",
       "type": "OMOD",
       "name": "Metadata Mapping",
