@@ -77,7 +77,7 @@ const DownloadButton: React.FC<DownloadButtonProps & ButtonProps> = ({
 // distro.properties key prefix per add-on type, and the groupId the OpenMRS SDK
 // assumes when the entry has no `.groupId` line
 const DISTRO_KEY: Record<
-  IAddOn["type"],
+  Exclude<IAddOn["type"], "CORE">,
   { prefix: string; defaultGroupId?: string }
 > = {
   OMOD: { prefix: "omod", defaultGroupId: "org.openmrs.module" },
@@ -87,6 +87,10 @@ const DISTRO_KEY: Record<
 };
 
 const distroSnippet = (addOn: IAddOn, version: string) => {
+  // the SDK reads war.openmrs as org.openmrs.web:openmrs-webapp
+  if (addOn.type === "CORE") {
+    return `war.openmrs=${version}`;
+  }
   const { prefix, defaultGroupId } = DISTRO_KEY[addOn.type];
   const id =
     addOn.type === "FRONTEND_MODULE"
@@ -107,7 +111,9 @@ const distroSnippet = (addOn: IAddOn, version: string) => {
   return lines.join("\n");
 };
 
-const DistroSnippet: React.FC<{ snippet: string }> = ({ snippet }) => {
+const CopySnippetButton: React.FC<
+  { snippet: string; version?: string } & ButtonProps
+> = ({ snippet, version, className, ...props }) => {
   const [copied, setCopied] = useState(false);
 
   const copy = () =>
@@ -116,29 +122,45 @@ const DistroSnippet: React.FC<{ snippet: string }> = ({ snippet }) => {
       setTimeout(() => setCopied(false), 2000);
     });
 
+  // in a version row the button needs to say what it copies; the accessible
+  // name starts with the visible label so voice control can match it
+  const label = version
+    ? copied
+      ? "Copied distro line"
+      : "Copy distro line"
+    : copied
+      ? "Copied"
+      : "Copy";
+
   return (
-    <div className="mt-3">
-      <strong>Add to your distribution:</strong>
-      <div className="d-flex align-items-center">
-        <pre
-          className="mb-0 mr-2 p-2 rounded bg-light text-danger text-break"
-          style={{ whiteSpace: "pre-wrap", minWidth: 0 }}
-        >
-          <code>{snippet}</code>
-        </pre>
-        <Button
-          variant="outline-secondary"
-          size="sm"
-          className="text-nowrap"
-          onClick={copy}
-        >
-          <FontAwesomeIcon icon={faCopy} className="mr-1" />
-          {copied ? "Copied" : "Copy"}
-        </Button>
-      </div>
-    </div>
+    <Button
+      variant="outline-secondary"
+      size="sm"
+      className={`text-nowrap ${className ?? ""}`}
+      onClick={copy}
+      aria-label={version ? `${label} for version ${version}` : undefined}
+      {...props}
+    >
+      <FontAwesomeIcon icon={faCopy} className="mr-1" />
+      {label}
+    </Button>
   );
 };
+
+const DistroSnippet: React.FC<{ snippet: string }> = ({ snippet }) => (
+  <div className="mt-3">
+    <strong>Add to your distribution:</strong>
+    <div className="d-flex align-items-center">
+      <pre
+        className="mb-0 mr-2 p-2 rounded bg-light text-danger text-break"
+        style={{ whiteSpace: "pre-wrap", minWidth: 0 }}
+      >
+        <code>{snippet}</code>
+      </pre>
+      <CopySnippetButton snippet={snippet} />
+    </div>
+  </div>
+);
 
 const formatLinkHeader = (link) => {
   switch (link.rel) {
@@ -440,6 +462,7 @@ export const Show: React.FC = () => {
               {addOn?.versions?.map((v) => {
                 const className =
                   v?.version === highlightVersion ? "highlight" : null;
+                const versionSnippet = v && distroSnippet(addOn, v.version);
                 return (
                   v && (
                     <tr key={v.version} className={className}>
@@ -449,7 +472,7 @@ export const Show: React.FC = () => {
                         <td>{v.requireOpenmrsVersion}</td>
                       )}
                       <td>{formatRequiredModules(v)}</td>
-                      <td>
+                      <td className="text-nowrap">
                         <DownloadButton
                           uid={addOn.uid}
                           version={v.version}
@@ -465,6 +488,13 @@ export const Show: React.FC = () => {
                           <FontAwesomeIcon icon={faDownload} className="mr-1" />
                           Download
                         </DownloadButton>
+                        {versionSnippet && (
+                          <CopySnippetButton
+                            snippet={versionSnippet}
+                            version={v.version}
+                            className="ml-2"
+                          />
+                        )}
                       </td>
                     </tr>
                   )

@@ -1,5 +1,11 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { vi, describe, it, expect, beforeEach } from "vitest";
@@ -203,10 +209,44 @@ describe("the distro.properties snippet", () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     Object.assign(navigator, { clipboard: { writeText } });
     renderShow(omod);
-    const button = await screen.findByRole("button", { name: /copy/i });
-    fireEvent.click(button);
+    const block = (await screen.findByText(/Add to your distribution/))
+      .parentElement;
+    fireEvent.click(within(block).getByRole("button", { name: /copy/i }));
     expect(writeText).toHaveBeenCalledWith("omod.reporting=1.0.0");
-    await waitFor(() => expect(screen.getByText(/copied/i)).toBeVisible());
+    await waitFor(() =>
+      expect(within(block).getByText(/copied/i)).toBeVisible(),
+    );
+  });
+
+  it("copies the snippet for each version from its row", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    renderShow({
+      ...omod,
+      versions: [...omod.versions, { ...omod.versions[0], version: "0.9.0" }],
+    });
+    const button = await screen.findByRole("button", {
+      name: "Copy distro line for version 0.9.0",
+    });
+    fireEvent.click(button);
+    expect(writeText).toHaveBeenCalledWith("omod.reporting=0.9.0");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", {
+          name: "Copied distro line for version 0.9.0",
+        }),
+      ).toHaveTextContent("Copied distro line"),
+    );
+  });
+
+  it("has no copy button in the rows when the index has no Maven artifactId yet", async () => {
+    renderShow({ ...omod, mavenArtifactId: undefined });
+    await waitFor(() =>
+      expect(screen.getByText("Reporting Module")).toBeVisible(),
+    );
+    expect(
+      screen.queryByRole("button", { name: /copy/i }),
+    ).not.toBeInTheDocument();
   });
 });
 
@@ -230,5 +270,12 @@ describe("<Show/> for OpenMRS core", () => {
         "/api/v1/addon/org.openmrs.core/2.8.10/download",
       );
     }
+  });
+
+  it("shows the war.openmrs distro.properties snippet", async () => {
+    renderShow(core);
+    await waitFor(() =>
+      expect(screen.getByText("war.openmrs=2.8.10")).toBeVisible(),
+    );
   });
 });
