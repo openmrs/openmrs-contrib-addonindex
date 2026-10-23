@@ -124,13 +124,8 @@ const CopySnippetButton: React.FC<
 
   // in a version row the button needs to say what it copies; the accessible
   // name starts with the visible label so voice control can match it
-  const label = version
-    ? copied
-      ? "Copied distro line"
-      : "Copy distro line"
-    : copied
-      ? "Copied"
-      : "Copy";
+  const what = snippet.includes("\n") ? " distro lines" : " distro line";
+  const label = `${copied ? "Copied" : "Copy"}${version ? what : ""}`;
 
   return (
     <Button

@@ -186,6 +186,18 @@ describe("the distro.properties snippet", () => {
     );
   });
 
+  it("says lines, not line, in a row when the snippet has a groupId line", async () => {
+    renderShow({
+      ...omod,
+      mavenGroupId: "org.openmrs",
+    });
+    expect(
+      await screen.findByRole("button", {
+        name: "Copy distro lines for version 1.0.0",
+      }),
+    ).toHaveTextContent("Copy distro lines");
+  });
+
   it("uses the npm package name, not the display name, for a frontend module", async () => {
     renderShow({ ...frontendApp, name: "Billing" });
     await waitFor(() =>
@@ -277,5 +289,17 @@ describe("<Show/> for OpenMRS core", () => {
     await waitFor(() =>
       expect(screen.getByText("war.openmrs=2.8.10")).toBeVisible(),
     );
+  });
+
+  it("copies the war.openmrs line from a version row", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    renderShow(core);
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "Copy distro line for version 2.8.10",
+      }),
+    );
+    expect(writeText).toHaveBeenCalledWith("war.openmrs=2.8.10");
   });
 });
