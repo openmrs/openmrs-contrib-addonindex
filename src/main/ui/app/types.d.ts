@@ -28,6 +28,9 @@ interface IAddOn {
   tags?: string[];
   versions?: IAddOnVersion[];
   hostedUrl: string;
+  mavenGroupId?: string;
+  mavenArtifactId?: string;
+  npmPackageName?: string;
   links?: Link[];
   downloadCountInLast30Days?: number;
 }

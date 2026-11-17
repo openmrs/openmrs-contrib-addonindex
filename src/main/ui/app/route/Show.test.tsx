@@ -1,5 +1,11 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { vi, describe, it, expect, beforeEach } from "vitest";
@@ -34,6 +40,7 @@ const frontendApp: IAddOn = {
   name: "@openmrs/esm-billing-app",
   type: "FRONTEND_MODULE",
   hostedUrl: "",
+  npmPackageName: "@openmrs/esm-billing-app",
   versions: [
     {
       version: "1.3.1",
@@ -52,6 +59,8 @@ const omod: IAddOn = {
   name: "Reporting Module",
   type: "OMOD",
   hostedUrl: "",
+  mavenGroupId: "org.openmrs.module",
+  mavenArtifactId: "reporting",
   versions: [
     {
       version: "1.0.0",
@@ -153,6 +162,106 @@ describe("<Show/> for a frontend module", () => {
   });
 });
 
+describe("the distro.properties snippet", () => {
+  it("uses the Maven artifactId, not the uid, for an OMOD", async () => {
+    renderShow({ ...omod, uid: "org.openmrs.module.reporting-module" });
+    await waitFor(() =>
+      expect(screen.getByText("omod.reporting=1.0.0")).toBeVisible(),
+    );
+  });
+
+  it("adds a groupId line when the groupId is not the OMOD default", async () => {
+    renderShow({
+      ...omod,
+      uid: "org.openmrs.module.event",
+      mavenGroupId: "org.openmrs",
+      mavenArtifactId: "event",
+    });
+    await waitFor(() =>
+      expect(
+        screen.getByText(
+          /omod\.event=1\.0\.0\s+omod\.event\.groupId=org\.openmrs/,
+        ),
+      ).toBeVisible(),
+    );
+  });
+
+  it("says lines, not line, in a row when the snippet has a groupId line", async () => {
+    renderShow({
+      ...omod,
+      mavenGroupId: "org.openmrs",
+    });
+    expect(
+      await screen.findByRole("button", {
+        name: "Copy distro lines for version 1.0.0",
+      }),
+    ).toHaveTextContent("Copy distro lines");
+  });
+
+  it("uses the npm package name, not the display name, for a frontend module", async () => {
+    renderShow({ ...frontendApp, name: "Billing" });
+    await waitFor(() =>
+      expect(
+        screen.getByText("spa.frontendModules.@openmrs/esm-billing-app=1.3.1"),
+      ).toBeVisible(),
+    );
+  });
+
+  it("is hidden when the index has no Maven artifactId yet", async () => {
+    renderShow({ ...omod, mavenArtifactId: undefined });
+    await waitFor(() =>
+      expect(screen.getByText("Reporting Module")).toBeVisible(),
+    );
+    expect(
+      screen.queryByText(/Add to your distribution/),
+    ).not.toBeInTheDocument();
+  });
+
+  it("copies the snippet to the clipboard", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    renderShow(omod);
+    const block = (await screen.findByText(/Add to your distribution/))
+      .parentElement;
+    fireEvent.click(within(block).getByRole("button", { name: /copy/i }));
+    expect(writeText).toHaveBeenCalledWith("omod.reporting=1.0.0");
+    await waitFor(() =>
+      expect(within(block).getByText(/copied/i)).toBeVisible(),
+    );
+  });
+
+  it("copies the snippet for each version from its row", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    renderShow({
+      ...omod,
+      versions: [...omod.versions, { ...omod.versions[0], version: "0.9.0" }],
+    });
+    const button = await screen.findByRole("button", {
+      name: "Copy distro line for version 0.9.0",
+    });
+    fireEvent.click(button);
+    expect(writeText).toHaveBeenCalledWith("omod.reporting=0.9.0");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", {
+          name: "Copied distro line for version 0.9.0",
+        }),
+      ).toHaveTextContent("Copied distro line"),
+    );
+  });
+
+  it("has no copy button in the rows when the index has no Maven artifactId yet", async () => {
+    renderShow({ ...omod, mavenArtifactId: undefined });
+    await waitFor(() =>
+      expect(screen.getByText("Reporting Module")).toBeVisible(),
+    );
+    expect(
+      screen.queryByRole("button", { name: /copy/i }),
+    ).not.toBeInTheDocument();
+  });
+});
+
 describe("<Show/> for OpenMRS core", () => {
   it("hides the platform picker and the Platform Requirements column", async () => {
     const { setHidePlatformPicker } = renderShow(core);
@@ -173,5 +282,24 @@ describe("<Show/> for OpenMRS core", () => {
         "/api/v1/addon/org.openmrs.core/2.8.10/download",
       );
     }
+  });
+
+  it("shows the war.openmrs distro.properties snippet", async () => {
+    renderShow(core);
+    await waitFor(() =>
+      expect(screen.getByText("war.openmrs=2.8.10")).toBeVisible(),
+    );
+  });
+
+  it("copies the war.openmrs line from a version row", async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    Object.assign(navigator, { clipboard: { writeText } });
+    renderShow(core);
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "Copy distro line for version 2.8.10",
+      }),
+    );
+    expect(writeText).toHaveBeenCalledWith("war.openmrs=2.8.10");
   });
 });

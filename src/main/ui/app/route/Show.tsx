@@ -25,7 +25,7 @@ import ReactGA from "react-ga";
 
 import dayjs from "dayjs/esm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 
 import { CoreVersionContext, HidePlatformPickerContext } from "../App";
@@ -73,6 +73,89 @@ const DownloadButton: React.FC<DownloadButtonProps & ButtonProps> = ({
     </Button>
   );
 };
+
+// distro.properties key prefix per add-on type, and the groupId the OpenMRS SDK
+// assumes when the entry has no `.groupId` line
+const DISTRO_KEY: Record<
+  Exclude<IAddOn["type"], "CORE">,
+  { prefix: string; defaultGroupId?: string }
+> = {
+  OMOD: { prefix: "omod", defaultGroupId: "org.openmrs.module" },
+  OWA: { prefix: "owa", defaultGroupId: "org.openmrs.owa" },
+  CONTENT_PACKAGE: { prefix: "content", defaultGroupId: "org.openmrs.content" },
+  FRONTEND_MODULE: { prefix: "spa.frontendModules" },
+};
+
+const distroSnippet = (addOn: IAddOn, version: string) => {
+  // the SDK reads war.openmrs as org.openmrs.web:openmrs-webapp
+  if (addOn.type === "CORE") {
+    return `war.openmrs=${version}`;
+  }
+  const { prefix, defaultGroupId } = DISTRO_KEY[addOn.type];
+  const id =
+    addOn.type === "FRONTEND_MODULE"
+      ? addOn.npmPackageName
+      : addOn.mavenArtifactId;
+  if (!id) {
+    return null;
+  }
+  const key = `${prefix}.${id}`;
+  const lines = [`${key}=${version}`];
+  if (
+    defaultGroupId &&
+    addOn.mavenGroupId &&
+    addOn.mavenGroupId !== defaultGroupId
+  ) {
+    lines.push(`${key}.groupId=${addOn.mavenGroupId}`);
+  }
+  return lines.join("\n");
+};
+
+const CopySnippetButton: React.FC<
+  { snippet: string; version?: string } & ButtonProps
+> = ({ snippet, version, className, ...props }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copy = () =>
+    navigator.clipboard.writeText(snippet).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+
+  // in a version row the button needs to say what it copies; the accessible
+  // name starts with the visible label so voice control can match it
+  const what = snippet.includes("\n") ? " distro lines" : " distro line";
+  const label = `${copied ? "Copied" : "Copy"}${version ? what : ""}`;
+
+  return (
+    <Button
+      variant="outline-secondary"
+      size="sm"
+      className={`text-nowrap ${className ?? ""}`}
+      onClick={copy}
+      aria-label={version ? `${label} for version ${version}` : undefined}
+      {...props}
+    >
+      <FontAwesomeIcon icon={faCopy} className="mr-1" />
+      {label}
+    </Button>
+  );
+};
+
+const DistroSnippet: React.FC<{ snippet: string }> = ({ snippet }) => (
+  <div className="mt-3">
+    <strong>Add to your distribution:</strong>
+    <div className="d-flex align-items-center">
+      <pre
+        className="mb-0 mr-2 p-2 rounded bg-light text-danger text-break"
+        style={{ whiteSpace: "pre-wrap", minWidth: 0 }}
+      >
+        <code>{snippet}</code>
+      </pre>
+      <CopySnippetButton snippet={snippet} />
+    </div>
+  </div>
+);
 
 const formatLinkHeader = (link) => {
   switch (link.rel) {
@@ -253,6 +336,9 @@ export const Show: React.FC = () => {
 
   const versionDownloadUri = latestVersion ? latestVersion.downloadUri : null;
 
+  const snippet =
+    addOn && latestVersion ? distroSnippet(addOn, latestVersion.version) : null;
+
   return (
     (addOnResult.isLoading && <></>) ||
     (addOnResult.isError && (
@@ -337,6 +423,7 @@ export const Show: React.FC = () => {
                 {version}
               </DownloadButton>
             )}
+            {snippet && <DistroSnippet snippet={snippet} />}
           </Col>
         </Row>
         <>
@@ -370,6 +457,7 @@ export const Show: React.FC = () => {
               {addOn?.versions?.map((v) => {
                 const className =
                   v?.version === highlightVersion ? "highlight" : null;
+                const versionSnippet = v && distroSnippet(addOn, v.version);
                 return (
                   v && (
                     <tr key={v.version} className={className}>
@@ -379,7 +467,7 @@ export const Show: React.FC = () => {
                         <td>{v.requireOpenmrsVersion}</td>
                       )}
                       <td>{formatRequiredModules(v)}</td>
-                      <td>
+                      <td className="text-nowrap">
                         <DownloadButton
                           uid={addOn.uid}
                           version={v.version}
@@ -395,6 +483,13 @@ export const Show: React.FC = () => {
                           <FontAwesomeIcon icon={faDownload} className="mr-1" />
                           Download
                         </DownloadButton>
+                        {versionSnippet && (
+                          <CopySnippetButton
+                            snippet={versionSnippet}
+                            version={v.version}
+                            className="ml-2"
+                          />
+                        )}
                       </td>
                     </tr>
                   )
