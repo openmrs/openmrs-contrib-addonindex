@@ -145,7 +145,7 @@
     <properties>
         <java.version>21</java.version>
         <docker.image.prefix>openmrs</docker.image.prefix>
-        <elasticsearch.version>7.13.4</elasticsearch.version>
+        <elasticsearch.version>7.17.25</elasticsearch.version>
         <xmlunit.version>2.10.0</xmlunit.version>
         <maven.frontend.version>2.0.0</maven.frontend.version>
         <spotless.goal>apply</spotless.goal>
